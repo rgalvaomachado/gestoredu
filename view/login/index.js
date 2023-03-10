@@ -12,7 +12,7 @@ function login(){
         complete: function(response) {
             var response = JSON.parse(response.responseText);
             if(response.access){
-                window.location.assign("home/index.php")
+                window.location.assign("../home/index.php")
             }else{
                 const alert = document.getElementById("messageAlert");
                 alert.innerHTML = response.message;
