@@ -3,8 +3,8 @@
     <script src="../public/js/md5.js"></script>
     <link href="../public/css/global.css" rel="stylesheet">
 
-    <link href="../view/comissao/styles.css" rel="stylesheet">
-    <script src="../view/comissao/index.js"></script>
+    <link href="styles.css" rel="stylesheet">
+    <script src="index.js"></script>
 </head>
 <?php include_once('../includes/top.html')?>
 <div class="grid-container">
