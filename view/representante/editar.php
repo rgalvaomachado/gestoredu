@@ -3,8 +3,8 @@
     <script src="../public/js/md5.js"></script>
     <link href="../public/css/global.css" rel="stylesheet">
 
-    <link href="../view/representante/styles.css" rel="stylesheet">
-    <script src="../view/representante/index.js"></script>
+    <link href="styles.css" rel="stylesheet">
+    <script src="index.js"></script>
 </head>
 <?php include_once('../includes/top.html')?>
 <div class="grid-container">
@@ -42,7 +42,6 @@
 			<input class='button' type="button" onclick="editarRepresentante()" value="Editar">
 			<input class='button' type="button" onclick="excluirRepresentante()" value="Excluir">
 		</div>
-		<script src="view/representante/index.js"></script>
 		<script>buscarRepresentantes()</script>
     </div>
 </div>

@@ -3,8 +3,8 @@
     <script src="../public/js/md5.js"></script>
     <link href="../public/css/global.css" rel="stylesheet">
 
-    <link href="../view/representante/styles.css" rel="stylesheet">
-    <script src="../view/representante/index.js"></script>
+    <link href="styles.css" rel="stylesheet">
+    <script src="index.js"></script>
 </head>
 <?php include_once('../includes/top.html')?>
 <div class="grid-container">
@@ -31,6 +31,5 @@
         <input class='input' id="assinatura" name="assinatura" type="file">
         </br>
         <input class='button' type="button" onclick="criarRepresentante()" value="Cadastrar">
-        <script src="view/representante/index.js"></script>
     </div>
 </div>
