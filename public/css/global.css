@@ -35,11 +35,11 @@ body {
 }
 
 input:focus {
-  outline-color: orange;
+  outline-color: green;
 }
 
 .button{
-  background-color: orange;
+  background-color: green;
   color:white;
   border-radius: 5px;
   border: #ccc;
@@ -54,7 +54,7 @@ input:focus {
 }
 
 .button:active{
-  background-color: orange;
+  background-color: green;
 }
 
 .grid-container {
@@ -105,7 +105,7 @@ a, p, label, option, input, td, tr{
 }
 
 #barraSuperior{
-  background-color: orange;
+  background-color: green;
   padding: 5px;
 }
 
@@ -144,7 +144,7 @@ a, p, label, option, input, td, tr{
 }
 
 #listMenu label:hover, #listMenu li>ul>li a:hover{
-  background-color: orange;
+  background-color: green;
   color: white; 
 }
 
