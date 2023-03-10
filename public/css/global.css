@@ -50,7 +50,7 @@ input:focus {
 }
 
 .button:hover{
-  background-color: rgba(255, 166, 0, 0.373);
+  background-color: rgba(0, 100, 0);
 }
 
 .button:active{
