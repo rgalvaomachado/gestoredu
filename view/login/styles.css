@@ -1,0 +1,34 @@
+#login{
+  text-align: center;
+}
+
+.labelLogin{
+  color: rgb(83, 83, 83);
+}
+
+@media (min-width: 800px){
+  #login{
+    padding-top: 80px;
+  }
+
+  #labelLogin{
+    font-size: 30px;
+  }
+
+  .labelLogin{
+    padding-bottom: 20px;
+  }
+}
+@media (max-width: 800px){
+  #login{
+    padding-top: 20px;
+  }
+
+  #labelLogin{
+    font-size: 20px;
+  }
+  
+  .labelLogin{
+    padding-bottom: 20px;
+  }
+}

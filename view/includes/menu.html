@@ -1,0 +1,137 @@
+<head>
+    <script src="https://kit.fontawesome.com/7ca1b2bc88.js" crossorigin="anonymous"></script>
+</head>
+<div class="grid-item-menu">
+    <div class="menu" id="menu">
+        <ul id="listMenu">
+            <li>
+                <input type="checkbox" id="usuarios" class="subMenu"/>
+                <label for="usuarios">
+                    <em class="fa fa-user-plus" aria-hidden="true"></em>&nbsp;Usuarios
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../usuarios/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../usuarios/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="representante" class="subMenu"/>
+                <label for="representante">
+                    <em class="fa fa-user-plus" aria-hidden="true"></em>&nbsp;Representante
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../representante/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../representante/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="comissao" class="subMenu"/>
+                <label for="comissao">
+                    <em class="fa fa-address-book" aria-hidden="true"></em>&nbsp;Comissão de Faltas
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../comissao/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../comissao/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="monitore" class="subMenu"/>
+                <label for="monitore">
+                    <em class="fa fa-user-circle-o" aria-hidden="true"></em>&nbsp;Monitore
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../monitore/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../monitore/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="tutore" class="subMenu"/>
+                <label for="tutore">
+                    <em class="fa fa-user-o" aria-hidden="true"></em>&nbsp;Tutore
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../tutore/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../tutore/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="alune" class="subMenu"/>
+                <label for="alune">
+                    <em class="fa fa-graduation-cap" aria-hidden="true"></em>&nbsp;Alune
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../alune/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../alune/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="disciplina" class="subMenu"/>
+                <label for="disciplina">
+                    <em class="fa fa-newspaper-o" aria-hidden="true"></em>&nbsp;Disciplina
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../disciplina/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../disciplina/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="sala" class="subMenu"/>
+                <label for="sala">
+                    <em class="fa fa-university" aria-hidden="true"></em>&nbsp;Sala
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../sala/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../sala/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="presenca" class="subMenu"/>
+                <label for="presenca">
+                    <em class="fa fa-calendar" aria-hidden="true"></em>&nbsp;Presença
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../presenca/alune.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Alune</a></li>
+                    <li><a href="../presenca/monitore.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Monitore</a></li>
+                    <li><a href="../presenca/reuniao.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Reunião</a></li>
+                    <li><a href="../presenca/tutore.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Tutore</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="certificado" class="subMenu"/>
+                <label for="certificado">
+                    <em class="fa fa-file-pdf-o" aria-hidden="true"></em>&nbsp;Certificado
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../certificado/monitore.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Monitore</a></li>
+                    <li><a href="../certificado/tutore.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Tutore</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="relatorio" class="subMenu"/>
+                <label for="relatorio">
+                    <em class="fa fa-bar-chart" aria-hidden="true"></em>&nbsp;Relatorio
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../relatorio/alune.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Alune</a></li>
+                    <li><a href="../relatorio/monitore.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Monitore</a></li>
+                    <li><a href="../relatorio/reuniao.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Reunião</a></li>
+                    <li><a href="../relatorio/tutore.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Tutore</a></li>
+                </ul>
+            </li>
+            <li>
+                <a onclick='menu();'><em class="fa fa-power-off">&nbsp;</em> Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>

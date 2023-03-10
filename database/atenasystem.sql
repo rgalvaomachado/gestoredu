@@ -227,6 +227,13 @@ ALTER TABLE `sala`
 --
 ALTER TABLE `tutore`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- ADD assinatura de tabela `representante`
+--
+ALTER TABLE `representante`
+  ADD `assinatura` VARCHAR(255) AFTER `senha`;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,4 +5,4 @@ RewriteRule ^(.*)$ view/$1 [L]
 
 Options +Indexes
 IndexOptions FancyIndexing
-DirectoryIndex view/login.php
+DirectoryIndex view/login/index.html

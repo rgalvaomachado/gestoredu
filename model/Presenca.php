@@ -1,5 +1,5 @@
 <?php
-    include_once('database.php');
+    include_once('Database.php');
 
     class Presenca extends BD{
         public $cod_alune;
@@ -49,23 +49,6 @@
                 ':data' => $this->data,
             ]);
         }
-
-        function getPresencaMonitore(){
-            $getPresencaMonitore =  $this->bd->prepare('
-                SELECT *
-                FROM presenca
-                WHERE 
-                    cod_monitore = :cod_monitore
-                    AND data BETWEEN :data AND :data_final 
-                    AND presente = \'S\'
-            ');
-            $getPresencaMonitore->execute([
-                ':cod_monitore' => $this->cod_monitore,
-                ':data' => $this->data,
-                ':data_final' => $this->data_final,
-            ]);
-            return $getPresencaMonitore->fetchAll(PDO::FETCH_ASSOC);
-        } 
 
         function getPresencaPeriodo(){
             $getPresencaPeriodo =  $this->bd->prepare('
@@ -157,40 +140,6 @@
                 ':data' => $this->data,
             ]);
             return $verificarPresencaAlune->fetchAll(PDO::FETCH_ASSOC);
-        } 
-
-        function verificarPresencaMonitore(){
-            $verificarPresencaMonitore =  $this->bd->prepare('
-                SELECT * 
-                FROM presenca 
-                WHERE 
-                    cod_sala = :cod_sala
-                    AND data = :data
-                    AND cod_monitore > 0
-            ');
-            $verificarPresencaMonitore->execute([
-                ':cod_sala' => isset($this->cod_sala) ? $this->cod_sala : 0,
-                ':data' => $this->data,
-            ]);
-            return $verificarPresencaMonitore->fetchAll(PDO::FETCH_ASSOC);
-        } 
-
-        function verificarPresencaTutore(){
-            $verificarPresencaTutore =  $this->bd->prepare('
-                SELECT * 
-                FROM presenca 
-                WHERE 
-                    cod_sala = :cod_sala
-                    AND data = :data
-                    AND aula = :aula
-                    AND cod_tutore > 0
-            ');
-            $verificarPresencaTutore->execute([
-                ':cod_sala' => isset($this->cod_sala) ? $this->cod_sala : 0,
-                ':aula' => isset($this->aula) ? $this->aula : 0,
-                ':data' => $this->data,
-            ]);
-            return $verificarPresencaTutore->fetchAll(PDO::FETCH_ASSOC);
         } 
 
         function deletaPresencaAlune(){
