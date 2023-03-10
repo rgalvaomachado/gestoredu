@@ -2,7 +2,7 @@ function buscarRepresentante(){
     var id = $("#representante").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getRepresentante",
             id: id,
@@ -37,7 +37,7 @@ function criarRepresentante(){
     var filesSelected = document.getElementById("assinatura").files;
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarRepresentante",
             nome: nome,
@@ -56,7 +56,7 @@ function criarRepresentante(){
                         var assinatura = fileLoadedEvent.target.result
                         $.ajax({
                             method: "POST",
-                            url: "controller/Controller.php",
+                            url: "../controller/Controller.php",
                             data: {
                                 metodo: "salvaAssinaturaRepresentante",
                                 assinatura: assinatura,
@@ -92,7 +92,7 @@ function editarRepresentante(){
     var filesSelected = document.getElementById("assinatura").files;
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "salvarRepresentante",
             id: id,
@@ -112,7 +112,7 @@ function editarRepresentante(){
                         var assinatura = fileLoadedEvent.target.result
                         $.ajax({
                             method: "POST",
-                            url: "controller/Controller.php",
+                            url: "../controller/Controller.php",
                             data: {
                                 metodo: "salvaAssinaturaRepresentante",
                                 assinatura: assinatura,
@@ -145,7 +145,7 @@ function excluirRepresentante(){
         var id = $("#representante").val();
         $.ajax({
             method: "POST",
-            url: "controller/Controller.php",
+            url: "../controller/Controller.php",
             data: {
                 metodo: "excluirRepresentante",
                 id: id,
@@ -180,7 +180,7 @@ function excluirRepresentante(){
 function buscarRepresentantes(){
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getRepresentantes",
         },

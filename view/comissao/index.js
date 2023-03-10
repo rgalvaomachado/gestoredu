@@ -2,7 +2,7 @@ function buscarComissao(){
     var id = $("#comissao").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getComissao",
             id: id,
@@ -24,7 +24,7 @@ function criarComissao(){
     var senha = $("#senha").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarComissao",
             nome: nome,
@@ -61,7 +61,7 @@ function editarComissao(){
     var senha = $("#senha").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "salvarComissao",
             id: id,
@@ -97,7 +97,7 @@ function excluirComissao(){
         var id = $("#comissao").val();
         $.ajax({
             method: "POST",
-            url: "controller/Controller.php",
+            url: "../controller/Controller.php",
             data: {
                 metodo: "excluirComissao",
                 id: id,
@@ -129,7 +129,7 @@ function excluirComissao(){
 function buscarComissoes(){
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getComissoes",
         },

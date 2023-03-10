@@ -3,7 +3,7 @@ function login(){
     var senha = $("#senhaLogin").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "login",
             usuario: usuario,

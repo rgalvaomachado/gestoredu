@@ -3,7 +3,7 @@ function criarAlune(){
     var sala = $("#sala").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarAlune",
             nome: nome,
@@ -36,7 +36,7 @@ function buscarAlune(){
     var id = $("#alune").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getAlune",
             id: id,
@@ -58,7 +58,7 @@ function editarAlune(){
     var sala = $("#sala").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "salvarAlune",
             id: id,
@@ -93,7 +93,7 @@ function excluirAlune(){
         var id = $("#alune").val();
         $.ajax({
             method: "POST",
-            url: "controller/Controller.php",
+            url: "../controller/Controller.php",
             data: {
                 metodo: "excluirAlune",
                 id: id,
@@ -125,7 +125,7 @@ function excluirAlune(){
 function buscarAlunes(){
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getAlunes",
         },
@@ -143,7 +143,7 @@ function buscarAlunesSala(){
     var sala = $("#sala").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getAlunesSala",
             sala: sala,
@@ -170,7 +170,7 @@ function buscarPresencaAlune(){
     var aula = $("#aula").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "buscarPresencaAlune",
             sala: sala,
@@ -204,7 +204,7 @@ function justificarPresencaAlune(){
     var presente = $("#presente").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "justificarPresencaAlune",
             alune: alune,

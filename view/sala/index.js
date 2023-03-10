@@ -2,7 +2,7 @@ function criarSala(){
     var nome = $("#nome").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarSala",
             nome: nome,
@@ -34,7 +34,7 @@ function buscarSala(){
     var id = $("#sala").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getSala",
             id: id,
@@ -54,7 +54,7 @@ function editarSala(){
     var nome = $("#nome").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "salvarSala",
             id: id,
@@ -88,7 +88,7 @@ function excluirSala(){
         var id = $("#sala").val();
         $.ajax({
             method: "POST",
-            url: "controller/Controller.php",
+            url: "../controller/Controller.php",
             data: {
                 metodo: "excluirSala",
                 id: id,
@@ -120,7 +120,7 @@ function excluirSala(){
 function buscarSalas(){
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getSalas",
         },

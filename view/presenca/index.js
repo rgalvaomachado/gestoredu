@@ -2,7 +2,7 @@ function buscarAlunesLista(){
     var sala = $("#sala").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getAlunesSala",
             sala: sala,
@@ -30,7 +30,7 @@ function buscarTutoresLista(){
     var sala = $("#sala").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getTutores",
             sala: sala,
@@ -60,7 +60,7 @@ function criarPresencaAlune(){
 
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarPresencaAlune",
             sala: sala,
@@ -103,7 +103,7 @@ function criarPresencaReuniao(){
 
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarPresencaReuniao",
             data: data,
@@ -142,7 +142,7 @@ function criarPresencaMonitore(){
     var data = $("#data").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarPresencaMonitore",
             monitore: monitore,
@@ -179,7 +179,7 @@ function criarPresencaTutore(){
     var tutore = $("#tutore").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarPresencaTutore",
             sala: sala,

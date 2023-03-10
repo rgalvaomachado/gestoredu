@@ -4,7 +4,7 @@ function criarMonitore(){
     var senha = $("#senha").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarMonitore",
             nome: nome,
@@ -38,7 +38,7 @@ function buscarMonitore(){
     var id = $("#monitore").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getMonitore",
             id: id,
@@ -61,7 +61,7 @@ function editarMonitore(){
     var senha = $("#senha").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "salvarMonitore",
             id: id,
@@ -97,7 +97,7 @@ function excluirMonitore(){
         var id = $("#monitore").val();
         $.ajax({
             method: "POST",
-            url: "controller/Controller.php",
+            url: "../controller/Controller.php",
             data: {
                 metodo: "excluirMonitore",
                 id: id,
@@ -129,7 +129,7 @@ function excluirMonitore(){
 function buscarMonitores(){
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getMonitores",
         },
@@ -149,7 +149,7 @@ function buscarPresencaMonitore(){
     var data = $("#data").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "buscarPresencaMonitore",
             monitore: monitore,
@@ -181,7 +181,7 @@ function editarPresencaMonitore(){
     var presente = $("#presente").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "editarPresencaMonitore",
             monitore: monitore,

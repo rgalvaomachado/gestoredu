@@ -8,7 +8,7 @@ function relatorioPresencaAlune(){
     $('#detalhes').hide();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "relatorioPresencaAlune",
             sala: sala,
@@ -56,7 +56,7 @@ function relatorioPresencaReuniao(){
     $('#detalhes').hide();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "relatorioPresencaReuniao",
             dataInicial: dataInicial,
@@ -103,7 +103,7 @@ function relatorioPresencaMonitore(){
     $('#detalhes').hide();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "relatorioPresencaMonitore",
             sala: sala,
@@ -150,7 +150,7 @@ function relatorioPresencaTutore(){
     $('#detalhes').hide();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "relatorioPresencaTutore",
             sala: sala,

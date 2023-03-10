@@ -3,7 +3,7 @@ function criarTutore(){
     var disciplina = $("#disciplina").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarTutore",
             nome: nome,
@@ -36,7 +36,7 @@ function buscarTutore(){
     var id = $("#tutore").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getTutore",
             id: id,
@@ -58,7 +58,7 @@ function editarTutore(){
     var disciplina = $("#disciplina").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "salvarTutore",
             id: id,
@@ -93,7 +93,7 @@ function excluirTutore(){
         var id = $("#tutore").val();
         $.ajax({
             method: "POST",
-            url: "controller/Controller.php",
+            url: "../controller/Controller.php",
             data: {
                 metodo: "excluirTutore",
                 id: id,
@@ -125,7 +125,7 @@ function excluirTutore(){
 function buscarTutores(){
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getTutores",
         },
@@ -146,7 +146,7 @@ function buscarPresencaTutore(){
     var data = $("#data").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "buscarPresencaTutore",
             tutore: tutore,
@@ -180,7 +180,7 @@ function editarPresencaTutore(){
     var presente = $("#presente").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "editarPresencaTutore",
             tutore: tutore,
@@ -217,7 +217,7 @@ function buscarPresencaReuniao(){
     var data = $("#data").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "buscarPresencaReuniao",
             tutore: tutore,
@@ -247,7 +247,7 @@ function justificarPresencaReuniao(){
     var presente = $("#presente").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "justificarPresencaReuniao",
             tutore: tutore,

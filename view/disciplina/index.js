@@ -2,7 +2,7 @@ function criarDisciplina(){
     var nome = $("#nome").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "criarDisciplina",
             nome: nome,
@@ -34,7 +34,7 @@ function buscarDisciplina(){
     var id = $("#disciplina").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getDisciplina",
             id: id,
@@ -54,7 +54,7 @@ function editarDisciplina(){
     var nome = $("#nome").val();
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "salvarDisciplina",
             id: id,
@@ -88,7 +88,7 @@ function excluirDisciplina(){
         var id = $("#disciplina").val();
         $.ajax({
             method: "POST",
-            url: "controller/Controller.php",
+            url: "../controller/Controller.php",
             data: {
                 metodo: "excluirDisciplina",
                 id: id,
@@ -120,7 +120,7 @@ function excluirDisciplina(){
 function buscarDisciplinas(){
     $.ajax({
         method: "POST",
-        url: "controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getDisciplinas",
         },
