@@ -1,7 +1,5 @@
 <head>
-    <script src="../public/js/jquery-1.11.1.min.js"></script>
-    <script src="../public/js/md5.js"></script>
-    <link href="../public/css/global.css" rel="stylesheet">
+    <?php include_once('../includes/head.html')?>
 
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
