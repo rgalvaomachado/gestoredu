@@ -2,7 +2,7 @@ function buscarRepresentante(){
     var id = $("#representante").val();
     $.ajax({
         method: "POST",
-        url: "../../controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getRepresentante",
             id: id,
@@ -180,7 +180,7 @@ function excluirRepresentante(){
 function buscarRepresentantes(){
     $.ajax({
         method: "POST",
-        url: "../../controller/Controller.php",
+        url: "../controller/Controller.php",
         data: {
             metodo: "getRepresentantes",
         },
