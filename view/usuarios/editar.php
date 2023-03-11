@@ -44,7 +44,6 @@
 			<input class='button' type="button" onclick="editarRepresentante()" value="Editar">
 			<input class='button' type="button" onclick="excluirRepresentante()" value="Excluir">
 		</div>
-		<script src="view/representante/index.js"></script>
 		<script>buscarRepresentantes()</script>
     </div>
 </div>

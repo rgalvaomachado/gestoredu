@@ -33,6 +33,5 @@
         <input class='input' id="assinatura" name="assinatura" type="file">
         </br>
         <input class='button' type="button" onclick="criarRepresentante()" value="Cadastrar">
-        <script src="view/representante/index.js"></script>
     </div>
 </div>
