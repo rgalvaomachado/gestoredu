@@ -57,11 +57,6 @@ input:focus {
   background-color: green;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 250px auto ;
-}
-
 .grid-item-menu, .grid-item-content {
   text-align: center;
 }
@@ -180,6 +175,11 @@ a, p, label, option, input, td, tr{
 
   #barraSuperior{
     display: none;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 250px auto ;
   }
 }
 
