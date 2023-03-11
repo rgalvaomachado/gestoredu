@@ -5,14 +5,25 @@
     <div class="menu" id="menu">
         <ul id="listMenu">
             <li>
-                <input type="checkbox" id="usuarios" class="subMenu"/>
-                <label for="usuarios">
+                <input type="checkbox" id="menuUsuarios" class="subMenu"/>
+                <label for="menuUsuarios">
                     <em class="fa fa-user-plus" aria-hidden="true"></em>&nbsp;Usuarios
                     <em class="fa fa-plus"></em>
                 </label>
                 <ul>
                     <li><a href="../usuarios/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
                     <li><a href="../usuarios/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="menuGrupos" class="subMenu"/>
+                <label for="menuGrupos">
+                    <em class="fa fa-users" aria-hidden="true"></em>&nbsp;Grupos
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../grupos/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../grupos/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
                 </ul>
             </li>
             <li>

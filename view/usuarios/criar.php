@@ -24,6 +24,10 @@
         <br>
         <input class='input' id="senha" name="senha" type="password">
         <br>
+        <select class='input' id="representante" name="representante" onchange="buscarRepresentante()">
+            <option value="">Selecione o representante</option>
+        </select>
+        <br>
         <label>Assinatura</label>
         </br>
         <input class='input' id="assinatura" name="assinatura" type="file">
