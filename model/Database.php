@@ -17,7 +17,7 @@
                 $this->username = 'root';
                 $this->password = 'root';
                 $this->host     = '127.0.0.1';
-                $this->dataBase = 'atenasystem';
+                $this->dataBase = 'gestoredu';
             }
 
             try {
