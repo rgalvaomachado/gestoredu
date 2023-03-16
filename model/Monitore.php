@@ -1,7 +1,7 @@
 <?php
     include_once('Database.php');
 
-    class Monitore extends BD{
+    class Monitore extends Database{
         public $nome;
         public $usuario;
         public $senha;

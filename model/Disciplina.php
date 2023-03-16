@@ -1,7 +1,7 @@
 <?php
     include_once('Database.php');
 
-    class Disciplina extends BD{
+    class Disciplina extends Database{
         public $nome;
         public $disciplina;
 

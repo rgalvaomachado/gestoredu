@@ -1,7 +1,7 @@
 <?php
     include_once('Database.php');
 
-    class Presenca extends BD{
+    class Presenca extends Database{
         public $cod_alune;
         public $cod_sala;
         public $cod_tutore;

@@ -1,7 +1,7 @@
 <?php
     include_once('Database.php');
 
-    class Sala extends BD{
+    class Sala extends Database{
         public $nome;
         public $disciplina;
 

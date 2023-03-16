@@ -1,7 +1,7 @@
 <?php
     include_once('Database.php');
 
-    class Alune extends BD{
+    class Alune extends Database{
         public $nome;
         public $sala;
 

@@ -1,5 +1,5 @@
 <?php
-    class BD{
+    class Database{
         public $bd;
         public $err;
         public $username;   // Usuário do banco de dados

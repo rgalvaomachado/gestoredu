@@ -1,7 +1,7 @@
 <?php
     include_once('Database.php');
 
-    class Comissao extends BD{
+    class Comissao extends Database{
         public $nome;
         public $usuario;
         public $senha;
