@@ -47,10 +47,19 @@ input:focus {
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  width: 200px;
 }
 
 .button:hover{
   background-color: rgba(0, 100, 0);
+}
+
+.deletar {
+  background-color: red;
+}
+
+.deletar:hover {
+  background-color: rgb(100, 0, 0);
 }
 
 .button:active{

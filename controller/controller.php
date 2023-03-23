@@ -10,10 +10,46 @@
     include_once('TutoreController.php');
     include_once('RelatorioController.php');
     include_once('CertificadoController.php');
+    include_once('UsuarioController.php');
+    include_once('GrupoController.php');
 
     $metodo = isset($_POST['metodo']) ? $_POST['metodo'] : ""; 
 
     switch($metodo){
+        case 'buscarUsuario':
+            $usuario = new UsuarioController();
+            $response = $usuario->buscar($_POST);
+            break;
+        case 'criarUsuario':
+            $usuario = new UsuarioController();
+            $response = $usuario->criar($_POST);
+            break;
+        case 'editarUsuario':
+            $usuario = new UsuarioController();
+            $response = $usuario->editar($_POST);
+            break;
+        case 'deletarUsuario':
+            $usuario = new UsuarioController();
+            $response = $usuario->deletar($_POST);
+            break;
+        ///////////////////////////////////////////////////////////////////////////////
+        case 'buscarGrupo':
+            $grupo = new GrupoController();
+            $response = $grupo->buscar($_POST);
+            break;
+        case 'criarGrupo':
+            $grupo = new GrupoController();
+            $response = $grupo->criar($_POST);
+            break;
+        case 'editarGrupo':
+            $grupo = new GrupoController();
+            $response = $grupo->editar($_POST);
+            break;
+        case 'deletarGrupo':
+            $grupo = new GrupoController();
+            $response = $grupo->deletar($_POST);
+            break;
+        ///////////////////////////////////////////////////////////////////////////////
         case 'criarAlune':
             $AluneController = new AluneController();
             $response = $AluneController->criarAlune($_POST);

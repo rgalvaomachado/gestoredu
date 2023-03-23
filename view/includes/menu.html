@@ -5,28 +5,28 @@
     <div class="menu" id="menu">
         <ul id="listMenu">
             <li>
-                <input type="checkbox" id="menuUsuarios" class="subMenu"/>
-                <label for="menuUsuarios">
+                <input type="checkbox" id="menuUsuario" class="subMenu"/>
+                <label for="menuUsuario">
                     <em class="fa fa-user-plus" aria-hidden="true"></em>&nbsp;Usuarios
                     <em class="fa fa-plus"></em>
                 </label>
                 <ul>
-                    <li><a href="../usuarios/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
-                    <li><a href="../usuarios/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                    <li><a href="../usuario/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../usuario/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
                 </ul>
             </li>
             <li>
-                <input type="checkbox" id="menuGrupos" class="subMenu"/>
-                <label for="menuGrupos">
+                <input type="checkbox" id="menuGrupo" class="subMenu"/>
+                <label for="menuGrupo">
                     <em class="fa fa-users" aria-hidden="true"></em>&nbsp;Grupos
                     <em class="fa fa-plus"></em>
                 </label>
                 <ul>
-                    <li><a href="../grupos/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
-                    <li><a href="../grupos/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                    <li><a href="../grupo/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../grupo/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
                 </ul>
             </li>
-            <li>
+            <!-- <li>
                 <input type="checkbox" id="menuRepresentante" class="subMenu"/>
                 <label for="menuRepresentante">
                     <em class="fa fa-user-plus" aria-hidden="true"></em>&nbsp;Representante
@@ -80,7 +80,7 @@
                     <li><a href="../alune/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
                     <li><a href="../alune/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
                 </ul>
-            </li>
+            </li> -->
             <li>
                 <input type="checkbox" id="menuDisciplina" class="subMenu"/>
                 <label for="menuDisciplina">
@@ -90,6 +90,7 @@
                 <ul>
                     <li><a href="../disciplina/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
                     <li><a href="../disciplina/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                    <li><a href="../disciplina/vincular.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Atribuir</a></li>
                 </ul>
             </li>
             <li>
@@ -101,6 +102,7 @@
                 <ul>
                     <li><a href="../sala/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
                     <li><a href="../sala/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                    <li><a href="../sala/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Vincular</a></li>
                 </ul>
             </li>
             <li>
@@ -110,14 +112,8 @@
                     <em class="fa fa-plus"></em>
                 </label>
                 <ul>
-                    <li><a href="../presenca/alune.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Alune</a></li>
-                    <li><a href="../presenca/alune_justificar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Justificar Alune</a></li>
-                    <li><a href="../presenca/monitore.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Monitore</a></li>
-                    <li><a href="../presenca/monitore_editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar Monitore</a></li>
-                    <li><a href="../presenca/tutore.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Tutore</a></li>
-                    <li><a href="../presenca/tutore_editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar Tutore</a></li>
-                    <li><a href="../presenca/reuniao.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Reunião</a></li>
-                    <li><a href="../presenca/reuniao_justificar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Justificar Reunião</a></li>
+                    <li><a href="../presenca/alune.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Ponto Eletronico</a></li>
+                    <li><a href="../presenca/alune_justificar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Chamada</a></li>
 
                 </ul>
             </li>
