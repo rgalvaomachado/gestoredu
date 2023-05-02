@@ -50,52 +50,6 @@
             $response = $grupo->deletar($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
-        case 'criarAlune':
-            $AluneController = new AluneController();
-            $response = $AluneController->criarAlune($_POST);
-            break;
-        case 'getAlunes':
-            $AluneController = new AluneController();
-            $response = $AluneController->getAlunes($_POST);
-            break;
-        case 'getAlune':
-            $AluneController = new AluneController();
-            $response = $AluneController->getAlune($_POST);
-            break;
-        case 'getAlunesSala':
-            $AluneController = new AluneController();
-            $response = $AluneController->getAlunesSala($_POST);
-            break;
-        case 'salvarAlune':
-            $AluneController = new AluneController();
-            $response = $AluneController->salvarAlune($_POST);
-            break;
-        case 'excluirAlune':
-            $AluneController = new AluneController();
-            $response = $AluneController->excluirAlune($_POST);
-            break;
-        ///////////////////////////////////////////////////////////////////////////////
-        case 'getComissoes':
-            $ComissaoController = new ComissaoController();
-            $response = $ComissaoController->getComissoes($_POST);
-            break; 
-        case 'getComissao':
-            $ComissaoController = new ComissaoController();
-            $response = $ComissaoController->getComissao($_POST);
-            break;
-        case 'criarComissao':
-            $ComissaoController = new ComissaoController();
-            $response = $ComissaoController->criarComissao($_POST);
-            break;
-        case 'salvarComissao':
-            $ComissaoController = new ComissaoController();
-            $response = $ComissaoController->salvarComissao($_POST);
-            break;
-        case 'excluirComissao':
-            $ComissaoController = new ComissaoController();
-            $response = $ComissaoController->excluirComissao($_POST);
-            break;
-        ///////////////////////////////////////////////////////////////////////////////
         case 'criarDisciplina':
             $DisciplinaController = new DisciplinaController();
             $response = $DisciplinaController->criarDisciplina($_POST);
@@ -132,27 +86,6 @@
         case 'logout':
             $LoginController = new LoginController();
             $response = $LoginController->logout($_POST);
-            break;
-        ///////////////////////////////////////////////////////////////////////////////
-        case 'criarMonitore':
-            $MonitoreController = new MonitoreController();
-            $response = $MonitoreController->criarMonitore($_POST);
-            break;
-        case 'getMonitores':
-            $MonitoreController = new MonitoreController();
-            $response = $MonitoreController->getMonitores($_POST);
-            break; 
-        case 'getMonitore':
-            $MonitoreController = new MonitoreController();
-            $response = $MonitoreController->getMonitore($_POST);
-            break;
-        case 'salvarMonitore':
-            $MonitoreController = new MonitoreController();
-            $response = $MonitoreController->salvarMonitore($_POST);
-            break;
-        case 'excluirMonitore':
-            $MonitoreController = new MonitoreController();
-            $response = $MonitoreController->excluirMonitore($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
         case 'buscarPresencaAlune':
@@ -231,31 +164,6 @@
             $response = $CertificadoController->certificadoMonitore($_POST);
             break; 
         ///////////////////////////////////////////////////////////////////////////////
-        case 'getRepresentantes':
-            $RepresentanteController = new RepresentanteController();
-            $response = $RepresentanteController->getRepresentantes($_POST);
-            break; 
-        case 'criarRepresentante':
-            $RepresentanteController = new RepresentanteController();
-            $response = $RepresentanteController->criarRepresentante($_POST, $_FILES);
-            break; 
-        case 'getRepresentante':
-            $RepresentanteController = new RepresentanteController();
-            $response = $RepresentanteController->getRepresentante($_POST);
-            break; 
-        case 'salvarRepresentante':
-            $RepresentanteController = new RepresentanteController();
-            $response = $RepresentanteController->salvarRepresentante($_POST, $_FILES);
-            break; 
-        case 'salvaAssinaturaRepresentante':
-            $RepresentanteController = new RepresentanteController();
-            $response = $RepresentanteController->salvaAssinaturaRepresentante($_POST, $_FILES);
-            break; 
-        case 'excluirRepresentante':
-            $RepresentanteController = new RepresentanteController();
-            $response = $RepresentanteController->excluirRepresentante($_POST);
-            break; 
-        ///////////////////////////////////////////////////////////////////////////////
         case 'criarSala':
             $SalaController = new SalaController();
             $response = $SalaController->criarSala($_POST);
@@ -275,27 +183,6 @@
         case 'excluirSala':
             $SalaController = new SalaController();
             $response = $SalaController->excluirSala($_POST);
-            break;
-        ///////////////////////////////////////////////////////////////////////////////
-        case 'criarTutore':
-            $TutoreController = new TutoreController();
-            $response = $TutoreController->criarTutore($_POST);
-            break;
-        case 'getTutore':
-            $TutoreController = new TutoreController();
-            $response = $TutoreController->getTutore($_POST);
-            break;
-        case 'getTutores':
-            $TutoreController = new TutoreController();
-            $response = $TutoreController->getTutores($_POST);
-            break;
-        case 'salvarTutore':
-            $TutoreController = new TutoreController();
-            $response = $TutoreController->salvarTutore($_POST);
-            break;
-        case 'excluirTutore':
-            $TutoreController = new TutoreController();
-            $response =$TutoreController->excluirTutore($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
         default:
