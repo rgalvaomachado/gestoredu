@@ -3,6 +3,7 @@
 
     class Presenca extends Database{
         public $cod_usuario;
+        public $cod_grupo;
         public $cod_disciplina;
         public $cod_sala;
         public $presente;
@@ -30,11 +31,12 @@
 
         function criarPresenca(){
             $stmt = $this->bd->prepare('
-                INSERT INTO presenca (cod_usuario, cod_disciplina, cod_sala, presente, data)
-                VALUES(:cod_usuario, :cod_disciplina, :cod_sala, :presente, :data)
+                INSERT INTO presenca (cod_usuario, cod_grupo, cod_disciplina, cod_sala, presente, data)
+                VALUES(:cod_usuario, :cod_grupo, :cod_disciplina, :cod_sala, :presente, :data)
             ');
             $stmt->execute([
                 ':cod_usuario' => isset($this->cod_usuario) ? $this->cod_usuario : 0,
+                ':cod_grupo' => isset($this->cod_grupo) ? $this->cod_grupo : 0,
                 ':cod_disciplina' => isset($this->cod_disciplina) ? $this->cod_disciplina : 0,
                 ':cod_sala' => isset($this->cod_sala) ? $this->cod_sala : 0,
                 ':presente' => $this->presente,
@@ -78,6 +80,7 @@
                 FROM presenca
                 WHERE 
                     cod_usuario = :cod_usuario 
+                    AND cod_grupo = :cod_grupo 
                     AND cod_disciplina = :cod_disciplina 
                     AND cod_sala = :cod_sala 
                     AND data BETWEEN :data AND :data_final 
@@ -85,6 +88,7 @@
             ');
             $getPresencaPeriodo->execute([
                 ':cod_usuario'      => $this->cod_usuario,
+                ':cod_grupo'        => $this->cod_grupo,
                 ':cod_disciplina'   => $this->cod_disciplina,
                 ':cod_sala'         => $this->cod_sala,
                 ':data'             => $this->data,
@@ -99,6 +103,7 @@
                 FROM presenca
                 WHERE 
                     cod_usuario = :cod_usuario 
+                    AND cod_grupo = :cod_grupo 
                     AND cod_disciplina = :cod_disciplina 
                     AND cod_sala = :cod_sala 
                     AND data BETWEEN :data AND :data_final 
@@ -106,6 +111,7 @@
             ');
             $getAusenciaPeriodo->execute([
                 ':cod_usuario'      => $this->cod_usuario,
+                ':cod_grupo'        => $this->cod_grupo,
                 ':cod_disciplina'   => $this->cod_disciplina,
                 ':cod_sala'         => $this->cod_sala,
                 ':data'             => $this->data,
@@ -120,6 +126,7 @@
                 FROM presenca
                 WHERE 
                     cod_usuario = :cod_usuario 
+                    AND cod_grupo = :cod_grupo 
                     AND cod_disciplina = :cod_disciplina 
                     AND cod_sala = :cod_sala 
                     AND data BETWEEN :data AND :data_final 
@@ -127,6 +134,7 @@
             ');
             $getJustificadoPeriodo->execute([
                 ':cod_usuario'      => $this->cod_usuario,
+                ':cod_grupo'        => $this->cod_grupo,
                 ':cod_disciplina'   => $this->cod_disciplina,
                 ':cod_sala'         => $this->cod_sala,
                 ':data'             => $this->data,

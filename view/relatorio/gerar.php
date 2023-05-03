@@ -1,5 +1,6 @@
 <head>
     <?php include_once('../includes/head.html')?>
+	<?php include_once('../../controller/GrupoController.php')?>
 	<?php include_once('../../controller/SalaController.php')?>
 	<?php include_once('../../controller/DisciplinaController.php')?>
 
@@ -15,7 +16,20 @@
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
 		<form id="relatorioChamada">
-			<label>Disciplinas</label>
+			<label>Grupo</label>
+			<br>
+			<?php 
+				$GrupoController = new GrupoController();
+				$grupos = json_decode($GrupoController->buscarTodos())->grupos;
+			?>
+			<select class='input' id="grupo" name="grupo" required>
+				<option value="">Selecione o Grupo</option>
+				<?php foreach ($grupos as $grupo) { ?>
+					<option value="<?php echo $grupo->id ?>"><?php echo $grupo->nome ?></option>	
+				<?php } ?>
+			</select>
+			<br>
+			<label>Disciplina</label>
 			<br>
 			<?php 
 				$DisciplinaController = new DisciplinaController();
@@ -28,7 +42,7 @@
 				<?php } ?>
 			</select>
 			<br>
-			<label>Salas</label>
+			<label>Sala</label>
 			<br>
 			<?php 
 				$SalaController = new SalaController();

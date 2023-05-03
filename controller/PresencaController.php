@@ -5,7 +5,11 @@
     class PresencaController{
         function criarPresencaChamada($post){
             $UsuarioController = new UsuarioController();
-            $buscarTodos = json_decode($UsuarioController->buscarTodos(["sala" => $post['sala'],"disciplina" => $post['disciplina']]));
+            $buscarTodos = json_decode($UsuarioController->buscarTodos([
+                "grupo" => $post['grupo'],
+                "sala" => $post['sala'],
+                "disciplina" => $post['disciplina']
+            ]));
             $usuarios = $buscarTodos->usuarios;
             $presente = isset($post['presente']) ? $post['presente'] : [] ;
             $erroAlune = 0;
@@ -13,6 +17,7 @@
                 if(in_array($usuario->id, $presente)){
                     $presenca = new Presenca();
                     $presenca->cod_usuario = $usuario->id;
+                    $presenca->cod_grupo = $post['grupo'];
                     $presenca->cod_disciplina = $post['disciplina'];
                     $presenca->cod_sala = $post['sala'];
                     $presenca->presente = 'S';
@@ -26,6 +31,7 @@
                 }else{
                     $presenca = new Presenca();
                     $presenca->cod_usuario = $usuario->id;
+                    $presenca->cod_grupo = $post['grupo'];
                     $presenca->cod_disciplina = $post['disciplina'];
                     $presenca->cod_sala = $post['sala'];
                     $presenca->presente = 'N';
@@ -186,9 +192,10 @@
         //     }
         // }
 
-        function getPresencaPeriodo($cod_usuario, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
+        function getPresencaPeriodo($cod_usuario, $cod_grupo, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
             $presenca = new Presenca();
             $presenca->cod_usuario = $cod_usuario;
+            $presenca->cod_grupo = $cod_grupo;
             $presenca->cod_disciplina = $cod_disciplina;
             $presenca->cod_sala = $cod_sala;
             $presenca->data = $data_inicial;
@@ -196,9 +203,10 @@
             return $presenca->getPresencaPeriodo();
         }
 
-        function getAusenciaPeriodo($cod_usuario, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
+        function getAusenciaPeriodo($cod_usuario, $cod_grupo, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
             $presenca = new Presenca();
             $presenca->cod_usuario = $cod_usuario;
+            $presenca->cod_grupo = $cod_grupo;
             $presenca->cod_disciplina = $cod_disciplina;
             $presenca->cod_sala = $cod_sala;
             $presenca->data = $data_inicial;
@@ -206,9 +214,10 @@
             return $presenca->getAusenciaPeriodo();
         }
 
-        function getJustificadoPeriodo($cod_usuario, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
+        function getJustificadoPeriodo($cod_usuario, $cod_grupo, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
             $presenca = new Presenca();
             $presenca->cod_usuario = $cod_usuario;
+            $presenca->cod_grupo = $cod_grupo;
             $presenca->cod_disciplina = $cod_disciplina;
             $presenca->cod_sala = $cod_sala;
             $presenca->data = $data_inicial;

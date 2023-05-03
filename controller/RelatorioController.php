@@ -5,12 +5,17 @@ include_once('UsuarioController.php');
 class RelatorioController{
     function relatorioChamada($post){
         $UsuarioController = new UsuarioController();
-        $buscarTodos = json_decode($UsuarioController->buscarTodos(["sala" => $post['sala'],"disciplina" => $post['disciplina']]));
+        $buscarTodos = json_decode($UsuarioController->buscarTodos([
+            "grupo" => $post['grupo'],
+            "sala" => $post['sala'],
+            "disciplina" => $post['disciplina']
+        ]));
         $usuarios = $buscarTodos->usuarios;
         foreach($usuarios as $usuario){
             $PresencaController = new PresencaController();
             $presencas = $PresencaController->getPresencaPeriodo(
                 $usuario->id,
+                $post['grupo'],
                 $post['disciplina'],
                 $post['sala'],
                 $post['dataInicial'],
@@ -18,6 +23,7 @@ class RelatorioController{
             );
             $ausencias = $PresencaController->getAusenciaPeriodo(
                 $usuario->id,
+                $post['grupo'],
                 $post['disciplina'],
                 $post['sala'],
                 $post['dataInicial'],
@@ -25,6 +31,7 @@ class RelatorioController{
             );
             $justificado = $PresencaController->getJustificadoPeriodo(
                 $usuario->id,
+                $post['grupo'],
                 $post['disciplina'],
                 $post['sala'],
                 $post['dataInicial'],

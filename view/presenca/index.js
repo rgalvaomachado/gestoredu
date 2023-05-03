@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('#buscar').submit(function(e) {
         e.preventDefault();
+        grupo = $("#grupo").val();
         sala = $("#sala").val();
         disciplina = $("#disciplina").val();
         $.ajax({
@@ -8,8 +9,9 @@ $(document).ready(function() {
             url: "../controller/Controller.php",
             data: {
                 metodo: "buscarUsuarios",
-                sala: sala,
+                grupo: grupo,
                 disciplina: disciplina,
+                sala: sala,
             },
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -32,6 +34,7 @@ $(document).ready(function() {
 
     $('#criarChamada').submit(function(e) {
         e.preventDefault();
+        grupo = $("#grupo").val();
         var sala = $("#sala").val();
         var data = $("#data").val();
         var disciplina = $("#disciplina").val();
@@ -44,6 +47,7 @@ $(document).ready(function() {
             url: "../controller/Controller.php",
             data: {
                 metodo: "criarPresencaChamada",
+                grupo: grupo,
                 sala: sala,
                 data: data,
                 disciplina: disciplina,

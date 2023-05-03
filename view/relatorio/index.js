@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('#relatorioChamada').submit(function(e) {
         e.preventDefault();
+        var grupo = $("#grupo").val();
         var disciplina = $("#disciplina").val();
         var sala = $("#sala").val();
         var dataInicial = $("#dataInicial").val();
@@ -14,6 +15,7 @@ $(document).ready(function() {
             url: "../controller/Controller.php",
             data: {
                 metodo: "relatorioChamada",
+                grupo: grupo,
                 disciplina: disciplina,
                 sala: sala,
                 dataInicial: dataInicial,
