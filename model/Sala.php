@@ -2,6 +2,7 @@
     include_once('Database.php');
 
     class Sala extends Database{
+        public $id;
         public $nome;
         public $disciplina;
 
