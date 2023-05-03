@@ -12,20 +12,13 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
-		<label>Tutores</label>
+		<label>Grupo</label>
 		<br>
 		<select class='input' id="tutore" name="tutore"></select>
 		<br>
-		<label>Salas</label>
+		<label>Usuario</label>
 		<br>
 		<select class='input' id="sala" name="sala"></select>
-		<br>
-		<label>Aula</label>
-		<br>
-		<select class='input' id="aula" name="aula">
-			<option value="1">Primeira Aula</option>
-			<option value="2">Segunda Aula</option>
-		</select>
 		<br>
 		<label>Data</label>
 		<br>
