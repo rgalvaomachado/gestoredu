@@ -186,38 +186,35 @@
         //     }
         // }
 
-        // function getPresencaPeriodo($cod_sala, $cod_alune, $cod_monitore, $cod_tutore, $data_inicial, $data_final){
-        //     $presenca = new Presenca();
-        //     $presenca->cod_sala = $cod_sala ;
-        //     $presenca->cod_monitore = $cod_monitore ;
-        //     $presenca->cod_tutore = $cod_tutore ;
-        //     $presenca->cod_alune = $cod_alune ;
-        //     $presenca->data = $data_inicial ;
-        //     $presenca->data_final = $data_final ;
-        //     return $presenca->getPresencaPeriodo();
-        // }
+        function getPresencaPeriodo($cod_usuario, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
+            $presenca = new Presenca();
+            $presenca->cod_usuario = $cod_usuario;
+            $presenca->cod_disciplina = $cod_disciplina;
+            $presenca->cod_sala = $cod_sala;
+            $presenca->data = $data_inicial;
+            $presenca->data_final = $data_final;
+            return $presenca->getPresencaPeriodo();
+        }
 
-        // function getAusenciaPeriodo($cod_sala, $cod_alune, $cod_monitore, $cod_tutore, $data_inicial, $data_final){
-        //     $presenca = new Presenca();
-        //     $presenca->cod_sala = $cod_sala ;
-        //     $presenca->cod_monitore = $cod_monitore ;
-        //     $presenca->cod_tutore = $cod_tutore ;
-        //     $presenca->cod_alune = $cod_alune ;
-        //     $presenca->data = $data_inicial ;
-        //     $presenca->data_final = $data_final ;
-        //     return $presenca->getAusenciaPeriodo();
-        // }
+        function getAusenciaPeriodo($cod_usuario, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
+            $presenca = new Presenca();
+            $presenca->cod_usuario = $cod_usuario;
+            $presenca->cod_disciplina = $cod_disciplina;
+            $presenca->cod_sala = $cod_sala;
+            $presenca->data = $data_inicial;
+            $presenca->data_final = $data_final;
+            return $presenca->getAusenciaPeriodo();
+        }
 
-        // function getJustificadoPeriodo($cod_sala, $cod_alune, $cod_monitore, $cod_tutore, $data_inicial, $data_final){
-        //     $presenca = new Presenca();
-        //     $presenca->cod_sala = $cod_sala ;
-        //     $presenca->cod_monitore = $cod_monitore ;
-        //     $presenca->cod_tutore = $cod_tutore ;
-        //     $presenca->cod_alune = $cod_alune ;
-        //     $presenca->data = $data_inicial ;
-        //     $presenca->data_final = $data_final ;
-        //     return $presenca->getJustificadoPeriodo();
-        // }
+        function getJustificadoPeriodo($cod_usuario, $cod_disciplina, $cod_sala, $data_inicial, $data_final){
+            $presenca = new Presenca();
+            $presenca->cod_usuario = $cod_usuario;
+            $presenca->cod_disciplina = $cod_disciplina;
+            $presenca->cod_sala = $cod_sala;
+            $presenca->data = $data_inicial;
+            $presenca->data_final = $data_final;
+            return $presenca->getJustificadoPeriodo();
+        }
 
         // function certificadoTutore($post){
         //     $cod_tutore = $post['cod_tutore'];

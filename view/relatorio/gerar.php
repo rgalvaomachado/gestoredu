@@ -1,5 +1,7 @@
 <head>
     <?php include_once('../includes/head.html')?>
+	<?php include_once('../../controller/SalaController.php')?>
+	<?php include_once('../../controller/DisciplinaController.php')?>
 
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
@@ -12,20 +14,44 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
-		<label>Salas</label>
-		<br>
-		<select class='input' id="sala" name="sala"></select>
-		<br>
-		<label>Data Inicial</label>
-		<br>
-		<input id="dataInicial" name="dataInicial" type="date" class="input">
-		<br>
-		<label>Data Final</label>
-		<br>
-		<input id="dataFinal" name="dataFinal" type="date" class="input">
-		<br>
-		<input class='button' type="button" onclick="relatorioPresencaAlune()" value="Gerar">
-		<br>
+		<form id="relatorioChamada">
+			<label>Disciplinas</label>
+			<br>
+			<?php 
+				$DisciplinaController = new DisciplinaController();
+				$disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+			?>
+			<select class='input' id="disciplina" name="disciplina" required>
+				<option value="">Selecione a Disciplina</option>
+				<?php foreach ($disciplinas as $disciplina) { ?>
+					<option value="<?php echo $disciplina->id ?>"><?php echo $disciplina->nome ?></option>	
+				<?php } ?>
+			</select>
+			<br>
+			<label>Salas</label>
+			<br>
+			<?php 
+				$SalaController = new SalaController();
+				$salas = json_decode($SalaController->buscarTodos())->salas;
+			?>
+			<select class='input' id="sala" name="sala" required>
+				<option value="">Selecione a Sala</option>
+				<?php foreach ($salas as $sala) { ?>
+					<option value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
+				<?php } ?>
+			</select>
+			</br>
+			<label>Data Inicial</label>
+			<br>
+			<input id="dataInicial" name="dataInicial" type="date" class="input" required>
+			<br>
+			<label>Data Final</label>
+			<br>
+			<input id="dataFinal" name="dataFinal" type="date" class="input" required>
+			<br>
+			<input class='button' type="submit" value="Gerar">
+		</form>
+		</br>
 		<div id="detalhes">
 			<table>
 				<thead>
@@ -41,7 +67,5 @@
 				</tbody>
 			</table>
 		</div>
-		<script src="view/relatorio/index.js"></script>
-		<script>buscarSalas()</script>
     </div>
 </div>

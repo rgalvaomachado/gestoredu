@@ -121,10 +121,10 @@
         //     $response = $PresencaController->justificarPresencaAlune($_POST);
         //     break;
         ///////////////////////////////////////////////////////////////////////////////
-        // case 'relatorioPresencaAlune':
-        //     $RelatorioController = new RelatorioController();
-        //     $response = $RelatorioController->relatorioPresencaAlune($_POST);
-        //     break; 
+        case 'relatorioChamada':
+            $RelatorioController = new RelatorioController();
+            $response = $RelatorioController->relatorioChamada($_POST);
+            break; 
         // case 'relatorioPresencaMonitore':
         //     $RelatorioController = new RelatorioController();
         //     $response = $RelatorioController->relatorioPresencaMonitore($_POST);

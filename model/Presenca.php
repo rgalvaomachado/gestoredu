@@ -72,73 +72,67 @@
         //     ]);
         // }
 
-        // function getPresencaPeriodo(){
-        //     $getPresencaPeriodo =  $this->bd->prepare('
-        //         SELECT *
-        //         FROM presenca
-        //         WHERE 
-        //             cod_sala = :cod_sala 
-        //             AND cod_monitore = :cod_monitore 
-        //             AND cod_tutore = :cod_tutore 
-        //             AND cod_alune = :cod_alune 
-        //             AND data BETWEEN :data AND :data_final 
-        //             AND presente = \'S\'
-        //     ');
-        //     $getPresencaPeriodo->execute([
-        //         ':cod_sala' => $this->cod_sala,
-        //         ':cod_monitore' => $this->cod_monitore,
-        //         ':cod_tutore' => $this->cod_tutore,
-        //         ':cod_alune' => $this->cod_alune,
-        //         ':data' => $this->data,
-        //         ':data_final' => $this->data_final,
-        //     ]);
-        //     return $getPresencaPeriodo->fetchAll(PDO::FETCH_ASSOC);
-        // } 
+        function getPresencaPeriodo(){
+            $getPresencaPeriodo =  $this->bd->prepare('
+                SELECT *
+                FROM presenca
+                WHERE 
+                    cod_usuario = :cod_usuario 
+                    AND cod_disciplina = :cod_disciplina 
+                    AND cod_sala = :cod_sala 
+                    AND data BETWEEN :data AND :data_final 
+                    AND presente = \'S\'
+            ');
+            $getPresencaPeriodo->execute([
+                ':cod_usuario'      => $this->cod_usuario,
+                ':cod_disciplina'   => $this->cod_disciplina,
+                ':cod_sala'         => $this->cod_sala,
+                ':data'             => $this->data,
+                ':data_final'       => $this->data_final,
+            ]);
+            return $getPresencaPeriodo->fetchAll(PDO::FETCH_ASSOC);
+        } 
 
-        // function getAusenciaPeriodo(){
-        //     $getAusenciaPeriodo =  $this->bd->prepare('
-        //         SELECT *
-        //         FROM presenca
-        //         WHERE 
-        //             cod_sala = :cod_sala 
-        //             AND cod_monitore = :cod_monitore 
-        //             AND cod_tutore = :cod_tutore 
-        //             AND cod_alune = :cod_alune 
-        //             AND data BETWEEN :data AND :data_final 
-        //             AND presente = \'N\'
-        //     ');
-        //     $getAusenciaPeriodo->execute([
-        //         ':cod_sala' => $this->cod_sala,
-        //         ':cod_monitore' => $this->cod_monitore,
-        //         ':cod_tutore' => $this->cod_tutore,
-        //         ':cod_alune' => $this->cod_alune,
-        //         ':data' => $this->data,
-        //         ':data_final' => $this->data_final,
-        //     ]);
-        //     return $getAusenciaPeriodo->fetchAll(PDO::FETCH_ASSOC);
-        // } 
+        function getAusenciaPeriodo(){
+            $getAusenciaPeriodo =  $this->bd->prepare('
+                SELECT *
+                FROM presenca
+                WHERE 
+                    cod_usuario = :cod_usuario 
+                    AND cod_disciplina = :cod_disciplina 
+                    AND cod_sala = :cod_sala 
+                    AND data BETWEEN :data AND :data_final 
+                    AND presente = \'N\'
+            ');
+            $getAusenciaPeriodo->execute([
+                ':cod_usuario'      => $this->cod_usuario,
+                ':cod_disciplina'   => $this->cod_disciplina,
+                ':cod_sala'         => $this->cod_sala,
+                ':data'             => $this->data,
+                ':data_final'       => $this->data_final,
+            ]);
+            return $getAusenciaPeriodo->fetchAll(PDO::FETCH_ASSOC);
+        } 
         
-        // function getJustificadoPeriodo(){
-        //     $getJustificadoPeriodo =  $this->bd->prepare('
-        //         SELECT *
-        //         FROM presenca
-        //         WHERE 
-        //             cod_sala = :cod_sala 
-        //             AND cod_monitore = :cod_monitore 
-        //             AND cod_tutore = :cod_tutore 
-        //             AND cod_alune = :cod_alune 
-        //             AND data BETWEEN :data AND :data_final 
-        //             AND presente = \'J\'
-        //     ');
-        //     $getJustificadoPeriodo->execute([
-        //         ':cod_sala' => $this->cod_sala,
-        //         ':cod_monitore' => $this->cod_monitore,
-        //         ':cod_tutore' => $this->cod_tutore,
-        //         ':cod_alune' => $this->cod_alune,
-        //         ':data' => $this->data,
-        //         ':data_final' => $this->data_final,
-        //     ]);
-        //     return $getJustificadoPeriodo->fetchAll(PDO::FETCH_ASSOC);
-        // }
+        function getJustificadoPeriodo(){
+            $getJustificadoPeriodo =  $this->bd->prepare('
+                SELECT *
+                FROM presenca
+                WHERE 
+                    cod_usuario = :cod_usuario 
+                    AND cod_disciplina = :cod_disciplina 
+                    AND cod_sala = :cod_sala 
+                    AND data BETWEEN :data AND :data_final 
+                    AND presente = \'J\'
+            ');
+            $getJustificadoPeriodo->execute([
+                ':cod_usuario'      => $this->cod_usuario,
+                ':cod_disciplina'   => $this->cod_disciplina,
+                ':cod_sala'         => $this->cod_sala,
+                ':data'             => $this->data,
+                ':data_final'       => $this->data_final,
+            ]);
+            return $getJustificadoPeriodo->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>
