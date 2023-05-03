@@ -19,7 +19,7 @@
 
             $usuario = new Usuario();
             $usuario->salas = $post['id'];
-            $usuarios = $usuario->buscarUsuariosSala();
+            $usuarios = $usuario->buscarTodos();
             $buscarSala['usuarios'] = $usuarios;
 
             if(!empty($buscarSala)){

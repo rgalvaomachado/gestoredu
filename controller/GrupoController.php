@@ -19,7 +19,7 @@
 
             $usuario = new Usuario();
             $usuario->grupos = $post['id'];
-            $usuarios = $usuario->buscarUsuariosGrupo();
+            $usuarios = $usuario->buscarTodos();
             $buscarGrupo['usuarios'] = $usuarios;
 
             if(!empty($buscarGrupo)){

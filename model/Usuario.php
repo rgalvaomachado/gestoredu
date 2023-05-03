@@ -11,27 +11,29 @@
         public $disciplinas;
 
         function buscarTodos(){
-            $buscarTodos =  $this->bd->prepare('SELECT id, nome, email, senha FROM usuario ORDER BY nome ASC');
+            if (isset($this->grupos) && !isset($this->salas) && !isset($this->disciplinas)){
+                $sql = "SELECT id,nome FROM usuario WHERE grupos like '%#".$this->grupos."#%' ORDER BY nome ASC";
+            }
+
+            if (!isset($this->grupos) && !isset($this->salas) && isset($this->disciplinas)){
+                $sql = "SELECT id,nome FROM usuario WHERE disciplinas like '%#".$this->disciplinas."#%' ORDER BY nome ASC";
+            }
+
+            if (!isset($this->grupos) && isset($this->salas) && !isset($this->disciplinas)){
+                $sql = "SELECT id,nome FROM usuario WHERE salas like '%#".$this->salas."#%' ORDER BY nome ASC";
+            }
+
+            if (!isset($this->grupos) && isset($this->salas) && isset($this->disciplinas)) {
+                $sql = "SELECT id,nome FROM usuario WHERE salas like '%#".$this->salas."#%' AND disciplinas like '%#".$this->disciplinas."#%' ORDER BY nome ASC";
+            }
+
+            if (!isset($this->grupos) && !isset($this->salas) && !isset($this->disciplinas)) {
+                $sql = "SELECT id, nome, email, senha FROM usuario ORDER BY nome ASC";
+            }
+
+            $buscarTodos = $this->bd->prepare($sql);
             $buscarTodos->execute();
             return $buscarTodos->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        function buscarUsuariosGrupo(){
-            $buscarUsuariosGrupo =  $this->bd->prepare("SELECT id,nome FROM usuario WHERE grupos like '%#".$this->grupos."#%'");
-            $buscarUsuariosGrupo->execute();
-            return $buscarUsuariosGrupo->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        function buscarUsuariosDisciplina(){
-            $buscarUsuariosDisciplina =  $this->bd->prepare("SELECT id,nome FROM usuario WHERE disciplinas like '%#".$this->disciplinas."#%'");
-            $buscarUsuariosDisciplina->execute();
-            return $buscarUsuariosDisciplina->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        function buscarUsuariosSala(){
-            $buscarUsuariosSala =  $this->bd->prepare("SELECT id,nome FROM usuario WHERE salas like '%#".$this->salas."#%'");
-            $buscarUsuariosSala->execute();
-            return $buscarUsuariosSala->fetchAll(PDO::FETCH_ASSOC);
         }
 
         function buscar(){

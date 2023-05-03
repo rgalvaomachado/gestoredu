@@ -19,7 +19,7 @@
 
             $usuario = new Usuario();
             $usuario->disciplinas = $post['id'];
-            $usuarios = $usuario->buscarUsuariosDisciplina();
+            $usuarios = $usuario->buscarTodos();
             $buscarDisciplina['usuarios'] = $usuarios;
 
             if(!empty($buscarDisciplina)){
