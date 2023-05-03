@@ -1,8 +1,5 @@
 <?php
     include_once('../model/Presenca.php');
-    include_once('MonitoreController.php');
-    include_once('TutoreController.php');
-    include_once('AluneController.php');
 
     class PresencaController{
 

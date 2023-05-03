@@ -1,8 +1,5 @@
 <?php
 include_once('PresencaController.php');
-include_once('AluneController.php');
-include_once('TutoreController.php');
-include_once('MonitoreController.php');
 
 class RelatorioController{
     function relatorioPresencaAlune($post){
