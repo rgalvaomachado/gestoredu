@@ -2,6 +2,7 @@
     include_once('Database.php');
 
     class Disciplina extends Database{
+        public $id;
         public $nome;
         public $disciplina;
 
