@@ -1,39 +1,19 @@
 <?php
-include_once('MonitoreController.php');
-include_once('RepresentanteController.php');
-include_once('ComissaoController.php');
+include_once('UsuarioController.php');
 
 class LoginController{
     function login($post){
-        $usuario = $post['usuario'];
+        $email = $post['email'];
         $senha = $post['senha'];
         $validado = false;
 
-        $RepresentanteController = new RepresentanteController();
-        $representantes = json_decode($RepresentanteController->getRepresentantes());
-        foreach($representantes as $representate){
-            if($usuario == $representate->usuario && $senha == $representate->senha){
-                $usuarioValidado = $representate->usuario;
+        $UsuarioController = new UsuarioController();
+        $UsuarioController = json_decode($UsuarioController->buscarTodos());
+        $usuarios = $UsuarioController->usuarios;
+        foreach($usuarios as $usuario){
+            if($email == $usuario->email && $senha == $usuario->senha){
+                $usuarioValidado = $usuario->nome;
                 $modoValidado = 'representante';
-                $validado = true;
-            }
-        }
-        $ComissaoController = new ComissaoController();
-        $comissoes = json_decode($ComissaoController->getComissoes());
-        foreach($comissoes as $comissao){
-            if($usuario == $comissao->usuario && $senha == $comissao->senha){
-                $usuarioValidado = $comissao->usuario;
-                $modoValidado = 'comissao';
-                $validado = true;
-            }
-        }
-
-        $MonitoreController = new MonitoreController();
-        $monitores = json_decode($MonitoreController->getMonitores());
-        foreach($monitores as $monitore){
-            if($usuario == $monitore->usuario && $senha == $monitore->senha){
-                $usuarioValidado = $monitore->usuario;
-                $modoValidado = 'monitore';
                 $validado = true;
             }
         }

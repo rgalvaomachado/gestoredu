@@ -9,15 +9,9 @@
         public $grupos;
 
         function buscarTodos(){
-            $buscarTodos =  $this->bd->prepare('SELECT id, nome FROM usuario ORDER BY nome ASC');
+            $buscarTodos =  $this->bd->prepare('SELECT id, nome, email, senha FROM usuario ORDER BY nome ASC');
             $buscarTodos->execute();
             return $buscarTodos->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        function buscarUsuariosGrupo(){
-            $buscarUsuariosGrupo =  $this->bd->prepare("SELECT id,nome FROM usuario WHERE grupos like '%#".$this->grupos."#%'");
-            $buscarUsuariosGrupo->execute();
-            return $buscarUsuariosGrupo->fetchAll(PDO::FETCH_ASSOC);
         }
 
         function buscar(){

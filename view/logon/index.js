@@ -1,12 +1,12 @@
 function login(){
-    var usuario = $("#usuarioLogin").val();
+    var email = $("#emailLogin").val();
     var senha = $("#senhaLogin").val();
     $.ajax({
         method: "POST",
         url: "../controller/Controller.php",
         data: {
             metodo: "login",
-            usuario: usuario,
+            email: email,
             senha: md5(senha),
         },
         complete: function(response) {

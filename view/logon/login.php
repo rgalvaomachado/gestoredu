@@ -9,10 +9,10 @@
         <label class="title labelLogin">Login</label>
     </div>
     <div class='form'>
-        <input class='input'placeholder="Usuario" id="usuarioLogin" name="usuarioLogin" type="text">
+        <input class='input' placeholder="Email" id="emailLogin" name="emailLogin" type="email">
     </div>
     <div class='form'>
-        <input class='input'placeholder="Senha" id="senhaLogin" name="senhaLogin" type="password">
+        <input class='input' placeholder="Senha" id="senhaLogin" name="senhaLogin" type="password">
     </div>
     <div class='form'>
         <input class='button' type="button" onclick="login()" value="Entrar">
