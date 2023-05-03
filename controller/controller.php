@@ -11,6 +11,10 @@
     $metodo = isset($_POST['metodo']) ? $_POST['metodo'] : ""; 
 
     switch($metodo){
+        case 'buscarUsuarios':
+            $usuario = new UsuarioController();
+            $response = $usuario->buscarTodos($_POST);
+            break;
         case 'buscarUsuario':
             $usuario = new UsuarioController();
             $response = $usuario->buscar($_POST);
@@ -62,6 +66,23 @@
             $response = $DisciplinaController->deletar($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
+        case 'buscarSala':
+            $SalaController = new SalaController();
+            $response = $SalaController->buscar($_POST);
+            break;
+        case 'criarSala':
+            $SalaController = new SalaController();
+            $response = $SalaController->criar($_POST);
+            break;
+        case 'editarSala':
+            $SalaController = new SalaController();
+            $response = $SalaController->editar($_POST);
+            break;
+        case 'deletarSala':
+            $SalaController = new SalaController();
+            $response = $SalaController->deletar($_POST);
+            break;
+        ///////////////////////////////////////////////////////////////////////////////
         case 'verificaLogin':
             $LoginController = new LoginController();
             $response = $LoginController->verificaLogin($_POST);
@@ -79,98 +100,44 @@
             $response = $LoginController->logout($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
-        case 'buscarPresencaAlune':
+        case 'criarPresencaChamada':
             $PresencaController = new PresencaController();
-            $response = $PresencaController->buscarPresencaAlune($_POST);
+            $response = $PresencaController->criarPresencaChamada($_POST);
             break;
-        case 'justificarPresencaAlune':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->justificarPresencaAlune($_POST);
-            break;
-        case 'buscarPresencaReuniao':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->buscarPresencaReuniao($_POST);
-            break;
-        case 'justificarPresencaReuniao':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->justificarPresencaReuniao($_POST);
-            break;
-        case 'buscarPresencaMonitore':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->buscarPresencaMonitore($_POST);
-            break;
-        case 'editarPresencaMonitore':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->editarPresencaMonitore($_POST);
-            break;
-        case 'buscarPresencaTutore':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->buscarPresencaTutore($_POST);
-            break;
-        case 'editarPresencaTutore':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->editarPresencaTutore($_POST);
-            break;
-
-        case 'criarPresencaAlune':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->criarPresencaAlune($_POST);
-            break;
-        case 'criarPresencaTutore':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->criarPresencaTutore($_POST);
-            break;
-        case 'criarPresencaMonitore':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->criarPresencaMonitore($_POST);
-            break;
-        case 'criarPresencaReuniao':
-            $PresencaController = new PresencaController();
-            $response = $PresencaController->criarPresencaReuniao($_POST);
-            break;    
+        // case 'criarPresencaPonto':
+        //     $PresencaController = new PresencaController();
+        //     $response = $PresencaController->criarPresencaMonitore($_POST);
+        //     break;
+        // case 'buscarPresencaUsuario':
+        //     $PresencaController = new PresencaController();
+        //     $response = $PresencaController->buscarPresencaAlune($_POST);
+        //     break;
+        // case 'editarPresencaUsuario':
+        //     $PresencaController = new PresencaController();
+        //     $response = $PresencaController->editarPresencaMonitore($_POST);
+        //     break;
+        // case 'justificarPresencaUsuario':
+        //     $PresencaController = new PresencaController();
+        //     $response = $PresencaController->justificarPresencaAlune($_POST);
+        //     break;
         ///////////////////////////////////////////////////////////////////////////////
-        case 'relatorioPresencaAlune':
-            $RelatorioController = new RelatorioController();
-            $response = $RelatorioController->relatorioPresencaAlune($_POST);
-            break; 
-        case 'relatorioPresencaReuniao':
-            $RelatorioController = new RelatorioController();
-            $response = $RelatorioController->relatorioPresencaReuniao($_POST);
-            break; 
-        case 'relatorioPresencaMonitore':
-            $RelatorioController = new RelatorioController();
-            $response = $RelatorioController->relatorioPresencaMonitore($_POST);
-            break; 
-        case 'relatorioPresencaTutore':
-            $RelatorioController = new RelatorioController();
-            $response = $RelatorioController->relatorioPresencaTutore($_POST);
-            break; 
+        // case 'relatorioPresencaAlune':
+        //     $RelatorioController = new RelatorioController();
+        //     $response = $RelatorioController->relatorioPresencaAlune($_POST);
+        //     break; 
+        // case 'relatorioPresencaMonitore':
+        //     $RelatorioController = new RelatorioController();
+        //     $response = $RelatorioController->relatorioPresencaMonitore($_POST);
+        //     break; 
         ///////////////////////////////////////////////////////////////////////////////
-        case 'certificadoTutore':
-            $CertificadoController = new CertificadoController();
-            $response = $CertificadoController->certificadoTutore($_POST);
-            break; 
-        case 'certificadoMonitore':
-            $CertificadoController = new CertificadoController();
-            $response = $CertificadoController->certificadoMonitore($_POST);
-            break; 
-        ///////////////////////////////////////////////////////////////////////////////
-        case 'buscarSala':
-            $SalaController = new SalaController();
-            $response = $SalaController->buscar($_POST);
-            break;
-        case 'criarSala':
-            $SalaController = new SalaController();
-            $response = $SalaController->criar($_POST);
-            break;
-        case 'editarSala':
-            $SalaController = new SalaController();
-            $response = $SalaController->editar($_POST);
-            break;
-        case 'deletarSala':
-            $SalaController = new SalaController();
-            $response = $SalaController->deletar($_POST);
-            break;
+        // case 'certificadoTutore':
+        //     $CertificadoController = new CertificadoController();
+        //     $response = $CertificadoController->certificadoTutore($_POST);
+        //     break; 
+        // case 'certificadoMonitore':
+        //     $CertificadoController = new CertificadoController();
+        //     $response = $CertificadoController->certificadoMonitore($_POST);
+        //     break; 
         ///////////////////////////////////////////////////////////////////////////////
         default:
             $response = json_encode([

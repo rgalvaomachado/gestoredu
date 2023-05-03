@@ -21,7 +21,7 @@
 				$DisciplinaController = new DisciplinaController();
 				$disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
 			?>
-			<select class='input' id="disciplina" name="disciplina" onchange="buscarSala()">
+			<select class='input' id="disciplina" name="disciplina" required>
 				<option value="">Selecione a Disciplina</option>
 				<?php foreach ($disciplinas as $disciplina) { ?>
 					<option value="<?php echo $disciplina->id ?>"><?php echo $disciplina->nome ?></option>	
@@ -34,33 +34,34 @@
 				$SalaController = new SalaController();
 				$salas = json_decode($SalaController->buscarTodos())->salas;
 			?>
-			<select class='input' id="sala" name="sala" onchange="buscarSala()">
+			<select class='input' id="sala" name="sala" required>
 				<option value="">Selecione a Sala</option>
 				<?php foreach ($salas as $sala) { ?>
 					<option value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
 				<?php } ?>
 			</select>
-			<br>
-			<label>Data</label>
-			<br>
-			<input id="data" name="data" type="date" class="input">
 			</br>
 			<input class='button' type="submit" value="Buscar">
 		</form>
 		<br>
 		<br>
 		<div id="detalhes">
-			<table>
-				<thead>
-					<tr>
-						<th><strong>Nome</strong></th>
-						<th><strong>Presente</strong></th>
-					</tr>
-				</thead>
-				<tbody id='lista'>
-				</tbody>
-			</table>
-			<input class='button' type="button" onclick="criarPresencaReuniao()" value="Fazer Chamada">
+			<form id="criarChamada">
+				<label>Data</label>
+				<br>
+				<input id="data" name="data" type="date" class="input" required>
+				<table>
+					<thead>
+						<tr>
+							<th><strong>Nome</strong></th>
+							<th><strong>Presente</strong></th>
+						</tr>
+					</thead>
+					<tbody id='lista'>
+					</tbody>
+				</table>
+				<input class='button' type="submit" value="Fazer Chamada">
+			</form>
 		</div>
     </div>
 </div>

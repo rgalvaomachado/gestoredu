@@ -2,8 +2,17 @@
     include_once(dirname(__FILE__).'/../model/Usuario.php');
 
     class UsuarioController{
-        function buscarTodos(){
+        function buscarTodos($post = []){
             $usuario = new Usuario();
+            if(!empty($post['grupo'])){
+                $usuario->grupos = $post['grupo'];
+            }
+            if(!empty($post['disciplina'])){
+                $usuario->disciplinas = $post['disciplina'];
+            }
+            if(!empty($post['sala'])){
+                $usuario->salas = $post['sala'];
+            }
             $usuarios = $usuario->buscarTodos();
             return json_encode([
                 "access" => true,
