@@ -13,19 +13,19 @@
         }
 
         function buscar($post){
-            $grup = new Grupo();
-            $grup->id = $post['id'];
-            $grupo = $grup->buscar();
+            $Grupo = new Grupo();
+            $Grupo->id = $post['id'];
+            $buscarGrupo = $Grupo->buscar();
 
             $usuario = new Usuario();
             $usuario->grupos = $post['id'];
             $usuarios = $usuario->buscarUsuariosGrupo();
-            $grupo['usuarios'] = $usuarios;
+            $buscarGrupo['usuarios'] = $usuarios;
 
-            if(!empty($grupo)){
+            if(!empty($buscarGrupo)){
                 return json_encode([
                     "access" => true,
-                    "grupo" => $grupo,
+                    "grupo" => $buscarGrupo,
                 ]);
             } else {
                 return json_encode([

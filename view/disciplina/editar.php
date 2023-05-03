@@ -1,5 +1,7 @@
 <head>
     <?php include_once('../includes/head.html')?>
+	<?php include_once('../../controller/DisciplinaController.php')?>
+	<?php include_once('../../controller/UsuarioController.php')?>
 
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
@@ -12,19 +14,34 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
+		<?php 
+			$DisciplinaController = new DisciplinaController();
+			$disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+		?>
 		<select class='input' id="disciplina" name="disciplina" onchange="buscarDisciplina()">
-			<option value="">Selecione a disciplina</option>
+			<option value="">Selecione o Disciplina</option>
+			<?php foreach ($disciplinas as $disciplina) { ?>
+				<option value="<?php echo $disciplina->id ?>"><?php echo $disciplina->nome ?></option>	
+			<?php } ?>
 		</select>
 		</br>
 		<div id="detalhes">
-			<label>Nome</label>
+			<form id="editar">
+				<div class="grid-item-content">
+				<label>Nome</label>
 			</br>
 			<input class='input' name="nome" id="nome">
 			</br>
-			<input class='button' type="button" onclick="editarDisciplina()" value="Editar">
-			<input class='button' type="button" onclick="excluirDisciplina()" value="Excluir">
+			</br>
+			<label><b>Usuarios do Disciplina</b></label>
+			<div id='listaUsurios'></div>
+					<br>
+					<input class='button editar' type="submit" value="Editar">
+				</div>
+			</form>
+			<form id="deletar">
+				<input class='button deletar' type="submit" value="Deletar">
+			</form>
 		</div>
-		<script src="view/disciplina/index.js"></script>
-		<script>buscarDisciplinas()</script>
     </div>
 </div>

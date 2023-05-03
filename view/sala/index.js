@@ -1,97 +1,13 @@
-function criarSala(){
-    var nome = $("#nome").val();
-    $.ajax({
-        method: "POST",
-        url: "../controller/Controller.php",
-        data: {
-            metodo: "criarSala",
-            nome: nome,
-        },
-        complete: function(response) {
-            var response = JSON.parse(response.responseText);
-            const alert = document.getElementById("messageAlert");
-            alert.innerHTML = response.message;
-            if(response.access){
-                alert.style.color = "green";
-                setTimeout(function(){
-                    alert.innerHTML = "";
-                    $(function(){
-                        $("#content").load("view/sala/criar.html");
-                    });
-                }, 1000);
-            }else{
-                alert.style.color = "red";
-                setTimeout(function(){
-                    alert.innerHTML = "";
-                }, 2000);
-            }
-            verificaSessão();
-        }
-    });
-}
-
-function buscarSala(){
-    var id = $("#sala").val();
-    $.ajax({
-        method: "POST",
-        url: "../controller/Controller.php",
-        data: {
-            metodo: "getSala",
-            id: id,
-        },
-        complete: function(response) {
-            var response = JSON.parse(response.responseText);
-            if(response.access){
-                $('#detalhes').show();
-                $('#nome').val(response.sala.nome);
-            }
-        }
-    });
-}
-
-function editarSala(){
-    var id = $("#sala").val();
-    var nome = $("#nome").val();
-    $.ajax({
-        method: "POST",
-        url: "../controller/Controller.php",
-        data: {
-            metodo: "salvarSala",
-            id: id,
-            nome: nome,
-        },
-        complete: function(response) {
-            var response = JSON.parse(response.responseText);
-            const alert = document.getElementById("messageAlert");
-            alert.innerHTML = response.message;
-            if(response.access){
-                alert.style.color = "green";
-                setTimeout(function(){
-                    alert.innerHTML = "";
-                    $(function(){
-                        $("#content").load("view/sala/editar.html");
-                    });
-                }, 1000);
-            }else{
-                alert.style.color = "red";
-                setTimeout(function(){
-                    alert.innerHTML = "";
-                }, 2000);
-            }
-            verificaSessão();
-        }
-    });
-}
-
-function excluirSala(){
-    if (confirm("Voce realmente deseja excluir?")){
-        var id = $("#sala").val();
+$(document).ready(function() {
+    $('#criar').submit(function(e) {
+        e.preventDefault();
+        var nome = $("#nome").val();
         $.ajax({
             method: "POST",
             url: "../controller/Controller.php",
             data: {
-                metodo: "excluirSala",
-                id: id,
+                metodo: "criarSala",
+                nome: nome,
             },
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -101,35 +17,105 @@ function excluirSala(){
                     alert.style.color = "green";
                     setTimeout(function(){
                         alert.innerHTML = "";
-                        $(function(){
-                            $("#content").load("view/sala/editar.html");
-                        });
-                    }, 1000);
+                    }, 3000);
                 }else{
                     alert.style.color = "red";
                     setTimeout(function(){
                         alert.innerHTML = "";
-                    }, 2000);
+                    }, 3000);
                 }
-                verificaSessão();
+                window.location.assign("../sala/criar.php");
             }
         });
-    }
-}
+    });
 
-function buscarSalas(){
+    $('#editar').submit(function(e) {
+        e.preventDefault();
+        var sala = $("#sala").val();
+        var nome = $("#nome").val();
+        $.ajax({
+            method: "POST",
+            url: "../controller/Controller.php",
+            data: {
+                metodo: "editarSala",
+                id: sala,
+                nome: nome
+            },
+            complete: function(response) {
+                var response = JSON.parse(response.responseText);
+                const alert = document.getElementById("messageAlert");
+                alert.innerHTML = response.message;
+                if(response.access){
+                    alert.style.color = "green";
+                    setTimeout(function(){
+                        alert.innerHTML = "";
+                    }, 3000);
+                }else{
+                    alert.style.color = "red";
+                    setTimeout(function(){
+                        alert.innerHTML = "";
+                    }, 3000);
+                }
+                window.location.assign("../sala/editar.php");
+            }
+        });
+    });
+
+    $('#deletar').submit(function(e) {
+        e.preventDefault();
+        var sala = $("#sala").val();
+        $.ajax({
+            method: "POST",
+            url: "../controller/Controller.php",
+            data: {
+                metodo: "deletarSala",
+                id: sala,
+            },
+            complete: function(response) {
+                var response = JSON.parse(response.responseText);
+                const alert = document.getElementById("messageAlert");
+                alert.innerHTML = response.message;
+                if(response.access){
+                    alert.style.color = "green";
+                    setTimeout(function(){
+                        alert.innerHTML = "";
+                    }, 3000);
+                }else{
+                    alert.style.color = "red";
+                    setTimeout(function(){
+                        alert.innerHTML = "";
+                    }, 3000);
+                }
+                window.location.assign("../sala/editar.php");
+            }
+        });
+    });
+});
+
+function buscarSala(){
+    var id = $("#sala").val();
     $.ajax({
         method: "POST",
         url: "../controller/Controller.php",
         data: {
-            metodo: "getSalas",
+            metodo: "buscarSala",
+            id: id,
         },
         complete: function(response) {
-            var salas = JSON.parse(response.responseText);
-            salas.map(({id,nome}) => {
-                $('#sala').append(`<option value='${id}'>${nome}</option>`);
-            });
-           
+            var response = JSON.parse(response.responseText);
+            var sala = response.sala
+            if(response.access){
+                $('#detalhes').show();
+                $('#listaUsurios').html('');
+                $('#nome').val(sala.nome);
+                sala.usuarios.map(({id,nome}) => {
+                    $('#listaUsurios').append(`
+                            <label>`+nome+`</label><br>
+                        `);
+                });
+            } else {
+                $('#detalhes').hide();
+            }
         }
     });
 }

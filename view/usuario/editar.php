@@ -2,6 +2,8 @@
     <?php include_once('../includes/head.html')?>
 	<?php include_once('../../controller/GrupoController.php')?>
 	<?php include_once('../../controller/UsuarioController.php')?>
+	<?php include_once('../../controller/DisciplinaController.php')?>
+	<?php include_once('../../controller/SalaController.php')?>
 
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
@@ -101,6 +103,30 @@
 					<div id='gruposTodos'>
 						<?php foreach ($grupos as $grupo) { ?>
 							<input type='checkbox' id="grupos" name="grupos[]" value="<?php echo $grupo->id ?>"><?php echo $grupo->nome ?>
+						<?php } ?>
+					</div>
+					<br>
+					<label>Disciplinas</label>
+					<br>
+					<?php
+						$DisciplinaController = new DisciplinaController();
+						$disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+					?>
+					<div id='gruposTodos'>
+						<?php foreach ($disciplinas as $disciplina) { ?>
+							<input type='checkbox' id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>"><?php echo $disciplina->nome ?>
+						<?php } ?>
+					</div>
+					<br>
+					<label>Salas</label>
+					<br>
+					<?php
+						$SalaController = new SalaController();
+						$salas = json_decode($SalaController->buscarTodos())->salas;
+					?>
+					<div id='gruposTodos'>
+						<?php foreach ($salas as $sala) { ?>
+							<input type='checkbox' id="salas" name="salas[]" value="<?php echo $sala->id ?>"><?php echo $sala->nome ?>
 						<?php } ?>
 					</div>
 					<br>

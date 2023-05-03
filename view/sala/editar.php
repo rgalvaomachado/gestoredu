@@ -1,5 +1,7 @@
 <head>
     <?php include_once('../includes/head.html')?>
+	<?php include_once('../../controller/SalaController.php')?>
+	<?php include_once('../../controller/UsuarioController.php')?>
 
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
@@ -12,19 +14,34 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
+		<?php 
+			$SalaController = new SalaController();
+			$salas = json_decode($SalaController->buscarTodos())->salas;
+		?>
 		<select class='input' id="sala" name="sala" onchange="buscarSala()">
-			<option value="">Selecione a sala</option>
+			<option value="">Selecione o Sala</option>
+			<?php foreach ($salas as $sala) { ?>
+				<option value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
+			<?php } ?>
 		</select>
 		</br>
 		<div id="detalhes">
-			<label>Nome</label>
+			<form id="editar">
+				<div class="grid-item-content">
+				<label>Nome</label>
 			</br>
 			<input class='input' name="nome" id="nome">
 			</br>
-			<input class='button' type="button" onclick="editarSala()" value="Editar">
-			<input class='button' type="button" onclick="excluirSala()" value="Excluir">
+			</br>
+			<label><b>Usuarios do Sala</b></label>
+			<div id='listaUsurios'></div>
+					<br>
+					<input class='button editar' type="submit" value="Editar">
+				</div>
+			</form>
+			<form id="deletar">
+				<input class='button deletar' type="submit" value="Deletar">
+			</form>
 		</div>
-		<script src="view/sala/index.js"></script>
-		<script>buscarSalas()</script>
     </div>
 </div>

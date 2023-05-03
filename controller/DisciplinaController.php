@@ -1,56 +1,65 @@
 <?php
-    include_once('../model/Disciplina.php');
+    include_once(dirname(__FILE__).'/../model/Disciplina.php');
+    include_once(dirname(__FILE__).'/../model/Usuario.php');
 
     class DisciplinaController{
-        function getDisciplinas(){
-            $disciplinas = new Disciplina();
-            return json_encode($disciplinas->getDisciplinas());
+        function buscarTodos(){
+            $Disciplina = new Disciplina();
+            $Disciplinas = $Disciplina->buscarTodos();
+            return json_encode([
+                "access" => true,
+                "disciplinas" => $Disciplinas
+            ]);
         }
 
-        function getDisciplina($post){
-            $id = $post['id'];
-            $disciplina = (new Disciplina())->getDisciplina($id);
-            if($disciplina["id"] > 0){
+        function buscar($post){
+            $Disciplina = new Disciplina();
+            $Disciplina->id = $post['id'];
+            $buscarDisciplina = $Disciplina->buscar();
+
+            $usuario = new Usuario();
+            $usuario->disciplinas = $post['id'];
+            $usuarios = $usuario->buscarUsuariosDisciplina();
+            $buscarDisciplina['usuarios'] = $usuarios;
+
+            if(!empty($buscarDisciplina)){
                 return json_encode([
                     "access" => true,
-                    "disciplina" => $disciplina,
+                    "disciplina" => $buscarDisciplina,
                 ]);
             } else {
                 return json_encode([
                     "access" => false,
-                    "message" => "Usuario não encontrado"
+                    "message" => "Disciplina não encontrado"
                 ]);
             }
         }
 
-        function criarDisciplina($post){
-            if (isset($post['nome'])
-                && $post['nome'] != ""
-            ){
-                $disciplina = new Disciplina();
-                $disciplina->nome = $post['nome'];
-                $id = $disciplina->criar();
+        function criar($post){
+            $Disciplina = new Disciplina();
+            $Disciplina->nome = $post['nome'];
+
+            $id = $Disciplina->criar();
+            if ($id > 0){
                 return json_encode([
                     "access" => true,
-                    "message" => "Cadastrado com sucesso"
+                    "message" => "Criado com sucesso"
                 ]);
             } else {
                 return json_encode([
                     "access" => false,
-                    "message" => "Por favor, ensira todos os dados"
+                    "message" => "Erro no cadastro"
                 ]);
             }
+            
         }
 
-        function salvarDisciplina($post){
-            if (isset($post['id'])
-                && $post['id'] != ""
-                && isset($post['nome'])
-                && $post['nome'] != ""
-            ){
-                $disciplina = new Disciplina();
-                $disciplina->nome = $post['nome'];
-                $disciplina->salvar($post['id']);
+        function editar($post){
+            $Disciplina = new Disciplina();
+            $Disciplina->id = $post['id'];
+            $Disciplina->nome = $post['nome'];
+            $id = $Disciplina->editar();
+            if ($id > 0) {
                 return json_encode([
                     "access" => true,
                     "message" => "Editado com sucesso"
@@ -58,35 +67,26 @@
             } else {
                 return json_encode([
                     "access" => false,
-                    "message" => "Por favor, ensira todos os dados"
+                    "message" => "Erro na edição"
                 ]);
             }
         }
 
-        function excluirDisciplina($post){
-            if (isset($post['id'])
-                && $post['id'] != ""
-            ){
-                $disciplina = new Disciplina();
-                $disciplina->id = $post['id'];
-                $excluido = $disciplina->excluir();
-                if ($excluido){
-                    return json_encode([
-                        "access" => true,
-                        "message" => "Excluido com sucesso"
-                    ]);
-                } else {
-                    return json_encode([
-                        "access" => false,
-                        "message" => "Não excluido"
-                    ]);
-                }  
+        function deletar($post){
+            $Disciplina = new Disciplina();
+            $Disciplina->id = $post['id'];
+            $deletado = $Disciplina->deletar();
+            if ($deletado){
+                return json_encode([
+                    "access" => true,
+                    "message" => "Deletado com sucesso"
+                ]);
             } else {
                 return json_encode([
                     "access" => false,
-                    "message" => "Por favor, ensira todos os dados"
+                    "message" => "Erro na exclusão"
                 ]);
-            }
+            }  
         }
     }
 ?>

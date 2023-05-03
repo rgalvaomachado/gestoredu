@@ -45,25 +45,21 @@
             $response = $grupo->deletar($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
+        case 'buscarDisciplina':
+            $DisciplinaController = new DisciplinaController();
+            $response = $DisciplinaController->buscar($_POST);
+            break;
         case 'criarDisciplina':
             $DisciplinaController = new DisciplinaController();
-            $response = $DisciplinaController->criarDisciplina($_POST);
+            $response = $DisciplinaController->criar($_POST);
             break;
-        case 'getDisciplina':
+        case 'editarDisciplina':
             $DisciplinaController = new DisciplinaController();
-            $response = $DisciplinaController->getDisciplina($_POST);
+            $response = $DisciplinaController->editar($_POST);
             break;
-        case 'getDisciplinas':
+        case 'deletarDisciplina':
             $DisciplinaController = new DisciplinaController();
-            $response = $DisciplinaController->getDisciplinas($_POST);
-            break;
-        case 'salvarDisciplina':
-            $DisciplinaController = new DisciplinaController();
-            $response = $DisciplinaController->salvarDisciplina($_POST);
-            break;
-        case 'excluirDisciplina':
-            $DisciplinaController = new DisciplinaController();
-            $response = $DisciplinaController->excluirDisciplina($_POST);
+            $response = $DisciplinaController->deletar($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
         case 'verificaLogin':
@@ -159,25 +155,21 @@
             $response = $CertificadoController->certificadoMonitore($_POST);
             break; 
         ///////////////////////////////////////////////////////////////////////////////
+        case 'buscarSala':
+            $SalaController = new SalaController();
+            $response = $SalaController->buscar($_POST);
+            break;
         case 'criarSala':
             $SalaController = new SalaController();
-            $response = $SalaController->criarSala($_POST);
+            $response = $SalaController->criar($_POST);
             break;
-        case 'getSala':
+        case 'editarSala':
             $SalaController = new SalaController();
-            $response = $SalaController->getSala($_POST);
+            $response = $SalaController->editar($_POST);
             break;
-        case 'getSalas':
+        case 'deletarSala':
             $SalaController = new SalaController();
-            $response = $SalaController->getSalas($_POST);
-            break;
-        case 'salvarSala':
-            $SalaController = new SalaController();
-            $response = $SalaController->salvarSala($_POST);
-            break;
-        case 'excluirSala':
-            $SalaController = new SalaController();
-            $response = $SalaController->excluirSala($_POST);
+            $response = $SalaController->deletar($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
         default:

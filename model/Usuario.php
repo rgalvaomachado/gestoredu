@@ -7,6 +7,8 @@
         public $email;
         public $senha;
         public $grupos;
+        public $salas;
+        public $disciplinas;
 
         function buscarTodos(){
             $buscarTodos =  $this->bd->prepare('SELECT id, nome, email, senha FROM usuario ORDER BY nome ASC');
@@ -14,8 +16,26 @@
             return $buscarTodos->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        function buscarUsuariosGrupo(){
+            $buscarUsuariosGrupo =  $this->bd->prepare("SELECT id,nome FROM usuario WHERE grupos like '%#".$this->grupos."#%'");
+            $buscarUsuariosGrupo->execute();
+            return $buscarUsuariosGrupo->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        function buscarUsuariosDisciplina(){
+            $buscarUsuariosDisciplina =  $this->bd->prepare("SELECT id,nome FROM usuario WHERE disciplinas like '%#".$this->disciplinas."#%'");
+            $buscarUsuariosDisciplina->execute();
+            return $buscarUsuariosDisciplina->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        function buscarUsuariosSala(){
+            $buscarUsuariosSala =  $this->bd->prepare("SELECT id,nome FROM usuario WHERE salas like '%#".$this->salas."#%'");
+            $buscarUsuariosSala->execute();
+            return $buscarUsuariosSala->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         function buscar(){
-            $buscar =  $this->bd->prepare('SELECT id, nome, grupos, email, senha FROM usuario WHERE id = :id ORDER BY nome ASC');
+            $buscar =  $this->bd->prepare('SELECT id, nome, email, senha, grupos, disciplinas, salas FROM usuario WHERE id = :id ORDER BY nome ASC');
             $buscar->execute([
                 ':id' => $this->id,
             ]);
@@ -23,24 +43,28 @@
         }
 
         function criar(){
-            $criar = $this->bd->prepare('INSERT INTO usuario (nome, grupos, email, senha) VALUES(:nome, :grupos, :email, :senha)');
+            $criar = $this->bd->prepare('INSERT INTO usuario (nome, email, senha, grupos, disciplinas, salas) VALUES(:nome, :email, :senha, :grupos, :disciplinas, :salas)');
             $criar->execute([
                 ':nome' => $this->nome,
-                ':grupos' => $this->grupos,
                 ':email' => $this->email,
-                ':senha' => md5($this->senha)
+                ':senha' => md5($this->senha),
+                ':grupos' => $this->grupos,
+                ':disciplinas' => $this->disciplinas,
+                ':salas' => $this->salas,
             ]);
             return $this->bd->lastInsertId();
         }
 
         function editar(){
-            $editar = $this->bd->prepare('UPDATE usuario SET nome = :nome, grupos = :grupos, email = :email, senha = :senha WHERE id = :id');
+            $editar = $this->bd->prepare('UPDATE usuario SET nome = :nome, email = :email, senha = :senha, grupos = :grupos, disciplinas = :disciplinas, salas = :salas WHERE id = :id');
             $editar->execute([
               ':id'   => $this->id,
               ':nome' => $this->nome,
-              ':grupos' => $this->grupos,
               ':email' => $this->email,
-              ':senha' => md5($this->senha)
+              ':senha' => md5($this->senha),
+              ':grupos' => $this->grupos,
+              ':disciplinas' => $this->disciplinas,
+              ':salas' => $this->salas,
             ]);
             return $editar->rowCount();
         }

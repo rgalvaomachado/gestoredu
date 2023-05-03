@@ -11,6 +11,20 @@ $(document).ready(function() {
                 grupos.push(grupo[i].value);
             }
         }
+        var disciplinas = [];
+        var disciplina = $("input[name='disciplinas[]']");
+        for (var i = 0; i < disciplina.length; i++) {
+            if (disciplina[i].checked) {
+                disciplinas.push(disciplina[i].value);
+            }
+        }
+        var salas = [];
+        var sala = $("input[name='salas[]']");
+        for (var i = 0; i < sala.length; i++) {
+            if (sala[i].checked) {
+                salas.push(sala[i].value);
+            }
+        }
         $.ajax({
             method: "POST",
             url: "../controller/Controller.php",
@@ -20,6 +34,8 @@ $(document).ready(function() {
                 email: email,
                 senha: senha,
                 grupos: grupos,
+                disciplinas: disciplinas,
+                salas: salas,
             },
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -54,6 +70,20 @@ $(document).ready(function() {
                 grupos.push(grupo[i].value);
             }
         }
+        var disciplinas = [];
+        var disciplina = $("input[name='disciplinas[]']");
+        for (var i = 0; i < disciplina.length; i++) {
+            if (disciplina[i].checked) {
+                disciplinas.push(disciplina[i].value);
+            }
+        }
+        var salas = [];
+        var sala = $("input[name='salas[]']");
+        for (var i = 0; i < sala.length; i++) {
+            if (sala[i].checked) {
+                salas.push(sala[i].value);
+            }
+        }
         $.ajax({
             method: "POST",
             url: "../controller/Controller.php",
@@ -64,6 +94,8 @@ $(document).ready(function() {
                 email: email,
                 senha: senha,
                 grupos: grupos,
+                disciplinas: disciplinas,
+                salas: salas,
             },
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -130,19 +162,42 @@ function buscarUsuario(){
             if(response.access){
                 $('#detalhes').show();
                 var usuario = response.usuario;
-                var gruposUsuario = usuario.grupos;
-                if (gruposUsuario){
-                    var gruposUsuario = gruposUsuario.split("#")
+                var grupos = usuario.grupos;
+                if (grupos){
+                    var grupos = grupos.split("#")
                     var grupo = $("input[name='grupos[]']");
                     for (var i = 0; i < grupo.length; i++) {
-                        if (gruposUsuario.includes(grupo[i].value)) {
+                        if (grupos.includes(grupo[i].value)) {
                             $(grupo[i]).prop('checked',true)
                         } else {
                             $(grupo[i]).prop('checked',false)
                         }
                     }
                 }
-                
+                var disciplinas = usuario.disciplinas;
+                if (disciplinas){
+                    var disciplinas = disciplinas.split("#")
+                    var disciplina = $("input[name='disciplinas[]']");
+                    for (var i = 0; i < disciplina.length; i++) {
+                        if (disciplinas.includes(disciplina[i].value)) {
+                            $(disciplina[i]).prop('checked',true)
+                        } else {
+                            $(disciplina[i]).prop('checked',false)
+                        }
+                    }
+                }
+                var salas = usuario.salas;
+                if (salas){
+                    var salas = salas.split("#")
+                    var sala = $("input[name='salas[]']");
+                    for (var i = 0; i < sala.length; i++) {
+                        if (salas.includes(sala[i].value)) {
+                            $(sala[i]).prop('checked',true)
+                        } else {
+                            $(sala[i]).prop('checked',false)
+                        }
+                    }
+                }
                 $('#nome').val(usuario.nome);
                 $('#email').val(usuario.email);
                 $('#senha').val(usuario.senha);

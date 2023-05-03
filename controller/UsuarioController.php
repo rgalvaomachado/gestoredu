@@ -31,11 +31,17 @@
         function criar($post){
             $usuario = new Usuario();
             $usuario->nome = $post['nome'];
+            $usuario->email = $post['email'];
+            $usuario->senha = $post['senha'];
             if(!empty($post['grupos'])){
                 $usuario->grupos = '#'.implode("#", $post['grupos']).'#';
             }
-            $usuario->email = $post['email'];
-            $usuario->senha = $post['senha'];
+            if(!empty($post['disciplinas'])){
+                $usuario->disciplinas = '#'.implode("#", $post['disciplinas']).'#';
+            }
+            if(!empty($post['salas'])){
+                $usuario->salas = '#'.implode("#", $post['salas']).'#';
+            }
             $id = $usuario->criar();
             if ($id > 0){
                 return json_encode([
@@ -55,11 +61,17 @@
             $usuario = new Usuario();
             $usuario->id = $post['id'];
             $usuario->nome = $post['nome'];
+            $usuario->email = $post['email'];
+            $usuario->senha = $post['senha'];
             if(!empty($post['grupos'])){
                 $usuario->grupos = '#'.implode("#", $post['grupos']).'#';
             }
-            $usuario->email = $post['email'];
-            $usuario->senha = $post['senha'];
+            if(!empty($post['disciplinas'])){
+                $usuario->disciplinas = '#'.implode("#", $post['disciplinas']).'#';
+            }
+            if(!empty($post['salas'])){
+                $usuario->salas = '#'.implode("#", $post['salas']).'#';
+            }
             $id = $usuario->editar();
             if ($id > 0){
                 return json_encode([

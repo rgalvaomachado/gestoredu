@@ -7,16 +7,18 @@
 <?php include_once('../includes/top.html')?>
 <div class="grid-container">
     <?php include_once('../includes/menu.html')?>
-    <div class="grid-item-content">
-        <label class="title">Cadastro de Disciplina</label>
-        <br>
-        <label class="message_alert" id="messageAlert"></label>
-        <br>
-        <label>Nome</label>
-        <br>
-        <input class="input" name="nome" id="nome">
-        <br>
-        <input class='button' type="button" onclick="criarDisciplina()" value="Cadastrar">
-        <script src="view/disciplina/index.js"></script>
-    </div>
+    <form id="criar">
+        <div class="grid-item-content">
+            <label class="title">Criar Disciplina</label>
+            <br>
+            <label class="message_alert" id="messageAlert"></label>
+            <br>
+            <label>Nome</label>
+            <br>
+            <input class='input' id="nome" name="nome" required>
+            <br>
+            <br>
+            <input class='button' type="submit" value="Criar">
+        </div>
+    </form>
 </div>

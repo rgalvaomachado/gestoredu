@@ -1,48 +1,47 @@
 <?php
-    include_once('Database.php');
+    include_once(dirname(__FILE__).'/Database.php');
 
     class Disciplina extends Database{
         public $id;
         public $nome;
-        public $disciplina;
 
         function criar(){
             $criar = $this->bd->prepare('INSERT INTO disciplina (nome) VALUES(:nome)');
             $criar->execute([
-                ':nome' => $this->nome
+                ':nome' => $this->nome,
             ]);
             return $this->bd->lastInsertId();
         }
 
-        function getDisciplinas(){
-            $getDisciplina =  $this->bd->prepare('SELECT id, nome FROM disciplina ORDER BY nome ASC');
-            $getDisciplina->execute();
-            return $getDisciplina->fetchAll(PDO::FETCH_ASSOC);
+        function buscarTodos(){
+            $getTodos =  $this->bd->prepare('SELECT id, nome FROM disciplina ORDER BY nome ASC');
+            $getTodos->execute();
+            return $getTodos->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        function getDisciplina($id){
-            $getDisciplina =  $this->bd->prepare('SELECT id, nome FROM disciplina WHERE id = :id ORDER BY nome ASC');
-            $getDisciplina->execute([
-                ':id' => $id,
+        function buscar(){
+            $get =  $this->bd->prepare('SELECT id, nome FROM disciplina WHERE id = :id ORDER BY nome ASC');
+            $get->execute([
+                ':id' => $this->id,
             ]);
-            return $getDisciplina->fetch(PDO::FETCH_ASSOC);
+            return $get->fetch(PDO::FETCH_ASSOC);
         }
 
-        function salvar($id){
-            $salvar = $this->bd->prepare('UPDATE disciplina SET nome = :nome WHERE id = :id');
-            $salvar->execute([
-              ':id'   => $id,
+        function editar(){
+            $editar = $this->bd->prepare('UPDATE disciplina SET nome = :nome WHERE id = :id');
+            $editar->execute([
+              ':id'   => $this->id,
               ':nome' => $this->nome,
             ]);
-            return $salvar->rowCount();
+            return $editar->rowCount();
         }
 
-        function excluir(){
-            $excluir = $this->bd->prepare('DELETE FROM disciplina where id = :id');
-            $excluir->execute([
+        function deletar(){
+            $deletar = $this->bd->prepare('DELETE FROM disciplina where id = :id');
+            $deletar->execute([
               ':id' => $this->id,
             ]);
-            return $excluir->rowCount();
+            return $deletar->rowCount();
         }
     }
 ?>
