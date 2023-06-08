@@ -24,6 +24,7 @@
             $user = new Usuario();
             $user->id = $post['id'];
             $usuario = $user->buscar();
+            $usuario['senha'] = isset($usuario['senha']) ? base64_encode($usuario['senha']) : null;;
             if(!empty($usuario)){
                 return json_encode([
                     "access" => true,
@@ -39,18 +40,31 @@
 
         function criar($post){
             $usuario = new Usuario();
-            $usuario->nome = $post['nome'];
+
+            $usuario->nome                  = $post['nome'];
+            $usuario->data_nascimento       = $post['data_nascimento'];
+            $usuario->rg                    = $post['rg'];
+            $usuario->cpf                   = $post['cpf'];
+            $usuario->endereco              = $post['endereco'];
+            $usuario->telefone              = $post['telefone'];
+
             $usuario->email = $post['email'];
-            $usuario->senha = $post['senha'];
+            $usuario->senha = isset($post['senha']) ? base64_encode($post['senha']) : null;
+
+            $usuario->data_inscricao        = date("Y-m-d");
+
             if(!empty($post['grupos'])){
                 $usuario->grupos = '#'.implode("#", $post['grupos']).'#';
             }
+
             if(!empty($post['disciplinas'])){
                 $usuario->disciplinas = '#'.implode("#", $post['disciplinas']).'#';
             }
+
             if(!empty($post['salas'])){
                 $usuario->salas = '#'.implode("#", $post['salas']).'#';
             }
+
             $id = $usuario->criar();
             if ($id > 0){
                 return json_encode([
@@ -68,10 +82,18 @@
 
         function editar($post){
             $usuario = new Usuario();
-            $usuario->id = $post['id'];
-            $usuario->nome = $post['nome'];
+
+            $usuario->id                    = $post['id'];
+            $usuario->nome                  = $post['nome'];
+            $usuario->data_nascimento       = $post['data_nascimento'];
+            $usuario->rg                    = $post['rg'];
+            $usuario->cpf                   = $post['cpf'];
+            $usuario->endereco              = $post['endereco'];
+            $usuario->telefone              = $post['telefone'];
+
             $usuario->email = $post['email'];
-            $usuario->senha = $post['senha'];
+            $usuario->senha = isset($post['senha']) ? base64_encode($post['senha']) : null;
+
             if(!empty($post['grupos'])){
                 $usuario->grupos = '#'.implode("#", $post['grupos']).'#';
             }

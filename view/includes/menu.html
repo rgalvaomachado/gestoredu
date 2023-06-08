@@ -5,6 +5,28 @@
     <div class="menu" id="menu">
         <ul id="listMenu">
             <li>
+                <input type="checkbox" id="menuAluno" class="subMenu"/>
+                <label for="menuAluno">
+                    <em class="fa fa-graduation-cap" aria-hidden="true"></em>&nbsp;Aluno(a)
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../aluno/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../aluno/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="menuProfessor" class="subMenu"/>
+                <label for="menuProfessor">
+                    <em class="fa fa-user" aria-hidden="true"></em>&nbsp;Professor(a)
+                    <em class="fa fa-plus"></em>
+                </label>
+                <ul>
+                    <li><a href="../professor/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
+                    <li><a href="../professor/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
+                </ul>
+            </li>
+            <!-- <li>
                 <input type="checkbox" id="menuUsuario" class="subMenu"/>
                 <label for="menuUsuario">
                     <em class="fa fa-user-plus" aria-hidden="true"></em>&nbsp;Usuarios
@@ -25,7 +47,7 @@
                     <li><a href="../grupo/criar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Criar</a></li>
                     <li><a href="../grupo/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
                 </ul>
-            </li>
+            </li> -->
             <li>
                 <input type="checkbox" id="menuDisciplina" class="subMenu"/>
                 <label for="menuDisciplina">
@@ -55,10 +77,11 @@
                     <em class="fa fa-plus"></em>
                 </label>
                 <ul>
-                    <!-- <li><a href="../presenca/ponto.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Ponto Eletronico</a></li> -->
-                    <li><a href="../presenca/chamada.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Chamada</a></li>
-                    <li><a href="../presenca/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
-                    <!-- <li><a href="../presenca/justificar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Justificar</a></li> -->
+                    <li><a href="../presenca/aluno.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Chamada de Alunos</a></li>
+                    <!-- <li><a href="../presenca/chamada.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Chamada Grupo</a></li>
+                    <li><a href="../presenca/professor.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Ponto Eletronico Professor</a></li>
+                    <li><a href="../presenca/ponto.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Ponto Eletronico</a></li>
+                    <li><a href="../presenca/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li> -->
                 </ul>
             </li>
             <!-- <li>
@@ -78,7 +101,8 @@
                     <em class="fa fa-plus"></em>
                 </label>
                 <ul>
-                    <li><a href="../relatorio/gerar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Gerar</a></li>
+                    <!-- <li><a href="../relatorio/gerar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Gerar</a></li> -->
+                    <li><a href="../relatorio/freqaluno.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Frequência de Alunos</a></li>
                 </ul>
             </li>
             <li>

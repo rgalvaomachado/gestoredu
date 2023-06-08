@@ -1,0 +1,20 @@
+@media (min-width: 800px){
+    .grid-cep {
+        display: grid;
+        grid-template-columns: 80% 10% 10%;
+        width: 70%;
+        margin: auto;
+    }
+    .grid-endereco {
+        display: grid;
+        grid-template-columns: 40% 20% 40%;
+        width: 70%;
+        margin: auto;
+    }
+    .grid-endereco-item {
+        text-align: center;
+    }
+    .grid-endereco-item > .input {
+        width: 90%;
+    }
+}

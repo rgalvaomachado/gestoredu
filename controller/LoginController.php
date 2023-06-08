@@ -4,7 +4,7 @@ include_once('UsuarioController.php');
 class LoginController{
     function login($post){
         $email = $post['email'];
-        $senha = $post['senha'];
+        $senha = base64_encode($post['senha']);
         $validado = false;
 
         $UsuarioController = new UsuarioController();

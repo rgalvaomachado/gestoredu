@@ -9,7 +9,7 @@
     <?php include_once('../includes/menu.html')?>
     <div class="grid-item-content">
         <div id="content">
-            <img id="logo-atena" src='../public/img/gedu.png'>
+            <img id="logo-gedu" src='../public/img/gedu.png'>
         </div>
     </div>
 </div>

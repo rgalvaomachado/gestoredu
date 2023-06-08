@@ -8,11 +8,11 @@
         public $dataBase;   // Nome do banco de dados
         
         function __construct(){
-            if ($_SERVER['HTTP_HOST'] == 'atenasystem.epizy.com') {
-                $this->username = 'epiz_31638575';
-                $this->password = 'WJPD7CHZw7Q7oB';
-                $this->host     = 'sql209.epizy.com';
-                $this->dataBase = 'epiz_31638575_atenasystem';
+            if ($_SERVER['HTTP_HOST'] == 'gestoredu.com') {
+                $this->username = 'gestoredu';
+                $this->password = 'UC*GQ1uhC4wbf$dc';
+                $this->host     = 'gestoredu.com';
+                $this->dataBase = 'gestoredu';
             } else {
                 $this->username = 'root';
                 $this->password = 'root';

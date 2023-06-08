@@ -35,11 +35,11 @@ body {
 }
 
 input:focus {
-  outline-color: green;
+  outline-color: #00b3f5;
 }
 
 .button{
-  background-color: green;
+  background-color: #00b3f5;
   color:white;
   border-radius: 5px;
   border: #ccc;
@@ -51,7 +51,7 @@ input:focus {
 }
 
 .button:hover{
-  background-color: rgba(0, 100, 0);
+  background-color: #004fde
 }
 
 .deletar {
@@ -63,7 +63,7 @@ input:focus {
 }
 
 .button:active{
-  background-color: green;
+  background-color: #004fde;
 }
 
 .grid-item-menu, .grid-item-content {
@@ -80,7 +80,8 @@ a, p, label, option, input, td, tr{
 
 #topMenu{
   padding: 10px;
-  background-color: #222;
+  background-color: #00b3f5;
+  height: 30px;
 }
 
 #topMenu a {
@@ -89,7 +90,12 @@ a, p, label, option, input, td, tr{
   color:white;
 }
 
-#topMenu img {
+#logo-gestoredu {
+  float: left;
+  height: 30px;
+}
+
+#logo-hubis {
   float: right;
   height: 30px;
 }
@@ -98,7 +104,7 @@ a, p, label, option, input, td, tr{
   width: 100%;
   height: 3px;
   border-radius: 5px;
-  background: #555;
+  background: #ffffff;
   margin: 4px;
   display: block;
 }
@@ -109,7 +115,7 @@ a, p, label, option, input, td, tr{
 }
 
 #barraSuperior{
-  background-color: green;
+  background-color: #004fde;
   padding: 5px;
 }
 
@@ -148,7 +154,7 @@ a, p, label, option, input, td, tr{
 }
 
 #listMenu label:hover, #listMenu li>ul>li a:hover{
-  background-color: green;
+  background-color: #004fde;
   color: white; 
 }
 
@@ -178,10 +184,6 @@ a, p, label, option, input, td, tr{
     display: none;
   }
 
-  #logo-atena{
-    width: 35%;
-  }
-
   #barraSuperior{
     display: none;
   }
@@ -193,10 +195,6 @@ a, p, label, option, input, td, tr{
 }
 
 @media (max-width: 800px){
-  #logo-atena{
-    width: 100%;
-  }
-
   .botaoMenu{
     display: block;
   }

@@ -9,7 +9,7 @@ $(document).ready(function() {
             data: {
                 metodo: "login",
                 email: email,
-                senha: md5(senha),
+                senha: senha,
             },
             complete: function(response) {
                 var response = JSON.parse(response.responseText);

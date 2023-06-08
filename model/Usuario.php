@@ -3,15 +3,26 @@
 
     class Usuario extends Database{
         public $id;
+
         public $nome;
+        public $data_nascimento;
+        public $rg;
+        public $cpf;
+        public $endereco;
+        public $telefone;
+        public $data_inscricao;
+        public $data_desligamento;
+        public $orgao_regulamentador;
+
         public $email;
         public $senha;
+
         public $grupos;
         public $salas;
         public $disciplinas;
 
         function buscarTodos(){
-            $sql = "SELECT id, nome, email, senha FROM usuario ORDER BY nome ASC";
+            $sql = "SELECT * FROM usuario ORDER BY nome ASC";
 
             if (isset($this->grupos) && !isset($this->salas) && !isset($this->disciplinas)){
                 $sql = "SELECT id,nome FROM usuario WHERE grupos like '%#".$this->grupos."#%' ORDER BY nome ASC";
@@ -35,7 +46,7 @@
         }
 
         function buscar(){
-            $buscar =  $this->bd->prepare('SELECT id, nome, email, senha, grupos, disciplinas, salas FROM usuario WHERE id = :id ORDER BY nome ASC');
+            $buscar =  $this->bd->prepare('SELECT * FROM usuario WHERE id = :id ORDER BY nome ASC');
             $buscar->execute([
                 ':id' => $this->id,
             ]);
@@ -43,11 +54,43 @@
         }
 
         function criar(){
-            $criar = $this->bd->prepare('INSERT INTO usuario (nome, email, senha, grupos, disciplinas, salas) VALUES(:nome, :email, :senha, :grupos, :disciplinas, :salas)');
+            $criar = $this->bd->prepare('INSERT INTO usuario (
+                nome,
+                data_nascimento,
+                rg,
+                cpf,
+                endereco,
+                telefone,
+                email,
+                senha,
+                data_inscricao,
+                grupos,
+                disciplinas,
+                salas
+            ) VALUES(
+                :nome,
+                :data_nascimento,
+                :rg,
+                :cpf, 
+                :endereco,
+                :telefone,
+                :email,
+                :senha,
+                :data_inscricao,
+                :grupos,
+                :disciplinas,
+                :salas
+            )');
             $criar->execute([
                 ':nome' => $this->nome,
+                ':data_nascimento' => $this->data_nascimento,
+                ':rg' => $this->rg,
+                ':cpf' => $this->cpf,
+                ':endereco' => $this->endereco,
+                ':telefone' => $this->telefone,
                 ':email' => $this->email,
-                ':senha' => md5($this->senha),
+                ':senha' => $this->senha,
+                ':data_inscricao' => $this->data_inscricao,
                 ':grupos' => $this->grupos,
                 ':disciplinas' => $this->disciplinas,
                 ':salas' => $this->salas,
@@ -56,12 +99,30 @@
         }
 
         function editar(){
-            $editar = $this->bd->prepare('UPDATE usuario SET nome = :nome, email = :email, senha = :senha, grupos = :grupos, disciplinas = :disciplinas, salas = :salas WHERE id = :id');
+            $editar = $this->bd->prepare('UPDATE usuario SET 
+                nome = :nome,
+                data_nascimento = :data_nascimento, 
+                rg = :rg,
+                cpf = :cpf,
+                endereco = :endereco,
+                telefone = :telefone,
+                email = :email,
+                senha = :senha,
+                grupos = :grupos,
+                disciplinas = :disciplinas,
+                salas = :salas
+                WHERE id = :id'
+            );
             $editar->execute([
               ':id'   => $this->id,
               ':nome' => $this->nome,
+              ':data_nascimento' => $this->data_nascimento,
+              ':rg' => $this->rg,
+              ':cpf' => $this->cpf,
+              ':endereco' => $this->endereco,
+              ':telefone' => $this->telefone,
               ':email' => $this->email,
-              ':senha' => md5($this->senha),
+              ':senha' => $this->senha,
               ':grupos' => $this->grupos,
               ':disciplinas' => $this->disciplinas,
               ':salas' => $this->salas,
