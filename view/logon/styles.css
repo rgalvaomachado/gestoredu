@@ -14,6 +14,12 @@ html, body {
   padding-right: 20px;
   padding-left: 20px;
   font-size: 20px;
+  text-decoration: none;
+}
+
+#contato:hover{
+  color: #ffffff;
+  background-color: #004fde;
 }
 
 #direita{
@@ -37,17 +43,19 @@ html, body {
   text-align: center;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  width: 70%;
-  text-align: center;
-  margin: 200px auto auto auto;
-}
-
 .input, .button{
   width: 100%;
 }
 
-.grid-item {
+@media (min-width: 800px){
+  .grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 70%;
+    text-align: center;
+    margin: 200px auto auto auto;
+  }
+
+  .grid-item {
+  }
 }

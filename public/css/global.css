@@ -3,6 +3,11 @@
   padding:0;
 }
 
+@font-face {
+  font-family: OpenSans;
+  src: url(/public/fonts/Open_Sans/static/OpenSans-Regular.ttf);
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -11,6 +16,10 @@ body {
 
 .title{
   font-weight: bold;
+}
+
+.open_sans {
+  font-family: OpenSans;
 }
 
 .message_alert{
@@ -29,21 +38,21 @@ body {
   width: 70%;
   height: 50px;
   border: solid 1px #ccc ;
-  font-size: 15px;
+  font-size: 20px;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 input:focus {
-  outline-color: #00b3f5;
+  outline-color: #004fde;
 }
 
 .button{
-  background-color: #00b3f5;
-  color:white;
+  background-color: #004fde;
+  color:#ffffff;
+  border: solid 1px #ffffff;
   border-radius: 5px;
-  border: #ccc;
-  font-size: 15px;
+  font-size: 20px;
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
@@ -51,7 +60,9 @@ input:focus {
 }
 
 .button:hover{
-  background-color: #004fde
+  background-color: #ffffff;
+  color: #004fde;
+  border: solid 1px #004fde;
 }
 
 .deletar {
@@ -80,7 +91,7 @@ a, p, label, option, input, td, tr{
 
 #topMenu{
   padding: 10px;
-  background-color: #00b3f5;
+  background-color: #004fde;
   height: 30px;
 }
 
@@ -208,7 +219,7 @@ a, p, label, option, input, td, tr{
   }
 
   .title{
-    font-size: 25px;
+    font-size: 35px;
   }
 
   .message_alert{
