@@ -1,34 +1,53 @@
-#login{
+html, body {
+  background-color: #f2f2f2;
+}
+
+#nao_conta{
+  font-size: 12px;
+}
+
+#contato{
+  border: solid 1px #004fde;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+#direita{
+  text-align: center;
+  border: 1px solid #9e9e9e;
+  border-radius: 10px;
+  padding: 50px;
+  background-color: #ffffff;
+  width: 300px;
+}
+#esquerda{
+  text-align: center;
+  padding: 50px;
+}
+#esquerda img{
+  width: 300px;
+}
+
+#logo-gedu{
+  width: 200px;
   text-align: center;
 }
 
-.labelLogin{
-  color: rgb(83, 83, 83);
+.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 70%;
+  text-align: center;
+  margin: 200px auto auto auto;
 }
 
-@media (min-width: 800px){
-  #login{
-    padding-top: 80px;
-  }
-
-  #labelLogin{
-    font-size: 30px;
-  }
-
-  .labelLogin{
-    padding-bottom: 20px;
-  }
+.input, .button{
+  width: 100%;
 }
-@media (max-width: 800px){
-  #login{
-    padding-top: 20px;
-  }
 
-  #labelLogin{
-    font-size: 20px;
-  }
-  
-  .labelLogin{
-    padding-bottom: 20px;
-  }
+.grid-item {
 }

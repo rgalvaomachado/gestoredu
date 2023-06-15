@@ -174,7 +174,21 @@ a, p, label, option, input, td, tr{
 .subMenu{
   display: none;
 }
+/* ////////////////////////////////////////////////////////// */
 
+.azul {
+  color: #004fde;
+}
+
+.fundo-azul {
+  background-color: #004fde;
+}
+
+.cinza{
+  color: #9e9e9e
+}
+
+/* RESPONSIVO */
 @media (min-width: 800px){
   #botaoMenu{
     display: none;
@@ -192,19 +206,7 @@ a, p, label, option, input, td, tr{
     display: grid;
     grid-template-columns: 250px auto ;
   }
-}
 
-@media (max-width: 800px){
-  .botaoMenu{
-    display: block;
-  }
-
-  .menu{
-    display: none;
-  }
-}
-
-@media (min-width: 800px){
   .title{
     font-size: 25px;
   }
@@ -217,7 +219,16 @@ a, p, label, option, input, td, tr{
     padding: 10px;
   }
 }
+
 @media (max-width: 800px){
+  .botaoMenu{
+    display: block;
+  }
+
+  .menu{
+    display: none;
+  }
+
   .form{
     padding-bottom: 10px;
   }
