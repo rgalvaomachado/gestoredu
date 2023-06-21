@@ -32,7 +32,7 @@ class LoginController{
         }else{
             return json_encode([
                 "access" => false,
-                "message" => "Usuário ou senha incorreta",
+                "message" => "Desculpe, usuário ou senha incorreta.",
             ]);
         }
     }

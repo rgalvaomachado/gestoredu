@@ -16,10 +16,12 @@ $(document).ready(function() {
                 if(response.access){
                     window.location.assign("../home/index.php")
                 }else{
+                    $('.error_login').show();
                     const alert = document.getElementById("messageAlert");
                     alert.innerHTML = response.message;
                     setTimeout(function(){
                         alert.innerHTML = "";
+                        $('.error_login').hide();
                     }, 2000);
                 }
             }

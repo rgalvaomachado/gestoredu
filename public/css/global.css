@@ -33,8 +33,9 @@ body {
 }
 
 .input{
-  margin: 5px;
   border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   width: 70%;
   height: 50px;
   border: solid 1px #ccc ;

@@ -22,7 +22,7 @@ html, body {
   background-color: #004fde;
 }
 
-#direita{
+#faca_login{
   text-align: center;
   border: 1px solid #9e9e9e;
   border-radius: 10px;
@@ -30,11 +30,12 @@ html, body {
   background-color: #ffffff;
   width: 300px;
 }
-#esquerda{
+
+#gestor_edu{
   text-align: center;
   padding: 50px;
 }
-#esquerda img{
+#gestor_edu img{
   width: 300px;
 }
 
@@ -47,6 +48,25 @@ html, body {
   width: 100%;
 }
 
+.error_login{
+  border: 1px solid #8b2021;
+  background-color: #efc7c7;
+  padding: 10px;
+  border-radius: 5px;
+  display: none;
+}
+
+.error_login label{
+  font-size: 15px;
+  vertical-align: middle; 
+}
+
+#cancel{
+  width: 15px;
+  vertical-align: middle; 
+}
+
+
 @media (min-width: 800px){
   .grid {
     display: grid;
@@ -57,5 +77,40 @@ html, body {
   }
 
   .grid-item {
+  }
+
+  #nao_tem_conta1{
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  #nao_tem_conta2{
+    display: none;
+  }
+}
+
+@media (max-width: 800px){
+  #faca_login{
+    width: 60%;
+    margin: auto;
+  }
+
+  #nao_tem_conta2{
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  #nao_tem_conta1{
+    display: none;
+  }
+
+  .title{
+    font-size: 30px;
+  }
+
+  #gestor_edu img{
+    width: 100%;
   }
 }
