@@ -24,7 +24,7 @@
             $user = new Usuario();
             $user->id = $post['id'];
             $usuario = $user->buscar();
-            $usuario['senha'] = isset($usuario['senha']) ? base64_encode($usuario['senha']) : null;;
+            $usuario['senha'] = isset($usuario['senha']) ? base64_decode($usuario['senha']) : null;
             if(!empty($usuario)){
                 return json_encode([
                     "access" => true,

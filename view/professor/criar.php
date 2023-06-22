@@ -12,7 +12,7 @@
     <?php include_once('../includes/menu.html')?>
     <form id="criar">
         <div class="grid-item-content">
-            <label class="title">Criar Professor</label>
+            <label class="title">Criar Professor(a)</label>
             <br>
             <label class="message_alert" id="messageAlert"></label>
             <br>

@@ -7,7 +7,6 @@
 <head>
     <?php include_once('../includes/head.html')?>
 	<?php include_once('../../controller/SalaController.php')?>
-	<?php include_once('../../controller/UsuarioController.php')?>
 
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
@@ -16,7 +15,7 @@
 <div class="grid-container">
     <?php include_once('../includes/menu.html')?>
     <div class="grid-item-content">
-		<label class="title">Editar Sala</label>
+		<label class="title">Deletar Sala</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
@@ -25,20 +24,21 @@
 			$SalaController = json_decode($SalaController->buscar(['id' => $_GET['id']]));
 			$sala = $SalaController->sala;
 		?>
-		<form id="editar">
+		<form id="deletar">
 			<input type="hidden" id="sala" name="sala" value="<?php echo $sala->id?>">
 			<label>Nome</label>
 			</br>
-			<input class='input' name="nome" id="nome" value="<?php echo $sala->nome?>">
+			<label><b><?php echo $sala->nome?></b></label>
 			</br>
 			</br>
-			<label><b>Usuarios do Sala</b></label>
+			<label><b>Usuarios da Sala</b></label>
 			<?php foreach($sala->usuarios as $usuarios) {?>
 				<div id='listaUsurios'>
 					<label><?php echo $usuarios->nome ?></label><br>
 				</div>
 			<?php } ?>
 			<br>
-			<input class='button editar' type="submit" value="Editar">
+			<input class='button deletar' type="submit" value="Deletar">
 		</form>
+    </div>
 </div>

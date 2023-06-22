@@ -24,7 +24,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../disciplina/criar.php");
+                window.location.assign("../disciplina/index.php");
             }
         });
     });
@@ -56,7 +56,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../disciplina/editar.php");
+                window.location.assign("../disciplina/index.php");
             }
         });
     });
@@ -86,36 +86,8 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../disciplina/editar.php");
+                window.location.assign("../disciplina/index.php");
             }
         });
     });
 });
-
-function buscarDisciplina(){
-    var id = $("#disciplina").val();
-    $.ajax({
-        method: "POST",
-        url: "../controller/Controller.php",
-        data: {
-            metodo: "buscarDisciplina",
-            id: id,
-        },
-        complete: function(response) {
-            var response = JSON.parse(response.responseText);
-            var disciplina = response.disciplina
-            if(response.access){
-                $('#detalhes').show();
-                $('#listaUsurios').html('');
-                $('#nome').val(disciplina.nome);
-                disciplina.usuarios.map(({id,nome}) => {
-                    $('#listaUsurios').append(`
-                            <label>`+nome+`</label><br>
-                        `);
-                });
-            } else {
-                $('#detalhes').hide();
-            }
-        }
-    });
-}

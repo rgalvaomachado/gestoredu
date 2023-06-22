@@ -24,7 +24,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../sala/criar.php");
+                window.location.assign("../sala/index.php");
             }
         });
     });
@@ -56,7 +56,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../sala/editar.php");
+                window.location.assign("../sala/index.php");
             }
         });
     });
@@ -86,36 +86,8 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../sala/editar.php");
+                window.location.assign("../sala/index.php");
             }
         });
     });
 });
-
-function buscarSala(){
-    var id = $("#sala").val();
-    $.ajax({
-        method: "POST",
-        url: "../controller/Controller.php",
-        data: {
-            metodo: "buscarSala",
-            id: id,
-        },
-        complete: function(response) {
-            var response = JSON.parse(response.responseText);
-            var sala = response.sala
-            if(response.access){
-                $('#detalhes').show();
-                $('#listaUsurios').html('');
-                $('#nome').val(sala.nome);
-                sala.usuarios.map(({id,nome}) => {
-                    $('#listaUsurios').append(`
-                            <label>`+nome+`</label><br>
-                        `);
-                });
-            } else {
-                $('#detalhes').hide();
-            }
-        }
-    });
-}

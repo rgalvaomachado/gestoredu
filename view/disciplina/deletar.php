@@ -6,8 +6,7 @@
 ?>
 <head>
     <?php include_once('../includes/head.html')?>
-	<?php include_once('../../controller/SalaController.php')?>
-	<?php include_once('../../controller/UsuarioController.php')?>
+	<?php include_once('../../controller/DisciplinaController.php')?>
 
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
@@ -16,29 +15,30 @@
 <div class="grid-container">
     <?php include_once('../includes/menu.html')?>
     <div class="grid-item-content">
-		<label class="title">Editar Sala</label>
+		<label class="title">Deletar Disciplina</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
 		<?php 
-			$SalaController = new SalaController();
-			$SalaController = json_decode($SalaController->buscar(['id' => $_GET['id']]));
-			$sala = $SalaController->sala;
+			$DisciplinaController = new DisciplinaController();
+			$DisciplinaController = json_decode($DisciplinaController->buscar(['id' => $_GET['id']]));
+			$disciplina = $DisciplinaController->disciplina;
 		?>
-		<form id="editar">
-			<input type="hidden" id="sala" name="sala" value="<?php echo $sala->id?>">
+		<form id="deletar">
+			<input type="hidden" id="disciplina" name="disciplina" value="<?php echo $disciplina->id?>">
 			<label>Nome</label>
 			</br>
-			<input class='input' name="nome" id="nome" value="<?php echo $sala->nome?>">
+			<label><b><?php echo $disciplina->nome?></b></label>
 			</br>
 			</br>
-			<label><b>Usuarios do Sala</b></label>
-			<?php foreach($sala->usuarios as $usuarios) {?>
+			<label><b>Usuarios do Disciplina</b></label>
+			<?php foreach($disciplina->usuarios as $usuarios) {?>
 				<div id='listaUsurios'>
 					<label><?php echo $usuarios->nome ?></label><br>
 				</div>
 			<?php } ?>
 			<br>
-			<input class='button editar' type="submit" value="Editar">
+			<input class='button deletar' type="submit" value="Deletar">
 		</form>
+    </div>
 </div>

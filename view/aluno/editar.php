@@ -1,3 +1,9 @@
+<?php 
+    if (!isset($_GET['id'])){
+        header("Location: index.php");
+        die();
+    }
+?>
 <head>
     <?php include_once('../includes/head.html')?>
 	<?php include_once('../../controller/GrupoController.php')?>
@@ -16,46 +22,41 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
-		<?php
-			$UsuarioController = new UsuarioController();
-			$usuarios = json_decode($UsuarioController->buscarTodos(['grupo' => '1']))->usuarios;
-		?>
-		<select class='input' id="usuario" name="usuario" onchange="buscarUsuario()">
-			<option value="">Selecione Aluno(a)</option>
-			<?php foreach ($usuarios as $usuario) { ?>
-				<option value="<?php echo $usuario->id ?>"><?php echo $usuario->nome ?></option>
-			<?php } ?>
-		</select>
-		</br>
-		<div id="detalhes">
-			<form id="editar">
+        <?php
+            $UsuarioController = new UsuarioController();
+            $UsuarioController = json_decode($UsuarioController->buscar(['id' => $_GET['id']]));
+            $usuario = $UsuarioController->usuario;
+        ?>
+        <form id="editar">
 			<div class="grid-item-content">
             <label class="message_alert" id="messageAlert"></label>
             <br>
+            <input type="hidden" id="usuario" name="usuario" value="<?php echo $usuario->id?>">
             <label>Nome Completo</label>
             <br>
-            <input class='input' id="nome" name="nome" required>
+            <input class='input' id="nome" name="nome" value="<?php echo $usuario->nome?>" required>
             <br>
             <br>
             <label>Data de Nascimento</label>
             <br>
-            <input id="data_nascimento" name="data_nascimento" type="date" class="input" required>
+            <input id="data_nascimento" name="data_nascimento" type="date" class="input" value="<?php echo $usuario->data_nascimento?>" required>
             <br>
             <div class="grid-endereco">
                 <div class="grid-endereco-item">
                     <label>RG</label>
                     <br>
-                    <input type='number' class='input' id="rg" name="rg">
+                    <input type='number' class='input' id="rg" name="rg" value="<?php echo $usuario->rg?>" >
                 </div>
                 <div class="grid-endereco-item">
                 </div>
                 <div class="grid-endereco-item">
                     <label>CPF</label>
                     <br>
-                    <input type='number' class='input' id="cpf" name="cpf">
+                    <input type='number' class='input' id="cpf" name="cpf" value="<?php echo $usuario->cpf?>" >
                 </div>
             </div>
             <br>
+            <?php $endereco = explode('###',$usuario->endereco)?>
             <label>Endereço</label>
             <br>
             <br>
@@ -63,17 +64,17 @@
                 <div class="grid-endereco-item">
                     <label>Rua</label>
                     <br>
-                    <input class='input' id="rua" name="rua" required>
+                    <input class='input' id="rua" name="rua" value="<?php echo $endereco[0]?>" required>
                 </div>
                 <div class="grid-endereco-item">
                     <label>Numero</label>
                     <br>
-                    <input type="number" min='0' class='input' id="numero" name="numero" required>
+                    <input type="number" min='0' class='input' id="numero" name="numero" value="<?php echo $endereco[1]?>" required>
                 </div>
                 <div class="grid-endereco-item">
                     <label>Bairro</label>
                     <br>
-                    <input class='input' id="bairro" name="bairro" required>
+                    <input class='input' id="bairro" name="bairro" value="<?php echo $endereco[2]?>" required>
                 </div>
             </div>
             <br>
@@ -81,25 +82,25 @@
                 <div class="grid-endereco-item">
                     <label>Cidade</label>
                     <br>
-                    <input type='text' class='input' id="cidade" name="cidade" required>
+                    <input type='text' class='input' id="cidade" name="cidade" value="<?php echo $endereco[3]?>" required>
                 </div>
                 <div class="grid-endereco-item">
                 </div>
                 <div class="grid-endereco-item">
                     <label>Estado</label>
                     <br>
-                    <input type='text' class='input' id="estado" name="estado" required>
+                    <input type='text' class='input' id="estado" name="estado" value="<?php echo $endereco[4]?>" required>
                 </div>
             </div>
             <br>
             <label>Telefone</label>
             <br>
-            <input class='input' type="number" id="telefone" name="telefone" required>
+            <input class='input' type="number" id="telefone" name="telefone" value="<?php echo $usuario->telefone?>" required>
             <br>
             <br>
             <label>Email</label>
             <br>
-            <input class='input' type="email" id="email" name="email" required>
+            <input class='input' type="email" id="email" name="email" value="<?php echo $usuario->email?>" required>
             <br>
             <input type="hidden" id="grupos" value="1">
             <br>
@@ -109,9 +110,10 @@
                 $DisciplinaController = new DisciplinaController();
                 $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
             ?>
+            <?php $usuario_disciplinas = isset($usuario->disciplinas) ? explode('#',$usuario->disciplinas) : [] ?>
             <div id='gruposTodos'>
                 <?php foreach ($disciplinas as $disciplina) { ?>
-                    <input type='checkbox' id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>"><?php echo $disciplina->nome ?>
+                    <input type='checkbox' id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>" <?php echo in_array($disciplina->id, $usuario_disciplinas) ? "checked" : "" ?> > <?php echo $disciplina->nome ?>
                 <?php } ?>
             </div>
             <br>
@@ -128,11 +130,6 @@
             </div>
             <br>
             <input class='button' type="submit" value="Editar">
-        </div>
-			</form>
-			<form id="deletar">
-				<input class='button deletar' type="submit" value="Deletar">
-			</form>
-		</div>
+        </form>
     </div>
 </div>
