@@ -8,7 +8,7 @@
 <div class="grid-content grid-container">
 	<?php include_once('../includes/menu.html')?>
     <div class="grid-item-content">
-        <?php include_once('../includes/top.html')?>
+        <?php include_once('../includes/top.php')?>
         <label class="title">Disciplina</label> <a href="../disciplina/criar.php"><i class="title fa fa-plus-square-o" aria-hidden="true"></i></a>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>

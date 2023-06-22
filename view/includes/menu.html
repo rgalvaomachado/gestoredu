@@ -8,24 +8,32 @@
     <div class="menu" id="menu">
         <ul id="listMenu">
             <li>
-                <a class="itemMenu" href="../aluno/index.php" onclick='menu();'>
-                    <em class="fa fa-graduation-cap" aria-hidden="true"></em>&nbsp;Aluno(a)
-                </a>
+                <div class="itemMenu">
+                    <a  href="../aluno/index.php" onclick='menu();'>
+                        <em class="fa fa-graduation-cap" aria-hidden="true"></em>&nbsp;Aluno(a)
+                    </a>
+                </div>
             </li>
             <li>
-                <a class="itemMenu" href="../professor/index.php" onclick='menu();'>
-                    <em class="fa fa-user" aria-hidden="true"></em>&nbsp;Professor(a)
-                </a>
+                <div class="itemMenu">
+                    <a href="../professor/index.php" onclick='menu();'>
+                        <em class="fa fa-user" aria-hidden="true"></em>&nbsp;Professor(a)
+                    </a>
+                </div>
             </li>
             <li>
-                <a class="itemMenu" href="../disciplina/index.php" onclick='menu();'>
-                    <em class="fa fa-newspaper-o" aria-hidden="true"></em>&nbsp;Disciplina
-                </a>
+                <div class="itemMenu">
+                    <a href="../disciplina/index.php" onclick='menu();'>
+                        <em class="fa fa-newspaper-o" aria-hidden="true"></em>&nbsp;Disciplina
+                    </a>
+                </div>
             </li>
             <li>
-                <a class="itemMenu" href="../sala/index.php" onclick='menu();'>
-                    <em class="fa fa-university" aria-hidden="true"></em>&nbsp;Sala
-                </a>
+                <div class="itemMenu">
+                    <a href="../sala/index.php" onclick='menu();'>
+                        <em class="fa fa-university" aria-hidden="true"></em>&nbsp;Sala
+                    </a>
+                </div>
             </li>
             <!-- <li>
                 <input type="checkbox" id="menuAluno" class="subMenu"/>
@@ -95,18 +103,20 @@
                 </ul>
             </li> -->
             <li>
-                <input type="checkbox" id="menuPresenca" class="subMenu"/>
-                <label for="menuPresenca">
-                    <em class="fa fa-calendar" aria-hidden="true"></em>&nbsp;Presença
-                    <em class="fa fa-plus"></em>
-                </label>
-                <ul>
-                    <li><a href="../presenca/aluno.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Chamada de Alunos</a></li>
-                    <!-- <li><a href="../presenca/chamada.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Chamada Grupo</a></li>
-                    <li><a href="../presenca/professor.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Ponto Eletronico Professor</a></li>
-                    <li><a href="../presenca/ponto.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Ponto Eletronico</a></li>
-                    <li><a href="../presenca/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li> -->
-                </ul>
+                <div class="itemMenu">
+                    <input type="checkbox" id="menuPresenca" class="subMenu"/>
+                    <label for="menuPresenca">
+                        <em class="fa fa-calendar" aria-hidden="true"></em>&nbsp;Presença
+                        <em class="fa fa-plus"></em>
+                    </label>
+                    <ul>
+                        <li><a href="../presenca/aluno.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Chamada de Alunos</a></li>
+                        <!-- <li><a href="../presenca/chamada.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Chamada Grupo</a></li>
+                        <li><a href="../presenca/professor.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Ponto Eletronico Professor</a></li>
+                        <li><a href="../presenca/ponto.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Ponto Eletronico</a></li>
+                        <li><a href="../presenca/editar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li> -->
+                    </ul>
+                </div>
             </li>
             <!-- <li>
                 <input type="checkbox" id="menuCertificado" class="subMenu"/>
@@ -119,15 +129,17 @@
                 </ul>
             </li> -->
             <li>
-                <input type="checkbox" id="menuRelatorio" class="subMenu"/>
-                <label for="menuRelatorio">
-                    <em class="fa fa-bar-chart" aria-hidden="true"></em>&nbsp;Relatorio
-                    <em class="fa fa-plus"></em>
-                </label>
-                <ul>
-                    <!-- <li><a href="../relatorio/gerar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Gerar</a></li> -->
-                    <li><a href="../relatorio/freqaluno.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Frequência de Alunos</a></li>
-                </ul>
+                <div class="itemMenu">
+                    <input type="checkbox" id="menuRelatorio" class="subMenu"/>
+                    <label for="menuRelatorio">
+                        <em class="fa fa-bar-chart" aria-hidden="true"></em>&nbsp;Relatorio
+                        <em class="fa fa-plus"></em>
+                    </label>
+                    <ul>
+                        <!-- <li><a href="../relatorio/gerar.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Gerar</a></li> -->
+                        <li><a href="../relatorio/freqaluno.php" onclick='menu();'><em class="fa fa-arrow-right">&nbsp;</em>Frequência de Alunos</a></li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>

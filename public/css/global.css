@@ -108,6 +108,10 @@ a, p, label, option, input, td, tr{
   color: #000;
 }
 
+.logoutMenu label{
+  margin-right: 50px;
+}
+
 .slideMenu{
   float: left;
   font-size: 30px;
@@ -151,7 +155,7 @@ a, p, label, option, input, td, tr{
   width: 30px;
 }
 
-#listMenu>li>a , #listMenu li>ul>li a{
+/* #listMenu>li>a , #listMenu li>ul>li a{
   display: block;
   color: white;
   text-align: justify;
@@ -159,7 +163,7 @@ a, p, label, option, input, td, tr{
   padding-top: 15px;
   padding-bottom: 15px;
   text-decoration: none;
-}
+} */
 
 .fa-plus{
   float: right;
@@ -170,26 +174,25 @@ a, p, label, option, input, td, tr{
   padding-left: 10px;
 }
 
-#listMenu>li>label {
-  display: block;
-  color: white;
-  text-align: justify;
-  padding-left: 10px;
+.itemMenu a:hover, .itemMenu label:hover {
+  background-color: #00b4f544;
+  color: white !important;
+}
+
+.itemMenu {
+  margin: 20px;
+  border-left: 5px solid #00b3f5;
+}
+
+.itemMenu label, .itemMenu a{
+  padding-left: 30px;
+  padding-right: 30px;
   padding-top: 15px;
   padding-bottom: 15px;
+  display: block;
+  color: white;
+  text-align: left;
   text-decoration: none;
-}
-
-#listMenu label:hover {
-  background-color: #004fde;
-  opacity: 20%;
-  color: white; 
-}
-
-.itemMenu:hover {
-  background-color: #004fde;
-  opacity: 20%;
-  color: white !important;
 }
 
 #listMenu>li ul{

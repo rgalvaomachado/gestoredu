@@ -11,7 +11,7 @@
     <?php include_once('../includes/menu.html')?>
     <form id="criar">
         <div class="grid-item-content">
-            <?php include_once('../includes/top.html')?>
+            <?php include_once('../includes/top.php')?>
             <label class="title">Criar Aluno(a)</label>
             <br>
             <label class="message_alert" id="messageAlert"></label>

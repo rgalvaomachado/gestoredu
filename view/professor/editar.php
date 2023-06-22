@@ -17,7 +17,7 @@
 <div class="grid-content grid-container">
 	<?php include_once('../includes/menu.html')?>
     <div class="grid-item-content">
-        <?php include_once('../includes/top.html')?>
+        <?php include_once('../includes/top.php')?>
         <label class="title">Editar Professor(a)</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
