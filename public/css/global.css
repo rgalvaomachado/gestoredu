@@ -228,6 +228,8 @@ a, p, label, option, input, td, tr{
 .list{
   margin: auto;
   border-collapse: collapse;
+  width: 70%;
+  text-align: center;
 }
 
 .list td{
