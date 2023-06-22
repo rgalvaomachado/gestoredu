@@ -5,10 +5,10 @@
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
 </head>
-<?php include_once('../includes/top.html')?>
-<div class="grid-container">
+<div class="grid-content grid-container">
 	<?php include_once('../includes/menu.html')?>
     <div class="grid-item-content">
+        <?php include_once('../includes/top.html')?>
         <label class="title">Professor(a)</label> <a href="../professor/criar.php"><i class="title fa fa-plus-square-o" aria-hidden="true"></i></a>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>

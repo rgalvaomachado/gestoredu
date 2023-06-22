@@ -1,10 +1,10 @@
 <div id="topMenu">
-    <a href="../home/index.php">
-        <img src="../public/img/logo_branco.png" id="logo-gestoredu" href="">
-    </a>
-    <a href="http://hubis.com.br/" target="_blank">
-        <img src="../public/img/hubis.png" id="logo-hubis">
-    </a>
+    <input type="checkbox" id="slideMenu" checked style="display: none;">
+    <label class="slideMenu" for="slideMenu">
+        <i class="fa fa-bars" aria-hidden="true" onclick="slideMenu()"></i>
+    </label>
+    <!-- <img src="../public/img/hubis.png" id="logo-hubis"> -->
+    <a class="logoutMenu" href="../logon/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
 </div>
 <div id="barraSuperior">
     <input type="checkbox" id="checkMenu">
@@ -16,3 +16,16 @@
         </div> 
     </label>
 </div>
+
+<script>
+    function slideMenu(){
+        sliderMenu = $('#slideMenu').is(':checked');
+        if (sliderMenu){
+            $('.grid-item-menu').hide();
+            $('.grid-content').removeClass('grid-container')
+        }else{
+            $('.grid-item-menu').show();
+            $('.grid-content').addClass('grid-container')
+        }
+    }
+</script>

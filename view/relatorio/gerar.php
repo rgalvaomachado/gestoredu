@@ -8,7 +8,7 @@
     <script src="index.js"></script>
 </head>
 <?php include_once('../includes/top.html')?>
-<div class="grid-container">
+<div class="grid-content grid-container">
     <?php include_once('../includes/menu.html')?>
     <div class="grid-item-content">
 		<label class="title">Relatório</label>
