@@ -9,10 +9,10 @@
         
         function __construct(){
             if ($_SERVER['HTTP_HOST'] == 'gestoredu.com') {
-                $this->username = 'gestoredu';
-                $this->password = 'UC*GQ1uhC4wbf$dc';
+                $this->username = 'suman';
+                $this->password = 'pU5OXA8RK1y8cVmc';
                 $this->host     = 'gestoredu.com';
-                $this->dataBase = 'gestoredu';
+                $this->dataBase = 'ge_suman';
             } else {
                 $this->username = 'root';
                 $this->password = 'root';
