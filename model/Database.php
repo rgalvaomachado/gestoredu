@@ -1,4 +1,6 @@
 <?php
+    include_once(dirname(__FILE__).'/../env.php');
+
     class Database{
         public $bd;
         public $err;
@@ -8,17 +10,10 @@
         public $dataBase;   // Nome do banco de dados
         
         function __construct(){
-            if ($_SERVER['HTTP_HOST'] == 'gestoredu.com') {
-                $this->username = 'suman';
-                $this->password = 'pU5OXA8RK1y8cVmc';
-                $this->host     = 'gestoredu.com';
-                $this->dataBase = 'ge_suman';
-            } else {
-                $this->username = 'root';
-                $this->password = 'root';
-                $this->host     = '127.0.0.1';
-                $this->dataBase = 'gestoredu';
-            }
+            $this->username = $_ENV['DATABASE_USERNAME'];
+            $this->password = $_ENV['DATABASE_PASSWORD'];
+            $this->host     = $_ENV['DATABASE_HOST'];
+            $this->dataBase = $_ENV['DATABASE_NAME'];
 
             try {
                 $this->bd = new PDO('mysql:host='.$this->host.';dbname='.$this->dataBase,$this->username,$this->password);

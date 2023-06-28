@@ -155,15 +155,9 @@ a, p, label, option, input, td, tr{
   width: 30px;
 }
 
-/* #listMenu>li>a , #listMenu li>ul>li a{
-  display: block;
-  color: white;
-  text-align: justify;
-  padding-left: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  text-decoration: none;
-} */
+#listMenu li{
+  list-style: none;
+}
 
 .fa-plus{
   float: right;
