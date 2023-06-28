@@ -5,19 +5,13 @@
     </label>
     <!-- <img src="../public/img/hubis.png" id="logo-hubis"> -->
     <div class="logoutMenu" id="usuarioLogado">
-        <label><?php echo "Dev"?></label>
+        <label>
+            <?php
+                echo $_SESSION['usuario'];
+            ?>
+        </label>
         <a class="logoutMenu" href="../logon/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
     </div>
-</div>
-<div id="barraSuperior">
-    <input type="checkbox" id="checkMenu">
-    <label for="checkMenu">
-        <div id="botaoMenu" onclick="menu()">
-            <span class="linha-menu"></span>
-            <span class="linha-menu"></span>
-            <span class="linha-menu"></span>
-        </div> 
-    </label>
 </div>
 
 <script>

@@ -6,7 +6,7 @@
     <script src="index.js"></script>
 </head>
 <div class="grid-content grid-container">
-	<?php include_once('../includes/menu.html')?>
+	<?php include_once('../includes/menu.php')?>
     <div class="grid-item-content">
         <?php include_once('../includes/top.php')?>
         <label class="title">Disciplina</label> <a href="../disciplina/criar.php"><i class="title fa fa-plus-square-o" aria-hidden="true"></i></a>
@@ -19,6 +19,17 @@
 		?>
 		<table class="list">
             <tbody>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        Editar
+                    </th>
+                    <th>
+                        Deletar
+                    </th>
+                </tr>
                 <?php foreach ($disciplinas as $disciplina){ ?>
                     <tr>
                         <td>

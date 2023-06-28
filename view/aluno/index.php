@@ -6,7 +6,7 @@
     <script src="index.js"></script>
 </head>
 <div class="grid-content grid-container">
-	<?php include_once('../includes/menu.html')?>
+	<?php include_once('../includes/menu.php')?>
     <div class="grid-item-content">
         <?php include_once('../includes/top.php')?>
         <label class="title">Aluno(a)</label> <a href="../aluno/criar.php"><i class="title fa fa-plus-square-o" aria-hidden="true"></i></a>
@@ -19,10 +19,33 @@
 		?>
 		<table class="list">
             <tbody>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        Telefone
+                    </th>
+                    <th>
+                        Data de Nascimento
+                    </th>
+                    <th>
+                        Editar
+                    </th>
+                    <th>
+                        Deletar
+                    </th>
+                </tr>
                 <?php foreach ($usuarios as $usuario){ ?>
                     <tr>
                         <td>
                             <?php echo $usuario->nome ?>
+                        </td> 
+                        <td>
+                            <?php echo $usuario->telefone ?>
+                        </td> 
+                        <td>
+                            <?php echo $usuario->data_nascimento ?>
                         </td> 
                         <td>
                             <a href="../aluno/editar.php?id=<?php echo $usuario->id ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>

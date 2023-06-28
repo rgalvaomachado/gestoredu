@@ -10,7 +10,7 @@
 </head>
 <?php include_once('../includes/top.php')?>
 <div class="grid-content grid-container">
-	<?php include_once('../includes/menu.html')?>
+	<?php include_once('../includes/menu.php')?>
     <div class="grid-item-content">
         <label class="title">Editar Usuarios</label>
 		<br>

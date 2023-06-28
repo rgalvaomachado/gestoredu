@@ -25,19 +25,19 @@
             $sql = "SELECT * FROM usuario ORDER BY nome ASC";
 
             if (isset($this->grupos) && !isset($this->salas) && !isset($this->disciplinas)){
-                $sql = "SELECT id,nome FROM usuario WHERE grupos like '%#".$this->grupos."#%' ORDER BY nome ASC";
+                $sql = "SELECT * FROM usuario WHERE grupos like '%#".$this->grupos."#%' ORDER BY nome ASC";
             }
 
             if (!isset($this->grupos) && !isset($this->salas) && isset($this->disciplinas)){
-                $sql = "SELECT id,nome FROM usuario WHERE disciplinas like '%#".$this->disciplinas."#%' ORDER BY nome ASC";
+                $sql = "SELECT * FROM usuario WHERE disciplinas like '%#".$this->disciplinas."#%' ORDER BY nome ASC";
             }
 
             if (!isset($this->grupos) && isset($this->salas) && !isset($this->disciplinas)){
-                $sql = "SELECT id,nome FROM usuario WHERE salas like '%#".$this->salas."#%' ORDER BY nome ASC";
+                $sql = "SELECT * FROM usuario WHERE salas like '%#".$this->salas."#%' ORDER BY nome ASC";
             }
 
             if (isset($this->grupos) && isset($this->salas) && isset($this->disciplinas)) {
-                $sql = "SELECT id,nome FROM usuario WHERE grupos like '%#".$this->grupos."#%' AND salas like '%#".$this->salas."#%' AND disciplinas like '%#".$this->disciplinas."#%' ORDER BY nome ASC";
+                $sql = "SELECT * FROM usuario WHERE grupos like '%#".$this->grupos."#%' AND salas like '%#".$this->salas."#%' AND disciplinas like '%#".$this->disciplinas."#%' ORDER BY nome ASC";
             }
 
             $buscarTodos = $this->bd->prepare($sql);

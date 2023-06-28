@@ -181,8 +181,12 @@ a, p, label, option, input, td, tr{
 
 .itemMenu {
   margin: 20px;
+}
+
+.itemMenu:hover {
   border-left: 5px solid #00b3f5;
 }
+
 
 .itemMenu label, .itemMenu a{
   padding-left: 30px;

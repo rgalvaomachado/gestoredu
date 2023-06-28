@@ -6,7 +6,7 @@
     <script src="index.js"></script>
 </head>
 <div class="grid-content grid-container">
-	<?php include_once('../includes/menu.html')?>
+	<?php include_once('../includes/menu.php')?>
     <div class="grid-item-content">
         <?php include_once('../includes/top.php')?>
         <label class="title">Sala</label> <a href="../sala/criar.php"><i class="title fa fa-plus-square-o" aria-hidden="true"></i></a>
@@ -18,6 +18,17 @@
 			$salas = json_decode($SalaController->buscarTodos())->salas;
 		?>
 		<table class="list">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Editar
+                </th>
+                <th>
+                    Deletar
+                </th>
+            </tr>
             <tbody>
                 <?php foreach ($salas as $sala){ ?>
                     <tr>

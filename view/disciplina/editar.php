@@ -13,7 +13,7 @@
     <script src="index.js"></script>
 </head>
 <div class="grid-content grid-container">
-    <?php include_once('../includes/menu.html')?>
+    <?php include_once('../includes/menu.php')?>
     <div class="grid-item-content">
 		<?php include_once('../includes/top.php')?>
 		<label class="title">Editar Disciplina</label>
