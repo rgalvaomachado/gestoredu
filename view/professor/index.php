@@ -38,7 +38,7 @@
                 </tr>
                 <?php foreach ($usuarios as $usuario){ ?>
                     <tr>
-                        <td>
+                        <td class="text-left">
                             <?php echo $usuario->nome ?>
                         </td> 
                         <td>

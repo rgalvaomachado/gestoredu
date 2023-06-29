@@ -32,7 +32,7 @@
             <tbody>
                 <?php foreach ($salas as $sala){ ?>
                     <tr>
-                        <td>
+                        <td class="text-left">
                             <?php echo $sala->nome ?>
                         </td> 
                         <td>

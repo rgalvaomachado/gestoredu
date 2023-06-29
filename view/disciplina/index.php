@@ -32,7 +32,7 @@
                 </tr>
                 <?php foreach ($disciplinas as $disciplina){ ?>
                     <tr>
-                        <td>
+                        <td class="text-left">
                             <?php echo $disciplina->nome ?>
                         </td> 
                         <td>
