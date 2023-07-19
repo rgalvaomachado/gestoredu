@@ -9,7 +9,7 @@
             return implode('/',$parametros);
         }
 
-        function path($url){
+        function path($url, $routes){
             $url = explode('?',$url);
             unset($url[1]);
             $url = implode('',$url);
@@ -45,13 +45,31 @@
                     </head>
                 ';
     
-            if(is_file($public_url.'/index.php')){
-                return $public_url.'/index.php';
+            foreach($routes as $route){
+                $RoutePath = $route[0];
+                $RouteView = $route[1];
+                if ($url == $RoutePath){
+                    return $RouteView;
+                }
             }
+
+            // if(is_file($public_url.'/index.php')){
+            //     return $public_url.'/index.php';
+            // }
     
-            if(is_file($public_url.'.php')){
-                return $public_url.'.php';
-            }
+            // if(is_file($public_url.'.php')){
+            //     return $public_url.'.php';
+            // }
             
+        }
+
+        function run($routes){
+            $url = $this->getURL();
+            $path = $this->path($url, $routes);
+            if($path){
+                include_once $path;
+            } else {
+                include_once ('404.html');
+            }
         }
     }

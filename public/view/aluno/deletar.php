@@ -1,6 +1,6 @@
 <?php 
     if (!isset($_GET['id'])){
-        header("Location: aluno");
+        header("Location: /aluno");
         die();
     }
 ?>
