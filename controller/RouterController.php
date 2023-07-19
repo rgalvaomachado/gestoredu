@@ -23,15 +23,13 @@
             if(is_file($public_url)){
                 return $public_url;
             }
-
-            $public_url = "public/view/".$url;
     
             if (!isset($_SESSION['modo']) || $_SESSION['modo'] == ''){
-                $public_url = "public/view/login";
+                $url = "login";
             }
     
-            if ($public_url == "public/"){
-                $public_url = "public/view/home";
+            if ($url == ""){
+                $url = "home";
             }
     
             echo '<head>
@@ -52,15 +50,6 @@
                     return $RouteView;
                 }
             }
-
-            // if(is_file($public_url.'/index.php')){
-            //     return $public_url.'/index.php';
-            // }
-    
-            // if(is_file($public_url.'.php')){
-            //     return $public_url.'.php';
-            // }
-            
         }
 
         function run($routes){
