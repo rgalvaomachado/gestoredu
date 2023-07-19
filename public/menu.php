@@ -1,19 +1,21 @@
 <head>
     <script src="https://kit.fontawesome.com/7ca1b2bc88.js" crossorigin="anonymous"></script>
+    <script src="/public/js/menu.js"></script>
 </head>
 <?php
-    $uri = $_SERVER["REQUEST_URI"];
-    $parametros = explode('/',$uri);
-    $menu = isset($parametros[1]) ? $parametros[1] : "" ;
     $style = '
         border-left: 5px solid #00b3f5;
         background-color: #00b4f544;
         color: white !important;
     ';
 
+    $menu_aluno = $menu_professor = $menu_disciplina = $menu_sala = $menu_presenca = $menu_relatorio = '';
+    $url_menu = explode('/',$url);
+    $menu = $url_menu[0];
+
     switch ($menu) {
         case 'aluno':
-            $menua_aluno = $style;
+            $menu_aluno = $style;
             break;
         case 'professor':
             $menu_professor = $style;
@@ -34,7 +36,7 @@
             # code...
             break;
     }
-    
+
 ?>
 <div class="grid-item-menu">
     <a href="/home">
@@ -44,7 +46,7 @@
         <ul id="listMenu">
             <li>
                 <div class="itemMenu">
-                    <a  href="/aluno" style="<?php echo $menua_aluno?>">
+                    <a  href="/aluno" style="<?php echo $menu_aluno?>">
                         <em class="fa fa-graduation-cap" aria-hidden="true"></em>&nbsp;Aluno(a)
                     </a>
                 </div>
@@ -194,12 +196,5 @@
     </div>
 </div>
 <script>
-    function menu(){
-        checkMenu = $('#checkMenu').is(':checked');
-        if (checkMenu){
-            $('#menu').hide();
-        }else{
-            $('#menu').show();
-        }
-    }
+
 </script>
