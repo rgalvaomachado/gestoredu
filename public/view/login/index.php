@@ -1,6 +1,6 @@
 <head>
-    <link href="/public/login/styles.css" rel="stylesheet">
-    <script src="/public/login/index.js"></script>
+    <link href="/public/view/login/styles.css" rel="stylesheet">
+    <script src="/public/view/login/index.js"></script>
 </head>
 <div class="grid">
     <div class="grid-item">

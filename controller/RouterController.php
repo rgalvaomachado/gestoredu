@@ -19,18 +19,19 @@
             }
     
             $public_url = "public/".$url;
-            // echo $public_url;
             
             if(is_file($public_url)){
                 return $public_url;
             }
+
+            $public_url = "public/view/".$url;
     
             if (!isset($_SESSION['modo']) || $_SESSION['modo'] == ''){
-                $public_url = "public/login";
+                $public_url = "public/view/login";
             }
     
             if ($public_url == "public/"){
-                $public_url = "public/home";
+                $public_url = "public/view/home";
             }
     
             echo '<head>

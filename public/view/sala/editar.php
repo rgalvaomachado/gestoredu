@@ -7,8 +7,8 @@
 <head>
 	<?php include_once('controller/SalaController.php')?>
 	<?php include_once('controller/UsuarioController.php')?>
-    <link href="/public/sala/styles.css" rel="stylesheet">
-    <script src="/public/sala/index.js"></script>
+    <link href="/public/view/sala/styles.css" rel="stylesheet">
+    <script src="/public/view/sala/index.js"></script>
 </head>
 <div class="grid-content grid-container">
     <?php include_once('public/menu.php')?>

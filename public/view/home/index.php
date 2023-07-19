@@ -2,8 +2,8 @@
     <?php include_once('controller/UsuarioController.php')?>
     <?php include_once('controller/SalaController.php')?>
     <?php include_once('controller/DisciplinaController.php')?>
-    <link href="/public/home/styles.css" rel="stylesheet">
-    <script src="/public/home/index.js"></script>
+    <link href="/public/view/home/styles.css" rel="stylesheet">
+    <script src="/public/view/home/index.js"></script>
 </head>
 <div class="grid-content grid-container">
     <?php include_once('public/menu.php')?>

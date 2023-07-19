@@ -9,8 +9,8 @@
 	<?php include_once('controller/UsuarioController.php')?>
 	<?php include_once('controller/DisciplinaController.php')?>
 	<?php include_once('controller/SalaController.php')?>
-    <link href="/public/aluno/styles.css" rel="stylesheet">
-    <script src="/public/aluno/index.js"></script>
+    <link href="/public/view/aluno/styles.css" rel="stylesheet">
+    <script src="/public/view/aluno/index.js"></script>
 </head>
 <div class="grid-content grid-container">
 	<?php include_once('public/menu.php')?>

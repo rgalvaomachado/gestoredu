@@ -1,20 +1,20 @@
 <?php 
     if (!isset($_GET['id'])){
-        header("Location: /professor");
+        header("Location: aluno");
         die();
     }
 ?>
 <head>
 	<?php include_once('controller/DisciplinaController.php')?>
 	<?php include_once('controller/UsuarioController.php')?>
-    <link href="/public/professor/styles.css" rel="stylesheet">
-    <script src="/public/professor/index.js"></script>
+    <link href="/public/view/aluno/styles.css" rel="stylesheet">
+    <script src="/public/view/aluno/index.js"></script>
 </head>
 <div class="grid-content grid-container">
     <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
 		<?php include_once('public/top.php')?>
-		<label class="title">Deletar Professor(a)</label>
+		<label class="title">Deletar Aluno(a)</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>

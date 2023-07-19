@@ -2,16 +2,15 @@
     <?php include_once('controller/GrupoController.php')?>
     <?php include_once('controller/DisciplinaController.php')?>
     <?php include_once('controller/SalaController.php')?>
-
-    <link href="/public/professor/styles.css" rel="stylesheet">
-    <script src="/public/professor/index.js"></script>
+    <link href="/public/view/aluno/styles.css" rel="stylesheet">
+    <script src="/public/view/aluno/index.js"></script>
 </head>
 <div class="grid-content grid-container">
     <?php include_once('public/menu.php')?>
     <form id="criar">
         <div class="grid-item-content">
             <?php include_once('public/top.php')?>
-            <label class="title">Criar Professor(a)</label>
+            <label class="title">Criar Aluno(a)</label>
             <br>
             <label class="message_alert" id="messageAlert"></label>
             <br>
@@ -79,14 +78,12 @@
             <br>
             <input class='input' type="number" id="telefone" name="telefone" required>
             <br>
+            <br>
             <label>Email</label>
             <br>
             <input class='input' type="email" id="email" name="email" required>
             <br>
-            <label>Senha</label>
-            <br>
-            <input class='input' type="password" id="senha" name="senha" required>
-            <input type="hidden" id="grupos" value="2">
+            <input type="hidden" id="grupos" value="1">
             <br>
             <label>Disciplinas</label>
             <br>

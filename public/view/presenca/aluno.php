@@ -2,19 +2,19 @@
 	<?php include_once('controller/GrupoController.php')?>
 	<?php include_once('controller/SalaController.php')?>
 	<?php include_once('controller/DisciplinaController.php')?>
-    <link href="/public/relatorio/styles.css" rel="stylesheet">
-    <script src="/public/relatorio/index.js"></script>
+    <link href="/public/view/presenca/styles.css" rel="stylesheet">
+    <script src="/public/view/presenca/index.js"></script>
 </head>
 <div class="grid-content grid-container">
     <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
 		<?php include_once('public/top.php')?>
-		<label class="title">Frequência de Alunos</label>
+		<label class="title">Chamada Aluno</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
-		<form id="relatorioChamada">
-			<input type="hidden" id="grupos" value="1">
+		<form id="buscar">
+			<input type="hidden" id="grupo" value="1">
 			<label>Disciplina</label>
 			<br>
 			<?php 
@@ -41,31 +41,27 @@
 				<?php } ?>
 			</select>
 			</br>
-			<label>Data Inicial</label>
-			<br>
-			<input id="dataInicial" name="dataInicial" type="date" class="input" required>
-			<br>
-			<label>Data Final</label>
-			<br>
-			<input id="dataFinal" name="dataFinal" type="date" class="input" required>
-			<br>
-			<input class='button' type="submit" value="Gerar">
+			<input class='button' type="submit" value="Buscar">
 		</form>
-		</br>
+		<br>
+		<br>
 		<div id="detalhes">
-			<table>
-				<thead>
-					<tr>
-						<th><strong>Nome</strong></th>
-						<th><strong>Presença</strong></th>
-						<th><strong>Ausencia</strong></th>
-						<!-- <th><strong>Justificado</strong></th> -->
-						<th><strong>Frequência</strong></th>
-					</tr>
-				</thead>
-				<tbody id='lista'>
-				</tbody>
-			</table>
+			<form id="criarChamada">
+				<label>Data</label>
+				<br>
+				<input id="data" name="data" type="date" class="input" required>
+				<table>
+					<thead>
+						<tr>
+							<th><strong>Nome</strong></th>
+							<th><strong>Presente</strong></th>
+						</tr>
+					</thead>
+					<tbody id='lista'>
+					</tbody>
+				</table>
+				<input class='button' type="submit" value="Fazer Chamada">
+			</form>
 		</div>
     </div>
 </div>
