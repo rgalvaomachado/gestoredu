@@ -1,16 +1,14 @@
 <head>
-    <?php include_once('../../controller/UsuarioController.php')?>
-    <?php include_once('../../controller/SalaController.php')?>
-    <?php include_once('../../controller/DisciplinaController.php')?>
-
-    <?php include_once('../includes/head.html')?>
-    <link href="../view/home/styles.css" rel="stylesheet">
-    <script src="../view/home/index.js"></script>
+    <?php include_once('controller/UsuarioController.php')?>
+    <?php include_once('controller/SalaController.php')?>
+    <?php include_once('controller/DisciplinaController.php')?>
+    <link href="/public/home/styles.css" rel="stylesheet">
+    <script src="/public/home/index.js"></script>
 </head>
 <div class="grid-content grid-container">
-    <?php include_once('../includes/menu.php')?>
+    <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
-        <?php include_once('../includes/top.php')?>
+        <?php include_once('public/top.php')?>
         <div id="graficos">
             <!-- <div class="pie" style="--p:20"> 20%</div> -->
             <!-- <div class="pie" style="--p:40;--c:darkblue;--b:10px"> 40%</div> -->

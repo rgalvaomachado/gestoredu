@@ -1,13 +1,11 @@
 <head>
-    <?php include_once('../includes/head.html')?>
-
-    <link href="styles.css" rel="stylesheet">
-    <script src="index.js"></script>
+    <link href="/public/login/styles.css" rel="stylesheet">
+    <script src="/public/login/index.js"></script>
 </head>
 <div class="grid">
     <div class="grid-item">
         <div id="gestor_edu">
-            <img id="logo-gedu" src='../public/img/logo_colorido2.png'>
+            <img id="logo-gedu" src='/public/img/logo_colorido2.png'>
             <div id="nao_tem_conta1">
                 <label class="cinza open_sans" id="nao_conta">Ainda não tem uma conta?</label>
                 </br></br>
@@ -23,7 +21,7 @@
                 <label class="title azul open_sans">Faça seu Login</label>
                 </br></br></br></br>
                 <div class="error_login">
-                    <img id="cancel" src='../public/img/blocked_cancel_icon.png'>
+                    <img id="cancel" src='img/blocked_cancel_icon.png'>
                     <label class="open_sans" id="messageAlert"></label>
                 </div>
                 <input class='input open_sans' placeholder="Seu e-mail" id="emailLogin" name="emailLogin" type="email" required>

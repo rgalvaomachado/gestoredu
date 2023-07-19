@@ -1,6 +1,4 @@
 <?php
-    include_once(dirname(__FILE__).'/../env.php');
-
     class Database{
         public $bd;
         public $err;

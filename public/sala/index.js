@@ -4,7 +4,7 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "criarSala",
                 nome: nome,
@@ -24,7 +24,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../sala/index.php");
+                window.location.assign("/sala");
             }
         });
     });
@@ -35,7 +35,7 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "editarSala",
                 id: sala,
@@ -56,7 +56,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../sala/index.php");
+                window.location.assign("/sala");
             }
         });
     });
@@ -66,7 +66,7 @@ $(document).ready(function() {
         var sala = $("#sala").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "deletarSala",
                 id: sala,
@@ -86,7 +86,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../sala/index.php");
+                window.location.assign("/sala");
             }
         });
     });

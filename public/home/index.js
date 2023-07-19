@@ -46,21 +46,3 @@ function menu(){
         $('#menu').show();
     }
 }
-
-function logout(){
-    $(function(){
-        $.ajax({
-            method: "POST",
-            url: "../controller/Controller.php",
-            data: {
-                metodo: "logout",
-            },
-            complete: function(response) {
-                var response = JSON.parse(response.responseText);
-                if(response.access){
-                    window.location.assign("");
-                }
-            }
-        });
-    });
-}

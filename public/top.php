@@ -10,7 +10,7 @@
                 echo $_SESSION['usuario'];
             ?>
         </label>
-        <a class="logoutMenu" href="../logon/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        <a class="logoutMenu"><i class="fa fa-sign-out" aria-hidden="true" onclick="logout()"></i></a>
     </div>
 </div>
 
@@ -25,4 +25,26 @@
             $('.grid-content').addClass('grid-container')
         }
     }
+
+    function logout(){
+    $.ajax({
+        method: "POST",
+        url: "controller/Controller.php",
+        data: {
+            metodo: "logout"
+        },
+        complete: function(response) {
+            var response = JSON.parse(response.responseText);
+            if(response.access){
+                window.location.assign("login")
+            }else{
+                const alert = document.getElementById("messageAlert");
+                alert.innerHTML = response.message;
+                setTimeout(function(){
+                    alert.innerHTML = "";
+                }, 2000);
+            }
+        }
+    });
+}
 </script>

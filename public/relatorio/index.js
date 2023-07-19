@@ -12,7 +12,7 @@ $(document).ready(function() {
         $('#detalhes').hide();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "relatorioChamada",
                 grupo: grupo,
@@ -46,8 +46,7 @@ $(document).ready(function() {
                     setTimeout(function(){
                         alert.innerHTML = "";
                     }, 2000);
-                } 
-                verificaSessão();
+                }
             }
         });
     })

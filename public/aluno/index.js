@@ -32,7 +32,7 @@ $(document).ready(function() {
 
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "criarUsuario",
                 nome: nome,
@@ -61,7 +61,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../aluno/index.php");
+                window.location.assign("/aluno");
             }
         });
     });
@@ -100,7 +100,7 @@ $(document).ready(function() {
 
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "editarUsuario",
                 id: id,
@@ -130,7 +130,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../aluno/index.php");
+                window.location.assign("/aluno");
             }
         });
     });
@@ -140,7 +140,7 @@ $(document).ready(function() {
         var usuario = $("#usuario").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "deletarUsuario",
                 id: usuario,
@@ -160,7 +160,7 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../aluno/index.php");
+                window.location.assign("/aluno");
             }
         });
     });

@@ -6,7 +6,7 @@ $(document).ready(function() {
         disciplina = $("#disciplina").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "buscarUsuarios",
                 grupo: grupo,
@@ -44,7 +44,7 @@ $(document).ready(function() {
     
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "/controller/Controller.php",
             data: {
                 metodo: "criarPresencaChamada",
                 grupo: grupo,
@@ -63,18 +63,14 @@ $(document).ready(function() {
                     alert.style.color = "green";
                     setTimeout(function(){
                         alert.innerHTML = "";
-                        $(function(){
-                            $("#content").load("presenca/chamada.php");
-                        });
                     }, 2000);
-                    
+                    window.location.assign("/presenca/aluno");
                 } else {
                     alert.style.color = "red";
                     setTimeout(function(){
                         alert.innerHTML = "";
                     }, 2000);
                 }
-                verificaSessão();
             }
             
         });

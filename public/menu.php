@@ -4,12 +4,7 @@
 <?php
     $uri = $_SERVER["REQUEST_URI"];
     $parametros = explode('/',$uri);
-    if ($parametros[1] == 'gestoredu') {
-        $menu = isset($parametros[2]) ? $parametros[2] : "" ;
-    } else {
-        $menu = isset($parametros[1]) ? $parametros[1] : "" ;
-    }
-    session_start();
+    $menu = isset($parametros[1]) ? $parametros[1] : "" ;
     $style = '
         border-left: 5px solid #00b3f5;
         background-color: #00b4f544;
@@ -42,49 +37,49 @@
     
 ?>
 <div class="grid-item-menu">
-    <a href="../home/index.php">
-        <img src="../public/img/logo_branco.png" id="logo-gestoredu" href="">
+    <a href="/home">
+        <img src="/public/img/logo_branco.png" id="logo-gestoredu">
     </a>
     <div class="menu" id="menu">
         <ul id="listMenu">
             <li>
                 <div class="itemMenu">
-                    <a  href="../aluno/index.php" style="<?php echo $menua_aluno?>">
+                    <a  href="/aluno" style="<?php echo $menua_aluno?>">
                         <em class="fa fa-graduation-cap" aria-hidden="true"></em>&nbsp;Aluno(a)
                     </a>
                 </div>
             </li>
             <li>
                 <div class="itemMenu">
-                    <a href="../professor/index.php" style="<?php echo $menu_professor?>">
+                    <a href="/professor" style="<?php echo $menu_professor?>">
                         <em class="fa fa-user" aria-hidden="true"></em>&nbsp;Professor(a)
                     </a>
                 </div>
             </li>
             <li>
                 <div class="itemMenu">
-                    <a href="../disciplina/index.php" style="<?php echo $menu_disciplina?>">
+                    <a href="/disciplina" style="<?php echo $menu_disciplina?>">
                         <em class="fa fa-newspaper-o" aria-hidden="true"></em>&nbsp;Disciplina
                     </a>
                 </div>
             </li>
             <li>
                 <div class="itemMenu">
-                    <a href="../sala/index.php" style="<?php echo $menu_sala?>">
+                    <a href="/sala" style="<?php echo $menu_sala?>">
                         <em class="fa fa-university" aria-hidden="true"></em>&nbsp;Sala
                     </a>
                 </div>
             </li>
             <li>
                 <div class="itemMenu">
-                    <a href="../presenca/aluno.php" style="<?php echo $menu_presenca?>">
+                    <a href="/presenca/aluno" style="<?php echo $menu_presenca?>">
                         <em class="fa fa-calendar"></em>&nbsp;Chamada de Alunos
                     </a>
                 </div>
             </li>
             <li>
                 <div class="itemMenu">
-                    <a href="../relatorio/freqaluno.php" style="<?php echo $menu_relatorio?>">
+                    <a href="/relatorio/freqaluno" style="<?php echo $menu_relatorio?>">
                         <em class="fa fa-bar-chart"></em>&nbsp;Frequência de Alunos
                     </a>
                 </div>

@@ -5,7 +5,7 @@ $(document).ready(function() {
         var senha = $("#senhaLogin").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "controller/Controller.php",
             data: {
                 metodo: "login",
                 email: email,
@@ -14,7 +14,7 @@ $(document).ready(function() {
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 if(response.access){
-                    window.location.assign("../home/index.php")
+                    window.location.assign("home")
                 }else{
                     $('.error_login').show();
                     const alert = document.getElementById("messageAlert");
@@ -28,25 +28,3 @@ $(document).ready(function() {
         });
     })
 });
-
-function logout(){
-    $.ajax({
-        method: "POST",
-        url: "../controller/Controller.php",
-        data: {
-            metodo: "logout"
-        },
-        complete: function(response) {
-            var response = JSON.parse(response.responseText);
-            if(response.access){
-                window.location.assign("../logon/login.php")
-            }else{
-                const alert = document.getElementById("messageAlert");
-                alert.innerHTML = response.message;
-                setTimeout(function(){
-                    alert.innerHTML = "";
-                }, 2000);
-            }
-        }
-    });
-}

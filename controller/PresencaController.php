@@ -1,6 +1,6 @@
 <?php
-    include_once('../model/Presenca.php');
-    include_once('../controller/UsuarioController.php');
+    include_once('model/Presenca.php');
+    include_once('controller/UsuarioController.php');
 
     class PresencaController{
         function criarPresencaChamada($post){

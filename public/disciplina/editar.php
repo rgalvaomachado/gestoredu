@@ -1,21 +1,20 @@
 <?php 
     if (!isset($_GET['id'])){
-        header("Location: index.php");
+        header("Location: /disciplina");
         die();
     }
 ?>
 <head>
-    <?php include_once('../includes/head.html')?>
-	<?php include_once('../../controller/DisciplinaController.php')?>
-	<?php include_once('../../controller/UsuarioController.php')?>
+	<?php include_once('controller/DisciplinaController.php')?>
+	<?php include_once('controller/UsuarioController.php')?>
 
-    <link href="styles.css" rel="stylesheet">
-    <script src="index.js"></script>
+    <link href="/public/disciplina/styles.css" rel="stylesheet">
+    <script src="/public/disciplina/index.js"></script>
 </head>
 <div class="grid-content grid-container">
-    <?php include_once('../includes/menu.php')?>
+    <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
-		<?php include_once('../includes/top.php')?>
+		<?php include_once('public/top.php')?>
 		<label class="title">Editar Disciplina</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
