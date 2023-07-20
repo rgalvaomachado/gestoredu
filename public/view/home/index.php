@@ -4,66 +4,55 @@
     <?php include_once('controller/DisciplinaController.php')?>
     <link href="/public/view/home/styles.css" rel="stylesheet">
     <script src="/public/view/home/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <div class="grid-content grid-container">
     <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
         <?php include_once('public/top.php')?>
-        <div id="graficos">
-            <!-- <div class="pie" style="--p:20"> 20%</div> -->
-            <!-- <div class="pie" style="--p:40;--c:darkblue;--b:10px"> 40%</div> -->
-            <!-- <div class="pie no-round" style="--p:60;--c:purple;--b:15px"> 60%</div> -->
-            <!-- <div class="pie animate no-round" style="--p:80;--c:orange;"> 80%</div> -->
-            <?php
-                $UsuarioController = new UsuarioController();
-                $usuarios = json_decode($UsuarioController->buscarTodos())->usuarios;
-                $qtdUsuarios = count($usuarios);
+        <?php
+            $UsuarioController = new UsuarioController();
+            $usuarios = json_decode($UsuarioController->buscarTodos())->usuarios;
+            $qtdUsuarios = count($usuarios);
 
-                $UsuarioController = new UsuarioController();
-                $alunos = json_decode($UsuarioController->buscarTodos(['grupo' => '1']))->usuarios;
-                $qtdAlunos = count($alunos);
+            $UsuarioController = new UsuarioController();
+            $alunos = json_decode($UsuarioController->buscarTodos(['grupo' => '1']))->usuarios;
+            $qtdAlunos = count($alunos);
 
-                $UsuarioController = new UsuarioController();
-                $professores = json_decode($UsuarioController->buscarTodos(['grupo' => '2']))->usuarios;
-                $qtdProfessores = count($professores);
+            $UsuarioController = new UsuarioController();
+            $professores = json_decode($UsuarioController->buscarTodos(['grupo' => '2']))->usuarios;
+            $qtdProfessores = count($professores);
 
-                $SalaController = new SalaController();
-                $salas = json_decode($SalaController->buscarTodos())->salas;
-                $qtdSalas = count($salas);
+            $SalaController = new SalaController();
+            $salas = json_decode($SalaController->buscarTodos())->salas;
+            $qtdSalas = count($salas);
 
-                $DisciplinaController = new DisciplinaController();
-                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
-                $qtdDisciplinas = count($disciplinas);
+            $DisciplinaController = new DisciplinaController();
+            $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+            $qtdDisciplinas = count($disciplinas);
 
-                $porcentagemAlunos = number_format(($qtdAlunos/$qtdUsuarios)*100,2);
-                $porcentagemProfessores = number_format(($qtdProfessores/$qtdUsuarios)*100,2);
-            ?>
-            <div class="graficos">
-                <label class="title">Usuarios</label>
-                <br>
-                <label style="font-size: 50px;"><?php echo $qtdUsuarios ?></label>
-            </div>
-            <div class="graficos">
-                <label class="title">Disciplinas</label>
-                <br>
-                <label style="font-size: 50px;"><?php echo $qtdDisciplinas ?></label>
-            </div>
-            <div class="graficos">
+        ?>
+        <div class="grid-container-graficos">
+            <div class="grid-item-graficos">
                 <label class="title">Salas</label>
                 <br>
                 <label style="font-size: 50px;"><?php echo $qtdSalas ?></label>
             </div>
-            <div class="graficos">
-                <label class="title">Professores</label>
+            <div class="grid-item-graficos">
+                <label class="title">Usuarios</label>
                 <br>
-                <div class="pie animate" style="--p:<?= $porcentagemProfessores ?>90;--c:#004fde"> <?= $porcentagemProfessores ?>%</div>
+                <label style="font-size: 50px;"><?php echo $qtdUsuarios ?></label>
             </div>
-            <div class="graficos">
-                <label class="title">Alunos</label>
+            <div class="grid-item-graficos">
+                <label class="title">Disciplinas</label>
                 <br>
-                <div class="pie animate" style="--p:<?= $porcentagemAlunos ?>;--c:#004fde"> <?= $porcentagemAlunos ?>%</div>
+                <label style="font-size: 50px;"><?php echo $qtdDisciplinas ?></label>
             </div>
-            
+            <div class="grid-item-graficos">
+                <div id="graficos">
+                <canvas id="usuarios"></canvas>
+            </div>
+            <script>grafico(<?= $qtdProfessores ?>,<?= $qtdAlunos ?>);</script>
         </div>
     </div>
 </div>
