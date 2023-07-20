@@ -81,7 +81,7 @@
             </li>
             <li>
                 <div class="itemMenu">
-                    <a href="/relatorio/freqaluno" style="<?php echo $menu_relatorio?>">
+                    <a href="/relatorio/frequenciaaluno" style="<?php echo $menu_relatorio?>">
                         <em class="fa fa-bar-chart"></em>&nbsp;Frequência de Alunos
                     </a>
                 </div>
