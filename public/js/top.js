@@ -12,7 +12,7 @@ function slideMenu(){
 function logout(){
     $.ajax({
         method: "POST",
-        url: "src/controller/Controller.php",
+        url: "/src/controller/Controller.php",
         data: {
             metodo: "logout"
         },
