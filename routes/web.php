@@ -26,6 +26,8 @@
 
         ['relatorio/frequenciaaluno','public/view/relatorio/freqaluno.php'],
 
+        ['certificado/gerar','public/view/certificado/gerar.php'],
+
         ['login','public/view/login/index.php'],
 
         ['','public/view/login/index.php'],

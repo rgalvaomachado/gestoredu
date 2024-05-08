@@ -9,7 +9,7 @@
         color: white !important;
     ';
 
-    $menu_aluno = $menu_professor = $menu_disciplina = $menu_sala = $menu_presenca = $menu_relatorio = '';
+    $menu_aluno = $menu_professor = $menu_disciplina = $menu_sala = $menu_presenca = $menu_relatorio = $menu_certificado = '';
     $url_menu = explode('/',$url);
     $menu = $url_menu[0];
 
@@ -83,6 +83,13 @@
                 <div class="itemMenu">
                     <a href="/relatorio/frequenciaaluno" style="<?php echo $menu_relatorio?>">
                         <em class="fa fa-bar-chart"></em>&nbsp;Frequência de Alunos
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="itemMenu">
+                    <a href="/certificado/gerar" style="<?php echo $menu_certificado?>">
+                        <em class="fa fa-file-pdf-o" aria-hidden="true"></em>&nbsp;Certificado
                     </a>
                 </div>
             </li>
@@ -168,16 +175,6 @@
                         <li><a href="../presenca/editar.php" style="<?php echo $menuAluno?>"'><em class="fa fa-arrow-right">&nbsp;</em>Editar</a></li>
                     </ul>
                 </div>
-            </li> -->
-            <!-- <li>
-                <input type="checkbox" id="menuCertificado" class="subMenu"/>
-                <label for="menuCertificado">
-                    <em class="fa fa-file-pdf-o" aria-hidden="true"></em>&nbsp;Certificado
-                    <em class="fa fa-plus"></em>
-                </label>
-                <ul>
-                    <li><a href="../certificado/gerar.php" style="<?php echo $menuAluno?>"'><em class="fa fa-arrow-right">&nbsp;</em>Gerar</a></li>
-                </ul>
             </li> -->
             <!-- <li>
                 <div class="itemMenu">
