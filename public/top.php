@@ -6,6 +6,10 @@
     <label class="slideMenu" for="slideMenu">
         <i class="fa fa-bars" aria-hidden="true" onclick="slideMenu()"></i>
     </label>
+    <input type="checkbox" id="slideMenuMobile" checked style="display: none;">
+    <label class="slideMenuMobile" for="slideMenuMobile">
+        <i class="fa fa-bars" aria-hidden="true" onclick="slideMenuMobile()"></i>
+    </label>
     <!-- <img src="../public/img/hubis.png" id="logo-hubis"> -->
     <div class="logoutMenu" id="usuarioLogado">
         <label>
@@ -16,3 +20,4 @@
         <a class="logoutMenu"><i class="fa fa-sign-out" aria-hidden="true" onclick="logout()"></i></a>
     </div>
 </div>
+<?php include_once('public/menu_mobile.php')?>

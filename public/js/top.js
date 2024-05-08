@@ -9,6 +9,17 @@ function slideMenu(){
     }
 }
 
+function slideMenuMobile(){
+    sliderMenu = $('#slideMenuMobile').is(':checked');
+    if (sliderMenu){
+        $('.grid-item-menu-mobile').hide();
+        $('.grid-content').removeClass('grid-container')
+    }else{
+        $('.grid-item-menu-mobile').show();
+        $('.grid-content').addClass('grid-container')
+    }
+}
+
 function logout(){
     $.ajax({
         method: "POST",
