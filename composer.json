@@ -1,0 +1,15 @@
+{
+    "name": "rgalvaomachado/gestoredu",
+    "autoload": {
+        "psr-4": {
+            "Rgalvaomachado\\Gestoredu\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "rgalvaomachado",
+            "email": "rgalvaomachado@gmail.com"
+        }
+    ],
+    "require": {}
+}

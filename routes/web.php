@@ -1,11 +1,5 @@
 <?php
-    // [METODO, PATH, CONTROLLER, FUNCTION]
-    $routes = [
-        ['GET','/backup/*','BackupController','create'],
-    ];
-
-    // [PATH, VIEW]
-    $routesView = [
+    $web = [
         ['home','public/view/home/index.php'],
 
         ['aluno','public/view/aluno/index.php'],
@@ -36,4 +30,3 @@
 
         ['','public/view/login/index.php'],
     ];
-

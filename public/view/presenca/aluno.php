@@ -1,7 +1,7 @@
 <head>
-	<?php include_once('controller/GrupoController.php')?>
-	<?php include_once('controller/SalaController.php')?>
-	<?php include_once('controller/DisciplinaController.php')?>
+	<?php include_once('src/controller/GrupoController.php')?>
+	<?php include_once('src/controller/SalaController.php')?>
+	<?php include_once('src/controller/DisciplinaController.php')?>
     <link href="/public/view/presenca/styles.css" rel="stylesheet">
     <script src="/public/view/presenca/index.js"></script>
 </head>

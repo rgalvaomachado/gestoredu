@@ -1,45 +1,45 @@
 <?php
-    include_once(dirname(__FILE__).'/../model/Grupo.php');
-    include_once(dirname(__FILE__).'/../model/Usuario.php');
+    include_once('src/model/Sala.php');
+    include_once('src/model/Usuario.php');
 
-    class GrupoController{
+    class SalaController{
         function buscarTodos(){
-            $Grupo = new Grupo();
-            $grupos = $Grupo->buscarTodos();
+            $Sala = new Sala();
+            $Salas = $Sala->buscarTodos();
             return json_encode([
                 "access" => true,
-                "grupos" => $grupos
+                "salas" => $Salas
             ]);
         }
 
         function buscar($post){
-            $Grupo = new Grupo();
-            $Grupo->id = $post['id'];
-            $buscarGrupo = $Grupo->buscar();
+            $Sala = new Sala();
+            $Sala->id = $post['id'];
+            $buscarSala = $Sala->buscar();
 
             $usuario = new Usuario();
-            $usuario->grupos = $post['id'];
+            $usuario->salas = $post['id'];
             $usuarios = $usuario->buscarTodos();
-            $buscarGrupo['usuarios'] = $usuarios;
+            $buscarSala['usuarios'] = $usuarios;
 
-            if(!empty($buscarGrupo)){
+            if(!empty($buscarSala)){
                 return json_encode([
                     "access" => true,
-                    "grupo" => $buscarGrupo,
+                    "sala" => $buscarSala,
                 ]);
             } else {
                 return json_encode([
                     "access" => false,
-                    "message" => "Grupo não encontrado"
+                    "message" => "Sala não encontrado"
                 ]);
             }
         }
 
         function criar($post){
-            $grupo = new Grupo();
-            $grupo->nome = $post['nome'];
+            $Sala = new Sala();
+            $Sala->nome = $post['nome'];
 
-            $id = $grupo->criar();
+            $id = $Sala->criar();
             if ($id > 0){
                 return json_encode([
                     "access" => true,
@@ -55,10 +55,10 @@
         }
 
         function editar($post){
-            $grupo = new Grupo();
-            $grupo->id = $post['id'];
-            $grupo->nome = $post['nome'];
-            $id = $grupo->editar();
+            $Sala = new Sala();
+            $Sala->id = $post['id'];
+            $Sala->nome = $post['nome'];
+            $id = $Sala->editar();
             if ($id > 0) {
                 return json_encode([
                     "access" => true,
@@ -73,9 +73,9 @@
         }
 
         function deletar($post){
-            $grupo = new Grupo();
-            $grupo->id = $post['id'];
-            $deletado = $grupo->deletar();
+            $Sala = new Sala();
+            $Sala->id = $post['id'];
+            $deletado = $Sala->deletar();
             if ($deletado){
                 return json_encode([
                     "access" => true,

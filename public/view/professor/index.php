@@ -1,5 +1,5 @@
 <head>
-	<?php include_once('controller/UsuarioController.php')?>
+	<?php include_once('src/controller/UsuarioController.php')?>
     <link href="/public/view/professor/styles.css" rel="stylesheet">
     <script src="/public/view/professor/index.js"></script>
 </head>

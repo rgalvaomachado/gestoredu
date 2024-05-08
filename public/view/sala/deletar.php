@@ -5,7 +5,7 @@
     }
 ?>
 <head>
-	<?php include_once('controller/SalaController.php')?>
+	<?php include_once('src/controller/SalaController.php')?>
     <link href="/public/view/sala/styles.css" rel="stylesheet">
     <script src="/public/view/sala/index.js"></script>
 </head>

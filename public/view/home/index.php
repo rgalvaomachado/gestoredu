@@ -1,7 +1,7 @@
 <head>
-    <?php include_once('controller/UsuarioController.php')?>
-    <?php include_once('controller/SalaController.php')?>
-    <?php include_once('controller/DisciplinaController.php')?>
+    <?php include_once('src/controller/UsuarioController.php')?>
+    <?php include_once('src/controller/SalaController.php')?>
+    <?php include_once('src/controller/DisciplinaController.php')?>
     <link href="/public/view/home/styles.css" rel="stylesheet">
     <script src="/public/view/home/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

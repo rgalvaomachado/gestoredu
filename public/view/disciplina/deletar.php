@@ -5,7 +5,7 @@
     }
 ?>
 <head>
-	<?php include_once('controller/DisciplinaController.php')?>
+	<?php include_once('src/controller/DisciplinaController.php')?>
 	<link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>
 </head>

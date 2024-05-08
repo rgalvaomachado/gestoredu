@@ -5,10 +5,10 @@
     }
 ?>
 <head>
-	<?php include_once('controller/GrupoController.php')?>
-	<?php include_once('controller/UsuarioController.php')?>
-	<?php include_once('controller/DisciplinaController.php')?>
-	<?php include_once('controller/SalaController.php')?>
+	<?php include_once('src/controller/GrupoController.php')?>
+	<?php include_once('src/controller/UsuarioController.php')?>
+	<?php include_once('src/controller/DisciplinaController.php')?>
+	<?php include_once('src/controller/SalaController.php')?>
     <link href="/public/view/professor/styles.css" rel="stylesheet">
     <script src="/public/view/professor/index.js"></script>
 </head>

@@ -1,7 +1,7 @@
 function verificaSessão(){
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "verificaSessão",
         },
@@ -17,7 +17,7 @@ function verificaSessão(){
 function verificaPermissao(){
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "verificaLogin",
         },

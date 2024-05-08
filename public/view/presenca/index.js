@@ -6,7 +6,7 @@ $(document).ready(function() {
         disciplina = $("#disciplina").val();
         $.ajax({
             method: "POST",
-            url: "/controller/Controller.php",
+            url: "/src/controller/Controller.php",
             data: {
                 metodo: "buscarUsuarios",
                 grupo: grupo,
@@ -44,7 +44,7 @@ $(document).ready(function() {
     
         $.ajax({
             method: "POST",
-            url: "/controller/Controller.php",
+            url: "/src/controller/Controller.php",
             data: {
                 metodo: "criarPresencaChamada",
                 grupo: grupo,
@@ -83,7 +83,7 @@ $(document).ready(function() {
         var data = $("#data").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "../src/controller/Controller.php",
             data: {
                 metodo: "criarPresencaMonitore",
                 monitore: monitore,

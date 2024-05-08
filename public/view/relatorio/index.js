@@ -12,7 +12,7 @@ $(document).ready(function() {
         $('#detalhes').hide();
         $.ajax({
             method: "POST",
-            url: "/controller/Controller.php",
+            url: "/src/controller/Controller.php",
             data: {
                 metodo: "relatorioChamada",
                 grupo: grupo,

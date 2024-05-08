@@ -1,45 +1,45 @@
 <?php
-    include_once(dirname(__FILE__).'/../model/Disciplina.php');
-    include_once(dirname(__FILE__).'/../model/Usuario.php');
+    include_once('src/model/Grupo.php');
+    include_once('src/model/Usuario.php');
 
-    class DisciplinaController{
+    class GrupoController{
         function buscarTodos(){
-            $Disciplina = new Disciplina();
-            $Disciplinas = $Disciplina->buscarTodos();
+            $Grupo = new Grupo();
+            $grupos = $Grupo->buscarTodos();
             return json_encode([
                 "access" => true,
-                "disciplinas" => $Disciplinas
+                "grupos" => $grupos
             ]);
         }
 
         function buscar($post){
-            $Disciplina = new Disciplina();
-            $Disciplina->id = $post['id'];
-            $buscarDisciplina = $Disciplina->buscar();
+            $Grupo = new Grupo();
+            $Grupo->id = $post['id'];
+            $buscarGrupo = $Grupo->buscar();
 
             $usuario = new Usuario();
-            $usuario->disciplinas = $post['id'];
+            $usuario->grupos = $post['id'];
             $usuarios = $usuario->buscarTodos();
-            $buscarDisciplina['usuarios'] = $usuarios;
+            $buscarGrupo['usuarios'] = $usuarios;
 
-            if(!empty($buscarDisciplina)){
+            if(!empty($buscarGrupo)){
                 return json_encode([
                     "access" => true,
-                    "disciplina" => $buscarDisciplina,
+                    "grupo" => $buscarGrupo,
                 ]);
             } else {
                 return json_encode([
                     "access" => false,
-                    "message" => "Disciplina não encontrado"
+                    "message" => "Grupo não encontrado"
                 ]);
             }
         }
 
         function criar($post){
-            $Disciplina = new Disciplina();
-            $Disciplina->nome = $post['nome'];
+            $grupo = new Grupo();
+            $grupo->nome = $post['nome'];
 
-            $id = $Disciplina->criar();
+            $id = $grupo->criar();
             if ($id > 0){
                 return json_encode([
                     "access" => true,
@@ -55,10 +55,10 @@
         }
 
         function editar($post){
-            $Disciplina = new Disciplina();
-            $Disciplina->id = $post['id'];
-            $Disciplina->nome = $post['nome'];
-            $id = $Disciplina->editar();
+            $grupo = new Grupo();
+            $grupo->id = $post['id'];
+            $grupo->nome = $post['nome'];
+            $id = $grupo->editar();
             if ($id > 0) {
                 return json_encode([
                     "access" => true,
@@ -73,9 +73,9 @@
         }
 
         function deletar($post){
-            $Disciplina = new Disciplina();
-            $Disciplina->id = $post['id'];
-            $deletado = $Disciplina->deletar();
+            $grupo = new Grupo();
+            $grupo->id = $post['id'];
+            $deletado = $grupo->deletar();
             if ($deletado){
                 return json_encode([
                     "access" => true,

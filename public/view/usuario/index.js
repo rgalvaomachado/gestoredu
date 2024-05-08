@@ -27,7 +27,7 @@ $(document).ready(function() {
         }
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "../src/controller/Controller.php",
             data: {
                 metodo: "criarUsuario",
                 nome: nome,
@@ -86,7 +86,7 @@ $(document).ready(function() {
         }
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "../src/controller/Controller.php",
             data: {
                 metodo: "editarUsuario",
                 nome: nome,
@@ -122,7 +122,7 @@ $(document).ready(function() {
         var usuario = $("#usuario").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "../src/controller/Controller.php",
             data: {
                 metodo: "deletarUsuario",
                 id: usuario,
@@ -152,7 +152,7 @@ function buscarUsuario(){
     var id = $("#usuario").val();
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "buscarUsuario",
             id: id,
@@ -220,7 +220,7 @@ function buscarUsuario(){
 //     var filesSelected = document.getElementById("assinatura").files;
 //     $.ajax({
 //         method: "POST",
-//         url: "../controller/Controller.php",
+//         url: "../src/controller/Controller.php",
 //         data: {
 //             metodo: "salvarRepresentante",
 //             id: id,
@@ -240,7 +240,7 @@ function buscarUsuario(){
 //                         var assinatura = fileLoadedEvent.target.result
 //                         $.ajax({
 //                             method: "POST",
-//                             url: "../controller/Controller.php",
+//                             url: "../src/controller/Controller.php",
 //                             data: {
 //                                 metodo: "salvaAssinaturaRepresentante",
 //                                 assinatura: assinatura,
@@ -273,7 +273,7 @@ function buscarUsuario(){
 //         var id = $("#representante").val();
 //         $.ajax({
 //             method: "POST",
-//             url: "../controller/Controller.php",
+//             url: "../src/controller/Controller.php",
 //             data: {
 //                 metodo: "excluirRepresentante",
 //                 id: id,

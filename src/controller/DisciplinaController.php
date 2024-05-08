@@ -1,45 +1,45 @@
 <?php
-    include_once(dirname(__FILE__).'/../model/Sala.php');
-    include_once(dirname(__FILE__).'/../model/Usuario.php');
+    include_once('src/model/Disciplina.php');
+    include_once('src/model/Usuario.php');
 
-    class SalaController{
+    class DisciplinaController{
         function buscarTodos(){
-            $Sala = new Sala();
-            $Salas = $Sala->buscarTodos();
+            $Disciplina = new Disciplina();
+            $Disciplinas = $Disciplina->buscarTodos();
             return json_encode([
                 "access" => true,
-                "salas" => $Salas
+                "disciplinas" => $Disciplinas
             ]);
         }
 
         function buscar($post){
-            $Sala = new Sala();
-            $Sala->id = $post['id'];
-            $buscarSala = $Sala->buscar();
+            $Disciplina = new Disciplina();
+            $Disciplina->id = $post['id'];
+            $buscarDisciplina = $Disciplina->buscar();
 
             $usuario = new Usuario();
-            $usuario->salas = $post['id'];
+            $usuario->disciplinas = $post['id'];
             $usuarios = $usuario->buscarTodos();
-            $buscarSala['usuarios'] = $usuarios;
+            $buscarDisciplina['usuarios'] = $usuarios;
 
-            if(!empty($buscarSala)){
+            if(!empty($buscarDisciplina)){
                 return json_encode([
                     "access" => true,
-                    "sala" => $buscarSala,
+                    "disciplina" => $buscarDisciplina,
                 ]);
             } else {
                 return json_encode([
                     "access" => false,
-                    "message" => "Sala não encontrado"
+                    "message" => "Disciplina não encontrado"
                 ]);
             }
         }
 
         function criar($post){
-            $Sala = new Sala();
-            $Sala->nome = $post['nome'];
+            $Disciplina = new Disciplina();
+            $Disciplina->nome = $post['nome'];
 
-            $id = $Sala->criar();
+            $id = $Disciplina->criar();
             if ($id > 0){
                 return json_encode([
                     "access" => true,
@@ -55,10 +55,10 @@
         }
 
         function editar($post){
-            $Sala = new Sala();
-            $Sala->id = $post['id'];
-            $Sala->nome = $post['nome'];
-            $id = $Sala->editar();
+            $Disciplina = new Disciplina();
+            $Disciplina->id = $post['id'];
+            $Disciplina->nome = $post['nome'];
+            $id = $Disciplina->editar();
             if ($id > 0) {
                 return json_encode([
                     "access" => true,
@@ -73,9 +73,9 @@
         }
 
         function deletar($post){
-            $Sala = new Sala();
-            $Sala->id = $post['id'];
-            $deletado = $Sala->deletar();
+            $Disciplina = new Disciplina();
+            $Disciplina->id = $post['id'];
+            $deletado = $Disciplina->deletar();
             if ($deletado){
                 return json_encode([
                     "access" => true,

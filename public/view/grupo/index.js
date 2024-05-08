@@ -4,7 +4,7 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "../src/controller/Controller.php",
             data: {
                 metodo: "criarGrupo",
                 nome: nome,
@@ -35,7 +35,7 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "../src/controller/Controller.php",
             data: {
                 metodo: "editarGrupo",
                 id: grupo,
@@ -66,7 +66,7 @@ $(document).ready(function() {
         var grupo = $("#grupo").val();
         $.ajax({
             method: "POST",
-            url: "../controller/Controller.php",
+            url: "../src/controller/Controller.php",
             data: {
                 metodo: "deletarGrupo",
                 id: grupo,
@@ -96,7 +96,7 @@ function buscarGrupo(){
     var id = $("#grupo").val();
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "buscarGrupo",
             id: id,

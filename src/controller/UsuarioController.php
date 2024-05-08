@@ -1,5 +1,5 @@
 <?php
-    include_once(dirname(__FILE__).'/../model/Usuario.php');
+    include_once('src/model/Usuario.php');
 
     class UsuarioController{
         function buscarTodos($post = []){

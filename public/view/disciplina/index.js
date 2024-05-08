@@ -4,7 +4,7 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "/controller/Controller.php",
+            url: "/src/controller/Controller.php",
             data: {
                 metodo: "criarDisciplina",
                 nome: nome,
@@ -35,7 +35,7 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "/controller/Controller.php",
+            url: "/src/controller/Controller.php",
             data: {
                 metodo: "editarDisciplina",
                 id: disciplina,
@@ -66,7 +66,7 @@ $(document).ready(function() {
         var disciplina = $("#disciplina").val();
         $.ajax({
             method: "POST",
-            url: "/controller/Controller.php",
+            url: "/src/controller/Controller.php",
             data: {
                 metodo: "deletarDisciplina",
                 id: disciplina,

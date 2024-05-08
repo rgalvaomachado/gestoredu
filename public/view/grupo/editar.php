@@ -1,7 +1,7 @@
 <head>
     <?php include_once('../includes/head.html')?>
-	<?php include_once('../../controller/GrupoController.php')?>
-	<?php include_once('../../controller/UsuarioController.php')?>
+	<?php include_once('../../src/controller/GrupoController.php')?>
+	<?php include_once('../../src/controller/UsuarioController.php')?>
 
     <link href="styles.css" rel="stylesheet">
     <script src="index.js"></script>

@@ -24,6 +24,7 @@ class LoginController{
             }
             $_SESSION['usuario'] =  $usuarioValidado;
             $_SESSION['modo'] = $modoValidado;
+            $_SESSION['logado'] = $validado;
             $_SESSION['CREATED'] = time();
             return json_encode([
                 "access" => true,

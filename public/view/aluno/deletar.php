@@ -5,8 +5,8 @@
     }
 ?>
 <head>
-	<?php include_once('controller/DisciplinaController.php')?>
-	<?php include_once('controller/UsuarioController.php')?>
+	<?php include_once('src/controller/DisciplinaController.php')?>
+	<?php include_once('src/controller/UsuarioController.php')?>
     <link href="/public/view/aluno/styles.css" rel="stylesheet">
     <script src="/public/view/aluno/index.js"></script>
 </head>

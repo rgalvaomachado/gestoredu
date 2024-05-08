@@ -1,7 +1,7 @@
 <head>
-    <?php include_once('controller/GrupoController.php')?>
-    <?php include_once('controller/DisciplinaController.php')?>
-    <?php include_once('controller/SalaController.php')?>
+    <?php include_once('src/controller/GrupoController.php')?>
+    <?php include_once('src/controller/DisciplinaController.php')?>
+    <?php include_once('src/controller/SalaController.php')?>
     <link href="/public/view/aluno/styles.css" rel="stylesheet">
     <script src="/public/view/aluno/index.js"></script>
 </head>

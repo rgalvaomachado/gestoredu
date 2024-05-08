@@ -2,7 +2,7 @@ function buscarTutoreCertificado(){
     var id = $("#tutore").val();
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "getTutore",
             id: id,
@@ -23,7 +23,7 @@ function gerarCertificadoTutore(){
     var dataFinal = $('#dataFinal').val();
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "certificadoTutore",
             tutore: tutore,
@@ -56,7 +56,7 @@ function buscarMonitoreCertificado(){
     var id = $("#monitore").val();
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "getMonitore",
             id: id,
@@ -76,7 +76,7 @@ function gerarCertificadoMonitore(){
     var dataFinal = $('#dataFinal').val();
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "certificadoMonitore",
             monitore: monitore,
@@ -107,7 +107,7 @@ function gerarCertificadoMonitore(){
 function buscarDocentesDiscentes(){
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "getRepresentantes",
         },
@@ -125,7 +125,7 @@ function buscarDiscente(){
     var id = $("#discente").val();
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "getRepresentante",
             id: id,
@@ -148,7 +148,7 @@ function buscarDocente(){
     var id = $("#docente").val();
     $.ajax({
         method: "POST",
-        url: "../controller/Controller.php",
+        url: "../src/controller/Controller.php",
         data: {
             metodo: "getRepresentante",
             id: id,
