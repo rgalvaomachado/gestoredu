@@ -1,7 +1,7 @@
 <head>
 	<?php include_once('src/controller/DisciplinaController.php')?>
-    <link href="styles.css" rel="stylesheet">
-    <script src="index.js"></script>
+    <link href="/public/view/disciplina/styles.css" rel="stylesheet">
+    <script src="/public/view/disciplina/index.js"></script>
 </head>
 <div class="grid-content grid-container">
 	<?php include_once('public/menu.php')?>
