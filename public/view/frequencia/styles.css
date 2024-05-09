@@ -3,6 +3,14 @@ table{
     width: 70%;
 }
 
+td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
 th{
     font-size: 30px;
     padding: 10px;

@@ -1,14 +1,15 @@
 <head>
-    <?php include_once('../includes/head.html')?>
-
-    <link href="styles.css" rel="stylesheet">
-    <script src="index.js"></script>
+    <?php include_once('src/controller/GrupoController.php')?>
+	<?php include_once('src/controller/SalaController.php')?>
+	<?php include_once('src/controller/DisciplinaController.php')?>
+    <link href="/public/view/presenca/styles.css" rel="stylesheet">
+    <script src="/public/view/presenca/index.js"></script>
 </head>
-<?php include_once('../includes/top.php')?>
 <div class="grid-content grid-container">
-    <?php include_once('../includes/menu.php')?>
+    <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
-        <label class="title">Ponto Eletronico</label>
+		<?php include_once('public/top.php')?>
+        <label class="title">Ponto Eletronico Professor</label>
         <br>
         <label class="message_alert" id="messageAlert"></label>
         <br>
@@ -23,6 +24,7 @@
         <label>Monitores</label>
         <br>
         <select class='input' id="monitore" name="monitore"></select>
+        <input type="hidden" id="grupo" value="2">
         <br>
         <input class='button' type="button" onclick="criarPresencaMonitore()" value="Ok">
         <script src="view/presenca/index.js"></script>

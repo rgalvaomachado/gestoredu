@@ -22,11 +22,15 @@
         ['sala/editar','public/view/sala/editar.php'],
         ['sala/deletar','public/view/sala/deletar.php'],
 
-        ['presenca/aluno','public/view/presenca/aluno.php'],
+        ['presenca','public/view/presenca/index.php'],
+        ['presenca/individual','public/view/presenca/individual.php'],
+        ['presenca/listada','public/view/presenca/listada.php'],
 
-        ['relatorio/frequenciaaluno','public/view/relatorio/freqaluno.php'],
+        ['frequencia','public/view/frequencia/index.php'],
+        ['frequencia/individual','public/view/frequencia/individual.php'],
+        ['frequencia/listada','public/view/frequencia/listada.php'],
 
-        ['certificado/gerar','public/view/certificado/gerar.php'],
+        ['certificado','public/view/certificado/index.php'],
 
         ['login','public/view/login/index.php'],
 
