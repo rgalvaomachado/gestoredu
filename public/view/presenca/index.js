@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#buscar').submit(function(e) {
+    $('#buscarListagem').submit(function(e) {
         e.preventDefault();
         grupo = $("#grupo").val();
         sala = $("#sala").val();
@@ -32,7 +32,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#criarChamada').submit(function(e) {
+    $('#criarChamadaListada').submit(function(e) {
         e.preventDefault();
         grupo = $("#grupo").val();
         var sala = $("#sala").val();
@@ -46,7 +46,7 @@ $(document).ready(function() {
             method: "POST",
             url: "/src/controller/Controller.php",
             data: {
-                metodo: "criarPresencaChamada",
+                metodo: "criarPresencaListada",
                 grupo: grupo,
                 sala: sala,
                 data: data,
@@ -64,7 +64,7 @@ $(document).ready(function() {
                     setTimeout(function(){
                         alert.innerHTML = "";
                     }, 2000);
-                    window.location.assign("/presenca/aluno");
+                    window.location.assign("/presenca/listada");
                 } else {
                     alert.style.color = "red";
                     setTimeout(function(){
@@ -76,18 +76,54 @@ $(document).ready(function() {
         });
     });
 
-    $('#criarPonto').submit(function(e) {
+    $('#buscarIndividual').submit(function(e) {
         e.preventDefault();
-        var monitore = $("#monitore").val();
+        var grupo = $("#grupo").val();
         var sala = $("#sala").val();
+        var disciplina = $("#disciplina").val();
+        var usuario = $("#disciplina").val();
+        $.ajax({
+            method: "POST",
+            url: "/src/controller/Controller.php",
+            data: {
+                metodo: "buscarUsuarios",
+                grupo: grupo,
+                disciplina: disciplina,
+                sala: sala,
+                usuario: usuario,
+            },
+            complete: function(response) {
+                var response = JSON.parse(response.responseText);
+                if(response.access){
+                    $('#detalhes').show();
+                    $("#usuario").html('');
+                    var usuarios = response.usuarios;
+                    usuarios.map(({id,nome}) => {
+                        $('#usuario').append(`
+                            <option value="${id}">${nome}</option>	   
+                        `);
+                    });
+                }
+            }
+        });
+    });
+
+    $('#criarChamadaIndividual').submit(function(e) {
+        e.preventDefault();
+        var usuario = $("#usuario").val();
+        var grupo = $("#grupo").val();
+        var sala = $("#sala").val();
+        var disciplina = $("#disciplina").val();
         var data = $("#data").val();
         $.ajax({
             method: "POST",
-            url: "../src/controller/Controller.php",
+            url: "/src/controller/Controller.php",
             data: {
-                metodo: "criarPresencaMonitore",
-                monitore: monitore,
+                metodo: "criarPresencaInvidual",
+                usuario: usuario,
+                grupo: grupo,
                 sala: sala,
+                disciplina: disciplina,
                 data: data,
             },
             complete: function(response) {
@@ -99,7 +135,7 @@ $(document).ready(function() {
                     setTimeout(function(){
                         alert.innerHTML = "";
                         $(function(){
-                            $("#content").load("view/presenca/monitore.html");
+                            window.location.assign("/presenca/individual");
                         });
                     }, 2000);
                 } else {
@@ -108,7 +144,6 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 2000);
                 }
-                verificaSessão();
             }
         });
     });

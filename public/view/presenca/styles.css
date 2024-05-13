@@ -3,12 +3,20 @@ table{
     width: 70%;
 }
 
-th{
+td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.tipos{
     font-size: 30px;
     padding: 10px;
 }
 
-th:hover{
+.tipos:hover{
     background-color: #004fde;
     border-radius: 200px;
     color: #00b3f5;

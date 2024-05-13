@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#relatorioChamada').submit(function(e) {
         e.preventDefault();
-        var grupo = $("#grupos").val();
+        var grupo = $("#grupo").val();
         var disciplina = $("#disciplina").val();
         var sala = $("#sala").val();
         var dataInicial = $("#dataInicial").val();

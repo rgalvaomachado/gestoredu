@@ -78,7 +78,7 @@
             <li>
                 <div class="itemMenu">
                     <a href="/presenca" style="<?php echo $menu_presenca_chamada_listada?>">
-                        <em class="fa fa-calendar"></em>&nbsp;Presenca
+                        <em class="fa fa-calendar"></em>&nbsp;Presença
                     </a>
                 </div>
             </li>

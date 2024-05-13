@@ -100,18 +100,14 @@
             $response = $LoginController->logout($_POST);
             break;
         ///////////////////////////////////////////////////////////////////////////////
-        case 'criarPresencaChamada':
+        case 'criarPresencaListada':
             $PresencaController = new PresencaController();
-            $response = $PresencaController->criarPresencaChamada($_POST);
+            $response = $PresencaController->criarPresencaListada($_POST);
             break;
-        // case 'criarPresencaPonto':
-        //     $PresencaController = new PresencaController();
-        //     $response = $PresencaController->criarPresencaMonitore($_POST);
-        //     break;
-        // case 'buscarPresencaUsuario':
-        //     $PresencaController = new PresencaController();
-        //     $response = $PresencaController->buscarPresencaAlune($_POST);
-        //     break;
+        case 'criarPresencaInvidual':
+            $PresencaController = new PresencaController();
+            $response = $PresencaController->criarPresencaInvidual($_POST);
+            break;
         // case 'editarPresencaUsuario':
         //     $PresencaController = new PresencaController();
         //     $response = $PresencaController->editarPresencaMonitore($_POST);

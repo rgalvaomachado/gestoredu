@@ -13,14 +13,14 @@
 		<table>
             <tbody>
                 <tr>
-                    <th>
+                    <th class="tipos">
 						<a href="/presenca/individual">
 							Individual
 							</br>
 							<i class="fa fa-user" aria-hidden="true"></i>
 						</a>
                     </th>
-                    <th>
+                    <th class="tipos">
 						<a href="/presenca/listada">
 							Listada
 							</br>

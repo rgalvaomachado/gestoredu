@@ -9,12 +9,19 @@
     <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
 		<?php include_once('public/top.php')?>
-		<label class="title">Chamada Aluno</label>
+		<label class="title">Presença Listada</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
-		<form id="buscar">
-			<input type="hidden" id="grupo" value="1">
+		<form id="buscarListagem">
+			<label>Tipo</label>
+			<br>
+			<select class='input' id="grupo" name="grupo" required>
+				<option value="">Selecione o tipo</option>
+				<option value="1">Aluno</option>	
+				<option value="2">Professor</option>	
+			</select>
+			<br>
 			<label>Disciplina</label>
 			<br>
 			<?php 
@@ -46,7 +53,7 @@
 		<br>
 		<br>
 		<div id="detalhes">
-			<form id="criarChamada">
+			<form id="criarChamadaListada">
 				<label>Data</label>
 				<br>
 				<input id="data" name="data" type="date" class="input" required>

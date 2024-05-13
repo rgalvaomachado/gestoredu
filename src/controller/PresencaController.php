@@ -3,7 +3,7 @@
     include_once('src/controller/UsuarioController.php');
 
     class PresencaController{
-        function criarPresencaChamada($post){
+        function criarPresencaListada($post){
             $UsuarioController = new UsuarioController();
             $buscarTodos = json_decode($UsuarioController->buscarTodos([
                 "grupo" => $post['grupo'],
@@ -57,75 +57,33 @@
             }
         }
 
-        // function criarPresencaPonto($post){      
-        //     if (isset($post['monitore'])
-        //         && $post['monitore'] != ""
-        //         && isset($post['sala'])
-        //         && $post['sala'] != ""
-        //         && isset($post['data'])
-        //         && $post['data'] != ""
-        //     ){
-        //         $presenca = new Presenca();
-        //         $presenca->cod_monitore = $post['monitore'];
-        //         $presenca->cod_sala = $post['sala'];
-        //         $presenca->presente = 'S';
-        //         $presenca->data = $post['data'];
-        //         $verificarPresenca = $presenca->verificarPresenca();
-        //         if(count($verificarPresenca) > 0){
-        //             return json_encode([
-        //                 "access" => false,
-        //                 "message" => "Presença já contabilizada"
-        //             ]);
-        //         }else{
-        //             $presenca->criarPresenca();
-        //             return json_encode([
-        //                 "access" => true,
-        //                 "message" => "Presença contabilizada com sucesso"
-        //             ]);
-
-        //         }
-        //     } else {
-        //         return json_encode([
-        //             "access" => false,
-        //             "message" => "Por favor, ensira todos os dados"
-        //         ]);
-        //     }
-        // }
-
-        // function buscarPresencaAlune($post){
-        //     if (isset($post['alune'])
-        //         && $post['alune'] != ""
-        //         && isset($post['sala'])
-        //         && $post['sala'] != ""
-        //         && isset($post['data'])
-        //         && $post['data'] != ""
-        //         && isset($post['aula'])
-        //         && $post['aula'] != ""
-        //     ){
-        //         $presenca = new Presenca();
-        //         $presenca->cod_alune = $post['alune'];
-        //         $presenca->cod_sala = $post['sala'];
-        //         $presenca->data = $post['data'];
-        //         $presenca->aula = $post['aula'];
-        //         $presente = $presenca->verificarPresenca();
-        //         if (!empty($presente)) {
-        //             return json_encode([
-        //                 "access" => true,
-        //                 "presente" => $presente[0]["presente"],
-        //             ]);
-        //         } else {
-        //             return json_encode([
-        //                 "access" => false,
-        //                 "message" => "Presença não encontrada"
-        //             ]);
-        //         }
-        //     } else {
-        //         return json_encode([
-        //             "access" => false,
-        //             "message" => "Por favor, ensira todos os dados"
-        //         ]);
-        //     }
-        // }
+        function criarPresencaInvidual($post){
+            $erroAlune = 0;
+            $presenca = new Presenca();
+            $presenca->cod_usuario = $post['usuario'];
+            $presenca->cod_grupo = $post['grupo'];
+            $presenca->cod_disciplina = $post['disciplina'];
+            $presenca->cod_sala = $post['sala'];
+            $presenca->presente = 'S';
+            $presenca->data = $post['data'];
+            $verificarPresenca = $presenca->verificarPresenca();
+            if(count($verificarPresenca) > 0){
+                $erroAlune++;
+            }else{
+                $presenca->criarPresenca(); 
+            }
+            if($erroAlune > 0){
+                return json_encode([
+                    "access" => false,
+                    "message" => "Presença já contabilizada"
+                ]);
+            }else{
+                return json_encode([
+                    "access" => true,
+                    "message" => "Presença contabilizada com sucesso"
+                ]);
+            }
+        }
 
         // function justificarPresencaAlune($post){
         //     if (isset($post['alune'])
