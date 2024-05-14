@@ -27,8 +27,8 @@ $(document).ready(function() {
                     $("#lista").html('');
                     alert.innerHTML = "";
                     var usuarios = response.usuarios;
-                    usuarios.map(({nome,presencas,ausencias,justificado,frequencia}) => {
-                        var color = (frequencia >= 70 ? "green" : "red");
+                    usuarios.map(({nome,presencas,ausencias,justificado,frequencia, aprovado}) => {
+                        var color = (aprovado ? "green" : "red");
                         $('#lista').append(`
                             <tr style="color:${color}">
                                 <td>${nome}</td>

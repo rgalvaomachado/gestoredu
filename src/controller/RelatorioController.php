@@ -1,6 +1,7 @@
 <?php
 include_once('PresencaController.php');
 include_once('UsuarioController.php');
+include_once('ConfiguracaoController.php');
 
 class RelatorioController{
     function relatorioChamada($post){
@@ -11,6 +12,11 @@ class RelatorioController{
             "disciplina" => $post['disciplina']
         ]));
         $usuarios = $buscarTodos->usuarios;
+
+        $ConfiguracaoController = new ConfiguracaoController();
+        $ConfiguracaoController = json_decode($ConfiguracaoController->buscar(['id' => 1]));
+        $configuracao = $ConfiguracaoController->configuracao;
+
         foreach($usuarios as $usuario){
             $PresencaController = new PresencaController();
             $presencas = $PresencaController->getPresencaPeriodo(
@@ -45,6 +51,19 @@ class RelatorioController{
             $total = $total > 0 ? $total : 1;
             $frequencia = ( ($presencas + $justificado) / $total ) * 100;
 
+            $aprovado = true;
+            switch ($configuracao->tipo_frequencia) {
+                case 1:
+                    if (!($frequencia >= $configuracao->frequencia)){
+                        $aprovado = false;
+                    }
+                    break;
+                case 2:
+                    if (!($presencas >= $configuracao->frequencia)){
+                        $aprovado = false;
+                    }
+                    break;
+            }
             $returnUsuarios[] = [
                 "id" => $usuario->id,
                 "nome" => $usuario->nome,
@@ -52,6 +71,7 @@ class RelatorioController{
                 "ausencias" => $ausencias,
                 "justificado" => $justificado,
                 "frequencia" => $frequencia,
+                "aprovado" => $aprovado,
             ];
         }  
 
