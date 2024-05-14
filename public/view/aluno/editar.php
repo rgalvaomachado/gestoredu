@@ -31,13 +31,13 @@
             <br>
             <input type="hidden" id="usuario" name="usuario" value="<?php echo $usuario->id?>">
             <label>Nome Completo</label>
+            <label class="obrigatorio">*</label>
             <br>
             <input class='input' id="nome" name="nome" value="<?php echo $usuario->nome?>" required>
             <br>
+            <!-- <label>Data de Nascimento</label>
             <br>
-            <label>Data de Nascimento</label>
-            <br>
-            <input id="data_nascimento" name="data_nascimento" type="date" class="input" value="<?php echo $usuario->data_nascimento?>" required>
+            <input id="data_nascimento" name="data_nascimento" type="date" class="input" value="<?php echo $usuario->data_nascimento?>">
             <br>
             <div class="grid-endereco">
                 <div class="grid-endereco-item">
@@ -94,11 +94,14 @@
             <label>Telefone</label>
             <br>
             <input class='input' type="number" id="telefone" name="telefone" value="<?php echo $usuario->telefone?>" required>
-            <br>
-            <br>
+            <br> -->
             <label>Email</label>
             <br>
-            <input class='input' type="email" id="email" name="email" value="<?php echo $usuario->email?>" required>
+            <input class='input' type="email" id="email" name="email" value="<?php echo $usuario->email?>">
+            <br>
+            <label>Senha</label>
+            <br>
+            <input class='input' type="password" id="senha" name="senha" value="<?php echo $usuario->senha?>">
             <br>
             <input type="hidden" id="grupos" value="1">
             <br>

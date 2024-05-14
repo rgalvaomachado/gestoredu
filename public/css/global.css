@@ -18,6 +18,11 @@ body {
   font-weight: bold;
 }
 
+.obrigatorio{
+  color: #ff0000;
+  font-weight: 900;
+}
+
 .open_sans {
   font-family: OpenSans;
 }

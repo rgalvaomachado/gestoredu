@@ -22,12 +22,6 @@
                         Nome
                     </th>
                     <th>
-                        Telefone
-                    </th>
-                    <th>
-                        Data de Nascimento
-                    </th>
-                    <th>
                         Editar
                     </th>
                     <th>
@@ -38,13 +32,7 @@
                     <tr>
                         <td class="text-left">
                             <?php echo $usuario->nome ?>
-                        </td> 
-                        <td>
-                            <?php echo $usuario->telefone ?>
-                        </td> 
-                        <td>
-                            <?php echo $usuario->data_nascimento ?>
-                        </td> 
+                        </td>
                         <td>
                             <a href="/aluno/editar?id=<?php echo $usuario->id ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         </td>

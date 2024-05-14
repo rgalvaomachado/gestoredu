@@ -42,13 +42,13 @@
             $usuario = new Usuario();
 
             $usuario->nome                  = $post['nome'];
-            $usuario->data_nascimento       = $post['data_nascimento'];
-            $usuario->rg                    = $post['rg'];
-            $usuario->cpf                   = $post['cpf'];
-            $usuario->endereco              = $post['endereco'];
-            $usuario->telefone              = $post['telefone'];
+            $usuario->data_nascimento       = isset($post['data_nascimento']) ? $post['data_nascimento'] : date("Y-m-d");
+            $usuario->rg                    = isset($post['rg']) ? $post['rg'] : '';
+            $usuario->cpf                   = isset($post['cpf']) ? $post['cpf'] : '';
+            $usuario->endereco              = isset($post['endereco']) ? $post['endereco'] : '';
+            $usuario->telefone              = isset($post['telefone']) ? $post['telefone'] : '';
 
-            $usuario->email = $post['email'];
+            $usuario->email = isset($post['email']) ? $post['email'] : '' ;
             $usuario->senha = isset($post['senha']) ? base64_encode($post['senha']) : null;
 
             $usuario->data_inscricao        = date("Y-m-d");
@@ -85,13 +85,13 @@
 
             $usuario->id                    = $post['id'];
             $usuario->nome                  = $post['nome'];
-            $usuario->data_nascimento       = $post['data_nascimento'];
-            $usuario->rg                    = $post['rg'];
-            $usuario->cpf                   = $post['cpf'];
-            $usuario->endereco              = $post['endereco'];
-            $usuario->telefone              = $post['telefone'];
+            $usuario->data_nascimento       = isset($post['data_nascimento']) ? $post['data_nascimento'] : date("Y-m-d");
+            $usuario->rg                    = isset($post['rg']) ? $post['rg'] : '';
+            $usuario->cpf                   = isset($post['cpf']) ? $post['cpf'] : '';
+            $usuario->endereco              = isset($post['endereco']) ? $post['endereco'] : '';
+            $usuario->telefone              = isset($post['telefone']) ? $post['telefone'] : '';
 
-            $usuario->email = $post['email'];
+            $usuario->email = isset($post['email']) ? $post['email'] : '' ;
             $usuario->senha = isset($post['senha']) ? base64_encode($post['senha']) : null;
 
             if(!empty($post['grupos'])){
