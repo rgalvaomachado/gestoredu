@@ -5,7 +5,7 @@ $(document).ready(function() {
         var senha = $("#senhaLogin").val();
         $.ajax({
             method: "POST",
-            url: "src/controller/Controller.php",
+            url: "/src/controller/Controller.php",
             data: {
                 metodo: "login",
                 email: email,
@@ -14,7 +14,7 @@ $(document).ready(function() {
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 if(response.access){
-                    window.location.assign("home")
+                    window.location.assign("/home")
                 }else{
                     $('.error_login').show();
                     const alert = document.getElementById("messageAlert");
