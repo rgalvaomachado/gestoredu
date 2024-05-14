@@ -127,7 +127,7 @@
               ':disciplinas' => $this->disciplinas,
               ':salas' => $this->salas,
             ]);
-            return $editar->rowCount();
+            return $this->id;
         }
 
         function deletar(){
@@ -135,7 +135,7 @@
             $deletar->execute([
               ':id' => $this->id,
             ]);
-            return $deletar->rowCount();
+            return $this->id;
         }
     }
 ?>

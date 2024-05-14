@@ -19,6 +19,10 @@
             <br>
             <input class='input' id="nome" name="nome" required>
             <br>
+            <label>Titulo do Trabalho</label>
+            <br>
+            <input class='input' id="projeto" name="projeto">
+            <br>
             <!-- <br>
             <label>Data de Nascimento</label>
             <br>

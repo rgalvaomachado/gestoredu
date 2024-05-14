@@ -1,5 +1,6 @@
 <?php
     include_once('src/model/Usuario.php');
+    include_once('src/model/Projeto.php');
 
     class UsuarioController{
         function buscarTodos($post = []){
@@ -66,6 +67,14 @@
             }
 
             $id = $usuario->criar();
+
+            if (isset($post['projeto'])){
+                $projeto = new Projeto();
+                $projeto->cod_usuario = $id;
+                $projeto->nome = $post['projeto'];
+                $projeto->criar();
+            }
+
             if ($id > 0){
                 return json_encode([
                     "access" => true,
@@ -104,6 +113,19 @@
                 $usuario->salas = '#'.implode("#", $post['salas']).'#';
             }
             $id = $usuario->editar();
+
+            if ($post['cod_projeto']){
+                $projeto = new Projeto();
+                $projeto->id = $post['cod_projeto'];
+                $projeto->nome = $post['projeto'];
+                $projeto->editar();
+            }else{
+                $projeto = new Projeto();
+                $projeto->cod_usuario = $id;
+                $projeto->nome = $post['projeto'];
+                $projeto->criar();
+            }
+
             if ($id > 0){
                 return json_encode([
                     "access" => true,

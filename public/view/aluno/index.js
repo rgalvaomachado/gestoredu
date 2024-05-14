@@ -12,6 +12,9 @@ $(document).ready(function() {
         var email = $("#email").val();
         var senha = $("#senha").val();
 
+        var cod_projeto = $("#cod_projeto").val();
+        var projeto = $("#projeto").val();
+
         var grupos = [];
         grupos.push($("#grupos").val());
 
@@ -44,6 +47,10 @@ $(document).ready(function() {
                 telefone: telefone,
                 email: email,
                 senha: senha,
+
+                cod_projeto: cod_projeto,
+                projeto: projeto,
+
                 grupos: grupos,
                 disciplinas: disciplinas,
                 salas: salas,
@@ -82,6 +89,9 @@ $(document).ready(function() {
         var email = $("#email").val();
         var senha = $("#senha").val();
 
+        var cod_projeto = $("#cod_projeto").val();
+        var projeto = $("#projeto").val();
+
         var grupos = [];
         grupos.push($("#grupos").val());
 
@@ -116,6 +126,10 @@ $(document).ready(function() {
                 email: email,
                 senha: senha,
                 grupos: grupos,
+
+                cod_projeto: cod_projeto,
+                projeto: projeto,
+
                 disciplinas: disciplinas,
                 salas: salas,
             },

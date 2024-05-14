@@ -7,6 +7,7 @@
 <head>
 	<?php include_once('src/controller/GrupoController.php')?>
 	<?php include_once('src/controller/UsuarioController.php')?>
+    <?php include_once('src/controller/ProjetoController.php')?>
 	<?php include_once('src/controller/DisciplinaController.php')?>
 	<?php include_once('src/controller/SalaController.php')?>
     <link href="/public/view/aluno/styles.css" rel="stylesheet">
@@ -34,6 +35,17 @@
             <label class="obrigatorio">*</label>
             <br>
             <input class='input' id="nome" name="nome" value="<?php echo $usuario->nome?>" required>
+            <br>
+            <?php
+                $ProjetoController = new ProjetoController();
+                $ProjetoController = json_decode($ProjetoController->buscarProjetoUsuario(['cod_usuario' => $_GET['id']]));
+                $projeto_id = $ProjetoController->access ? $ProjetoController->projeto->id : '';
+                $projeto_nome = $ProjetoController->access ? $ProjetoController->projeto->nome : '';
+            ?>
+            <label>Titulo do Trabalho</label>
+            <br>
+            <input type="hidden" id="cod_projeto" name="cod_projeto" value="<?php echo $projeto_id ?>" >
+            <input class='input' id="projeto" name="projeto" value="<?php echo $projeto_nome ?>" >
             <br>
             <!-- <label>Data de Nascimento</label>
             <br>
