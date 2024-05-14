@@ -1,5 +1,5 @@
 <?php
-    include_once(dirname(__FILE__).'/Database.php');
+    include_once('Database.php');
 
     class Usuario extends Database{
         public $id;

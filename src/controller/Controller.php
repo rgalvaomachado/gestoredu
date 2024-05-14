@@ -7,6 +7,7 @@
     include_once('CertificadoController.php');
     include_once('UsuarioController.php');
     include_once('GrupoController.php');
+    include_once('ConfiguracaoController.php');
 
     $metodo = isset($_POST['metodo']) ? $_POST['metodo'] : ""; 
 
@@ -121,20 +122,16 @@
             $RelatorioController = new RelatorioController();
             $response = $RelatorioController->relatorioChamada($_POST);
             break; 
-        // case 'relatorioPresencaMonitore':
-        //     $RelatorioController = new RelatorioController();
-        //     $response = $RelatorioController->relatorioPresencaMonitore($_POST);
-        //     break; 
         ///////////////////////////////////////////////////////////////////////////////
         // case 'certificadoTutore':
         //     $CertificadoController = new CertificadoController();
         //     $response = $CertificadoController->certificadoTutore($_POST);
         //     break; 
-        // case 'certificadoMonitore':
-        //     $CertificadoController = new CertificadoController();
-        //     $response = $CertificadoController->certificadoMonitore($_POST);
-        //     break; 
         ///////////////////////////////////////////////////////////////////////////////
+        case 'configuracao':
+            $ConfiguracaoController = new ConfiguracaoController();
+            $response = $ConfiguracaoController->configurar($_POST);
+            break;
         default:
             $response = json_encode([
                 "access" => false,

@@ -32,6 +32,8 @@
 
         ['certificado','public/view/certificado/index.php'],
 
+        ['configuracao','public/view/configuracao/index.php'],
+
         ['login','public/view/login/index.php'],
 
         ['','public/view/login/index.php'],

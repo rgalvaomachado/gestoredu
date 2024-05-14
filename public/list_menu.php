@@ -31,6 +31,9 @@
         case 'certificado':
             $menu_certificado = $style;
             break;
+        case 'configuracao':
+            $menu_configuracao = $style;
+            break;
         default:
             # code...
             break;
@@ -83,6 +86,13 @@
         <div class="itemMenu">
             <a href="/certificado" style="<?php echo $menu_certificado?>">
                 <em class="fa fa-file-pdf-o" aria-hidden="true"></em>&nbsp;Certificado
+            </a>
+        </div>
+    </li>
+    <li>
+        <div class="itemMenu">
+            <a href="/configuracao" style="<?php echo $menu_configuracao?>">
+                <em class="fa fa-cogs" aria-hidden="true"></em>&nbsp;Configuração
             </a>
         </div>
     </li>
