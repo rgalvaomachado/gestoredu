@@ -10,6 +10,7 @@ $(document).ready(function() {
         var telefone = $("#telefone").val();
 
         var email = $("#email").val();
+        var senha = $("#senha").val();
 
         var grupos = [];
         grupos.push($("#grupos").val());
@@ -42,6 +43,7 @@ $(document).ready(function() {
                 endereco: endereco,
                 telefone: telefone,
                 email: email,
+                senha: senha,
                 grupos: grupos,
                 disciplinas: disciplinas,
                 salas: salas,
@@ -78,6 +80,7 @@ $(document).ready(function() {
         var telefone = $("#telefone").val();
 
         var email = $("#email").val();
+        var senha = $("#senha").val();
 
         var grupos = [];
         grupos.push($("#grupos").val());
@@ -111,6 +114,7 @@ $(document).ready(function() {
                 endereco: endereco,
                 telefone: telefone,
                 email: email,
+                senha: senha,
                 grupos: grupos,
                 disciplinas: disciplinas,
                 salas: salas,

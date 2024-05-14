@@ -16,13 +16,13 @@
             <label class="message_alert" id="messageAlert"></label>
             <br>
             <label>Nome Completo</label>
+            <label class="obrigatorio">*</label>
             <br>
             <input class='input' id="nome" name="nome" required>
             <br>
+            <!-- <label>Data de Nascimento</label>
             <br>
-            <label>Data de Nascimento</label>
-            <br>
-            <input id="data_nascimento" name="data_nascimento" type="date" class="input" required>
+            <input id="data_nascimento" name="data_nascimento" type="date" class="input">
             <br>
             <div class="grid-endereco">
                 <div class="grid-endereco-item">
@@ -46,17 +46,17 @@
                 <div class="grid-endereco-item">
                     <label>Rua</label>
                     <br>
-                    <input class='input' id="rua" name="rua" required>
+                    <input class='input' id="rua" name="rua" >
                 </div>
                 <div class="grid-endereco-item">
                     <label>Numero</label>
                     <br>
-                    <input type="number" min='0' class='input' id="numero" name="numero" required>
+                    <input type="number" min='0' class='input' id="numero" name="numero" >
                 </div>
                 <div class="grid-endereco-item">
                     <label>Bairro</label>
                     <br>
-                    <input class='input' id="bairro" name="bairro" required>
+                    <input class='input' id="bairro" name="bairro" >
                 </div>
             </div>
             <br>
@@ -64,7 +64,7 @@
                 <div class="grid-endereco-item">
                     <label>Cidade</label>
                     <br>
-                    <input type='text' class='input' id="cidade" name="cidade" required>
+                    <input type='text' class='input' id="cidade" name="cidade" >
                 </div>
                 <div class="grid-endereco-item">
                 </div>
@@ -78,14 +78,14 @@
             <label>Telefone</label>
             <br>
             <input class='input' type="number" id="telefone" name="telefone" required>
-            <br>
+            <br> -->
             <label>Email</label>
             <br>
-            <input class='input' type="email" id="email" name="email" required>
+            <input class='input' type="email" id="email" name="email">
             <br>
             <label>Senha</label>
             <br>
-            <input class='input' type="password" id="senha" name="senha" required>
+            <input class='input' type="password" id="senha" name="senha">
             <input type="hidden" id="grupos" value="2">
             <br>
             <label>Disciplinas</label>
