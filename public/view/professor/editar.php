@@ -5,7 +5,7 @@
     }
 ?>
 <head>
-	<?php include_once('src/controller/GrupoController.php')?>
+	<?php include_once('src/controller/ConfiguracaoController.php')?>
 	<?php include_once('src/controller/UsuarioController.php')?>
 	<?php include_once('src/controller/DisciplinaController.php')?>
 	<?php include_once('src/controller/SalaController.php')?>
@@ -16,6 +16,29 @@
 	<?php include_once('public/menu.php')?>
     <div class="grid-item-content">
         <?php include_once('public/top.php')?>
+        <?php
+            $ConfiguracaoController = new ConfiguracaoController();
+            $ConfiguracaoController = json_decode($ConfiguracaoController->buscarTodos([]));
+            foreach ($ConfiguracaoController->configuracao as $configuracao) {
+                switch ($configuracao->chave) {
+                    case 'professor_nascimento':
+                        $professor_nascimento = $configuracao->valor;
+                        break;
+                    case 'professor_rg':
+                        $professor_rg = $configuracao->valor;
+                        break;
+                    case 'professor_cpf':
+                        $professor_cpf = $configuracao->valor;
+                        break;
+                    case 'professor_endereco':
+                        $professor_endereco = $configuracao->valor;
+                        break;
+                    case 'professor_telefone':
+                        $professor_telefone = $configuracao->valor;
+                        break;
+                }
+            }
+        ?>
         <label class="title">Editar Professor(a)</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
@@ -34,67 +57,70 @@
             <label class="obrigatorio">*</label>
             <br>
             <input class='input' id="nome" name="nome" value="<?php echo $usuario->nome?>" required>
-            <!-- <br>
-            <label>Data de Nascimento</label>
             <br>
-            <input id="data_nascimento" name="data_nascimento" type="date" class="input" value="<?php echo $usuario->data_nascimento?>" required>
-            <br>
-            <div class="grid-endereco">
-                <div class="grid-endereco-item">
-                    <label>RG</label>
-                    <br>
-                    <input type='number' class='input' id="rg" name="rg" value="<?php echo $usuario->rg?>" >
+            <?php if ($professor_nascimento){ ?>
+                <label>Data de Nascimento</label>
+                <br>
+                <input id="data_nascimento" name="data_nascimento" type="date" class="input" value="<?php echo $usuario->data_nascimento?>" required>
+                <br>
+            <?php } ?>
+            <?php if ($professor_rg){ ?>
+                <label>RG</label>
+                <br>
+                <input type='number' class='input' id="rg" name="rg" value="<?php echo $usuario->rg?>" >
+                <br>
+            <?php } ?>
+            <?php if ($professor_cpf){ ?>
+                <label>CPF</label>
+                <br>
+                <input type='number' class='input' id="cpf" name="cpf" value="<?php echo $usuario->cpf?>" >
+                <br>
+            <?php } ?>
+            <?php if ($professor_endereco){ ?>
+                <?php $endereco = explode('###',$usuario->endereco)?>
+                <label>Endereço</label>
+                <br>
+                <br>
+                <div class="grid-endereco">
+                    <div class="grid-endereco-item">
+                        <label>Rua</label>
+                        <br>
+                        <input class='input' id="rua" name="rua" value="<?php echo $endereco[0]?>" required>
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Numero</label>
+                        <br>
+                        <input type="number" min='0' class='input' id="numero" name="numero" value="<?php echo $endereco[1]?>" required>
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Bairro</label>
+                        <br>
+                        <input class='input' id="bairro" name="bairro" value="<?php echo $endereco[2]?>" required>
+                    </div>
                 </div>
-                <div class="grid-endereco-item">
+                <br>
+                <div class="grid-endereco">
+                    <div class="grid-endereco-item">
+                        <label>Cidade</label>
+                        <br>
+                        <input type='text' class='input' id="cidade" name="cidade" value="<?php echo $endereco[3]?>" required>
+                    </div>
+                    <div class="grid-endereco-item">
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Estado</label>
+                        <br>
+                        <input type='text' class='input' id="estado" name="estado" value="<?php echo $endereco[4]?>" required>
+                    </div>
                 </div>
-                <div class="grid-endereco-item">
-                    <label>CPF</label>
-                    <br>
-                    <input type='number' class='input' id="cpf" name="cpf" value="<?php echo $usuario->cpf?>" >
-                </div>
-            </div>
-            <br>
-            <?php $endereco = explode('###',$usuario->endereco)?>
-            <label>Endereço</label>
-            <br>
-            <br>
-            <div class="grid-endereco">
-                <div class="grid-endereco-item">
-                    <label>Rua</label>
-                    <br>
-                    <input class='input' id="rua" name="rua" value="<?php echo $endereco[0]?>" required>
-                </div>
-                <div class="grid-endereco-item">
-                    <label>Numero</label>
-                    <br>
-                    <input type="number" min='0' class='input' id="numero" name="numero" value="<?php echo $endereco[1]?>" required>
-                </div>
-                <div class="grid-endereco-item">
-                    <label>Bairro</label>
-                    <br>
-                    <input class='input' id="bairro" name="bairro" value="<?php echo $endereco[2]?>" required>
-                </div>
-            </div>
-            <br>
-            <div class="grid-endereco">
-                <div class="grid-endereco-item">
-                    <label>Cidade</label>
-                    <br>
-                    <input type='text' class='input' id="cidade" name="cidade" value="<?php echo $endereco[3]?>" required>
-                </div>
-                <div class="grid-endereco-item">
-                </div>
-                <div class="grid-endereco-item">
-                    <label>Estado</label>
-                    <br>
-                    <input type='text' class='input' id="estado" name="estado" value="<?php echo $endereco[4]?>" required>
-                </div>
-            </div>
-            <br>
-            <label>Telefone</label>
-            <br>
-            <input class='input' type="number" id="telefone" name="telefone" value="<?php echo $usuario->telefone?>" required> -->
-            <br>
+                <br>
+            <?php } ?>
+            <?php if ($professor_telefone){ ?>
+                <label>Telefone</label>
+                <br>
+                <input class='input' type="number" id="telefone" name="telefone" value="<?php echo $usuario->telefone?>" required>
+                <br>
+            <?php } ?>
             <label>Email</label>
             <br>
             <input class='input' type="email" id="email" name="email" value="<?php echo $usuario->email?>">

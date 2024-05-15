@@ -2,10 +2,10 @@
     include_once('src/model/Configuracao.php');
 
     class ConfiguracaoController{
-        function buscar($post){
+        function buscarTodos($post){
             $Configuracao = new Configuracao();
             $Configuracao->id = 1;
-            $buscarConfiguracao = $Configuracao->buscar();
+            $buscarConfiguracao = $Configuracao->buscarTodos();
 
             if(!empty($buscarConfiguracao)){
                 return json_encode([
@@ -21,23 +21,17 @@
         }
 
         function configurar($post){
-            $configuracao = new Configuracao();
-            $configuracao->id = 1;
-            $configuracao->tipo_frequencia = $post['tipo_frequencia'];
-            $configuracao->frequencia = $post['frequencia'];
-            $id = $configuracao->configurar();
-            if ($id > 0){
-                return json_encode([
-                    "access" => true,
-                    "message" => "Criado com sucesso"
-                ]);
-            } else {
-                return json_encode([
-                    "access" => false,
-                    "message" => "Erro no cadastro"
-                ]);
+            unset($post['metodo']);
+            foreach ($post as $key => $value) {
+                $configuracao = new Configuracao();
+                $configuracao->chave = $key;
+                $configuracao->valor = $value;
+                $configuracao->configurar();
             }
-            
+            return json_encode([
+                "access" => true,
+                "message" => "Criado com sucesso"
+            ]);
         }
     }
 ?>

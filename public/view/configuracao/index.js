@@ -1,16 +1,18 @@
 $(document).ready(function() {
     $('#configurar').submit(function(e) {
         e.preventDefault();
-        var tipo_frequencia = $("#tipo_frequencia").val();
-        var frequencia = $("#frequencia").val();
+        var formData = $('#configurar').serializeArray();
+        formData.push({ name: 'metodo', value: 'configuracao' });
+        $('#configurar input[type="checkbox"]').each(function() {
+            var name = $(this).attr('name');
+            var value = $(this).is(':checked') ? '1' : '0';
+            formData.push({ name: name, value: value });
+        });
+
         $.ajax({
             method: "POST",
             url: "/src/controller/Controller.php",
-            data: {
-                metodo: "configuracao",
-                tipo_frequencia: tipo_frequencia,
-                frequencia: frequencia
-            },
+            data: formData,
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");

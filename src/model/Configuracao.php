@@ -3,40 +3,37 @@
 
     class Configuracao extends Database{
         public $id;
-        public $tipo_frequencia;
-        public $frequencia;
+        public $chave;
+        public $valor;
 
-        function buscar(){
-            $get =  $this->bd->prepare('SELECT id, tipo_frequencia, frequencia FROM configuracao WHERE id = :id');
-            $get->execute([
-                ':id' => $this->id,
-            ]);
-            return $get->fetch(PDO::FETCH_ASSOC);
+        function buscarTodos(){
+            $get =  $this->bd->prepare('SELECT id, chave, valor FROM configuracao');
+            $get->execute();
+            return $get->fetchAll(PDO::FETCH_ASSOC);
         }
 
         function configurar(){
-            $get =  $this->bd->prepare('SELECT id FROM configuracao WHERE id = :id');
-            $get->execute([
-                ':id' => $this->id,
+            $verificar = $this->bd->prepare('SELECT COUNT(*) FROM configuracao WHERE `chave` = :chave');
+            $verificar->execute([
+                ':chave' => $this->chave,
             ]);
-            $configuracao = $get->fetch(PDO::FETCH_ASSOC);
-            if ($configuracao) {
-                $editar = $this->bd->prepare('UPDATE configuracao SET tipo_frequencia = :tipo_frequencia, frequencia = :frequencia WHERE id = :id');
-                $editar->execute([
-                  ':id'   => $this->id,
-                  ':tipo_frequencia' => $this->tipo_frequencia,
-                  ':frequencia' => $this->frequencia,
+            $existe = $verificar->fetchColumn();
+        
+            if ($existe > 0) {
+                $config = $this->bd->prepare('UPDATE configuracao SET `chave` = :chave, `valor` = :valor WHERE chave = :chave');
+                $config->execute([
+                    ':chave' => $this->chave,
+                    ':valor' => $this->valor,
                 ]);
-                return $editar->rowCount();
             } else {
-                $criar = $this->bd->prepare('INSERT INTO configuracao (id, tipo_frequencia, frequencia) VALUES(:id, :tipo_frequencia, :frequencia)');
-                $criar->execute([
-                    ':id'   => $this->id,
-                    ':tipo_frequencia' => $this->tipo_frequencia,
-                    ':frequencia' => $this->frequencia,
+                $config = $this->bd->prepare('INSERT INTO configuracao (`chave`, valor) VALUES(:chave, :valor)');
+                $config->execute([
+                    ':chave' => $this->chave,
+                    ':valor' => $this->valor,
                 ]);
-                return $this->bd->lastInsertId();
             }
+
+            return $config->fetch(PDO::FETCH_ASSOC);      
         }
 
     }

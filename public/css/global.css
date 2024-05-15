@@ -86,7 +86,6 @@ input:focus {
 .grid-item-menu{
   text-align: center;
   background-color: #004fde;
-  height: 100vh;
   width: 290px;
 }
 

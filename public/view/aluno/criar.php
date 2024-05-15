@@ -2,6 +2,7 @@
     <?php include_once('src/controller/GrupoController.php')?>
     <?php include_once('src/controller/DisciplinaController.php')?>
     <?php include_once('src/controller/SalaController.php')?>
+    <?php include_once('src/controller/ConfiguracaoController.php')?>
     <link href="/public/view/aluno/styles.css" rel="stylesheet">
     <script src="/public/view/aluno/index.js"></script>
 </head>
@@ -10,6 +11,29 @@
     <form id="criar">
         <div class="grid-item-content">
             <?php include_once('public/top.php')?>
+            <?php
+                $ConfiguracaoController = new ConfiguracaoController();
+                $ConfiguracaoController = json_decode($ConfiguracaoController->buscarTodos([]));
+                foreach ($ConfiguracaoController->configuracao as $configuracao) {
+                    switch ($configuracao->chave) {
+                        case 'aluno_nascimento':
+                            $aluno_nascimento = $configuracao->valor;
+                            break;
+                        case 'aluno_rg':
+                            $aluno_rg = $configuracao->valor;
+                            break;
+                        case 'aluno_cpf':
+                            $aluno_cpf = $configuracao->valor;
+                            break;
+                        case 'aluno_endereco':
+                            $aluno_endereco = $configuracao->valor;
+                            break;
+                        case 'aluno_telefone':
+                            $aluno_telefone = $configuracao->valor;
+                            break;
+                    }
+                }
+            ?>
             <label class="title">Criar Aluno(a)</label>
             <br>
             <label class="message_alert" id="messageAlert"></label>
@@ -23,66 +47,68 @@
             <br>
             <input class='input' id="projeto" name="projeto">
             <br>
-            <!-- <br>
-            <label>Data de Nascimento</label>
-            <br>
-            <input id="data_nascimento" name="data_nascimento" type="date" class="input" required>
-            <br>
-            <div class="grid-endereco">
-                <div class="grid-endereco-item">
+            <?php if ($aluno_nascimento){ ?>
+                <label>Data de Nascimento</label>
+                <br>
+                <input id="data_nascimento" name="data_nascimento" type="date" class="input" required>
+                <br>
+            <?php } ?>
+            <?php if ($aluno_rg){ ?>
                     <label>RG</label>
                     <br>
                     <input type='number' class='input' id="rg" name="rg">
-                </div>
-                <div class="grid-endereco-item">
-                </div>
-                <div class="grid-endereco-item">
-                    <label>CPF</label>
                     <br>
-                    <input type='number' class='input' id="cpf" name="cpf">
+            <?php } ?>
+            <?php if ($aluno_cpf){ ?>
+                <label>CPF</label>
+                <br>
+                <input type='number' class='input' id="cpf" name="cpf">
+                <br>
+            <?php } ?>
+            <?php if ($aluno_endereco){ ?>
+                <label>Endereço</label>
+                <br>
+                <br>
+                <div class="grid-endereco">
+                    <div class="grid-endereco-item">
+                        <label>Rua</label>
+                        <br>
+                        <input class='input' id="rua" name="rua" required>
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Numero</label>
+                        <br>
+                        <input type="number" min='0' class='input' id="numero" name="numero" required>
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Bairro</label>
+                        <br>
+                        <input class='input' id="bairro" name="bairro" required>
+                    </div>
                 </div>
-            </div>
-            <br>
-            <label>Endereço</label>
-            <br>
-            <br>
-            <div class="grid-endereco">
-                <div class="grid-endereco-item">
-                    <label>Rua</label>
-                    <br>
-                    <input class='input' id="rua" name="rua" required>
+                <br>
+                <div class="grid-endereco">
+                    <div class="grid-endereco-item">
+                        <label>Cidade</label>
+                        <br>
+                        <input type='text' class='input' id="cidade" name="cidade" required>
+                    </div>
+                    <div class="grid-endereco-item">
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Estado</label>
+                        <br>
+                        <input type='text' class='input' id="estado" name="estado" required>
+                    </div>
                 </div>
-                <div class="grid-endereco-item">
-                    <label>Numero</label>
-                    <br>
-                    <input type="number" min='0' class='input' id="numero" name="numero" required>
-                </div>
-                <div class="grid-endereco-item">
-                    <label>Bairro</label>
-                    <br>
-                    <input class='input' id="bairro" name="bairro" required>
-                </div>
-            </div>
-            <br>
-            <div class="grid-endereco">
-                <div class="grid-endereco-item">
-                    <label>Cidade</label>
-                    <br>
-                    <input type='text' class='input' id="cidade" name="cidade" required>
-                </div>
-                <div class="grid-endereco-item">
-                </div>
-                <div class="grid-endereco-item">
-                    <label>Estado</label>
-                    <br>
-                    <input type='text' class='input' id="estado" name="estado" required>
-                </div>
-            </div>
-            <br>
-            <label>Telefone</label>
-            <br>
-            <input class='input' type="number" id="telefone" name="telefone" required>
-            <br> -->
+                <br>
+            <?php } ?>
+            <?php if ($aluno_telefone){ ?>
+                <label>Telefone</label>
+                <br>
+                <input class='input' type="number" id="telefone" name="telefone" required>
+                <br>
+            <?php } ?>
             <label>Email</label>
             <br>
             <input class='input' type="email" id="email" name="email">
