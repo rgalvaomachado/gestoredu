@@ -49,10 +49,15 @@
                 <label style="font-size: 50px;"><?php echo $qtdDisciplinas ?></label>
             </div>
             <div class="grid-item-graficos">
-                <div id="graficos">
-                <canvas id="usuarios"></canvas>
+                <label class="title">Alunos</label>
+                <br>
+                <label style="font-size: 50px;"><?php echo $qtdAlunos ?></label>
             </div>
-            <script>grafico(<?= $qtdProfessores ?>,<?= $qtdAlunos ?>);</script>
+            <div class="grid-item-graficos">
+                <label class="title">Professores</label>
+                <br>
+                <label style="font-size: 50px;"><?php echo $qtdProfessores ?></label>
+            </div>
         </div>
     </div>
 </div>
