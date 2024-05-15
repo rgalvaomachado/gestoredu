@@ -14,8 +14,18 @@ class RelatorioController{
         $usuarios = $buscarTodos->usuarios;
 
         $ConfiguracaoController = new ConfiguracaoController();
-        $ConfiguracaoController = json_decode($ConfiguracaoController->buscar(['id' => 1]));
-        $configuracao = $ConfiguracaoController->configuracao;
+        $ConfiguracaoController = json_decode($ConfiguracaoController->buscarTodos([]));
+        foreach ($ConfiguracaoController->configuracao as $configuracao) {
+            switch ($configuracao->chave) {
+                case 'tipo_frequencia':
+                    $config_tipo_frequencia = $configuracao->valor;
+                    break;
+                case 'frequencia':
+                    $config_frequencia = $configuracao->valor;
+                    break;
+            }
+        }
+
 
         foreach($usuarios as $usuario){
             $PresencaController = new PresencaController();
@@ -52,14 +62,14 @@ class RelatorioController{
             $frequencia = ( ($presencas + $justificado) / $total ) * 100;
 
             $aprovado = true;
-            switch ($configuracao->tipo_frequencia) {
+            switch ($config_tipo_frequencia) {
                 case 1:
-                    if (!($frequencia >= $configuracao->frequencia)){
+                    if (!($frequencia >= $config_frequencia)){
                         $aprovado = false;
                     }
                     break;
                 case 2:
-                    if (!($presencas >= $configuracao->frequencia)){
+                    if (!($presencas >= $config_frequencia)){
                         $aprovado = false;
                     }
                     break;

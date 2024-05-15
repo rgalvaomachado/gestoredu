@@ -64,7 +64,7 @@
             $presenca->cod_grupo = $post['grupo'];
             $presenca->cod_disciplina = $post['disciplina'];
             $presenca->cod_sala = $post['sala'];
-            $presenca->presente = 'S';
+            $presenca->presente = $post['presente'];
             $presenca->data = $post['data'];
             $verificarPresenca = $presenca->verificarPresenca();
             if(count($verificarPresenca) > 0){

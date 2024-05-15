@@ -115,6 +115,7 @@ $(document).ready(function() {
         var sala = $("#sala").val();
         var disciplina = $("#disciplina").val();
         var data = $("#data").val();
+        var presente = $("#presente").val();
         $.ajax({
             method: "POST",
             url: "/src/controller/Controller.php",
@@ -125,6 +126,7 @@ $(document).ready(function() {
                 sala: sala,
                 disciplina: disciplina,
                 data: data,
+                presente: presente,
             },
             complete: function(response) {
                 var response = JSON.parse(response.responseText);

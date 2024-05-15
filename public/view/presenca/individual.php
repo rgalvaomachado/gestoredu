@@ -61,6 +61,11 @@
 				<select class='input' id='usuario' name="usuario" required>
 				</select>
 				</br>
+				<select class='input' id='presente' name="presente" required>
+					<option value="S">Prenseça</option>
+					<option value="N">Falta</option>
+				</select>
+				</br>
 				<input class='button' type="submit" value="Fazer Chamada">
 			</form>
 		</div>
