@@ -85,5 +85,11 @@ class LoginController{
             ]);
         }
     }
+
+    function primeiroLogin(){
+        $UsuarioController = new UsuarioController();
+        $response = json_decode($UsuarioController->buscarTodos());
+        return count($response->usuarios) == 0 ? true : false;
+    }
 }
 ?>

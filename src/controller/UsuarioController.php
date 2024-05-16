@@ -44,10 +44,10 @@
 
             $usuario->nome                  = $post['nome'];
             $usuario->data_nascimento       = isset($post['data_nascimento']) ? $post['data_nascimento'] : date("Y-m-d");
-            $usuario->rg                    = isset($post['rg']) ? $post['rg'] : '';
-            $usuario->cpf                   = isset($post['cpf']) ? $post['cpf'] : '';
+            $usuario->rg                    = isset($post['rg']) ? $post['rg'] : '0';
+            $usuario->cpf                   = isset($post['cpf']) ? $post['cpf'] : '0';
             $usuario->endereco              = isset($post['endereco']) ? $post['endereco'] : '';
-            $usuario->telefone              = isset($post['telefone']) ? $post['telefone'] : '';
+            $usuario->telefone              = isset($post['telefone']) ? $post['telefone'] : '0';
 
             $usuario->email = isset($post['email']) ? $post['email'] : '' ;
             $usuario->senha = isset($post['senha']) ? base64_encode($post['senha']) : null;
