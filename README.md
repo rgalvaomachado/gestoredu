@@ -1,6 +1,6 @@
 #importar o banco localizado em /database
 
-#popular o env.php com informacoes abaixo
+#popular o env.php com informacoes abaixo:
 
 $_ENV['DATABASE_USERNAME'] = 'username do banco de dados';
 $_ENV['DATABASE_PASSWORD'] = 'senha do banco de dados';
