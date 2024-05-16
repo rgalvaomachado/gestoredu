@@ -6,7 +6,13 @@ $(document).ready(function() {
         var data_nascimento = $("#data_nascimento").val();
         var rg = $("#rg").val();
         var cpf = $("#cpf").val();
-        var endereco = $("#rua").val()+'###'+$("#numero").val()+'###'+$("#bairro").val()+'###'+$("#cidade").val()+'###'+$("#estado").val();
+
+        var rua = $("#rua").val();
+        var numero = $("#numero").val();
+        var bairro = $("#bairro").val();
+        var cidade = $("#cidade").val();
+        var estado = $("#estado").val();
+
         var telefone = $("#telefone").val();
 
         var email = $("#email").val();
@@ -40,7 +46,13 @@ $(document).ready(function() {
                 data_nascimento: data_nascimento,
                 rg: rg,
                 cpf: cpf,
-                endereco: endereco,
+             
+                rua: rua,
+                numero: numero,
+                bairro: bairro,
+                cidade: cidade,
+                estado: estado,
+
                 telefone: telefone,
                 email: email,
                 senha: senha,
@@ -75,7 +87,13 @@ $(document).ready(function() {
         var data_nascimento = $("#data_nascimento").val();
         var rg = $("#rg").val();
         var cpf = $("#cpf").val();
-        var endereco = $("#rua").val()+'###'+$("#numero").val()+'###'+$("#bairro").val()+'###'+$("#cidade").val()+'###'+$("#estado").val();
+        
+        var rua = $("#rua").val();
+        var numero = $("#numero").val();
+        var bairro = $("#bairro").val();
+        var cidade = $("#cidade").val();
+        var estado = $("#estado").val();
+
         var telefone = $("#telefone").val();
 
         var email = $("#email").val();
@@ -99,18 +117,24 @@ $(document).ready(function() {
                 salas.push(sala[i].value);
             }
         }
-        
+
         $.ajax({
             method: "POST",
             url: "/src/controller/Controller.php",
             data: {
                 metodo: "editarUsuario",
-                nome: nome,
                 id: id,
+                nome: nome,
                 data_nascimento: data_nascimento,
                 rg: rg,
                 cpf: cpf,
-                endereco: endereco,
+                
+                rua: rua,
+                numero: numero,
+                bairro: bairro,
+                cidade: cidade,
+                estado: estado,
+                
                 telefone: telefone,
                 email: email,
                 senha: senha,

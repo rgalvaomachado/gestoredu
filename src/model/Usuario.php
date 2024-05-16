@@ -8,7 +8,11 @@
         public $data_nascimento;
         public $rg;
         public $cpf;
-        public $endereco;
+        public $rua;
+        public $numero;
+        public $bairro;
+        public $cidade;
+        public $estado;
         public $telefone;
         public $data_inscricao;
         public $data_desligamento;
@@ -59,7 +63,11 @@
                 data_nascimento,
                 rg,
                 cpf,
-                endereco,
+                rua,
+                numero,
+                bairro,
+                cidade,
+                estado,
                 telefone,
                 email,
                 senha,
@@ -72,7 +80,11 @@
                 :data_nascimento,
                 :rg,
                 :cpf, 
-                :endereco,
+                :rua,
+                :numero,
+                :bairro,
+                :cidade,
+                :estado,
                 :telefone,
                 :email,
                 :senha,
@@ -86,7 +98,11 @@
                 ':data_nascimento' => $this->data_nascimento,
                 ':rg' => $this->rg,
                 ':cpf' => $this->cpf,
-                ':endereco' => $this->endereco,
+                ':rua' => $this->rua,
+                ':numero' => $this->numero,
+                ':bairro' => $this->bairro,
+                ':cidade' => $this->cidade,
+                ':estado' => $this->estado,
                 ':telefone' => $this->telefone,
                 ':email' => $this->email,
                 ':senha' => $this->senha,
@@ -104,7 +120,11 @@
                 data_nascimento = :data_nascimento, 
                 rg = :rg,
                 cpf = :cpf,
-                endereco = :endereco,
+                rua = :rua,
+                numero = :numero,
+                bairro = :bairro,
+                cidade = :cidade,
+                estado = :estado,
                 telefone = :telefone,
                 email = :email,
                 senha = :senha,
@@ -119,7 +139,11 @@
               ':data_nascimento' => $this->data_nascimento,
               ':rg' => $this->rg,
               ':cpf' => $this->cpf,
-              ':endereco' => $this->endereco,
+              ':rua' => $this->rua,
+              ':numero' => $this->numero,
+              ':bairro' => $this->bairro,
+              ':cidade' => $this->cidade,
+              ':estado' => $this->estado,
               ':telefone' => $this->telefone,
               ':email' => $this->email,
               ':senha' => $this->senha,

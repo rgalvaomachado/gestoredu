@@ -43,11 +43,15 @@
             $usuario = new Usuario();
 
             $usuario->nome                  = $post['nome'];
-            $usuario->data_nascimento       = isset($post['data_nascimento']) ? $post['data_nascimento'] : date("Y-m-d");
-            $usuario->rg                    = isset($post['rg']) ? $post['rg'] : '0';
-            $usuario->cpf                   = isset($post['cpf']) ? $post['cpf'] : '0';
-            $usuario->endereco              = isset($post['endereco']) ? $post['endereco'] : '';
-            $usuario->telefone              = isset($post['telefone']) ? $post['telefone'] : '0';
+            $usuario->data_nascimento       = isset($post['data_nascimento'])   && $post['data_nascimento'] != '' ? $post['data_nascimento'] : null;
+            $usuario->rg                    = isset($post['rg'])                && $post['rg'] != '' ? $post['rg'] : null;
+            $usuario->cpf                   = isset($post['cpf'])               && $post['cpf'] != '' ? $post['cpf'] : null;
+            $usuario->rua                   = isset($post['rua'])               && $post['rua'] != '' ? $post['rua'] : null;
+            $usuario->numero                = isset($post['numero'])            && $post['numero'] != '' ? $post['numero'] : null;
+            $usuario->bairro                = isset($post['bairro'])            && $post['bairro'] != '' ? $post['bairro'] : null;
+            $usuario->cidade                = isset($post['cidade'])            && $post['cidade'] != '' ? $post['cidade'] : null;
+            $usuario->estado                = isset($post['estado'])            && $post['estado'] != '' ? $post['estado'] : null;
+            $usuario->telefone              = isset($post['telefone'])          && $post['telefone'] != '' ? $post['telefone'] : null;
 
             $usuario->email = isset($post['email']) ? $post['email'] : '' ;
             $usuario->senha = isset($post['senha']) ? base64_encode($post['senha']) : null;
@@ -68,7 +72,7 @@
 
             $id = $usuario->criar();
 
-            if (isset($post['projeto'])){
+            if (isset($post['projeto']) && $post['projeto'] != ''){
                 $projeto = new Projeto();
                 $projeto->cod_usuario = $id;
                 $projeto->nome = $post['projeto'];
@@ -94,11 +98,15 @@
 
             $usuario->id                    = $post['id'];
             $usuario->nome                  = $post['nome'];
-            $usuario->data_nascimento       = isset($post['data_nascimento']) ? $post['data_nascimento'] : date("Y-m-d");
-            $usuario->rg                    = isset($post['rg']) ? $post['rg'] : '';
-            $usuario->cpf                   = isset($post['cpf']) ? $post['cpf'] : '';
-            $usuario->endereco              = isset($post['endereco']) ? $post['endereco'] : '';
-            $usuario->telefone              = isset($post['telefone']) ? $post['telefone'] : '';
+            $usuario->data_nascimento       = isset($post['data_nascimento'])   && $post['data_nascimento'] != '' ? $post['data_nascimento'] : null;
+            $usuario->rg                    = isset($post['rg'])                && $post['rg'] != '' ? $post['rg'] : null;
+            $usuario->cpf                   = isset($post['cpf'])               && $post['cpf'] != '' ? $post['cpf'] : null;
+            $usuario->rua                   = isset($post['rua'])               && $post['rua'] != '' ? $post['rua'] : null;
+            $usuario->numero                = isset($post['numero'])            && $post['numero'] != '' ? $post['numero'] : null;
+            $usuario->bairro                = isset($post['bairro'])            && $post['bairro'] != '' ? $post['bairro'] : null;
+            $usuario->cidade                = isset($post['cidade'])            && $post['cidade'] != '' ? $post['cidade'] : null;
+            $usuario->estado                = isset($post['estado'])            && $post['estado'] != '' ? $post['estado'] : null;
+            $usuario->telefone              = isset($post['telefone'])          && $post['telefone'] != '' ? $post['telefone'] : null;
 
             $usuario->email = isset($post['email']) ? $post['email'] : '' ;
             $usuario->senha = isset($post['senha']) ? base64_encode($post['senha']) : null;
@@ -114,12 +122,12 @@
             }
             $id = $usuario->editar();
 
-            if ($post['cod_projeto']){
+            if (isset($post['cod_projeto']) && $post['cod_projeto'] != ''){
                 $projeto = new Projeto();
                 $projeto->id = $post['cod_projeto'];
                 $projeto->nome = $post['projeto'];
                 $projeto->editar();
-            }else{
+            } else if (isset($post['projeto']) && $post['projeto'] != ''){
                 $projeto = new Projeto();
                 $projeto->cod_usuario = $id;
                 $projeto->nome = $post['projeto'];

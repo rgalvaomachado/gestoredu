@@ -1,96 +1,122 @@
 <head>
-    <?php include_once('../includes/head.html')?>
-    <?php include_once('../../src/controller/GrupoController.php')?>
-    <?php include_once('../../src/controller/DisciplinaController.php')?>
-    <?php include_once('../../src/controller/SalaController.php')?>
-
-    <link href="styles.css" rel="stylesheet">
-    <script src="index.js"></script>
+    <?php include_once('src/controller/GrupoController.php')?>
+    <?php include_once('src/controller/DisciplinaController.php')?>
+    <?php include_once('src/controller/SalaController.php')?>
+    <?php include_once('src/controller/ConfiguracaoController.php')?>
+    <link href="/public/view/aluno/styles.css" rel="stylesheet">
+    <script src="/public/view/aluno/index.js"></script>
 </head>
-<?php include_once('../includes/top.php')?>
 <div class="grid-content grid-container">
-    <?php include_once('../includes/menu.php')?>
+    <?php include_once('public/menu.php')?>
     <form id="criar">
         <div class="grid-item-content">
-            <label class="title">Criar Usuarios</label>
+            <?php include_once('public/top.php')?>
+            <?php
+                $ConfiguracaoController = new ConfiguracaoController();
+                $ConfiguracaoController = json_decode($ConfiguracaoController->buscarTodos([]));
+                foreach ($ConfiguracaoController->configuracao as $configuracao) {
+                    switch ($configuracao->chave) {
+                        case 'aluno_nascimento':
+                            $aluno_nascimento = $configuracao->valor;
+                            break;
+                        case 'aluno_rg':
+                            $aluno_rg = $configuracao->valor;
+                            break;
+                        case 'aluno_cpf':
+                            $aluno_cpf = $configuracao->valor;
+                            break;
+                        case 'aluno_endereco':
+                            $aluno_endereco = $configuracao->valor;
+                            break;
+                        case 'aluno_telefone':
+                            $aluno_telefone = $configuracao->valor;
+                            break;
+                    }
+                }
+            ?>
+            <label class="title">Criar Aluno(a)</label>
             <br>
             <label class="message_alert" id="messageAlert"></label>
             <br>
             <label>Nome Completo</label>
+            <label class="obrigatorio">*</label>
             <br>
             <input class='input' id="nome" name="nome" required>
             <br>
-            <label>CPF</label>
+            <label>Titulo do Trabalho</label>
             <br>
-            <input class='input' id="cpf" name="cpf">
+            <input class='input' id="projeto" name="projeto">
             <br>
-            <br>
-            <label>Endereço</label>
-            <br>
-            <br>
-            <div class="grid-endereco">
-                <div class="grid-endereco-item">
-                    <label>Rua</label>
+            <?php if ($aluno_nascimento){ ?>
+                <label>Data de Nascimento</label>
+                <br>
+                <input id="data_nascimento" name="data_nascimento" type="date" class="input">
+                <br>
+            <?php } ?>
+            <?php if ($aluno_rg){ ?>
+                    <label>RG</label>
                     <br>
-                    <input class='input' id="endereco" name="endereco">
-                </div>
-                <div class="grid-endereco-item">
-                    <label>Numero</label>
+                    <input type='number' class='input' id="rg" name="rg">
                     <br>
-                    <input type="number" min='0' class='input' id="endereco" name="endereco">
+            <?php } ?>
+            <?php if ($aluno_cpf){ ?>
+                <label>CPF</label>
+                <br>
+                <input type='number' class='input' id="cpf" name="cpf">
+                <br>
+            <?php } ?>
+            <?php if ($aluno_endereco){ ?>
+                <label>Endereço</label>
+                <br>
+                <br>
+                <div class="grid-endereco">
+                    <div class="grid-endereco-item">
+                        <label>Rua</label>
+                        <br>
+                        <input class='input' id="rua" name="rua">
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Numero</label>
+                        <br>
+                        <input type="number" min='0' class='input' id="numero" name="numero">
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Bairro</label>
+                        <br>
+                        <input class='input' id="bairro" name="bairro">
+                    </div>
                 </div>
-                <div class="grid-endereco-item">
-                    <label>Bairro</label>
-                    <br>
-                    <input class='input' id="endereco" name="endereco">
+                <br>
+                <div class="grid-endereco">
+                    <div class="grid-endereco-item">
+                        <label>Cidade</label>
+                        <br>
+                        <input type='text' class='input' id="cidade" name="cidade">
+                    </div>
+                    <div class="grid-endereco-item">
+                    </div>
+                    <div class="grid-endereco-item">
+                        <label>Estado</label>
+                        <br>
+                        <input type='text' class='input' id="estado" name="estado">
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="grid-cep">
-                <div class="grid-endereco-item">
-                    <label>Cidade</label>
-                    <br>
-                    <input class='input' id="endereco" name="endereco">
-                </div>
-                <div class="grid-endereco-item">
-                    <label>Estado</label>
-                    <br>
-                    <select class='input'>
-                        <option>
-                            SP
-                        </option>
-                    </select>
-                </div>
-                <div class="grid-endereco-item">
-                    <label>Pais</label>
-                    <br>
-                    <select class='input'>
-                        <option>
-                            BR
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <br>
+                <br>
+            <?php } ?>
+            <?php if ($aluno_telefone){ ?>
+                <label>Telefone</label>
+                <br>
+                <input class='input' type="number" id="telefone" name="telefone">
+                <br>
+            <?php } ?>
             <label>Email</label>
             <br>
-            <input class='input' type="email" id="email" name="email" required>
+            <input class='input' type="email" id="email" name="email">
             <br>
             <label>Senha</label>
             <br>
-            <input class='input' id="senha" name="senha" type="password" required>
-            <br>
-            <label>Grupos</label>
-            <br>
-            <?php
-                $GrupoController = new GrupoController();
-                $grupos = json_decode($GrupoController->buscarTodos())->grupos;
-            ?>
-            <div id='gruposTodos'>
-                <?php foreach ($grupos as $grupo) { ?>
-                    <input type='checkbox' id="grupos" name="grupos[]" value="<?php echo $grupo->id ?>"><?php echo $grupo->nome ?>
-                <?php } ?>
-            </div>
+            <input class='input' type="password" id="senha" name="senha">
+            <input type="hidden" id="grupos" value="1">
             <br>
             <label>Disciplinas</label>
             <br>

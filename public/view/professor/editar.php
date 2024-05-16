@@ -43,12 +43,12 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
-		<?php
+        <?php
             $UsuarioController = new UsuarioController();
             $UsuarioController = json_decode($UsuarioController->buscar(['id' => $_GET['id']]));
             $usuario = $UsuarioController->usuario;
         ?>
-		<form id="editar">
+        <form id="editar">
 			<div class="grid-item-content">
             <label class="message_alert" id="messageAlert"></label>
             <br>
@@ -61,7 +61,7 @@
             <?php if ($professor_nascimento){ ?>
                 <label>Data de Nascimento</label>
                 <br>
-                <input id="data_nascimento" name="data_nascimento" type="date" class="input" value="<?php echo $usuario->data_nascimento?>" required>
+                <input id="data_nascimento" name="data_nascimento" type="date" class="input" value="<?php echo $usuario->data_nascimento?>">
                 <br>
             <?php } ?>
             <?php if ($professor_rg){ ?>
@@ -77,7 +77,6 @@
                 <br>
             <?php } ?>
             <?php if ($professor_endereco){ ?>
-                <?php $endereco = explode('###',$usuario->endereco)?>
                 <label>Endereço</label>
                 <br>
                 <br>
@@ -85,17 +84,17 @@
                     <div class="grid-endereco-item">
                         <label>Rua</label>
                         <br>
-                        <input class='input' id="rua" name="rua" value="<?php echo $endereco[0]?>" required>
+                        <input class='input' id="rua" name="rua" value="<?php echo $usuario->rua?>">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Numero</label>
                         <br>
-                        <input type="number" min='0' class='input' id="numero" name="numero" value="<?php echo $endereco[1]?>" required>
+                        <input type="number" min='0' class='input' id="numero" name="numero" value="<?php echo $usuario->numero?>">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Bairro</label>
                         <br>
-                        <input class='input' id="bairro" name="bairro" value="<?php echo $endereco[2]?>" required>
+                        <input class='input' id="bairro" name="bairro" value="<?php echo $usuario->bairro?>">
                     </div>
                 </div>
                 <br>
@@ -103,14 +102,14 @@
                     <div class="grid-endereco-item">
                         <label>Cidade</label>
                         <br>
-                        <input type='text' class='input' id="cidade" name="cidade" value="<?php echo $endereco[3]?>" required>
+                        <input type='text' class='input' id="cidade" name="cidade" value="<?php echo $usuario->cidade?>">
                     </div>
                     <div class="grid-endereco-item">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Estado</label>
                         <br>
-                        <input type='text' class='input' id="estado" name="estado" value="<?php echo $endereco[4]?>" required>
+                        <input type='text' class='input' id="estado" name="estado" value="<?php echo $usuario->estado?>">
                     </div>
                 </div>
                 <br>
@@ -118,20 +117,20 @@
             <?php if ($professor_telefone){ ?>
                 <label>Telefone</label>
                 <br>
-                <input class='input' type="number" id="telefone" name="telefone" value="<?php echo $usuario->telefone?>" required>
+                <input class='input' type="number" id="telefone" name="telefone" value="<?php echo $usuario->telefone?>">
                 <br>
             <?php } ?>
             <label>Email</label>
             <br>
             <input class='input' type="email" id="email" name="email" value="<?php echo $usuario->email?>">
             <br>
-			<label>Senha</label>
-			<br>
-			<input class='input' type="password" id="senha" name="senha" value="<?php echo $usuario->senha?>">
-			<input type="hidden" id="grupos" value="2">
-			<br>
+            <label>Senha</label>
+            <br>
+            <input class='input' type="password" id="senha" name="senha" value="<?php echo $usuario->senha?>">
+            <input type="hidden" id="grupos" value="2">
+            <br>
             <label>Disciplinas</label>
-			<br>
+            <br>
             <?php
                 $DisciplinaController = new DisciplinaController();
                 $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;

@@ -50,7 +50,7 @@
             <?php if ($aluno_nascimento){ ?>
                 <label>Data de Nascimento</label>
                 <br>
-                <input id="data_nascimento" name="data_nascimento" type="date" class="input" required>
+                <input id="data_nascimento" name="data_nascimento" type="date" class="input">
                 <br>
             <?php } ?>
             <?php if ($aluno_rg){ ?>
@@ -73,17 +73,17 @@
                     <div class="grid-endereco-item">
                         <label>Rua</label>
                         <br>
-                        <input class='input' id="rua" name="rua" required>
+                        <input class='input' id="rua" name="rua">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Numero</label>
                         <br>
-                        <input type="number" min='0' class='input' id="numero" name="numero" required>
+                        <input type="number" min='0' class='input' id="numero" name="numero">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Bairro</label>
                         <br>
-                        <input class='input' id="bairro" name="bairro" required>
+                        <input class='input' id="bairro" name="bairro">
                     </div>
                 </div>
                 <br>
@@ -91,14 +91,14 @@
                     <div class="grid-endereco-item">
                         <label>Cidade</label>
                         <br>
-                        <input type='text' class='input' id="cidade" name="cidade" required>
+                        <input type='text' class='input' id="cidade" name="cidade">
                     </div>
                     <div class="grid-endereco-item">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Estado</label>
                         <br>
-                        <input type='text' class='input' id="estado" name="estado" required>
+                        <input type='text' class='input' id="estado" name="estado">
                     </div>
                 </div>
                 <br>
@@ -106,7 +106,7 @@
             <?php if ($aluno_telefone){ ?>
                 <label>Telefone</label>
                 <br>
-                <input class='input' type="number" id="telefone" name="telefone" required>
+                <input class='input' type="number" id="telefone" name="telefone">
                 <br>
             <?php } ?>
             <label>Email</label>

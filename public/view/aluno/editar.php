@@ -89,7 +89,6 @@
                 <br>
             <?php } ?>
             <?php if ($aluno_endereco){ ?>
-                <?php $endereco = explode('###',$usuario->endereco)?>
                 <label>Endereço</label>
                 <br>
                 <br>
@@ -97,17 +96,17 @@
                     <div class="grid-endereco-item">
                         <label>Rua</label>
                         <br>
-                        <input class='input' id="rua" name="rua" value="<?php echo $endereco[0]?>" required>
+                        <input class='input' id="rua" name="rua" value="<?php echo $usuario->rua?>">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Numero</label>
                         <br>
-                        <input type="number" min='0' class='input' id="numero" name="numero" value="<?php echo $endereco[1]?>" required>
+                        <input type="number" min='0' class='input' id="numero" name="numero" value="<?php echo $usuario->numero?>">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Bairro</label>
                         <br>
-                        <input class='input' id="bairro" name="bairro" value="<?php echo $endereco[2]?>" required>
+                        <input class='input' id="bairro" name="bairro" value="<?php echo $usuario->bairro?>">
                     </div>
                 </div>
                 <br>
@@ -115,14 +114,14 @@
                     <div class="grid-endereco-item">
                         <label>Cidade</label>
                         <br>
-                        <input type='text' class='input' id="cidade" name="cidade" value="<?php echo $endereco[3]?>" required>
+                        <input type='text' class='input' id="cidade" name="cidade" value="<?php echo $usuario->cidade?>">
                     </div>
                     <div class="grid-endereco-item">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Estado</label>
                         <br>
-                        <input type='text' class='input' id="estado" name="estado" value="<?php echo $endereco[4]?>" required>
+                        <input type='text' class='input' id="estado" name="estado" value="<?php echo $usuario->estado?>">
                     </div>
                 </div>
                 <br>
@@ -130,7 +129,7 @@
             <?php if ($aluno_telefone){ ?>
                 <label>Telefone</label>
                 <br>
-                <input class='input' type="number" id="telefone" name="telefone" value="<?php echo $usuario->telefone?>" required>
+                <input class='input' type="number" id="telefone" name="telefone" value="<?php echo $usuario->telefone?>">
                 <br>
             <?php } ?>
             <label>Email</label>

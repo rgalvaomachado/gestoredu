@@ -1,5 +1,5 @@
 <head>
-    <?php include_once('src/controller/ConfiguracaoController.php')?>
+<?php include_once('src/controller/ConfiguracaoController.php')?>
     <?php include_once('src/controller/DisciplinaController.php')?>
     <?php include_once('src/controller/SalaController.php')?>
 
@@ -50,10 +50,10 @@
                 <br>
             <?php } ?>
             <?php if ($professor_rg){ ?>
-                <label>RG</label>
-                <br>
-                <input type='number' class='input' id="rg" name="rg">
-                <br>
+                    <label>RG</label>
+                    <br>
+                    <input type='number' class='input' id="rg" name="rg">
+                    <br>
             <?php } ?>
             <?php if ($professor_cpf){ ?>
                 <label>CPF</label>
@@ -69,17 +69,17 @@
                     <div class="grid-endereco-item">
                         <label>Rua</label>
                         <br>
-                        <input class='input' id="rua" name="rua" >
+                        <input class='input' id="rua" name="rua">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Numero</label>
                         <br>
-                        <input type="number" min='0' class='input' id="numero" name="numero" >
+                        <input type="number" min='0' class='input' id="numero" name="numero">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Bairro</label>
                         <br>
-                        <input class='input' id="bairro" name="bairro" >
+                        <input class='input' id="bairro" name="bairro">
                     </div>
                 </div>
                 <br>
@@ -87,14 +87,14 @@
                     <div class="grid-endereco-item">
                         <label>Cidade</label>
                         <br>
-                        <input type='text' class='input' id="cidade" name="cidade" >
+                        <input type='text' class='input' id="cidade" name="cidade">
                     </div>
                     <div class="grid-endereco-item">
                     </div>
                     <div class="grid-endereco-item">
                         <label>Estado</label>
                         <br>
-                        <input type='text' class='input' id="estado" name="estado" required>
+                        <input type='text' class='input' id="estado" name="estado">
                     </div>
                 </div>
                 <br>
@@ -102,7 +102,7 @@
             <?php if ($professor_telefone){ ?>
                 <label>Telefone</label>
                 <br>
-                <input class='input' type="number" id="telefone" name="telefone" required>
+                <input class='input' type="number" id="telefone" name="telefone">
                 <br>
             <?php } ?>
             <label>Email</label>
