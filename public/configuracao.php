@@ -2,7 +2,6 @@
 	include_once('src/controller/ConfiguracaoController.php');
     $ConfiguracaoController = new ConfiguracaoController();
     $ConfiguracaoController = json_decode($ConfiguracaoController->buscarTodos([]));
-    var_dump($ConfiguracaoController->configuracao);
     foreach ($ConfiguracaoController->configuracao as $configuracao) {
         switch ($configuracao->chave) {
             case 'tipo_frequencia':
