@@ -1,5 +1,6 @@
 <?php
 include_once('UsuarioController.php');
+include_once('ConfiguracaoController.php');
 
 class LoginController{
     function login($post){
@@ -86,10 +87,45 @@ class LoginController{
         }
     }
 
-    function primeiroLogin(){
+    function primeiroLogin($post){
         $UsuarioController = new UsuarioController();
         $response = json_decode($UsuarioController->buscarTodos());
-        return count($response->usuarios) == 0 ? true : false;
+        $usuarios = count($response->usuarios);
+        if ($usuarios > 0){
+            return false;
+        } else {
+            if (isset($post['nome']) && isset($post['grupos']) && isset($post['email']) && isset($post['senha'])){
+                
+                $UsuarioController->criar([
+                    'nome' => $post['nome'],
+                    'grupos' => $post['grupos'],
+                    'email' => $post['email'],
+                    'senha' => $post['senha'],
+                ]);
+
+                $ConfiguracaoController = new ConfiguracaoController();
+                $configuraçõesPadrao['tipo_frequencia'] = 0;
+                $configuraçõesPadrao['frequencia'] = 0;
+                $configuraçõesPadrao['aluno_nascimento'] = 0;
+                $configuraçõesPadrao['aluno_rg'] = 0;
+                $configuraçõesPadrao['aluno_cpf'] = 0;
+                $configuraçõesPadrao['aluno_endereco'] = 0;
+                $configuraçõesPadrao['aluno_telefone'] = 0;
+                $configuraçõesPadrao['professor_telefone'] = 0;
+                $configuraçõesPadrao['professor_nascimento'] = 0;
+                $configuraçõesPadrao['professor_rg'] = 0;
+                $configuraçõesPadrao['professor_cpf'] = 0;
+                $configuraçõesPadrao['professor_endereco'] = 0;
+
+                $ConfiguracaoController->configurar($configuraçõesPadrao);
+
+                return json_encode([
+                    "access" => true
+                ]);
+            } else {
+                return true;
+            }
+        }
     }
 }
 ?>

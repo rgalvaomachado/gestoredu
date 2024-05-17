@@ -100,6 +100,10 @@
             $LoginController = new LoginController();
             $response = $LoginController->logout($_POST);
             break;
+        case 'primeiroLogin':
+            $LoginController = new LoginController();
+            $response = $LoginController->primeiroLogin($_POST);
+            break;
         ///////////////////////////////////////////////////////////////////////////////
         case 'criarPresencaListada':
             $PresencaController = new PresencaController();

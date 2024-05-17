@@ -18,9 +18,9 @@
         <div id="faca_login">
             <?php 
                 $LoginControler = new LoginController();
-                $primeiroLogin = $LoginControler->primeiroLogin(); 
+                $primeiroLogin = $LoginControler->primeiroLogin([]); 
             ?>
-            <?php 
+            <?php
             if ($primeiroLogin) { ?>
                 <form id="primeiroLogin">
                     </br>
