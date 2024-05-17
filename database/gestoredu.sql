@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 16, 2024 at 09:56 PM
+-- Generation Time: May 17, 2024 at 02:57 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.1.12
 
@@ -103,21 +103,54 @@ CREATE TABLE `sala` (
 CREATE TABLE `usuario` (
   `id` int NOT NULL,
   `nome` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `data_nascimento` date NOT NULL,
-  `rg` varchar(9) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `cpf` int NOT NULL,
-  `rua` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `numero` int NOT NULL,
-  `bairro` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `cidade` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `estado` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `telefone` int NOT NULL,
-  `email` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `senha` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `data_inscricao` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `grupos` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `disciplinas` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
-  `salas` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL
+  `data_nascimento` date DEFAULT NULL,
+  `rg` varchar(9) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
+  `cpf` int DEFAULT NULL,
+  `rua` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
+  `numero` int DEFAULT NULL,
+  `bairro` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
+  `cidade` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
+  `estado` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
+  `telefone` int DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
+  `senha` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
+  `data_inscricao` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario_disciplina`
+--
+
+CREATE TABLE `usuario_disciplina` (
+  `id` int NOT NULL,
+  `cod_usuario` int NOT NULL,
+  `cod_disciplina` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario_grupo`
+--
+
+CREATE TABLE `usuario_grupo` (
+  `id` int NOT NULL,
+  `cod_usuario` int NOT NULL,
+  `cod_grupo` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario_sala`
+--
+
+CREATE TABLE `usuario_sala` (
+  `id` int NOT NULL,
+  `cod_usuario` int NOT NULL,
+  `cod_sala` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
@@ -167,6 +200,24 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `usuario_disciplina`
+--
+ALTER TABLE `usuario_disciplina`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `usuario_grupo`
+--
+ALTER TABLE `usuario_grupo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `usuario_sala`
+--
+ALTER TABLE `usuario_sala`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -210,6 +261,24 @@ ALTER TABLE `sala`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `usuario_disciplina`
+--
+ALTER TABLE `usuario_disciplina`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `usuario_grupo`
+--
+ALTER TABLE `usuario_grupo`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `usuario_sala`
+--
+ALTER TABLE `usuario_sala`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
