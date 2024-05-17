@@ -2,7 +2,6 @@
     <?php include_once('src/controller/GrupoController.php')?>
     <?php include_once('src/controller/DisciplinaController.php')?>
     <?php include_once('src/controller/SalaController.php')?>
-    <?php include_once('src/controller/ConfiguracaoController.php')?>
     <link href="/public/view/aluno/styles.css" rel="stylesheet">
     <script src="/public/view/aluno/index.js"></script>
 </head>
@@ -11,29 +10,7 @@
     <form id="criar">
         <div class="grid-item-content">
             <?php include_once('public/top.php')?>
-            <?php
-                $ConfiguracaoController = new ConfiguracaoController();
-                $ConfiguracaoController = json_decode($ConfiguracaoController->buscarTodos([]));
-                foreach ($ConfiguracaoController->configuracao as $configuracao) {
-                    switch ($configuracao->chave) {
-                        case 'aluno_nascimento':
-                            $aluno_nascimento = $configuracao->valor;
-                            break;
-                        case 'aluno_rg':
-                            $aluno_rg = $configuracao->valor;
-                            break;
-                        case 'aluno_cpf':
-                            $aluno_cpf = $configuracao->valor;
-                            break;
-                        case 'aluno_endereco':
-                            $aluno_endereco = $configuracao->valor;
-                            break;
-                        case 'aluno_telefone':
-                            $aluno_telefone = $configuracao->valor;
-                            break;
-                    }
-                }
-            ?>
+            <?php include_once('public/configuracao.php') ?>
             <label class="title">Criar Aluno(a)</label>
             <br>
             <label class="message_alert" id="messageAlert"></label>

@@ -5,7 +5,6 @@
     }
 ?>
 <head>
-	<?php include_once('src/controller/ConfiguracaoController.php')?>
 	<?php include_once('src/controller/UsuarioController.php')?>
 	<?php include_once('src/controller/DisciplinaController.php')?>
 	<?php include_once('src/controller/SalaController.php')?>
@@ -16,29 +15,7 @@
 	<?php include_once('public/menu.php')?>
     <div class="grid-item-content">
         <?php include_once('public/top.php')?>
-        <?php
-            $ConfiguracaoController = new ConfiguracaoController();
-            $ConfiguracaoController = json_decode($ConfiguracaoController->buscarTodos([]));
-            foreach ($ConfiguracaoController->configuracao as $configuracao) {
-                switch ($configuracao->chave) {
-                    case 'professor_nascimento':
-                        $professor_nascimento = $configuracao->valor;
-                        break;
-                    case 'professor_rg':
-                        $professor_rg = $configuracao->valor;
-                        break;
-                    case 'professor_cpf':
-                        $professor_cpf = $configuracao->valor;
-                        break;
-                    case 'professor_endereco':
-                        $professor_endereco = $configuracao->valor;
-                        break;
-                    case 'professor_telefone':
-                        $professor_telefone = $configuracao->valor;
-                        break;
-                }
-            }
-        ?>
+        <?php include_once('public/configuracao.php') ?>
         <label class="title">Editar Professor(a)</label>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
