@@ -32,6 +32,7 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         var email = $("#email").val();
         var senha = $("#senha").val();
+        var grupo = $("#grupo").val();
         $.ajax({
             method: "POST",
             url: "/src/controller/Controller.php",
@@ -40,6 +41,7 @@ $(document).ready(function() {
                 nome: nome,
                 email: email,
                 senha: senha,
+                grupo: grupo,
             },
             complete: function(response) {
                 var response = JSON.parse(response.responseText);

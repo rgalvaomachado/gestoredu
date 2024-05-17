@@ -36,6 +36,12 @@
                     <input class='input open_sans' placeholder="Seu e-mail" id="email" name="email" type="email" required>
                     </br>
                     <input class='input open_sans' placeholder="Senha" id="senha" name="senha" type="password" required>
+                    </br>
+                    <select class='input' id="grupo" name="grupo" required>
+                        <option value="1">Aluno</option>	
+                        <option value="2">Professor</option>
+                        <option value="0">Nenhum</option>	
+                    </select>
                     </br></br></br>
                     <input class='button fundo-azul open_sans' type="submit" value="Criar">
                     </br></br>
