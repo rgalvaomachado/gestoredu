@@ -1,8 +1,23 @@
 <?php
-	include_once('src/controller/ConfiguracaoController.php');
-    $ConfiguracaoController = new ConfiguracaoController();
-    $ConfiguracaoController = json_decode($ConfiguracaoController->buscarTodos([]));
-    foreach ($ConfiguracaoController->configuracao as $configuracao) {
+include_once('src/controller/ConfiguracaoController.php');
+
+// Inicializa o controlador de configuração
+$ConfiguracaoController = new ConfiguracaoController();
+
+// Obtém a resposta JSON das configurações
+$response = $ConfiguracaoController->buscarTodos([]);
+
+// Decodifica a resposta JSON
+$decodedResponse = json_decode($response);
+
+// Verifica se a decodificação JSON foi bem-sucedida
+if (json_last_error() !== JSON_ERROR_NONE) {
+    die("Erro ao decodificar JSON: " . json_last_error_msg());
+}
+
+// Verifica se 'configuracao' existe e é iterável
+if (isset($decodedResponse->configuracao) && (is_array($decodedResponse->configuracao) || $decodedResponse->configuracao instanceof Traversable)) {
+    foreach ($decodedResponse->configuracao as $configuracao) {
         switch ($configuracao->chave) {
             case 'tipo_frequencia':
                 $tipo_frequencia = $configuracao->valor;
@@ -42,4 +57,8 @@
                 break;
         }
     }
+} else {
+    // Tratar o caso onde 'configuracao' não é iterável ou não existe
+    echo "A resposta 'configuracao' não é um array ou objeto iterável, ou não existe.";
+}
 ?>
