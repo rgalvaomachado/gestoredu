@@ -34,7 +34,8 @@
                     SELECT usuario.*
                     FROM usuario
                     JOIN usuario_grupo ON usuario.id = usuario_grupo.cod_usuario
-                    WHERE usuario_grupo.cod_grupo IN (".$this->grupos.");
+                    WHERE usuario_grupo.cod_grupo IN (".$this->grupos.")
+                    ORDER BY usuario.nome ASC;
                 ";
             }
 
@@ -43,7 +44,8 @@
                     SELECT usuario.*
                     FROM usuario
                     JOIN usuario_disciplina ON usuario.id = usuario_disciplina.cod_usuario
-                    WHERE usuario_disciplina.cod_disciplina IN (".$this->disciplinas.");
+                    WHERE usuario_disciplina.cod_disciplina IN (".$this->disciplinas.")
+                    ORDER BY usuario.nome ASC;
                 ";
             }
 
@@ -52,7 +54,8 @@
                     SELECT usuario.*
                     FROM usuario
                     JOIN usuario_sala ON usuario.id = usuario_sala.cod_usuario
-                    WHERE usuario_sala.cod_sala IN (".$this->salas.");
+                    WHERE usuario_sala.cod_sala IN (".$this->salas.")
+                    ORDER BY usuario.nome ASC;
                 ";
             }
 
@@ -66,7 +69,8 @@
                     WHERE 
                         usuario_grupo.cod_grupo IN (".$this->grupos.") &&
                         usuario_disciplina.cod_disciplina IN (".$this->disciplinas.") &&
-                        usuario_sala.cod_sala IN (".$this->salas.");
+                        usuario_sala.cod_sala IN (".$this->salas.")
+                    ORDER BY usuario.nome ASC;
                 ";
             }
 
