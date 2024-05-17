@@ -26,6 +26,7 @@ class RelatorioController{
             }
         }
 
+        $returnUsuarios = [] ;
 
         foreach($usuarios as $usuario){
             $PresencaController = new PresencaController();
@@ -74,6 +75,7 @@ class RelatorioController{
                     }
                     break;
             }
+
             $returnUsuarios[] = [
                 "id" => $usuario->id,
                 "nome" => $usuario->nome,
