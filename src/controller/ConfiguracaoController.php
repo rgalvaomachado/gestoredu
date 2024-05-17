@@ -4,7 +4,6 @@
     class ConfiguracaoController{
         function buscarTodos($post){
             $Configuracao = new Configuracao();
-            $Configuracao->id = 1;
             $buscarConfiguracao = $Configuracao->buscarTodos();
 
             if(!empty($buscarConfiguracao)){
