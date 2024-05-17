@@ -1,5 +1,8 @@
 <?php
     include_once('Database.php');
+    include_once('src/model/Grupo.php');
+    include_once('src/model/Disciplina.php');
+    include_once('src/model/Sala.php');
 
     class Usuario extends Database{
         public $id;
@@ -15,12 +18,10 @@
         public $estado;
         public $telefone;
         public $data_inscricao;
-        public $data_desligamento;
-        public $orgao_regulamentador;
 
         public $email;
         public $senha;
-
+        
         public $grupos;
         public $salas;
         public $disciplinas;
@@ -29,19 +30,44 @@
             $sql = "SELECT * FROM usuario ORDER BY nome ASC";
 
             if (isset($this->grupos) && !isset($this->salas) && !isset($this->disciplinas)){
-                $sql = "SELECT * FROM usuario WHERE grupos like '%#".$this->grupos."#%' ORDER BY nome ASC";
+                $sql = "
+                    SELECT usuario.*
+                    FROM usuario
+                    JOIN usuario_grupo ON usuario.id = usuario_grupo.cod_usuario
+                    WHERE usuario_grupo.cod_grupo IN (".$this->grupos.");
+                ";
             }
 
-            if (!isset($this->grupos) && !isset($this->salas) && isset($this->disciplinas)){
-                $sql = "SELECT * FROM usuario WHERE disciplinas like '%#".$this->disciplinas."#%' ORDER BY nome ASC";
+            if (!isset($this->grupos) && isset($this->disciplinas) && !isset($this->salas)){
+                $sql = "
+                    SELECT usuario.*
+                    FROM usuario
+                    JOIN usuario_disciplina ON usuario.id = usuario_disciplina.cod_usuario
+                    WHERE usuario_disciplina.cod_disciplina IN (".$this->disciplinas.");
+                ";
             }
 
-            if (!isset($this->grupos) && isset($this->salas) && !isset($this->disciplinas)){
-                $sql = "SELECT * FROM usuario WHERE salas like '%#".$this->salas."#%' ORDER BY nome ASC";
+            if (!isset($this->grupos) && !isset($this->disciplinas) && isset($this->salas)){
+                $sql = "
+                    SELECT usuario.*
+                    FROM usuario
+                    JOIN usuario_sala ON usuario.id = usuario_sala.cod_usuario
+                    WHERE usuario_sala.cod_sala IN (".$this->salas.");
+                ";
             }
 
             if (isset($this->grupos) && isset($this->salas) && isset($this->disciplinas)) {
-                $sql = "SELECT * FROM usuario WHERE grupos like '%#".$this->grupos."#%' AND salas like '%#".$this->salas."#%' AND disciplinas like '%#".$this->disciplinas."#%' ORDER BY nome ASC";
+                $sql = "
+                    SELECT usuario.*
+                    FROM usuario
+                    JOIN usuario_grupo ON usuario.id = usuario_grupo.cod_usuario
+                    JOIN usuario_disciplina ON usuario.id = usuario_disciplina.cod_usuario
+                    JOIN usuario_sala ON usuario.id = usuario_sala.cod_usuario
+                    WHERE 
+                        usuario_grupo.cod_grupo IN (".$this->grupos.") &&
+                        usuario_disciplina.cod_disciplina IN (".$this->disciplinas.") &&
+                        usuario_sala.cod_sala IN (".$this->salas.");
+                ";
             }
 
             $buscarTodos = $this->bd->prepare($sql);
@@ -71,10 +97,7 @@
                 telefone,
                 email,
                 senha,
-                data_inscricao,
-                grupos,
-                disciplinas,
-                salas
+                data_inscricao
             ) VALUES(
                 :nome,
                 :data_nascimento,
@@ -88,10 +111,7 @@
                 :telefone,
                 :email,
                 :senha,
-                :data_inscricao,
-                :grupos,
-                :disciplinas,
-                :salas
+                :data_inscricao
             )');
             $criar->execute([
                 ':nome' => $this->nome,
@@ -107,9 +127,6 @@
                 ':email' => $this->email,
                 ':senha' => $this->senha,
                 ':data_inscricao' => $this->data_inscricao,
-                ':grupos' => $this->grupos,
-                ':disciplinas' => $this->disciplinas,
-                ':salas' => $this->salas,
             ]);
             return $this->bd->lastInsertId();
         }
@@ -127,10 +144,7 @@
                 estado = :estado,
                 telefone = :telefone,
                 email = :email,
-                senha = :senha,
-                grupos = :grupos,
-                disciplinas = :disciplinas,
-                salas = :salas
+                senha = :senha
                 WHERE id = :id'
             );
             $editar->execute([
@@ -147,9 +161,6 @@
               ':telefone' => $this->telefone,
               ':email' => $this->email,
               ':senha' => $this->senha,
-              ':grupos' => $this->grupos,
-              ':disciplinas' => $this->disciplinas,
-              ':salas' => $this->salas,
             ]);
             return $this->id;
         }
@@ -159,6 +170,18 @@
             $deletar->execute([
               ':id' => $this->id,
             ]);
+
+            $Disciplina = new Disciplina();
+            $Disciplina->cod_usuario = $this->id;
+            $Disciplina->usuario_disciplina_deletar();
+
+            $Sala = new Sala();
+            $Sala->cod_usuario = $this->id;
+            $Sala->usuario_sala_deletar();
+
+            // $Disciplina = new Disciplina();
+            // $Disciplina->cod_usuario = $id;
+            // $Disciplina->usuario_disciplina_deletar();
             return $this->id;
         }
     }

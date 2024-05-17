@@ -135,10 +135,9 @@
                 $DisciplinaController = new DisciplinaController();
                 $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
             ?>
-            <?php $usuario_disciplinas = isset($usuario->disciplinas) ? explode('#',$usuario->disciplinas) : [] ?>
             <div id='gruposTodos'>
                 <?php foreach ($disciplinas as $disciplina) { ?>
-                    <input type='checkbox' id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>" <?php echo in_array($disciplina->id, $usuario_disciplinas) ? "checked" : "" ?> > <?php echo $disciplina->nome ?>
+                    <input type='checkbox' id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>" <?php echo in_array($disciplina->id, $usuario->disciplinas) ? "checked" : "" ?> > <?php echo $disciplina->nome ?>
                 <?php } ?>
             </div>
             <br>
@@ -148,10 +147,9 @@
                 $SalaController = new SalaController();
                 $salas = json_decode($SalaController->buscarTodos())->salas;
             ?>
-            <?php $usuario_salas = isset($usuario->salas) ? explode('#',$usuario->salas) : [] ?>
             <div id='gruposTodos'>
                 <?php foreach ($salas as $sala) { ?>
-                    <input type='checkbox' id="salas" name="salas[]" value="<?php echo $sala->id ?>" <?php echo in_array($sala->id, $usuario_salas) ? "checked" : "" ?> > <?php echo $sala->nome ?>
+                    <input type='checkbox' id="salas" name="salas[]" value="<?php echo $sala->id ?>" <?php echo in_array($sala->id, $usuario->salas) ? "checked" : "" ?> > <?php echo $sala->nome ?>
                 <?php } ?>
             </div>
             <br>
