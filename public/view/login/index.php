@@ -10,7 +10,7 @@
             <div id="nao_tem_conta1">
                 <label class="cinza open_sans" id="nao_conta">Ainda não conheçe nosso produto?</label>
                 </br></br>
-                <a class="azul open_sans" id="contato" href="https://gestoredu.com" target="_blank">Clique aqui e confira!</a>
+                <a class="azul open_sans" id="contato" href="https://gestoredu.hubis.com.br" target="_blank">Clique aqui e confira!</a>
             </div>
         </div>
     </div>
@@ -69,6 +69,6 @@
     <div id="nao_tem_conta2">
         <label class="cinza open_sans" id="nao_conta">Ainda não conheçe nosso produto?</label>
         </br></br>
-        <a class="azul open_sans" id="contato" href="https://gestoredu.com" target="_blank">Clique aqui e confira!</a>
+        <a class="azul open_sans" id="contato" href="https://gestoredu.hubis.com.br" target="_blank">Clique aqui e confira!</a>
     </div>
 </div>
