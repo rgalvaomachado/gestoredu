@@ -30,7 +30,7 @@
 			<input class='input' name="nome" id="nome" value="<?php echo $sala->nome?>">
 			</br>
 			</br>
-			<label><b>Usuarios do Sala</b></label>
+			<label><b>Usuarios do Sala <?php echo "(".count($sala->usuarios).")"?></b></label>
 			<?php foreach($sala->usuarios as $usuarios) {?>
 				<div id='listaUsurios'>
 					<label><?php echo $usuarios->nome ?></label><br>
