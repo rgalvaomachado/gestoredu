@@ -8,9 +8,9 @@
         <div id="gestor_edu">
             <img id="logo-gedu" src='/public/img/logo_colorido2.png'>
             <div id="nao_tem_conta1">
-                <label class="cinza open_sans" id="nao_conta">Ainda não tem uma conta?</label>
+                <label class="cinza open_sans" id="nao_conta">Ainda não conheçe nosso produto?</label>
                 </br></br>
-                <a class="azul open_sans" id="contato" href="https://gestoredu.com" target="_blank">Entre em contato!</a>
+                <a class="azul open_sans" id="contato" href="https://gestoredu.com" target="_blank">Clique aqui e confira!</a>
             </div>
         </div>
     </div>
@@ -67,8 +67,8 @@
         </div>
     </div>
     <div id="nao_tem_conta2">
-        <label class="cinza open_sans" id="nao_conta">Ainda não tem uma conta?</label>
+        <label class="cinza open_sans" id="nao_conta">Ainda não conheçe nosso produto?</label>
         </br></br>
-        <a class="azul open_sans" id="contato" href="https://gestoredu.com" target="_blank">Entre em contato!</a>
+        <a class="azul open_sans" id="contato" href="https://gestoredu.com" target="_blank">Clique aqui e confira!</a>
     </div>
 </div>
