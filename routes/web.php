@@ -27,8 +27,7 @@
         ['presenca/listada','public/view/presenca/listada.php'],
 
         ['frequencia','public/view/frequencia/index.php'],
-        ['frequencia/individual','public/view/frequencia/individual.php'],
-        ['frequencia/listada','public/view/frequencia/listada.php'],
+        ['frequencia/certificado','public/view/frequencia/certificado.php'],
 
         ['certificado','public/view/certificado/index.php'],
 

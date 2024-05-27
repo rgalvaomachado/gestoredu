@@ -38,7 +38,7 @@ $(document).ready(function() {
             method: "POST",
             url: "/src/controller/Controller.php",
             data: {
-                metodo: "criarUsuario",
+                metodo: "primeiroLogin",
                 nome: nome,
                 email: email,
                 senha: senha,
