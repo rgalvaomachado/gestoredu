@@ -123,10 +123,10 @@
             $response = $RelatorioController->relatorioChamada($_POST);
             break; 
         ///////////////////////////////////////////////////////////////////////////////
-        // case 'certificadoTutore':
-        //     $CertificadoController = new CertificadoController();
-        //     $response = $CertificadoController->certificadoTutore($_POST);
-        //     break; 
+        case 'gerarCertificado':
+            $CertificadoController = new CertificadoController();
+            $response = $CertificadoController->gerarCertificado($_POST);
+            break; 
         ///////////////////////////////////////////////////////////////////////////////
         case 'configuracao':
             $ConfiguracaoController = new ConfiguracaoController();

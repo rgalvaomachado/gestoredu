@@ -8,6 +8,13 @@
         session_start();
     }
 
+    if (!empty($_SERVER['HTTPS'])){
+        $_SERVER['SYSTEM_URL'] = 'https://'.$_SERVER['HTTP_HOST'];
+    }
+    else {
+        $_SERVER['SYSTEM_URL'] = 'http://'.$_SERVER['HTTP_HOST'];
+    }
+
     // SETAR HORARIO DO SERVIDOR
     date_default_timezone_set('America/Sao_Paulo');
 

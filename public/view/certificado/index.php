@@ -1,102 +1,76 @@
 <head>
-    <link href="styles.css" rel="stylesheet">
-    <script src="index.js"></script>
+	<?php include_once('src/controller/GrupoController.php')?>
+	<?php include_once('src/controller/SalaController.php')?>
+	<?php include_once('src/controller/DisciplinaController.php')?>
+    <link href="/public/view/certificado/styles.css" rel="stylesheet">
+    <script src="/public/view/certificado/index.js"></script>
 </head>
 <div class="grid-content grid-container">
     <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
 		<?php include_once('public/top.php')?>
-        <label class="title">Certificado</label>
-        <br>
-        <label class="message_alert" id="messageAlert"></label>
-        <br>
-        <label>Monitore</label>
-        <br>
-        <select class='input' id="monitore" name="monitore" onchange="buscarMonitoreCertificado()">
-            <option>Selecione o monitore</option>
-        </select>
-        <br>
-        <label>Data Inicial</label>
-        <br>
-        <input id="dataInicial" name="dataInicial" type="date" class="input">
-        <br>
-        <label>Data Final</label>
-        <br>
-        <input id="dataFinal" name="dataFinal" type="date" class="input">
-        <br>
-        <label>Coordenador Docente do Projeto</label>
-        <br>
-        <select class='input' id="docente" name="docente" onchange="buscarDocente()">
-            <option>Selecione o docente</option>
-        </select>
-        <br>
-        <label>Coordenador Discente do Projeto</label>
-        <br>
-        <select class='input' id="discente" name="discente"  onchange="buscarDiscente()">
-            <option>Selecione o discente</option>
-        </select>
-        <br>
-        <input class='button' type="button" onclick="gerarCertificadoMonitore()" value="Gerar">
-        <br>
-        <div id="detalhes">
-            <div id="frente">
-                <div id="conteudo">
-                    <h1 id="titulo">
-                        CERTIFICADO
-                    </h1>
-                    <div id="corpo">
-                        Certificamos que <b class="nomeMonitore"></b> participou do Subprograma de Extensão Universitária Cursinho Pré Universitário Atena do Instituto de Biociencias da UNESP de Botucatu na condição de <b>Monitor(a)</b> no periodo de <label class="mesInicial"></label> a <label class="mesFinal"></label> de <label class="anoFinal"></label>.
-                    </div>
-                    <table id="assinaturas">
-                        <tr>
-                            <td class="assinaturas">
-                                <div id="assinaturaDocente"></div>
-                            </td>
-                            <td class="assinaturas">
-                                <div id="assinaturaDiscente"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="assinaturas">Prof. Docente</td>
-                            <td class="assinaturas">Discente</td>
-                        </tr>
-                        <tr>
-                            <td class="assinaturas">Coordenador Docente do Projeto</td>
-                            <td class="assinaturas">Coordenador Discente do Projeto</td>
-                        </tr>
-                    </table>
-                    <div>
-                        <img id="ibbFrente" src="public/img/ibb.png" />
-                        <img id="unespFrente" src="public/img/unesp.png" />
-                    </div>
-                </div>
-            </div>
-            <input class='button' type="button" onclick="downloadFrente()" value="Download Frente">
-            <br>
-            <div id="verso">
-                <div id="conteudo">
-                    <table id="carga-horaria">
-                        <tr>
-                        <th colspan="2">Atividades Desenvolvidas</th>
-                        </tr>
-                        <tr>
-                            <td class="assinaturas">Monitoria</label></td>
-                            <td class="assinaturas"><label class="presencaMonitorias"></label> horas</td>
-                        </tr>
-                    </table>
-                    <div>
-                        <img id="ibbVerso" src="public/img/ibb.png" />
-                        <img id="assinatura-cursinho" src="public/img/assinatura-cursinho.png" />
-                        <img id="unespVerso" src="public/img/unesp.png" />
-                    </div>
-                </div>
-            </div>
-            <input class='button' type="button" onclick="downloadVerso()" value="Download Verso">
-        </div>
-        <script src="view/certificado/index.js"></script>
-        <script>
-            buscarMonitores();
-            buscarDocentesDiscentes();
-        </script>
+		<label class="title">Certificado</label>
+		<br>
+		<label class="message_alert" id="messageAlert"></label>
+		<br>
+		<form id="relatorioChamada">
+            <label>Tipo</label>
+			<br>
+			<select class='input' id="grupo" name="grupo" required>
+				<option value="">Selecione o tipo</option>
+				<option value="1">Aluno</option>	
+				<option value="2">Professor</option>	
+			</select>
+			<br>
+			<label>Disciplina</label>
+			<br>
+			<?php 
+				$DisciplinaController = new DisciplinaController();
+				$disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+			?>
+			<select class='input' id="disciplina" name="disciplina" required>
+				<option value="">Selecione a Disciplina</option>
+				<?php foreach ($disciplinas as $disciplina) { ?>
+					<option value="<?php echo $disciplina->id ?>"><?php echo $disciplina->nome ?></option>	
+				<?php } ?>
+			</select>
+			<br>
+			<label>Sala</label>
+			<br>
+			<?php 
+				$SalaController = new SalaController();
+				$salas = json_decode($SalaController->buscarTodos())->salas;
+			?>
+			<select class='input' id="sala" name="sala" required>
+				<option value="">Selecione a Sala</option>
+				<?php foreach ($salas as $sala) { ?>
+					<option value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
+				<?php } ?>
+			</select>
+			</br>
+			<label>Data Inicial</label>
+			<br>
+			<input id="dataInicial" name="dataInicial" type="date" class="input" required>
+			<br>
+			<label>Data Final</label>
+			<br>
+			<input id="dataFinal" name="dataFinal" type="date" class="input" required>
+			<br>
+			<input class='button' type="submit" value="Buscar Alunos">
+		</form>
+		</br>
+        <form id="gerarCertificado">
+            <select class="input" id="usuario">
+            </select>
+            </br>
+            <input class='button' type="submit" value="Gerar">
+        </form>
+        </br>
+        <form id="baixarCertificado">
+            <img id="certificado" src="storage\certificado.png">
+            </br>
+            </br>
+            <input class='button' type="submit" value="Baixar">
+        </form>
     </div>
 </div>
