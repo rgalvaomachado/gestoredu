@@ -27,14 +27,20 @@ $(document).ready(function() {
                     $("#lista").html('');
                     alert.innerHTML = "";
                     var usuarios = response.usuarios;
-                    usuarios.map(({nome,presencas,ausencias,justificado,frequencia, aprovado}) => {
+                    usuarios.map(({id, nome,presencas,ausencias,justificado,frequencia, aprovado}) => {
                         var color = (aprovado ? "green" : "red");
+                        var hidden = (aprovado ? "" : "hidden");
                         $('#lista').append(`
                             <tr style="color:${color}">
                                 <td>${nome}</td>
                                 <td>${presencas}</td>
                                 <td>${ausencias}</td>
                                 <td>${frequencia.toFixed(2)}%</td>
+                                <td>
+                                    <a href="/frequencia/certificado?id=${id}&frequencia=${frequencia.toFixed(2)}&disciplina=${disciplina}" target="_blank" ${hidden}>
+                                        <em class="fa fa-file-pdf-o" aria-hidden="true"></em>
+                                    </a>
+                                </td>
                             </tr>
                         `);
                     });

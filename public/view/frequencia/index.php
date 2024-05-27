@@ -68,6 +68,7 @@
 						<th><strong>Ausencia</strong></th>
 						<!-- <th><strong>Justificado</strong></th> -->
 						<th><strong>Frequência</strong></th>
+						<th><strong>Certificado</strong></th>
 					</tr>
 				</thead>
 				<tbody id='lista'>

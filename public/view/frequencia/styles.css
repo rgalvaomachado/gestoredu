@@ -37,3 +37,10 @@ a{
     border-radius: 200px;
     color: #00b3f5;
 }
+
+#certificado{
+    /* width 75% 1080
+    height 75% 710 */
+    width: 810; 
+    height: 532.5;
+}
