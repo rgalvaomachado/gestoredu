@@ -23,7 +23,8 @@ class LoginController{
             if(!isset($_SESSION)){
                 session_start();
             }
-            $_SESSION['usuario'] =  $usuarioValidado;
+            $usuario = explode(' ',$usuarioValidado);
+            $_SESSION['usuario'] = $usuario[0];
             $_SESSION['modo'] = $modoValidado;
             $_SESSION['logado'] = $validado;
             $_SESSION['CREATED'] = time();
