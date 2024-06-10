@@ -53,11 +53,6 @@ class CertificadoController{
         $padding = 400;  // Padding lateral
         $padding_top = 800;  // Padding superior definido pelo usuário
 
-        echo $font_size;
-        echo '</br>';
-        echo $font_path;
-        echo '</br>';
-        echo $text;
         // Divide o texto em linhas
         $lines = $this->wrapText($font_size, $font_path, $text, $image_width - 2 * $padding); // Subtraia o padding
 
