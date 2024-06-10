@@ -8,7 +8,7 @@ class CertificadoController{
         $image_path = $_ENV['DIRECTORY_STORAGE'].'certificado_bga.png';
         $image = imagecreatefrompng($image_path);
     
-        $font_path = 'public\fonts\Arial\arial.ttf';
+        $font_path = 'public\fonts\Open_Sans\static\OpenSans_Condensed-Regular.ttf';
 
         $disciplina = $post['disciplina'];
 
