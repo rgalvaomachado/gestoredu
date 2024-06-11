@@ -3,28 +3,38 @@ include_once('UsuarioController.php');
 include_once('GrupoController.php');
 include_once('ConfiguracaoController.php');
 
-class LoginController{
-    function login($post){
+class LoginController
+{
+    function login($post)
+    {
         $email = $post['email'];
         $senha = base64_encode($post['senha']);
+
+        if ($post['email'] == '' || $post['senha'] == '') {
+            return json_encode([
+                "access" => false,
+                "message" => "Desculpe, usuário ou senha incorreta.",
+            ]);
+        }
+
         $validado = false;
 
         $UsuarioController = new UsuarioController();
         $UsuarioController = json_decode($UsuarioController->buscarTodos());
         $usuarios = $UsuarioController->usuarios;
-        foreach($usuarios as $usuario){
-            if($email == $usuario->email && $senha == $usuario->senha){
+        foreach ($usuarios as $usuario) {
+            if ($email == $usuario->email && $senha == $usuario->senha) {
                 $usuarioValidado = $usuario->nome;
                 $modoValidado = 'representante';
                 $validado = true;
             }
         }
 
-        if($validado){
-            if(!isset($_SESSION)){
+        if ($validado) {
+            if (!isset($_SESSION)) {
                 session_start();
             }
-            $usuario = explode(' ',$usuarioValidado);
+            $usuario = explode(' ', $usuarioValidado);
             $_SESSION['usuario'] = $usuario[0];
             $_SESSION['modo'] = $modoValidado;
             $_SESSION['logado'] = $validado;
@@ -33,7 +43,7 @@ class LoginController{
                 "access" => true,
                 "modo" => $modoValidado,
             ]);
-        }else{
+        } else {
             return json_encode([
                 "access" => false,
                 "message" => "Desculpe, usuário ou senha incorreta.",
@@ -41,8 +51,9 @@ class LoginController{
         }
     }
 
-    function logout(){
-	    if(!isset($_SESSION)){
+    function logout()
+    {
+        if (!isset($_SESSION)) {
             session_start();
         }
         $_SESSION['usuario'] =  "";
@@ -53,8 +64,9 @@ class LoginController{
         ]);
     }
 
-    function verificaLogin(){
-        if(!isset($_SESSION)){
+    function verificaLogin()
+    {
+        if (!isset($_SESSION)) {
             session_start();
         }
         $modo = isset($_SESSION['modo']) ? $_SESSION['modo'] : "";
@@ -70,8 +82,9 @@ class LoginController{
         }
     }
 
-    function verificaSessão(){
-        if(!isset($_SESSION)){
+    function verificaSessão()
+    {
+        if (!isset($_SESSION)) {
             session_start();
         }
         if (time() - $_SESSION['CREATED'] > 1800) { // 30 minutos 
@@ -89,15 +102,16 @@ class LoginController{
         }
     }
 
-    function primeiroLogin($post){
+    function primeiroLogin($post)
+    {
         $UsuarioController = new UsuarioController();
         $response = json_decode($UsuarioController->buscarTodos());
         $usuarios = count($response->usuarios);
-        if ($usuarios > 0){
+        if ($usuarios > 0) {
             return false;
         } else {
-            if (isset($post['nome']) && isset($post['grupos']) && isset($post['email']) && isset($post['senha'])){
-                
+            if (isset($post['nome']) && isset($post['grupos']) && isset($post['email']) && isset($post['senha'])) {
+
                 $UsuarioController->criar([
                     'nome' => $post['nome'],
                     'grupos' => $post['grupos'],
@@ -138,4 +152,3 @@ class LoginController{
         }
     }
 }
-?>
