@@ -1,5 +1,6 @@
 <?php
 include_once('UsuarioController.php');
+include_once('GrupoController.php');
 include_once('ConfiguracaoController.php');
 
 class LoginController{
@@ -119,6 +120,14 @@ class LoginController{
                 $configuraçõesPadrao['professor_endereco'] = 0;
 
                 $ConfiguracaoController->configurar($configuraçõesPadrao);
+
+                $GrupoController = new GrupoController();
+                $GrupoController->criar([
+                    'nome' => 'aluno',
+                ]);
+                $GrupoController->criar([
+                    'nome' => 'professor',
+                ]);
 
                 return json_encode([
                     "access" => true
