@@ -14,7 +14,7 @@ class CertificadoController{
 
         switch ($disciplina) {
             case 2:
-                $text = "Certifico que %nome% participou do Simpósio Anual do Programa de Pós Graduação em Biologia Geral e Aplicada, do Instituto de Biociências de Botucatu - UNESP, realizado entre os dias 20 e 21/05/2024 em Botucatu, São Paulo, na qualidade de ouvinte, com carga horária de 30 horas.";
+                $text = "Certifico que %nome% participou do Simpósio Anual do Programa de Pós Graduação em Biologia Geral e Aplicada, do Instituto de Biociências de Botucatu - UNESP, realizado entre os dias 20 e 21/05/2024 em Botucatu, São Paulo, na qualidade de ouvinte, com carga horária de 20 horas.";
                 break;
             
             case 1:
