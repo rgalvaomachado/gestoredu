@@ -50,8 +50,8 @@ class CertificadoController{
         $text_color = imagecolorallocate($image, 0, 0, 0);
         
         // Define o padding
-        $padding = 400;  // Padding lateral
-        $padding_top = 800;  // Padding superior definido pelo usuário
+        $padding = 400;
+        $padding_top = 400;
 
         // Divide o texto em linhas
         $lines = $this->wrapText($font_size, $font_path, $text, $image_width - 2 * $padding); // Subtraia o padding
