@@ -13,11 +13,11 @@ class CertificadoController{
         $disciplina = $post['disciplina'];
 
         switch ($disciplina) {
-            case 1:
+            case 2:
                 $text = "Certifico que %nome% participou do Simpósio Anual do Programa de Pós Graduação em Biologia Geral e Aplicada, do Instituto de Biociências de Botucatu - UNESP, realizado entre os dias 20 e 21/05/2024 em Botucatu, São Paulo, na qualidade de ouvinte, com carga horária de 30 horas.";
                 break;
             
-            case 2:
+            case 1:
                 $text = "Certifico que o trabalho intitulado: %projeto% de autoria de %nome% foi apresentado no Simpósio Anual do Programa de Pós Graduação em Biologia Geral e Aplicada, do Instituto de Biociências de Botucatu - UNESP, realizado entre os dias 20 e 21/05/2024 em Botucatu, São Paulo.";
                 break;
             
