@@ -38,7 +38,7 @@ class CertificadoController{
         $text = str_replace("%disciplina%", $post["disciplina"], $text);
         $text = str_replace("%projeto%", $post["projeto"], $text);
 
-        $font_size = 70;
+        $font_size = 50;
 
         if (!$image) {
             die("Falha ao carregar a imagem.");
