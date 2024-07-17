@@ -5,12 +5,14 @@ $(document).ready(function() {
         var senha = $("#senhaLogin").val();
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "login",
-                email: email,
-                senha: senha,
+            url: "/api/login",
+            headers: {
+                "Content-Type": "application/json",
             },
+            data: JSON.stringify({
+                "email": email,
+                "senha": senha,
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 if(response.access){
@@ -36,7 +38,7 @@ $(document).ready(function() {
         grupos.push($("#grupos").val());
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
+            url: "/login",
             data: {
                 metodo: "primeiroLogin",
                 nome: nome,

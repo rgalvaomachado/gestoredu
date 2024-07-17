@@ -5,13 +5,15 @@ $(document).ready(function() {
         sala = $("#sala").val();
         disciplina = $("#disciplina").val();
         $.ajax({
-            method: "POST",
-            url: "/src/controller/Controller.php",
+            method: "GET",
+            url: "/api/usuarios",
+            headers: {
+                "Content-Type": "application/json",
+            },
             data: {
-                metodo: "buscarUsuarios",
-                grupo: grupo,
-                disciplina: disciplina,
-                sala: sala,
+                "grupo": grupo,
+                "disciplina": disciplina,
+                "sala": sala,
             },
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -44,16 +46,18 @@ $(document).ready(function() {
     
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "criarPresencaListada",
+            url: "/api/presenca-listada",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({
                 grupo: grupo,
                 sala: sala,
                 data: data,
                 disciplina: disciplina,
                 "presente[]": presente,
                 
-            },
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -83,10 +87,12 @@ $(document).ready(function() {
         var disciplina = $("#disciplina").val();
         var usuario = $("#disciplina").val();
         $.ajax({
-            method: "POST",
-            url: "/src/controller/Controller.php",
+            method: "GET",
+            url: "/api/usuarios",
+            headers: {
+                "Content-Type": "application/json",
+            },
             data: {
-                metodo: "buscarUsuarios",
                 grupo: grupo,
                 disciplina: disciplina,
                 sala: sala,
@@ -118,16 +124,18 @@ $(document).ready(function() {
         var presente = $("#presente").val();
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "criarPresencaInvidual",
+            url: "/api/presenca-individual",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({
                 usuario: usuario,
                 grupo: grupo,
                 sala: sala,
                 disciplina: disciplina,
                 data: data,
                 presente: presente,
-            },
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");

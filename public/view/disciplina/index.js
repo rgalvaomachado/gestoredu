@@ -4,11 +4,13 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "criarDisciplina",
-                nome: nome,
+            url: "/api/disciplina",
+            headers: {
+                "Content-Type": "application/json",
             },
+            data: JSON.stringify({
+                nome: nome,
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -34,13 +36,15 @@ $(document).ready(function() {
         var disciplina = $("#disciplina").val();
         var nome = $("#nome").val();
         $.ajax({
-            method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "editarDisciplina",
+            method: "PUT",
+            url: "/api/disciplina",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({
                 id: disciplina,
                 nome: nome
-            },
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -65,12 +69,14 @@ $(document).ready(function() {
         e.preventDefault();
         var disciplina = $("#disciplina").val();
         $.ajax({
-            method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "deletarDisciplina",
-                id: disciplina,
+            method: "DELETE",
+            url: "/api/disciplina",
+            headers: {
+                "Content-Type": "application/json",
             },
+            data: JSON.stringify({
+                id: disciplina,
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
