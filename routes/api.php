@@ -13,16 +13,19 @@
         ['PUT','/usuario','UsuarioController','editar'],
         ['DELETE','/usuario','UsuarioController','deletar'],
 
+        ['GET','/grupos','GrupoController','buscarTodos'],
         ['GET','/grupo','GrupoController','buscar'],
         ['POST','/grupo','GrupoController','criar'],
         ['PUT','/grupo','GrupoController','editar'],
         ['DELETE','/grupo','GrupoController','deletar'],
 
+        ['GET','/disciplinas','DisciplinaController','buscarTodos'],
         ['GET','/disciplina','DisciplinaController','buscar'],
         ['POST','/disciplina','DisciplinaController','criar'],
         ['PUT','/disciplina','DisciplinaController','editar'],
         ['DELETE','/disciplina','DisciplinaController','deletar'],
 
+        ['GET','/salas','SalaController','buscarTodos'],
         ['GET','/sala','SalaController','buscar'],
         ['POST','/sala','SalaController','criar'],
         ['PUT','/sala','SalaController','editar'],

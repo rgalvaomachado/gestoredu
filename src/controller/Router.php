@@ -13,10 +13,16 @@
 
         private $url;
         private $data;
+        private $method;
+        private $token;
 
         function __construct() {
             $this->url = $_SERVER["REQUEST_URI"];
             $this->data = [];
+            $this->method = $_SERVER["REQUEST_METHOD"];     //GET, POST, PUT, DELETE.
+
+            $header = getallheaders();
+            $this->token = isset($header['token']) ? $header['token'] : null;
         }
 
         function checkApi(){
@@ -34,7 +40,7 @@
             $apiPart = explode('?', $apiPart);
             $endpoint = $apiPart[0];
             $queryString = isset($apiPart[1]) ? $apiPart[1] : "";
- 
+
             if ($queryString != "") {
                 $paramsArray = explode('&', $queryString);
                 $params = [];
@@ -44,14 +50,14 @@
                     $value = $param[1];
                     $params[$name] = $value;
                 }
-                array_merge($params, $this->data);
+                $this->data = array_merge($this->data, $params);
             }
 
             return '/'.$endpoint;
         }
 
         function runApi($routes){
-           $method = $_SERVER["REQUEST_METHOD"];     //GET, POST, PUT, DELETE.
+            $path = $this->pathApi();
 
             $contents = file_get_contents('php://input');
             if (isset($contents)){
@@ -59,21 +65,16 @@
                 $data = array_merge($input, $this->data);
             }
 
-            $header = getallheaders();
-            $token = isset($header['token']) ? $header['token'] : null;
-
-            $path = $this->pathApi();
-
             foreach($routes as $route){
                 $RouteMethod = $route[0];
                 $RoutePath = $route[1];
                 $RouteClass = $route[2];
                 $RouteFunction = $route[3];
-                if ($RouteMethod == $method && $RoutePath == $path){
+                if ($RouteMethod == $this->method && $RoutePath == $path){
                     $Class = new $RouteClass();
                     if (method_exists($Class,$RouteFunction)){
                         http_response_code(200);
-                        echo $Class->$RouteFunction($data, $token);
+                        echo $Class->$RouteFunction($data, $this->token);
                         break;
                     } else {
                         http_response_code(405);
