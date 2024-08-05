@@ -12,17 +12,15 @@
     class Router{
 
         private $url;
-        private $data;
         private $method;
+        private $data;
         private $token;
 
         function __construct() {
             $this->url = $_SERVER["REQUEST_URI"];
-            $this->data = [];
             $this->method = $_SERVER["REQUEST_METHOD"];     //GET, POST, PUT, DELETE.
-
-            $header = getallheaders();
-            $this->token = isset($header['token']) ? $header['token'] : null;
+            $this->data = $this->getData();
+            $this->token = $this->getToken();
         }
 
         function checkApi(){
@@ -33,6 +31,20 @@
             return true;
         }
 
+        function getToken(){
+            $header = getallheaders();
+            $token = isset($header['token']) ? $header['token'] : null;
+            return $token;
+        }
+
+        function getData(){
+            $contents = file_get_contents('php://input');
+            $input = [];
+            if (isset($contents)){
+                $input = (array) json_decode($contents);
+            }
+            return $input;
+        }
 
         function pathApi(){
             $url = $this->url;
@@ -59,12 +71,6 @@
         function runApi($routes){
             $path = $this->pathApi();
 
-            $contents = file_get_contents('php://input');
-            if (isset($contents)){
-                $input = (array) json_decode($contents);
-                $data = array_merge($input, $this->data);
-            }
-
             foreach($routes as $route){
                 $RouteMethod = $route[0];
                 $RoutePath = $route[1];
@@ -74,7 +80,7 @@
                     $Class = new $RouteClass();
                     if (method_exists($Class,$RouteFunction)){
                         http_response_code(200);
-                        echo $Class->$RouteFunction($data, $this->token);
+                        echo $Class->$RouteFunction($this->data, $this->token);
                         break;
                     } else {
                         http_response_code(405);
