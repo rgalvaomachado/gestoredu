@@ -1,39 +1,40 @@
 <?php
     $web = [
-        ['home','public/view/home/index.php'],
+        // [ENDPOINT, VIEW (public/view)]
+        ['/home','/home/index.php'],
 
-        ['aluno','public/view/aluno/index.php'],
-        ['aluno/criar','public/view/aluno/criar.php'],
-        ['aluno/editar','public/view/aluno/editar.php'],
-        ['aluno/deletar','public/view/aluno/deletar.php'],
+        ['/aluno','/aluno/index.php'],
+        ['/aluno/criar','/aluno/criar.php'],
+        ['/aluno/editar','/aluno/editar.php'],
+        ['/aluno/deletar','/aluno/deletar.php'],
 
-        ['professor','public/view/professor/index.php'],
-        ['professor/criar','public/view/professor/criar.php'],
-        ['professor/editar','public/view/professor/editar.php'],
-        ['professor/deletar','public/view/professor/deletar.php'],
+        ['/professor','/professor/index.php'],
+        ['/professor/criar','/professor/criar.php'],
+        ['/professor/editar','/professor/editar.php'],
+        ['/professor/deletar','/professor/deletar.php'],
 
-        ['disciplina','public/view/disciplina/index.php'],
-        ['disciplina/criar','public/view/disciplina/criar.php'],
-        ['disciplina/editar','public/view/disciplina/editar.php'],
-        ['disciplina/deletar','public/view/disciplina/deletar.php'],
+        ['/disciplina','/disciplina/index.php'],
+        ['/disciplina/criar','/disciplina/criar.php'],
+        ['/disciplina/editar','/disciplina/editar.php'],
+        ['/disciplina/deletar','/disciplina/deletar.php'],
 
-        ['sala','public/view/sala/index.php'],
-        ['sala/criar','public/view/sala/criar.php'],
-        ['sala/editar','public/view/sala/editar.php'],
-        ['sala/deletar','public/view/sala/deletar.php'],
+        ['/sala','/sala/index.php'],
+        ['/sala/criar','/sala/criar.php'],
+        ['/sala/editar','/sala/editar.php'],
+        ['/sala/deletar','/sala/deletar.php'],
 
-        ['presenca','public/view/presenca/index.php'],
-        ['presenca/individual','public/view/presenca/individual.php'],
-        ['presenca/listada','public/view/presenca/listada.php'],
+        ['/presenca','/presenca/index.php'],
+        ['/presenca/individual','/presenca/individual.php'],
+        ['/presenca/listada','/presenca/listada.php'],
 
-        ['frequencia','public/view/frequencia/index.php'],
-        ['frequencia/certificado','public/view/frequencia/certificado.php'],
+        ['/frequencia','/frequencia/index.php'],
+        ['/frequencia/certificado','/frequencia/certificado.php'],
 
-        ['certificado','public/view/certificado/index.php'],
+        ['/certificado','/certificado/index.php'],
 
-        ['configuracao','public/view/configuracao/index.php'],
+        ['/configuracao','/configuracao/index.php'],
 
-        ['login','public/view/login/index.php'],
+        ['/login','/login/index.php'],
 
-        ['','public/view/login/index.php'],
+        ['','/login/index.php'],
     ];

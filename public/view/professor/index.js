@@ -39,9 +39,11 @@ $(document).ready(function() {
 
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "criarUsuario",
+            url: "/api/usuario",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({
                 nome: nome,
                 data_nascimento: data_nascimento,
                 rg: rg,
@@ -59,7 +61,7 @@ $(document).ready(function() {
                 grupos: grupos,
                 disciplinas: disciplinas,
                 salas: salas,
-            },
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -119,10 +121,12 @@ $(document).ready(function() {
         }
 
         $.ajax({
-            method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "editarUsuario",
+            method: "PUT",
+            url: "/api/usuario",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({
                 id: id,
                 nome: nome,
                 data_nascimento: data_nascimento,
@@ -141,7 +145,7 @@ $(document).ready(function() {
                 grupos: grupos,
                 disciplinas: disciplinas,
                 salas: salas,
-            },
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -166,12 +170,14 @@ $(document).ready(function() {
         e.preventDefault();
         var usuario = $("#usuario").val();
         $.ajax({
-            method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "deletarUsuario",
-                id: usuario,
+            method: "DELETE",
+            url: "/api/usuario",
+            headers: {
+                "Content-Type": "application/json",
             },
+            data: JSON.stringify({
+                id: usuario,
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");

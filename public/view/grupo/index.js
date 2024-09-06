@@ -4,11 +4,13 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "../src/controller/Controller.php",
-            data: {
-                metodo: "criarGrupo",
-                nome: nome,
+            url: "/api/grupo",
+            headers: {
+                "Content-Type": "application/json",
             },
+            data: JSON.stringify({
+                nome: nome,
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -35,12 +37,14 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "../src/controller/Controller.php",
-            data: {
-                metodo: "editarGrupo",
+            url: "/api/grupo",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({
                 id: grupo,
                 nome: nome
-            },
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -66,11 +70,13 @@ $(document).ready(function() {
         var grupo = $("#grupo").val();
         $.ajax({
             method: "POST",
-            url: "../src/controller/Controller.php",
-            data: {
-                metodo: "deletarGrupo",
-                id: grupo,
+            url: "/api/grupo",
+            headers: {
+                "Content-Type": "application/json",
             },
+            data: JSON.stringify({
+                id: grupo,
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");

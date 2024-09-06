@@ -12,15 +12,17 @@ $(document).ready(function() {
         $('#detalhes').hide();
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "relatorioChamada",
+            url: "/api/relatorio-chamada",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({
                 grupo: grupo,
                 disciplina: disciplina,
                 sala: sala,
                 dataInicial: dataInicial,
                 dataFinal: dataFinal,
-            },
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText)
                 if (response.access) {

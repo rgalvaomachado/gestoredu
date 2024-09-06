@@ -4,11 +4,13 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "criarSala",
-                nome: nome,
+            url: "/api/sala",
+            headers: {
+                "Content-Type": "application/json",
             },
+            data: JSON.stringify({
+                nome: nome,
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -34,13 +36,15 @@ $(document).ready(function() {
         var sala = $("#sala").val();
         var nome = $("#nome").val();
         $.ajax({
-            method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "editarSala",
+            method: "PUT",
+            url: "/api/sala",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({
                 id: sala,
                 nome: nome
-            },
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -65,12 +69,14 @@ $(document).ready(function() {
         e.preventDefault();
         var sala = $("#sala").val();
         $.ajax({
-            method: "POST",
-            url: "/src/controller/Controller.php",
-            data: {
-                metodo: "deletarSala",
-                id: sala,
+            method: "DELETE",
+            url: "/api/sala",
+            headers: {
+                "Content-Type": "application/json",
             },
+            data: JSON.stringify({
+                id: sala,
+            }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");

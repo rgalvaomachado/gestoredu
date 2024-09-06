@@ -1,18 +1,21 @@
 $(document).ready(function() {
     $('#configurar').submit(function(e) {
         e.preventDefault();
-        var formData = $('#configurar').serializeArray();
-        formData.push({ name: 'metodo', value: 'configuracao' });
-        $('#configurar input[type="checkbox"]').each(function() {
-            var name = $(this).attr('name');
-            var value = $(this).is(':checked') ? '1' : '0';
-            formData.push({ name: name, value: value });
+        var formData = {};
+        var checkboxes = document.querySelectorAll('#configurar input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            var name = checkbox.name;
+            var value = checkbox.checked ? '1' : '0';
+            formData[name] = value;
         });
 
         $.ajax({
             method: "POST",
-            url: "/src/controller/Controller.php",
-            data: formData,
+            url: "/api/configurar",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify(formData),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");

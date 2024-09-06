@@ -1,66 +1,90 @@
 <?php
-    // Defina a função de autoload
-    spl_autoload_register(function ($class_name) {
-        // Converta o nome da classe para o caminho do arquivo
-        $file = 'src/' . str_replace('\\', '/', $class_name) . '.php';
-
-        // Verifique se o arquivo existe
-        if (file_exists($file)) {
-            include $file;
-        }
-    });
+    include_once('DisciplinaController.php');
+    include_once('LoginController.php');
+    include_once('PresencaController.php');
+    include_once('SalaController.php');
+    include_once('RelatorioController.php');
+    include_once('CertificadoController.php');
+    include_once('UsuarioController.php');
+    include_once('GrupoController.php');
+    include_once('ConfiguracaoController.php');
 
     class Router{
-        function checkApi(){
-            $uri = $_SERVER["REQUEST_URI"];
-            $parametros = explode('/',$uri);
-            unset($parametros[0]);
-            $parametros = array_values($parametros);
-            if ($parametros[0] == 'api'){
-                return true;
-            }
+
+        private $url;
+        private $method;
+        private $data;
+        private $token;
+
+        function __construct() {
+            $this->url = $_SERVER["REQUEST_URI"];
+            $this->method = $_SERVER["REQUEST_METHOD"];     //GET, POST, PUT, DELETE.
+            $this->data = $this->getData();
+            $this->token = $this->getToken();
         }
 
-        function pathApi($data){
-            $uri = $_SERVER["REQUEST_URI"];
-            $parametros = explode('/',$uri);
-            unset($parametros[0]);
-            unset($parametros[1]);
-            if (isset($parametros[3])){
-                $data['id'] = $parametros[3];
-                $parametros[3] = '*';
+        function checkApi(){
+            $uri = $this->url;
+            if (strpos($uri, '/api/') === false) {
+                return false;
             }
-            $path = implode('/',$parametros);
-            
-            return '/'.$path;
+            return true;
+        }
+
+        function getToken(){
+            $header = getallheaders();
+            $token = isset($header['token']) ? $header['token'] : null;
+            return $token;
+        }
+
+        function getData(){
+            $contents = file_get_contents('php://input');
+            $input = [];
+            if (isset($contents)){
+                $input = (array) json_decode($contents);
+            }
+            return $input;
+        }
+
+        function pathApi(){
+            $url = $this->url;
+            $apiPart = substr($url, strpos($url, '/api/') + 5);
+            $apiPart = explode('?', $apiPart);
+            $endpoint = $apiPart[0];
+            $queryString = isset($apiPart[1]) ? $apiPart[1] : "";
+
+            if ($queryString != "") {
+                $paramsArray = explode('&', $queryString);
+                $params = [];
+                foreach ($paramsArray as $param) {
+                    $param = explode('=', $param);
+                    $name = $param[0];
+                    $value = $param[1];
+                    $params[$name] = $value;
+                }
+                $this->data = array_merge($this->data, $params);
+            }
+
+            return '/'.$endpoint;
         }
 
         function runApi($routes){
-           $method = $_SERVER["REQUEST_METHOD"];     //GET, POST, PUT, DELETE.
-
-            $contents = file_get_contents('php://input');
-            $data = [];
-            if (isset($contents)){
-                $input = (array) json_decode($contents);
-                $data = array_merge($input, $data);
-            }
-
-            $header = getallheaders();
-            $token = isset($header['token']) ? $header['token'] : null;
-
-            $path = $this->pathApi($data);
+            $path = $this->pathApi();
 
             foreach($routes as $route){
                 $RouteMethod = $route[0];
                 $RoutePath = $route[1];
                 $RouteClass = $route[2];
                 $RouteFunction = $route[3];
-                if ($RouteMethod == $method && $RoutePath == $path){
+                if ($RouteMethod == $this->method && $RoutePath == $path){
                     $Class = new $RouteClass();
                     if (method_exists($Class,$RouteFunction)){
-                        return $Class->$RouteFunction($data, $token);
+                        http_response_code(200);
+                        echo $Class->$RouteFunction($this->data, $this->token);
+                        break;
                     } else {
                         http_response_code(405);
+                        break;
                     }
                 } else {
                     http_response_code(405);
@@ -76,38 +100,38 @@
             if(is_file($url)){
                 return $url;
             }
-    
-            $public_url = "public/".$url;
 
-            if(is_file($public_url)){
-                return $public_url;
+            if(is_file("public/".$url)){
+                return "public/".$url;
             }
+
+            if (file_exists('public/head.php')) {
+                include_once('public/head.php');
+            }
+
+            $url = '/'.$url;
             
             if (!isset($_SESSION['logado']) || $_SESSION['logado'] == false){
-                $url = "login";
+                $url = "/login";
             }
 
             if ($url == "" && isset($_SESSION['modo']) && $_SESSION['modo'] == 'admin'){
                 header('Location: admin/home');
             }
 
-            if ($url == ""){
-                $url = "home";
+            if ($url == "/"){
+                $url = "/home";
             }
 
-            if ($url == "admin" && isset($_SESSION['modo']) && $_SESSION['modo'] == 'admin'){
-                $url = "admin/home";
+            if ($url == "/admin" && isset($_SESSION['modo']) && $_SESSION['modo'] == 'admin'){
+                $url = "/admin/home";
             } elseif ($url == "" && isset($_SESSION['modo']) && $_SESSION['modo'] == 'usuario' ){
-                $url = "home";
-            }
-    
-            if (file_exists('public/head.php')) {
-                include_once('public/head.php');
+                $url = "/home";
             }
 
             foreach($routes as $route){
                 $RoutePath = $route[0];
-                $RouteWeb = $route[1];
+                $RouteWeb = 'public/view'.$route[1];
                 if ($url == $RoutePath){
                     return $RouteWeb;
                 }
@@ -117,7 +141,7 @@
         }
 
         function runWeb($routes){
-            $uri = $_SERVER["REQUEST_URI"];
+            $uri = $this->url;
             $parametros = explode('/',$uri);
             unset($parametros[0]);
             $parametros = array_values($parametros);
