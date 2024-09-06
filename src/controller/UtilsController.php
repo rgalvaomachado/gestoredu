@@ -40,5 +40,34 @@
                     break;
             }
         }
+
+        function getDiaSemana(){
+            $today = getdate();
+            $weekday = $today['weekday'];
+            switch($weekday){
+                case 'Sunday':
+                    return '1';
+                    break;
+                case 'Monday':
+                    return '2';
+                    break;
+                case 'Tuesday':
+                    return '3';
+                    break;
+                case 'Wednesday':
+                    return '4';
+                    break;
+                case 'Thursday':
+                    return '5';
+                    break;
+                case 'Friday':
+                    return '6';
+                    break;
+                case 'Saturday':
+                    return '7';
+                    break;
+                
+            }
+        }
     }
 ?>

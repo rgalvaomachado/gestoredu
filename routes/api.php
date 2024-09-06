@@ -31,6 +31,12 @@
         ['PUT','/sala','SalaController','editar'],
         ['DELETE','/sala','SalaController','deletar'],
 
+        ['GET','/horarios','HorarioController','buscarTodos'],
+        ['GET','/horario','HorarioController','buscar'],
+        ['POST','/horario','HorarioController','criar'],
+        ['PUT','/horario','HorarioController','editar'],
+        ['DELETE','/horario','HorarioController','deletar'],
+
         ['POST','/presenca-listada','PresencaController','criarPresencaListada'],
         ['POST','/presenca-individual','PresencaController','criarPresencaInvidual'],
 
