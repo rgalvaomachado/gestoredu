@@ -53,6 +53,15 @@ input:focus {
   outline-color: #004fde;
 }
 
+.checkbox{
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 70%;
+  height: 25px;
+  border: solid 1px #ccc ;
+}
+
 .button{
   background-color: #004fde;
   color:#ffffff;
@@ -315,6 +324,10 @@ a, p, label, option, input, td, tr{
 
   .title{
     font-size: 35px;
+  }
+
+  .subTitle{
+    font-size: 25px;
   }
 
   .message_alert{

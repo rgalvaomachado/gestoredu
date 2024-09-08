@@ -35,6 +35,18 @@
 				<?php } ?>
 			</select>
 			<br>
+            <label>Disciplina</label>
+			<br>
+            <?php
+                $DisciplinaController = new DisciplinaController();
+                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+            ?>
+			<select class='input' id="cod_disciplina" name="cod_disciplina" required>
+				<?php foreach ($disciplinas as $disciplina) { ?>
+					<option value="<?php echo $disciplina->id ?>"><?php echo $disciplina->nome ?></option>	
+				<?php } ?>
+			</select>
+			<br>
             <label>Dia da Semana</label>
 			<br>
             <select class='input' id="dia_semana" name="dia_semana" required>

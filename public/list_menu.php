@@ -74,7 +74,7 @@
     <li>
         <div class="itemMenu">
             <a href="/horario" style="<?php echo $menu_horario?>">
-                <em class="fa fa-clock-o"></em>&nbsp;Horario
+                <em class="fa fa-clock-o"></em>&nbsp;Horário
             </a>
         </div>
     </li>

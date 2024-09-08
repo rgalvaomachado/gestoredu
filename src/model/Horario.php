@@ -5,6 +5,7 @@
         public $id;
         public $cod_usuario;
         public $cod_sala;
+        public $cod_disciplina;
         public $dia_semana;
         public $hora_inicio;
         public $hora_fim;
@@ -15,6 +16,7 @@
                 INSERT INTO horario (
                     cod_usuario,
                     cod_sala,
+                    cod_disciplina,
                     dia_semana,
                     hora_inicio,
                     hora_fim,
@@ -22,6 +24,7 @@
                 ) VALUES (
                     :cod_usuario,
                     :cod_sala,
+                    :cod_disciplina,
                     :dia_semana,
                     :hora_inicio,
                     :hora_fim,
@@ -32,6 +35,7 @@
             $criar->execute([
                 ':cod_usuario' => $this->cod_usuario,
                 ':cod_sala' => $this->cod_sala,
+                ':cod_disciplina' => $this->cod_disciplina,
                 ':dia_semana' => $this->dia_semana,
                 ':hora_inicio' => $this->hora_inicio,
                 ':hora_fim' => $this->hora_fim,
@@ -41,44 +45,44 @@
         }
 
         function buscarTodos(){
-            $params = [];
-
             $sql = "
-                SELECT horario.*, sala.nome as sala_nome, usuario.nome as usuario_nome
+                SELECT 
+                    horario.*, 
+                    sala.nome as sala_nome, 
+                    disciplina.nome as disciplina_nome, 
+                    usuario.nome as usuario_nome,
+                    TIMEDIFF(horario.hora_fim, horario.hora_inicio) AS duracao
                 FROM horario
                 LEFT JOIN sala ON sala.id = horario.cod_sala
+                LEFT JOIN disciplina ON disciplina.id = horario.cod_disciplina
                 LEFT JOIN usuario ON usuario.id = horario.cod_usuario
-                
             ";
 
+            $conditions = [];
+            $params = [];
+            
             if ($this->dia_semana) {
-                $sql .= "WHERE dia_semana = :dia_semana";
+                $conditions[] = "dia_semana = :dia_semana";
                 $params[':dia_semana'] = $this->dia_semana;
-             }
-
-            if ($this->cod_usuario && !$this->cod_sala) {
-               $sql .= "WHERE cod_usuario = :cod_usuario";
-               $params[':cod_usuario'] = $this->cod_usuario;
             }
-
-            if (!$this->cod_usuario && $this->cod_sala) {
-                $sql .= "WHERE cod_sala = :cod_sala";
-                $params[':cod_sala'] = $this->cod_sala;
-            }
-
-            if ($this->cod_usuario && $this->cod_sala) {
-                $sql .= "
-                    WHERE 
-                        cod_sala = :cod_sala
-                        AND cod_usuario = :cod_usuario
-                ";
-                $params[':cod_sala'] = $this->cod_sala;
+            
+            if ($this->cod_usuario) {
+                $conditions[] = "cod_usuario = :cod_usuario";
                 $params[':cod_usuario'] = $this->cod_usuario;
             }
+            
+            if ($this->cod_sala) {
+                $conditions[] = "cod_sala = :cod_sala";
+                $params[':cod_sala'] = $this->cod_sala;
+            }
+            
+            if (count($conditions) > 0) {
+                $sql .= " WHERE " . implode(" AND ", $conditions);
+            }
+            
+            $sql .= " ORDER BY horario.dia_semana ASC, horario.hora_inicio ASC;";
 
-            $sql .= " ORDER BY horario.hora_inicio ASC;";
-
-            $getTodos =  $this->bd->prepare($sql);
+            $getTodos = $this->bd->prepare($sql);
             $getTodos->execute($params);
             return $getTodos->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -88,6 +92,7 @@
                 SELECT horario.*, sala.nome as sala_nome, usuario.nome as usuario_nome
                 FROM horario
                 LEFT JOIN sala ON sala.id = horario.cod_sala
+                LEFT JOIN disciplina ON disciplina.id = horario.cod_disciplina
                 LEFT JOIN usuario ON usuario.id = horario.cod_usuario
                 WHERE horario.id = :id 
                 ORDER BY hora_inicio ASC
@@ -105,6 +110,7 @@
                 SET 
                     cod_usuario = :cod_usuario,
                     cod_sala = :cod_sala, 
+                    cod_disciplina = :cod_disciplina, 
                     hora_inicio = :hora_inicio, 
                     hora_fim = :hora_fim, 
                     cor = :cor 
@@ -115,6 +121,7 @@
                 ':id'   => $this->id,
                 ':cod_usuario' => $this->cod_usuario,
                 ':cod_sala' => $this->cod_sala,
+                ':cod_disciplina' => $this->cod_disciplina,
                 ':hora_inicio' => $this->hora_inicio,
                 ':hora_fim' => $this->hora_fim,
                 ':cor' => $this->cor,

@@ -6,6 +6,7 @@
             $Horario = new Horario();
             $Horario->cod_usuario = isset($post['cod_usuario']) ? $post['cod_usuario'] : null;
             $Horario->cod_sala = isset($post['cod_sala']) ? $post['cod_sala'] : null;
+            $Horario->cod_disciplina = isset($post['cod_disciplina']) ? $post['cod_disciplina'] : null;
             $Horario->dia_semana = isset($post['dia_semana']) ? $post['dia_semana'] : null;
             $horarios = $Horario->buscarTodos();
             return json_encode([
@@ -36,6 +37,7 @@
             $Horario = new Horario();
             $Horario->cod_usuario = $post['cod_usuario'];
             $Horario->cod_sala = $post['cod_sala'];
+            $Horario->cod_disciplina = $post['cod_disciplina'];
             $Horario->dia_semana = $post['dia_semana'];
             $Horario->hora_inicio = $post['hora_inicio'];
             $Horario->hora_fim = $post['hora_fim'];
@@ -60,6 +62,7 @@
             $Horario->id = $post['id'];
             $Horario->cod_usuario = $post['cod_usuario'];
             $Horario->cod_sala = $post['cod_sala'];
+            $Horario->cod_disciplina = $post['cod_disciplina'];
             $Horario->dia_semana = $post['dia_semana'];
             $Horario->hora_inicio = $post['hora_inicio'];
             $Horario->hora_fim = $post['hora_fim'];
