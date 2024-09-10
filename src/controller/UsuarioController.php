@@ -1,8 +1,8 @@
 <?php
     include_once('src/model/Usuario.php');
-    include_once('src/model/Grupo.php');
-    include_once('src/model/Disciplina.php');
-    include_once('src/model/Sala.php');
+    include_once('src/model/UsuarioGrupo.php');
+    include_once('src/model/UsuarioDisciplina.php');
+    include_once('src/model/UsuarioSala.php');
     include_once('src/model/Projeto.php');
 
     class UsuarioController{
@@ -29,12 +29,12 @@
             $user->id = $post['id'];
             $usuario = $user->buscar();
 
-            $Disciplina = new Disciplina();
+            $Disciplina = new UsuarioDisciplina();
             $Disciplina->cod_usuario = $post['id'];
             $disciplinas = $Disciplina->usuario_disciplina_buscar();
             $usuario['disciplinas'] = $disciplinas;
 
-            $Sala = new Sala();
+            $Sala = new UsuarioSala();
             $Sala->cod_usuario = $post['id'];
             $salas = $Sala->usuario_sala_buscar();
             $usuario['salas'] = $salas;
@@ -74,7 +74,7 @@
 
             $id = $usuario->criar();
 
-            $Grupo = new Grupo();
+            $Grupo = new UsuarioGrupo();
             $Grupo->cod_usuario = $id;
             $Grupo->usuario_grupo_deletar();
             if(!empty($post['grupos'])){
@@ -84,7 +84,7 @@
                 }
             }
 
-            $Disciplina = new Disciplina();
+            $Disciplina = new UsuarioDisciplina();
             $Disciplina->cod_usuario = $id;
             $Disciplina->usuario_disciplina_deletar();
             if(!empty($post['disciplinas'])){
@@ -94,7 +94,7 @@
                 }
             }
 
-            $Sala = new Sala();
+            $Sala = new UsuarioSala();
             $Sala->cod_usuario = $id;
             $Sala->usuario_sala_deletar();
             if(!empty($post['salas'])){
@@ -145,7 +145,7 @@
 
             $id = $usuario->editar();
 
-            $Grupo = new Grupo();
+            $Grupo = new UsuarioGrupo();
             $Grupo->cod_usuario = $id;
             $Grupo->usuario_grupo_deletar();
             if(!empty($post['grupos'])){
@@ -155,7 +155,7 @@
                 }
             }
 
-            $Disciplina = new Disciplina();
+            $Disciplina = new UsuarioDisciplina();
             $Disciplina->cod_usuario = $id;
             $Disciplina->usuario_disciplina_deletar();
             if(!empty($post['disciplinas'])){
@@ -165,7 +165,7 @@
                 }
             }
 
-            $Sala = new Sala();
+            $Sala = new UsuarioSala();
             $Sala->cod_usuario = $id;
             $Sala->usuario_sala_deletar();
             if(!empty($post['salas'])){
@@ -201,9 +201,9 @@
         }
 
         function deletar($post){
-            $disciplina = new Usuario();
-            $disciplina->id = $post['id'];
-            $deletado = $disciplina->deletar();
+            $Usuario = new Usuario();
+            $Usuario->id = $post['id'];
+            $deletado = $Usuario->deletar();
             if ($deletado){
                 return json_encode([
                     "access" => true,
