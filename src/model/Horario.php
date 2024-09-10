@@ -75,6 +75,11 @@
                 $conditions[] = "cod_sala = :cod_sala";
                 $params[':cod_sala'] = $this->cod_sala;
             }
+
+            if ($this->cod_disciplina) {
+                $conditions[] = "cod_disciplina = :cod_disciplina";
+                $params[':cod_disciplina'] = $this->cod_disciplina;
+            }
             
             if (count($conditions) > 0) {
                 $sql .= " WHERE " . implode(" AND ", $conditions);
