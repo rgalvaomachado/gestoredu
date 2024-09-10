@@ -74,33 +74,36 @@
 
             $id = $usuario->criar();
 
-            $Grupo = new UsuarioGrupo();
-            $Grupo->cod_usuario = $id;
-            $Grupo->usuario_grupo_deletar();
+            $UsuarioGrupo = new UsuarioGrupo();
+            $UsuarioGrupo->cod_usuario = $id;
+            $UsuarioGrupo->usuario_grupo_deletar();
             if(!empty($post['grupos'])){
                 foreach ($post['grupos'] as $grupo) {
-                    $Grupo->id = $grupo;
-                    $Grupo->usuario_grupo_criar();
+                    $UsuarioGrupo->cod_usuario = $id;
+                    $UsuarioGrupo->cod_grupo = $grupo;
+                    $UsuarioGrupo->usuario_grupo_criar();
                 }
             }
 
-            $Disciplina = new UsuarioDisciplina();
-            $Disciplina->cod_usuario = $id;
-            $Disciplina->usuario_disciplina_deletar();
+            $UsuarioDisciplina = new UsuarioDisciplina();
+            $UsuarioDisciplina->cod_usuario = $id;
+            $UsuarioDisciplina->usuario_disciplina_deletar();
             if(!empty($post['disciplinas'])){
                 foreach ($post['disciplinas'] as $disciplina) {
-                    $Disciplina->id = $disciplina;
-                    $Disciplina->usuario_disciplina_criar();
+                    $UsuarioDisciplina->cod_usuario = $id;
+                    $UsuarioDisciplina->cod_disciplina = $disciplina;
+                    $UsuarioDisciplina->usuario_disciplina_criar();
                 }
             }
 
-            $Sala = new UsuarioSala();
-            $Sala->cod_usuario = $id;
-            $Sala->usuario_sala_deletar();
+            $UsuarioSala = new UsuarioSala();
+            $UsuarioSala->cod_usuario = $id;
+            $UsuarioSala->usuario_sala_deletar();
             if(!empty($post['salas'])){
                 foreach ($post['salas'] as $sala) {
-                    $Sala->id = $sala;
-                    $Sala->usuario_sala_criar();
+                    $UsuarioSala->cod_usuario = $id;
+                    $UsuarioSala->cod_sala = $sala;
+                    $UsuarioSala->usuario_sala_criar();
                 }
             }
 
@@ -145,33 +148,36 @@
 
             $id = $usuario->editar();
 
-            $Grupo = new UsuarioGrupo();
-            $Grupo->cod_usuario = $id;
-            $Grupo->usuario_grupo_deletar();
+            $UsuarioGrupo = new UsuarioGrupo();
+            $UsuarioGrupo->cod_usuario = $id;
+            $UsuarioGrupo->usuario_grupo_deletar();
             if(!empty($post['grupos'])){
                 foreach ($post['grupos'] as $grupo) {
-                    $Grupo->id = $grupo;
-                    $Grupo->usuario_grupo_criar();
+                    $UsuarioGrupo->cod_usuario = $id;
+                    $UsuarioGrupo->cod_grupo = $grupo;
+                    $UsuarioGrupo->usuario_grupo_criar();
                 }
             }
 
-            $Disciplina = new UsuarioDisciplina();
-            $Disciplina->cod_usuario = $id;
-            $Disciplina->usuario_disciplina_deletar();
+            $UsuarioDisciplina = new UsuarioDisciplina();
+            $UsuarioDisciplina->cod_usuario = $id;
+            $UsuarioDisciplina->usuario_disciplina_deletar();
             if(!empty($post['disciplinas'])){
                 foreach ($post['disciplinas'] as $disciplina) {
-                    $Disciplina->id = $disciplina;
-                    $Disciplina->usuario_disciplina_criar();
+                    $UsuarioDisciplina->cod_usuario = $id;
+                    $UsuarioDisciplina->cod_disciplina = $disciplina;
+                    $UsuarioDisciplina->usuario_disciplina_criar();
                 }
             }
 
-            $Sala = new UsuarioSala();
-            $Sala->cod_usuario = $id;
-            $Sala->usuario_sala_deletar();
+            $UsuarioSala = new UsuarioSala();
+            $UsuarioSala->cod_usuario = $id;
+            $UsuarioSala->usuario_sala_deletar();
             if(!empty($post['salas'])){
                 foreach ($post['salas'] as $sala) {
-                    $Sala->id = $sala;
-                    $Sala->usuario_sala_criar();
+                    $UsuarioSala->cod_usuario = $id;
+                    $UsuarioSala->cod_sala = $sala;
+                    $UsuarioSala->usuario_sala_criar();
                 }
             }
 
