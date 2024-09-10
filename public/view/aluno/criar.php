@@ -103,7 +103,8 @@
             ?>
             <div id='gruposTodos'>
                 <?php foreach ($disciplinas as $disciplina) { ?>
-                    <input type='checkbox' id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>"><?php echo $disciplina->nome ?>
+                    <input type='checkbox' class="checkbox" id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>"> <?php echo $disciplina->nome ?>
+                    <br>
                 <?php } ?>
             </div>
             <br>
@@ -115,7 +116,8 @@
             ?>
             <div id='gruposTodos'>
                 <?php foreach ($salas as $sala) { ?>
-                    <input type='checkbox' id="salas" name="salas[]" value="<?php echo $sala->id ?>"><?php echo $sala->nome ?>
+                    <input type='checkbox' class="checkbox" id="salas" name="salas[]" value="<?php echo $sala->id ?>"> <?php echo $sala->nome ?>
+                    <br>
                 <?php } ?>
             </div>
             <br>
