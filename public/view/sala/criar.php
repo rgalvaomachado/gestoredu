@@ -15,6 +15,27 @@
             <br>
             <input class='input' id="nome" name="nome" required>
             <br>
+            <label>Disciplinas</label>
+            <br>
+            <?php
+                $DisciplinaController = new DisciplinaController();
+                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+            ?>
+            <table class="grid">
+                <tbody>
+                        <?php foreach ($disciplinas as $disciplina) { ?>
+                        <tr>
+                            <td class="grid-left">
+                                <label><input type='checkbox' class="checkbox" id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>"></label>
+                            </td>
+                            <td class="grid-right">
+                                <label><?php echo $disciplina->nome ?></label>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <br>
             <br>
             <input class='button' type="submit" value="Criar">
         </div>

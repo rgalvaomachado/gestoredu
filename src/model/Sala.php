@@ -10,13 +10,15 @@
             $criar->execute([
                 ':nome' => $this->nome,
             ]);
-            return $this->bd->lastInsertId();
+            $id = $this->bd->lastInsertId();
+            return $id;
         }
 
         function buscarTodos(){
             $getTodos =  $this->bd->prepare('SELECT id, nome FROM sala ORDER BY nome ASC');
             $getTodos->execute();
-            return $getTodos->fetchAll(PDO::FETCH_ASSOC);
+            $salas = $getTodos->fetchAll(PDO::FETCH_ASSOC);
+            return $salas;
         }
 
         function buscar(){
@@ -24,7 +26,8 @@
             $get->execute([
                 ':id' => $this->id,
             ]);
-            return $get->fetch(PDO::FETCH_ASSOC);
+            $sala = $get->fetch(PDO::FETCH_ASSOC);
+            return $sala;
         }
 
         function editar(){
@@ -33,7 +36,7 @@
               ':id'   => $this->id,
               ':nome' => $this->nome,
             ]);
-            return $editar->rowCount();
+            return $this->id;
         }
 
         function deletar(){
@@ -41,7 +44,7 @@
             $deletar->execute([
               ':id' => $this->id,
             ]);
-            return $deletar->rowCount();
+            return $this->id;
         }
         
     }

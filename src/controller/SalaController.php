@@ -1,6 +1,7 @@
 <?php
     include_once('src/model/Sala.php');
     include_once('src/model/Usuario.php');
+    include_once('src/model/SalaDisciplina.php');
 
     class SalaController{
         function buscarTodos(){
@@ -17,10 +18,15 @@
             $Sala->id = $post['id'];
             $buscarSala = $Sala->buscar();
 
-            $usuario = new Usuario();
-            $usuario->salas = $post['id'];
-            $usuarios = $usuario->buscarTodos();
+            $Usuario = new Usuario();
+            $Usuario->salas = $post['id'];
+            $usuarios = $Usuario->buscarTodos();
             $buscarSala['usuarios'] = $usuarios;
+
+            $SalaDisciplina = new SalaDisciplina();
+            $SalaDisciplina->cod_sala = $post['id'];
+            $disciplinas = $SalaDisciplina->sala_disciplina_buscar();
+            $buscarSala['disciplinas'] = $disciplinas;
 
             if(!empty($buscarSala)){
                 return json_encode([
@@ -40,6 +46,18 @@
             $Sala->nome = $post['nome'];
 
             $id = $Sala->criar();
+
+            $SalaDisciplina = new SalaDisciplina();
+            $SalaDisciplina->cod_sala = $id;
+            $SalaDisciplina->sala_disciplina_deletar();
+            if(!empty($post['disciplinas'])){
+                foreach ($post['disciplinas'] as $disciplina) {
+                    $SalaDisciplina->cod_sala = $id;
+                    $SalaDisciplina->cod_disciplina = $disciplina;
+                    $SalaDisciplina->sala_disciplina_criar();
+                }
+            }
+
             if ($id > 0){
                 return json_encode([
                     "access" => true,
@@ -59,7 +77,19 @@
             $Sala->id = $post['id'];
             $Sala->nome = $post['nome'];
             $id = $Sala->editar();
-            if ($id > 0) {
+
+            $SalaDisciplina = new SalaDisciplina();
+            $SalaDisciplina->cod_sala = $Sala->id;
+            $SalaDisciplina->sala_disciplina_deletar();
+            if(!empty($post['disciplinas'])){
+                foreach ($post['disciplinas'] as $disciplina) {
+                    $SalaDisciplina->cod_sala = $Sala->id;
+                    $SalaDisciplina->cod_disciplina = $disciplina;
+                    $SalaDisciplina->sala_disciplina_criar();
+                }
+            }
+
+            if ($id) {
                 return json_encode([
                     "access" => true,
                     "message" => "Editado com sucesso"
