@@ -22,6 +22,9 @@
         case 'sala':
             $menu_sala = $style;
             break;
+        case 'horario':
+            $menu_horario = $style;
+            break;
         case 'presenca':
             $menu_presenca = $style;
             break;
@@ -65,6 +68,13 @@
         <div class="itemMenu">
             <a href="/sala" style="<?php echo $menu_sala?>">
                 <em class="fa fa-university" aria-hidden="true"></em>&nbsp;Sala
+            </a>
+        </div>
+    </li>
+    <li>
+        <div class="itemMenu">
+            <a href="/horario" style="<?php echo $menu_horario?>">
+                <em class="fa fa-clock-o"></em>&nbsp;Horário
             </a>
         </div>
     </li>

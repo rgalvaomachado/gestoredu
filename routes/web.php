@@ -23,6 +23,12 @@
         ['/sala/editar','/sala/editar.php'],
         ['/sala/deletar','/sala/deletar.php'],
 
+        
+        ['/horario','/horario/index.php'],
+        ['/horario/criar','/horario/criar.php'],
+        ['/horario/editar','/horario/editar.php'],
+        ['/horario/deletar','/horario/deletar.php'],
+
         ['/presenca','/presenca/index.php'],
         ['/presenca/individual','/presenca/individual.php'],
         ['/presenca/listada','/presenca/listada.php'],

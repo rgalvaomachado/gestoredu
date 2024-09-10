@@ -326,6 +326,10 @@ a, p, label, option, input, td, tr{
     font-size: 35px;
   }
 
+  .subTitle{
+    font-size: 25px;
+  }
+
   .message_alert{
     font-size: 20px;
   }
