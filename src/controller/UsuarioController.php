@@ -1,8 +1,8 @@
 <?php
     include_once('src/model/Usuario.php');
-    include_once('src/model/Grupo.php');
-    include_once('src/model/Disciplina.php');
-    include_once('src/model/Sala.php');
+    include_once('src/model/UsuarioGrupo.php');
+    include_once('src/model/UsuarioDisciplina.php');
+    include_once('src/model/UsuarioSala.php');
     include_once('src/model/Projeto.php');
 
     class UsuarioController{
@@ -29,12 +29,12 @@
             $user->id = $post['id'];
             $usuario = $user->buscar();
 
-            $Disciplina = new Disciplina();
+            $Disciplina = new UsuarioDisciplina();
             $Disciplina->cod_usuario = $post['id'];
             $disciplinas = $Disciplina->usuario_disciplina_buscar();
             $usuario['disciplinas'] = $disciplinas;
 
-            $Sala = new Sala();
+            $Sala = new UsuarioSala();
             $Sala->cod_usuario = $post['id'];
             $salas = $Sala->usuario_sala_buscar();
             $usuario['salas'] = $salas;
@@ -74,33 +74,36 @@
 
             $id = $usuario->criar();
 
-            $Grupo = new Grupo();
-            $Grupo->cod_usuario = $id;
-            $Grupo->usuario_grupo_deletar();
+            $UsuarioGrupo = new UsuarioGrupo();
+            $UsuarioGrupo->cod_usuario = $id;
+            $UsuarioGrupo->usuario_grupo_deletar();
             if(!empty($post['grupos'])){
                 foreach ($post['grupos'] as $grupo) {
-                    $Grupo->id = $grupo;
-                    $Grupo->usuario_grupo_criar();
+                    $UsuarioGrupo->cod_usuario = $id;
+                    $UsuarioGrupo->cod_grupo = $grupo;
+                    $UsuarioGrupo->usuario_grupo_criar();
                 }
             }
 
-            $Disciplina = new Disciplina();
-            $Disciplina->cod_usuario = $id;
-            $Disciplina->usuario_disciplina_deletar();
+            $UsuarioDisciplina = new UsuarioDisciplina();
+            $UsuarioDisciplina->cod_usuario = $id;
+            $UsuarioDisciplina->usuario_disciplina_deletar();
             if(!empty($post['disciplinas'])){
                 foreach ($post['disciplinas'] as $disciplina) {
-                    $Disciplina->id = $disciplina;
-                    $Disciplina->usuario_disciplina_criar();
+                    $UsuarioDisciplina->cod_usuario = $id;
+                    $UsuarioDisciplina->cod_disciplina = $disciplina;
+                    $UsuarioDisciplina->usuario_disciplina_criar();
                 }
             }
 
-            $Sala = new Sala();
-            $Sala->cod_usuario = $id;
-            $Sala->usuario_sala_deletar();
+            $UsuarioSala = new UsuarioSala();
+            $UsuarioSala->cod_usuario = $id;
+            $UsuarioSala->usuario_sala_deletar();
             if(!empty($post['salas'])){
                 foreach ($post['salas'] as $sala) {
-                    $Sala->id = $sala;
-                    $Sala->usuario_sala_criar();
+                    $UsuarioSala->cod_usuario = $id;
+                    $UsuarioSala->cod_sala = $sala;
+                    $UsuarioSala->usuario_sala_criar();
                 }
             }
 
@@ -145,33 +148,36 @@
 
             $id = $usuario->editar();
 
-            $Grupo = new Grupo();
-            $Grupo->cod_usuario = $id;
-            $Grupo->usuario_grupo_deletar();
+            $UsuarioGrupo = new UsuarioGrupo();
+            $UsuarioGrupo->cod_usuario = $id;
+            $UsuarioGrupo->usuario_grupo_deletar();
             if(!empty($post['grupos'])){
                 foreach ($post['grupos'] as $grupo) {
-                    $Grupo->id = $grupo;
-                    $Grupo->usuario_grupo_criar();
+                    $UsuarioGrupo->cod_usuario = $id;
+                    $UsuarioGrupo->cod_grupo = $grupo;
+                    $UsuarioGrupo->usuario_grupo_criar();
                 }
             }
 
-            $Disciplina = new Disciplina();
-            $Disciplina->cod_usuario = $id;
-            $Disciplina->usuario_disciplina_deletar();
+            $UsuarioDisciplina = new UsuarioDisciplina();
+            $UsuarioDisciplina->cod_usuario = $id;
+            $UsuarioDisciplina->usuario_disciplina_deletar();
             if(!empty($post['disciplinas'])){
                 foreach ($post['disciplinas'] as $disciplina) {
-                    $Disciplina->id = $disciplina;
-                    $Disciplina->usuario_disciplina_criar();
+                    $UsuarioDisciplina->cod_usuario = $id;
+                    $UsuarioDisciplina->cod_disciplina = $disciplina;
+                    $UsuarioDisciplina->usuario_disciplina_criar();
                 }
             }
 
-            $Sala = new Sala();
-            $Sala->cod_usuario = $id;
-            $Sala->usuario_sala_deletar();
+            $UsuarioSala = new UsuarioSala();
+            $UsuarioSala->cod_usuario = $id;
+            $UsuarioSala->usuario_sala_deletar();
             if(!empty($post['salas'])){
                 foreach ($post['salas'] as $sala) {
-                    $Sala->id = $sala;
-                    $Sala->usuario_sala_criar();
+                    $UsuarioSala->cod_usuario = $id;
+                    $UsuarioSala->cod_sala = $sala;
+                    $UsuarioSala->usuario_sala_criar();
                 }
             }
 
@@ -201,9 +207,9 @@
         }
 
         function deletar($post){
-            $disciplina = new Usuario();
-            $disciplina->id = $post['id'];
-            $deletado = $disciplina->deletar();
+            $Usuario = new Usuario();
+            $Usuario->id = $post['id'];
+            $deletado = $Usuario->deletar();
             if ($deletado){
                 return json_encode([
                     "access" => true,
