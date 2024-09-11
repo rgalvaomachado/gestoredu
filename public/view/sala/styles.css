@@ -1,0 +1,26 @@
+.grid{
+    margin: auto;
+    border-collapse: collapse;
+    width: 70%;
+    text-align: center;
+  }
+  
+.grid td{
+    font-size: 20px;
+    border: 0px;
+    padding: 5px;
+}
+
+.grid tr:hover{
+    color: white;
+    background-color: #004fde;
+}
+
+.grid-left{
+    text-align: right;
+    width: 50%;
+}
+
+.grid-right{
+    text-align: left;
+}

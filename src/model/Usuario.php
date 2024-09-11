@@ -1,8 +1,8 @@
 <?php
     include_once('Database.php');
     include_once('src/model/Grupo.php');
-    include_once('src/model/Disciplina.php');
-    include_once('src/model/Sala.php');
+    include_once('src/model/UsuarioSalaDisciplina.php');
+    include_once('src/model/UsuarioSala.php');
 
     class Usuario extends Database{
         public $id;
@@ -175,17 +175,6 @@
               ':id' => $this->id,
             ]);
 
-            $Disciplina = new Disciplina();
-            $Disciplina->cod_usuario = $this->id;
-            $Disciplina->usuario_disciplina_deletar();
-
-            $Sala = new Sala();
-            $Sala->cod_usuario = $this->id;
-            $Sala->usuario_sala_deletar();
-
-            // $Disciplina = new Disciplina();
-            // $Disciplina->cod_usuario = $id;
-            // $Disciplina->usuario_disciplina_deletar();
             return $this->id;
         }
     }
