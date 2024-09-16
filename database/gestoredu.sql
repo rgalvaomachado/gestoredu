@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 17, 2024 at 02:57 AM
+-- Generation Time: Sep 16, 2024 at 09:19 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.1.12
 
@@ -58,6 +58,23 @@ CREATE TABLE `grupo` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `horario`
+--
+
+CREATE TABLE `horario` (
+  `id` int NOT NULL,
+  `cod_usuario` int NOT NULL,
+  `cod_sala` int NOT NULL,
+  `cod_disciplina` int NOT NULL,
+  `dia_semana` int NOT NULL,
+  `hora_inicio` time NOT NULL,
+  `hora_fim` time NOT NULL,
+  `cor` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `presenca`
 --
 
@@ -97,6 +114,18 @@ CREATE TABLE `sala` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sala_disciplina`
+--
+
+CREATE TABLE `sala_disciplina` (
+  `id` int NOT NULL,
+  `cod_sala` int NOT NULL,
+  `cod_disciplina` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -115,18 +144,6 @@ CREATE TABLE `usuario` (
   `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
   `senha` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
   `data_inscricao` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `usuario_disciplina`
---
-
-CREATE TABLE `usuario_disciplina` (
-  `id` int NOT NULL,
-  `cod_usuario` int NOT NULL,
-  `cod_disciplina` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
@@ -153,6 +170,19 @@ CREATE TABLE `usuario_sala` (
   `cod_sala` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario_sala_disciplina`
+--
+
+CREATE TABLE `usuario_sala_disciplina` (
+  `id` int NOT NULL,
+  `cod_usuario` int NOT NULL,
+  `cod_sala` int NOT NULL,
+  `cod_disciplina` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -176,6 +206,12 @@ ALTER TABLE `grupo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `horario`
+--
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `presenca`
 --
 ALTER TABLE `presenca`
@@ -194,15 +230,15 @@ ALTER TABLE `sala`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuario`
+-- Indexes for table `sala_disciplina`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `sala_disciplina`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuario_disciplina`
+-- Indexes for table `usuario`
 --
-ALTER TABLE `usuario_disciplina`
+ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -215,6 +251,12 @@ ALTER TABLE `usuario_grupo`
 -- Indexes for table `usuario_sala`
 --
 ALTER TABLE `usuario_sala`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `usuario_sala_disciplina`
+--
+ALTER TABLE `usuario_sala_disciplina`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -240,6 +282,12 @@ ALTER TABLE `grupo`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `horario`
+--
+ALTER TABLE `horario`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `presenca`
 --
 ALTER TABLE `presenca`
@@ -258,15 +306,15 @@ ALTER TABLE `sala`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT for table `sala_disciplina`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `sala_disciplina`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuario_disciplina`
+-- AUTO_INCREMENT for table `usuario`
 --
-ALTER TABLE `usuario_disciplina`
+ALTER TABLE `usuario`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
@@ -279,6 +327,12 @@ ALTER TABLE `usuario_grupo`
 -- AUTO_INCREMENT for table `usuario_sala`
 --
 ALTER TABLE `usuario_sala`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `usuario_sala_disciplina`
+--
+ALTER TABLE `usuario_sala_disciplina`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
