@@ -29,6 +29,26 @@
 			</br>
 			<input class='input' name="nome" id="nome" value="<?php echo $sala->nome?>">
 			</br>
+			<label>Disciplinas</label>
+            <br>
+            <?php
+                $DisciplinaController = new DisciplinaController();
+                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+            ?>
+            <div id='gruposTodos'>
+                <?php foreach ($disciplinas as $disciplina) { ?>
+					<input 
+						type='checkbox' 
+						class="checkbox" 
+						id="disciplinas" 
+						name="disciplinas[]" 
+						value="<?php echo $disciplina->id ?>"
+						<?php echo in_array($disciplina->id, $sala->disciplinas) ? "checked" : "" ?> 
+					><?php echo $disciplina->nome ?>
+					<br>
+                <?php } ?>
+            </div>
+            <br>
 			</br>
 			<label><b>Usuarios do Sala <?php echo "(".count($sala->usuarios).")"?></b></label>
 			<?php foreach($sala->usuarios as $usuarios) {?>

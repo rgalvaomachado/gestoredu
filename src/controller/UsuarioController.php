@@ -1,7 +1,7 @@
 <?php
     include_once('src/model/Usuario.php');
     include_once('src/model/UsuarioGrupo.php');
-    include_once('src/model/UsuarioDisciplina.php');
+    include_once('src/model/UsuarioSalaDisciplina.php');
     include_once('src/model/UsuarioSala.php');
     include_once('src/model/Projeto.php');
 
@@ -28,11 +28,6 @@
             $user = new Usuario();
             $user->id = $post['id'];
             $usuario = $user->buscar();
-
-            $Disciplina = new UsuarioDisciplina();
-            $Disciplina->cod_usuario = $post['id'];
-            $disciplinas = $Disciplina->usuario_disciplina_buscar();
-            $usuario['disciplinas'] = $disciplinas;
 
             $Sala = new UsuarioSala();
             $Sala->cod_usuario = $post['id'];
@@ -85,14 +80,18 @@
                 }
             }
 
-            $UsuarioDisciplina = new UsuarioDisciplina();
-            $UsuarioDisciplina->cod_usuario = $id;
-            $UsuarioDisciplina->usuario_disciplina_deletar();
-            if(!empty($post['disciplinas'])){
-                foreach ($post['disciplinas'] as $disciplina) {
+            if(!empty($post['sala_disciplinas'])){
+                foreach ($post['sala_disciplinas'] as $cod_sala => $disciplinas) {
+                    $UsuarioDisciplina = new UsuarioSalaDisciplina();
                     $UsuarioDisciplina->cod_usuario = $id;
-                    $UsuarioDisciplina->cod_disciplina = $disciplina;
-                    $UsuarioDisciplina->usuario_disciplina_criar();
+                    $UsuarioDisciplina->cod_sala = $cod_sala;
+                    $UsuarioDisciplina->usuario_sala_disciplina_deletar();
+                    foreach ($disciplinas as $disciplina) {
+                        $UsuarioDisciplina->cod_usuario = $id;
+                        $UsuarioDisciplina->cod_sala = $cod_sala;
+                        $UsuarioDisciplina->cod_disciplina = $disciplina;
+                        $UsuarioDisciplina->usuario_sala_disciplina_criar();
+                    }
                 }
             }
 
@@ -159,14 +158,18 @@
                 }
             }
 
-            $UsuarioDisciplina = new UsuarioDisciplina();
-            $UsuarioDisciplina->cod_usuario = $id;
-            $UsuarioDisciplina->usuario_disciplina_deletar();
-            if(!empty($post['disciplinas'])){
-                foreach ($post['disciplinas'] as $disciplina) {
+            if(!empty($post['sala_disciplinas'])){
+                foreach ($post['sala_disciplinas'] as $cod_sala => $disciplinas) {
+                    $UsuarioDisciplina = new UsuarioSalaDisciplina();
                     $UsuarioDisciplina->cod_usuario = $id;
-                    $UsuarioDisciplina->cod_disciplina = $disciplina;
-                    $UsuarioDisciplina->usuario_disciplina_criar();
+                    $UsuarioDisciplina->cod_sala = $cod_sala;
+                    $UsuarioDisciplina->usuario_sala_disciplina_deletar();
+                    foreach ($disciplinas as $disciplina) {
+                        $UsuarioDisciplina->cod_usuario = $id;
+                        $UsuarioDisciplina->cod_sala = $cod_sala;
+                        $UsuarioDisciplina->cod_disciplina = $disciplina;
+                        $UsuarioDisciplina->usuario_sala_disciplina_criar();
+                    }
                 }
             }
 
@@ -210,6 +213,18 @@
             $Usuario = new Usuario();
             $Usuario->id = $post['id'];
             $deletado = $Usuario->deletar();
+
+            $UsuarioSala = new UsuarioSala();
+            $UsuarioSala->cod_usuario = $post['id'];
+            $salas = $UsuarioSala->usuario_sala_buscar();
+            foreach ($salas as $sala) {
+                $UsuarioSalaDisciplina = new UsuarioSalaDisciplina();
+                $UsuarioSalaDisciplina->cod_usuario = $post['id'];
+                $UsuarioSalaDisciplina->cod_sala = $sala;
+                $UsuarioSalaDisciplina->usuario_sala_disciplina_deletar();
+            }
+            $UsuarioSala->usuario_sala_deletar();
+
             if ($deletado){
                 return json_encode([
                     "access" => true,
@@ -221,6 +236,21 @@
                     "message" => "Erro na deleção"
                 ]);
             } 
+        }
+
+        function usuario_sala_disciplina_buscar($post){
+            $cod_usuario = $post['cod_usuario'];
+            $cod_sala = $post['cod_sala'];
+
+            $UsuarioSalaDisciplina = new UsuarioSalaDisciplina();
+            $UsuarioSalaDisciplina->cod_usuario = $cod_usuario;
+            $UsuarioSalaDisciplina->cod_sala = $cod_sala;
+            $usuario_sala_disciplina = $UsuarioSalaDisciplina->usuario_sala_disciplina_buscar();
+
+            return json_encode([
+                "access" => true,
+                "usuario_sala_disciplina" => $usuario_sala_disciplina,
+            ]);
         }
     }
 ?>

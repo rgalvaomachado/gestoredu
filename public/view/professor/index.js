@@ -21,14 +21,6 @@ $(document).ready(function() {
         var grupos = [];
         grupos.push($("#grupos").val());
 
-        var disciplinas = [];
-        var disciplina = $("input[name='disciplinas[]']");
-        for (var i = 0; i < disciplina.length; i++) {
-            if (disciplina[i].checked) {
-                disciplinas.push(disciplina[i].value);
-            }
-        }
-
         var salas = [];
         var sala = $("input[name='salas[]']");
         for (var i = 0; i < sala.length; i++) {
@@ -36,6 +28,28 @@ $(document).ready(function() {
                 salas.push(sala[i].value);
             }
         }
+
+        var disciplinasPorSala = {};
+        var salaIds = [];
+        $("input[name='disciplina[]']").each(function() {
+            var salaId = $(this).attr('data-sala-id');
+            if (salaIds.indexOf(salaId) === -1) {
+                salaIds.push(salaId);
+            }
+        });
+        $("input[name='disciplina[]']:checked").each(function() {
+            var salaId = $(this).attr('data-sala-id');
+            var disciplinaValue = $(this).val();
+            if (!disciplinasPorSala[salaId]) {
+                disciplinasPorSala[salaId] = [];
+            }
+            disciplinasPorSala[salaId].push(disciplinaValue);
+        });
+        salaIds.forEach(function(salaId) {
+            if (!disciplinasPorSala[salaId]) {
+                disciplinasPorSala[salaId] = [];
+            }
+        });
 
         $.ajax({
             method: "POST",
@@ -59,8 +73,9 @@ $(document).ready(function() {
                 email: email,
                 senha: senha,
                 grupos: grupos,
-                disciplinas: disciplinas,
+               
                 salas: salas,
+                sala_disciplinas: disciplinasPorSala,
             }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -104,14 +119,6 @@ $(document).ready(function() {
         var grupos = [];
         grupos.push($("#grupos").val());
 
-        var disciplinas = [];
-        var disciplina = $("input[name='disciplinas[]']");
-        for (var i = 0; i < disciplina.length; i++) {
-            if (disciplina[i].checked) {
-                disciplinas.push(disciplina[i].value);
-            }
-        }
-
         var salas = [];
         var sala = $("input[name='salas[]']");
         for (var i = 0; i < sala.length; i++) {
@@ -119,6 +126,28 @@ $(document).ready(function() {
                 salas.push(sala[i].value);
             }
         }
+
+        var disciplinasPorSala = {};
+        var salaIds = [];
+        $("input[name='disciplina[]']").each(function() {
+            var salaId = $(this).attr('data-sala-id');
+            if (salaIds.indexOf(salaId) === -1) {
+                salaIds.push(salaId);
+            }
+        });
+        $("input[name='disciplina[]']:checked").each(function() {
+            var salaId = $(this).attr('data-sala-id');
+            var disciplinaValue = $(this).val();
+            if (!disciplinasPorSala[salaId]) {
+                disciplinasPorSala[salaId] = [];
+            }
+            disciplinasPorSala[salaId].push(disciplinaValue);
+        });
+        salaIds.forEach(function(salaId) {
+            if (!disciplinasPorSala[salaId]) {
+                disciplinasPorSala[salaId] = [];
+            }
+        });
 
         $.ajax({
             method: "PUT",
@@ -143,8 +172,9 @@ $(document).ready(function() {
                 email: email,
                 senha: senha,
                 grupos: grupos,
-                disciplinas: disciplinas,
+
                 salas: salas,
+                disciplinas: disciplinasPorSala,
             }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);

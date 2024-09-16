@@ -1,8 +1,8 @@
 <?php
     include_once('Database.php');
     include_once('src/model/Grupo.php');
-    include_once('src/model/Disciplina.php');
-    include_once('src/model/Sala.php');
+    include_once('src/model/UsuarioSalaDisciplina.php');
+    include_once('src/model/UsuarioSala.php');
 
     class Usuario extends Database{
         public $id;
@@ -27,52 +27,37 @@
         public $disciplinas;
 
         function buscarTodos(){
-            $sql = "SELECT * FROM usuario ORDER BY nome ASC";
 
-            if (isset($this->grupos) && !isset($this->salas) && !isset($this->disciplinas)){
-                $sql = "
-                    SELECT usuario.*
-                    FROM usuario
-                    JOIN usuario_grupo ON usuario.id = usuario_grupo.cod_usuario
-                    WHERE usuario_grupo.cod_grupo IN (".$this->grupos.")
-                    ORDER BY usuario.nome ASC;
-                ";
+            $sql = "
+                SELECT usuario.*
+                FROM usuario
+                LEFT JOIN usuario_grupo ON usuario.id = usuario_grupo.cod_usuario
+                LEFT JOIN usuario_sala ON usuario.id = usuario_sala.cod_usuario
+                LEFT JOIN usuario_sala_disciplina on usuario.id = usuario_sala_disciplina.cod_usuario
+            ";
+
+            $conditions = [];
+            
+            if ($this->grupos) {
+                $conditions[] = "usuario_grupo.cod_grupo IN (".$this->grupos.")";
             }
 
-            if (!isset($this->grupos) && isset($this->disciplinas) && !isset($this->salas)){
-                $sql = "
-                    SELECT usuario.*
-                    FROM usuario
-                    JOIN usuario_disciplina ON usuario.id = usuario_disciplina.cod_usuario
-                    WHERE usuario_disciplina.cod_disciplina IN (".$this->disciplinas.")
-                    ORDER BY usuario.nome ASC;
-                ";
+            if ($this->salas) {
+                $conditions[] = "usuario_sala.cod_sala IN (".$this->salas.")";
             }
 
-            if (!isset($this->grupos) && !isset($this->disciplinas) && isset($this->salas)){
-                $sql = "
-                    SELECT usuario.*
-                    FROM usuario
-                    JOIN usuario_sala ON usuario.id = usuario_sala.cod_usuario
-                    WHERE usuario_sala.cod_sala IN (".$this->salas.")
-                    ORDER BY usuario.nome ASC;
-                ";
+            if ($this->disciplinas) {
+                $conditions[] = "usuario_sala_disciplina.cod_disciplina IN (".$this->disciplinas.")";
             }
-
-            if (isset($this->grupos) && isset($this->salas) && isset($this->disciplinas)) {
-                $sql = "
-                    SELECT usuario.*
-                    FROM usuario
-                    JOIN usuario_grupo ON usuario.id = usuario_grupo.cod_usuario
-                    JOIN usuario_disciplina ON usuario.id = usuario_disciplina.cod_usuario
-                    JOIN usuario_sala ON usuario.id = usuario_sala.cod_usuario
-                    WHERE 
-                        usuario_grupo.cod_grupo IN (".$this->grupos.") &&
-                        usuario_disciplina.cod_disciplina IN (".$this->disciplinas.") &&
-                        usuario_sala.cod_sala IN (".$this->salas.")
-                    ORDER BY usuario.nome ASC;
-                ";
+            
+            if (count($conditions) > 0) {
+                $sql .= " WHERE " . implode(" AND ", $conditions);
             }
+            
+            $sql .= "
+                GROUP BY usuario.id
+                ORDER BY usuario.nome ASC;
+            ";
 
             $buscarTodos = $this->bd->prepare($sql);
             $buscarTodos->execute();
@@ -175,17 +160,6 @@
               ':id' => $this->id,
             ]);
 
-            $Disciplina = new Disciplina();
-            $Disciplina->cod_usuario = $this->id;
-            $Disciplina->usuario_disciplina_deletar();
-
-            $Sala = new Sala();
-            $Sala->cod_usuario = $this->id;
-            $Sala->usuario_sala_deletar();
-
-            // $Disciplina = new Disciplina();
-            // $Disciplina->cod_usuario = $id;
-            // $Disciplina->usuario_disciplina_deletar();
             return $this->id;
         }
     }
