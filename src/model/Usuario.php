@@ -45,6 +45,10 @@
             if ($this->salas) {
                 $conditions[] = "usuario_sala.cod_sala IN (".$this->salas.")";
             }
+
+            if ($this->disciplinas) {
+                $conditions[] = "usuario_sala_disciplina.cod_disciplina IN (".$this->disciplinas.")";
+            }
             
             if (count($conditions) > 0) {
                 $sql .= " WHERE " . implode(" AND ", $conditions);
