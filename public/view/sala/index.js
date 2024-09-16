@@ -2,6 +2,15 @@ $(document).ready(function() {
     $('#criar').submit(function(e) {
         e.preventDefault();
         var nome = $("#nome").val();
+
+        var disciplinas = [];
+        var disciplina = $("input[name='disciplinas[]']");
+        for (var i = 0; i < disciplina.length; i++) {
+            if (disciplina[i].checked) {
+                disciplinas.push(disciplina[i].value);
+            }
+        }
+        
         $.ajax({
             method: "POST",
             url: "/api/sala",
@@ -10,6 +19,7 @@ $(document).ready(function() {
             },
             data: JSON.stringify({
                 nome: nome,
+                disciplinas: disciplinas,
             }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -35,6 +45,15 @@ $(document).ready(function() {
         e.preventDefault();
         var sala = $("#sala").val();
         var nome = $("#nome").val();
+
+        var disciplinas = [];
+        var disciplina = $("input[name='disciplinas[]']");
+        for (var i = 0; i < disciplina.length; i++) {
+            if (disciplina[i].checked) {
+                disciplinas.push(disciplina[i].value);
+            }
+        }
+        
         $.ajax({
             method: "PUT",
             url: "/api/sala",
@@ -43,7 +62,8 @@ $(document).ready(function() {
             },
             data: JSON.stringify({
                 id: sala,
-                nome: nome
+                nome: nome,
+                disciplinas: disciplinas,
             }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);

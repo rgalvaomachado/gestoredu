@@ -106,31 +106,66 @@
             <input class='input' type="password" id="senha" name="senha" value="<?php echo $usuario->senha?>">
             <input type="hidden" id="grupos" value="2">
             <br>
-            <label>Disciplinas</label>
             <br>
-            <?php
-                $DisciplinaController = new DisciplinaController();
-                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
-            ?>
-            <div id='gruposTodos'>
-                <?php foreach ($disciplinas as $disciplina) { ?>
-                    <input class="checkbox" type='checkbox' id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>" <?php echo in_array($disciplina->id, $usuario->disciplinas) ? "checked" : "" ?> > <?php echo $disciplina->nome ?>
-                    <br>
-                <?php } ?>
-            </div>
-            <br>
-            <label>Salas</label>
-            <br>
-            <?php
-                $SalaController = new SalaController();
-                $salas = json_decode($SalaController->buscarTodos())->salas;
-            ?>
-            <div id='gruposTodos'>
-                <?php foreach ($salas as $sala) { ?>
-                    <input class="checkbox" type='checkbox' id="salas" name="salas[]" value="<?php echo $sala->id ?>" <?php echo in_array($sala->id, $usuario->salas) ? "checked" : "" ?> > <?php echo $sala->nome ?>
-                    <br>
-                <?php } ?>
-            </div>
+            <table class="list">
+                <tr>
+                    <th>
+                        Salas
+                    </th>
+                    <th>
+                        Disciplinas
+                    </th>
+                </tr>
+                <tbody>
+                    <?php
+                        $SalaController = new SalaController();
+                        $salas = json_decode($SalaController->buscarTodos())->salas;
+                    ?>
+                    <?php foreach ($salas as $sala) { ?>
+                        <tr>
+                            <td class="text-left">
+                                <label>
+                                    <input 
+                                        class="checkbox"
+                                        type='checkbox'
+                                        id="salas"
+                                        name="salas[]"
+                                        value="<?php echo $sala->id ?>"
+                                        <?php echo in_array($sala->id, $usuario->salas) ? "checked" : "" ?>
+                                    > <?php echo $sala->nome ?>
+                                </label>
+                            </td>
+                            <td class="text-right">
+                                <?php 
+                                $sala = json_decode($SalaController->buscar(['id' => $sala->id]))->sala;
+                                $DisciplinaController = new DisciplinaController();
+                                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+                                foreach ($disciplinas as $disciplina) { 
+                                    $UsuarioController = new UsuarioController();
+                                    $usuario_sala_disciplina = json_decode($UsuarioController->usuario_sala_disciplina_buscar([
+                                        'cod_usuario' => $usuario->id,
+                                        'cod_sala' => $sala->id
+                                    ]))->usuario_sala_disciplina;
+                                    if (in_array($disciplina->id, $sala->disciplinas)) { ?>
+                                        <input 
+                                            type='checkbox'
+                                            class="checkbox"
+                                            id="disciplina"
+                                            data-sala-id="<?php echo $sala->id ?>"
+                                            name="disciplina[]"
+                                            value="<?php echo $disciplina->id ?>"
+
+                                            <?php echo in_array($disciplina->id, $usuario_sala_disciplina) ? "checked" : "" ?>
+                                        >
+                                        <label><?php echo $disciplina->nome ?></label>
+                                        <br>
+                                    <?php } ?>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
             <br>
             <input class='button' type="submit" value="Editar">
         </form>

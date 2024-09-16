@@ -95,31 +95,53 @@
             <input class='input' type="password" id="senha" name="senha">
             <input type="hidden" id="grupos" value="1">
             <br>
-            <label>Disciplinas</label>
             <br>
-            <?php
-                $DisciplinaController = new DisciplinaController();
-                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
-            ?>
-            <div id='gruposTodos'>
-                <?php foreach ($disciplinas as $disciplina) { ?>
-                    <input type='checkbox' class="checkbox" id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>"> <?php echo $disciplina->nome ?>
-                    <br>
-                <?php } ?>
-            </div>
-            <br>
-            <label>Salas</label>
-            <br>
-            <?php
-                $SalaController = new SalaController();
-                $salas = json_decode($SalaController->buscarTodos())->salas;
-            ?>
-            <div id='gruposTodos'>
-                <?php foreach ($salas as $sala) { ?>
-                    <input type='checkbox' class="checkbox" id="salas" name="salas[]" value="<?php echo $sala->id ?>"> <?php echo $sala->nome ?>
-                    <br>
-                <?php } ?>
-            </div>
+            <table class="list">
+                <tr>
+                    <th>
+                        Salas
+                    </th>
+                    <th>
+                        Disciplinas
+                    </th>
+                </tr>
+                <tbody>
+                    <?php
+                        $SalaController = new SalaController();
+                        $salas = json_decode($SalaController->buscarTodos())->salas;
+                    ?>
+                    <?php foreach ($salas as $sala) { ?>
+                        <tr>
+                            <td class="text-left">
+                                <label>
+                                    <input type='checkbox' class="checkbox" id="salas" name="salas[]" value="<?php echo $sala->id ?>">
+                                    <?php echo $sala->nome ?>
+                                </label>
+                            </td>
+                            <td class="text-right">
+                                <?php 
+                                $sala = json_decode($SalaController->buscar(['id' => $sala->id]))->sala;
+                                $DisciplinaController = new DisciplinaController();
+                                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+                                foreach ($disciplinas as $disciplina) { 
+                                    if (in_array($disciplina->id, $sala->disciplinas)) { ?>
+                                        <input 
+                                            type='checkbox'
+                                            class="checkbox"
+                                            id="disciplina"
+                                            data-sala-id="<?php echo $sala->id ?>"
+                                            name="disciplina[]"
+                                            value="<?php echo $disciplina->id ?>"
+                                        >
+                                        <label><?php echo $disciplina->nome ?></label>
+                                        <br>
+                                    <?php } ?>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
             <br>
             <input class='button' type="submit" value="Criar">
         </div>
