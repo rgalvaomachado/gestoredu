@@ -1,39 +1,4 @@
 $(document).ready(function() {
-    $('#buscarListagem').submit(function(e) {
-        e.preventDefault();
-        grupo = $("#grupo").val();
-        sala = $("#sala").val();
-        disciplina = $("#disciplina").val();
-        $.ajax({
-            method: "GET",
-            url: "/api/usuarios",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: {
-                "grupo": grupo,
-                "disciplina": disciplina,
-                "sala": sala,
-            },
-            complete: function(response) {
-                var response = JSON.parse(response.responseText);
-                if(response.access){
-                    $('#detalhes').show();
-                    $("#lista").html('');
-                    var usuarios = response.usuarios;
-                    usuarios.map(({id,nome}) => {
-                        $('#lista').append(`
-                            <tr>
-                                <td>${nome}</td>
-                                <td><input name="presente[]" type="checkbox" value='${id}'></td>
-                            </tr>
-                        `);
-                    });
-                }
-            }
-        });
-    });
-
     $('#criarChamadaListada').submit(function(e) {
         e.preventDefault();
         grupo = $("#grupo").val();
@@ -74,41 +39,6 @@ $(document).ready(function() {
                     setTimeout(function(){
                         alert.innerHTML = "";
                     }, 2000);
-                }
-            }
-            
-        });
-    });
-
-    $('#buscarIndividual').submit(function(e) {
-        e.preventDefault();
-        var grupo = $("#grupo").val();
-        var sala = $("#sala").val();
-        var disciplina = $("#disciplina").val();
-        var usuario = $("#disciplina").val();
-        $.ajax({
-            method: "GET",
-            url: "/api/usuarios",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: {
-                grupo: grupo,
-                disciplina: disciplina,
-                sala: sala,
-                usuario: usuario,
-            },
-            complete: function(response) {
-                var response = JSON.parse(response.responseText);
-                if(response.access){
-                    $('#detalhes').show();
-                    $("#usuario").html('');
-                    var usuarios = response.usuarios;
-                    usuarios.map(({id,nome}) => {
-                        $('#usuario').append(`
-                            <option value="${id}">${nome}</option>	   
-                        `);
-                    });
                 }
             }
         });

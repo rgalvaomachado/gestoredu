@@ -11,7 +11,7 @@
                 "disciplina" => $post['disciplina']
             ]));
             $usuarios = $buscarTodos->usuarios;
-            $presente = isset($post['presente']) ? $post['presente'] : [] ;
+            $presente = isset($post['presente[]']) ? $post['presente[]'] : [] ;
             $erroAlune = 0;
             foreach($usuarios as $usuario){
                 if(in_array($usuario->id, $presente)){
