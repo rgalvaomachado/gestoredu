@@ -1,7 +1,7 @@
 <?php
-    include_once('Database.php');
-
     class Horario extends Database{
+        protected $table = 'horario';
+
         public $id;
         public $cod_usuario;
         public $cod_sala;
@@ -10,39 +10,6 @@
         public $hora_inicio;
         public $hora_fim;
         public $cor;
-
-        function criar(){
-            $sql = "
-                INSERT INTO horario (
-                    cod_usuario,
-                    cod_sala,
-                    cod_disciplina,
-                    dia_semana,
-                    hora_inicio,
-                    hora_fim,
-                    cor
-                ) VALUES (
-                    :cod_usuario,
-                    :cod_sala,
-                    :cod_disciplina,
-                    :dia_semana,
-                    :hora_inicio,
-                    :hora_fim,
-                    :cor
-                )
-            ";
-            $criar = $this->bd->prepare($sql);
-            $criar->execute([
-                ':cod_usuario' => $this->cod_usuario,
-                ':cod_sala' => $this->cod_sala,
-                ':cod_disciplina' => $this->cod_disciplina,
-                ':dia_semana' => $this->dia_semana,
-                ':hora_inicio' => $this->hora_inicio,
-                ':hora_fim' => $this->hora_fim,
-                ':cor' => $this->cor,
-            ]);
-            return $this->bd->lastInsertId();
-        }
 
         function buscarTodos(){
             $sql = "
@@ -87,7 +54,7 @@
             
             $sql .= " ORDER BY horario.dia_semana ASC, horario.hora_inicio ASC;";
 
-            $getTodos = $this->bd->prepare($sql);
+            $getTodos = $this->connection->prepare($sql);
             $getTodos->execute($params);
             return $getTodos->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -102,48 +69,11 @@
                 WHERE horario.id = :id 
                 ORDER BY hora_inicio ASC
             ";
-            $get =  $this->bd->prepare($sql);
+            $get =  $this->connection->prepare($sql);
             $get->execute([
                 ':id' => $this->id,
             ]);
             return $get->fetch(PDO::FETCH_ASSOC);
-        }
-
-        function editar(){
-            $sql = "
-                UPDATE horario 
-                SET 
-                    cod_usuario = :cod_usuario,
-                    cod_sala = :cod_sala, 
-                    cod_disciplina = :cod_disciplina, 
-                    hora_inicio = :hora_inicio, 
-                    hora_fim = :hora_fim, 
-                    cor = :cor 
-                WHERE id = :id
-            ";
-            $editar = $this->bd->prepare($sql);
-            $editar->execute([
-                ':id'   => $this->id,
-                ':cod_usuario' => $this->cod_usuario,
-                ':cod_sala' => $this->cod_sala,
-                ':cod_disciplina' => $this->cod_disciplina,
-                ':hora_inicio' => $this->hora_inicio,
-                ':hora_fim' => $this->hora_fim,
-                ':cor' => $this->cor,
-            ]);
-            return $editar->rowCount();
-        }
-
-        function deletar(){
-            $sql = "
-                DELETE FROM horario 
-                where id = :id
-            ";
-            $deletar = $this->bd->prepare($sql);
-            $deletar->execute([
-              ':id' => $this->id,
-            ]);
-            return $deletar->rowCount();
         }
         
     }

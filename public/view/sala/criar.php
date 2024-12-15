@@ -26,7 +26,15 @@
                         <?php foreach ($disciplinas as $disciplina) { ?>
                         <tr>
                             <td class="grid-left">
-                                <label><input type='checkbox' class="checkbox" id="disciplinas" name="disciplinas[]" value="<?php echo $disciplina->id ?>"></label>
+                                <label>
+                                    <input 
+                                        type='checkbox'
+                                        class="checkbox"
+                                        id="disciplinas"
+                                        name="disciplinas"
+                                        data-cod_disciplina="<?php echo $disciplina->id ?>"
+                                    >
+                                </label>
                             </td>
                             <td class="grid-right">
                                 <label><?php echo $disciplina->nome ?></label>

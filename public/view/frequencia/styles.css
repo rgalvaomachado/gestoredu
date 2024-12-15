@@ -44,3 +44,7 @@ a{
     width: 810; 
     height: 532.5;
 }
+
+#detalhes {
+    display: none;
+}

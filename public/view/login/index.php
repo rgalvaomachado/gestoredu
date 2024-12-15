@@ -1,5 +1,4 @@
 <head>
-    <?php include_once('src/controller/LoginController.php')?>
     <link href="/public/view/login/styles.css" rel="stylesheet">
     <script src="/public/view/login/index.js"></script>
 </head>
@@ -36,6 +35,8 @@
                     <input class='input open_sans' placeholder="Seu e-mail" id="email" name="email" type="email" required>
                     </br>
                     <input class='input open_sans' placeholder="Senha" id="senha" name="senha" type="password" required>
+                    </br>
+                    <input class='input open_sans' placeholder="Confirmação de Senha" id="senhaConfirmacaoLogin" name="senhaConfirmacaoLogin" type="password" required>
                     </br>
                     <select class='input' id="grupos" name="grupos" required>
                         <option value="1">Aluno</option>	

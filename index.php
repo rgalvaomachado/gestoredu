@@ -1,6 +1,6 @@
 <?php
+    include_once('autoload.php');
     include_once('env.php');
-    include_once('src/controller/Router.php');
     include_once('routes/web.php');
     include_once('routes/api.php');
 

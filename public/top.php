@@ -6,11 +6,10 @@
     <label class="slideMenu" for="slideMenu">
         <i class="fa fa-bars" aria-hidden="true" onclick="slideMenu()"></i>
     </label>
-    <input type="checkbox" id="slideMenuMobile" checked style="display: none;">
+    <input type="checkbox" id="slideMenuMobile" style="display: none;">
     <label class="slideMenuMobile" for="slideMenuMobile">
         <i class="fa fa-bars" aria-hidden="true" onclick="slideMenuMobile()"></i>
     </label>
-    <!-- <img src="../public/img/hubis.png" id="logo-hubis"> -->
     <div class="logoutMenu" id="usuarioLogado">
         <label>
             <?php

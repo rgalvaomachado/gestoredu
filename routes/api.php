@@ -5,7 +5,7 @@
         ['GET','/verifica-sessao','LoginController','verificaSessão'],
         ['POST','/login','LoginController','login'],
         ['GET','/logout','LoginController','logout'],
-        ['GET','/primeiro-login','LoginController','primeiroLogin'],
+        ['POST','/primeiro-login','LoginController','primeiroLogin'],
 
         ['GET','/usuarios','UsuarioController','buscarTodos'],
         ['GET','/usuario','UsuarioController','buscar'],
@@ -25,6 +25,12 @@
         ['PUT','/disciplina','DisciplinaController','editar'],
         ['DELETE','/disciplina','DisciplinaController','deletar'],
 
+        ['GET','/projetos','ProjetoController','buscarTodos'],
+        ['GET','/projeto','ProjetoController','buscar'],
+        ['POST','/projeto','ProjetoController','criar'],
+        ['PUT','/projeto','ProjetoController','editar'],
+        ['DELETE','/projeto','ProjetoController','deletar'],
+
         ['GET','/salas','SalaController','buscarTodos'],
         ['GET','/sala','SalaController','buscar'],
         ['POST','/sala','SalaController','criar'],
@@ -40,8 +46,15 @@
         ['POST','/presenca-listada','PresencaController','criarPresencaListada'],
         ['POST','/presenca-individual','PresencaController','criarPresencaInvidual'],
 
+        ['GET','/matriculas','MatriculaController','buscarTodos'],
+
         ['POST','/relatorio-chamada','RelatorioController','relatorioChamada'],
 
+        ['GET','/certificado','CertificadoController','buscarTodos'],
+        ['GET','/certificado','CertificadoController','buscar'],
+        ['POST','/certificado','CertificadoController','criar'],
+        ['PUT','/certificado','CertificadoController','editar'],
+        ['DELETE','/certificado','CertificadoController','deletar'],
         ['POST','/gerar-certificado','CertificadoController','gerarCertificado'],
 
         ['POST','/configurar','ConfiguracaoController','configurar'],

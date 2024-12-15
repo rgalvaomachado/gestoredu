@@ -1,37 +1,64 @@
 <?php
-    include_once('Database.php');
-
     class SalaDisciplina extends Database{
+        protected $table = 'sala_disciplina';
+
         public $id;
         public $cod_sala;
         public $cod_disciplina;
 
-        function sala_disciplina_buscar(){
-            $buscar = $this->bd->prepare('SELECT cod_disciplina FROM sala_disciplina where cod_sala = :cod_sala');
+        function buscar(){
+            
+            $sql = "
+                SELECT disciplina.id as cod_disciplina, disciplina.nome as nome_disciplina
+                FROM sala_disciplina
+                INNER JOIN disciplina ON sala_disciplina.cod_disciplina = disciplina.id
+                WHERE cod_sala = :cod_sala
+            ";
+            $buscar = $this->connection->prepare($sql);
             $buscar->execute([
                 ':cod_sala' => $this->cod_sala
             ]);
-            $usuario_disciplina = $buscar->fetchAll(PDO::FETCH_ASSOC);
-            $disciplinas = [];
-            foreach ($usuario_disciplina as $disciplina) {
-                $disciplinas[] = $disciplina['cod_disciplina'];
-            }
-            return $disciplinas;
+            return $buscar->fetchAll(PDO::FETCH_ASSOC);
         }
         
-        function sala_disciplina_criar(){
-            $criar = $this->bd->prepare('INSERT INTO sala_disciplina (cod_sala, cod_disciplina) VALUES(:cod_sala, :cod_disciplina)');
-            $criar->execute([
-                ':cod_sala' => $this->cod_sala,
-                ':cod_disciplina' => $this->cod_disciplina,
-            ]);
-        }
+        function vinculo($disciplinas){
+            $vinculo = 0;
+            foreach ($disciplinas as $disciplina) {
+                $buscar = $this->read([
+                    'cod_sala' => $this->cod_sala,
+                    'cod_disciplina' => $disciplina->cod_disciplina,
+                ]);
+                if (!$buscar) {
+                    $this->create([
+                        'cod_sala' => $this->cod_sala,
+                        'cod_disciplina' => $disciplina->cod_disciplina,
+                    ]);
+                    $vinculo++;
+                }
+            }
 
-        function sala_disciplina_deletar(){
-            $deletar = $this->bd->prepare('DELETE FROM sala_disciplina where cod_sala = :cod_sala');
-            $deletar->execute([
-              ':cod_sala' => $this->cod_sala,
+            $existentes = $this->read([
+                'cod_sala' => $this->cod_sala
             ]);
+            foreach ($existentes as $existe) {
+                $encontrado = false;
+                foreach ($disciplinas as $disciplina) {
+                    if (
+                        $existe['cod_sala'] == $this->cod_sala &&
+                        $existe['cod_disciplina'] == $disciplina->cod_disciplina
+                    ) {
+                        $encontrado = true;
+                        break;
+                    }
+                }
+        
+                if (!$encontrado) {
+                    $this->delete($existe);
+                    $vinculo++;
+                }
+            }
+
+            return $vinculo;
         }
     }
 ?>

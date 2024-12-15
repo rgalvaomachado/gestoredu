@@ -1,40 +1,49 @@
 <?php
-    include_once('Database.php');
-    include_once('src/model/Grupo.php');
-    include_once('src/model/Disciplina.php');
-    include_once('src/model/Sala.php');
-
     class UsuarioGrupo extends Database{
+        protected $table = 'usuario_grupo';
+
         public $id;
         public $cod_usuario;
         public $cod_grupo;
 
-        function usuario_grupo_buscar(){
-            $buscar = $this->bd->prepare('SELECT cod_grupo FROM usuario_grupo where cod_usuario = :cod_usuario');
-            $buscar->execute([
-                ':cod_usuario' => $this->cod_usuario
-            ]);
-            $usuario_grupo = $buscar->fetchAll(PDO::FETCH_ASSOC);
-            $grupos = [];
-            foreach ($usuario_grupo as $grupo) {
-                $grupos[] = $grupo['cod_grupo'];
+        function vinculo($grupos){
+            $vinculo = 0;
+            foreach ($grupos as $grupo) {
+                $buscar = $this->read([
+                    'cod_usuario' => $this->cod_usuario,
+                    'cod_grupo' => $grupo->cod_grupo,
+                ]);
+                if (!$buscar) {
+                    $this->create([
+                        'cod_usuario' => $this->cod_usuario,
+                        'cod_grupo' => $grupo->cod_grupo,
+                    ]);
+                    $vinculo++;
+                }
             }
-            return $grupos;
-        }
-        
-        function usuario_grupo_criar(){
-            $criar = $this->bd->prepare('INSERT INTO usuario_grupo (cod_usuario, cod_grupo) VALUES(:cod_usuario, :cod_grupo)');
-            $criar->execute([
-                ':cod_usuario' => $this->cod_usuario,
-                ':cod_grupo' => $this->cod_grupo,
-            ]);
-        }
 
-        function usuario_grupo_deletar(){
-            $deletar = $this->bd->prepare('DELETE FROM usuario_grupo where cod_usuario = :cod_usuario');
-            $deletar->execute([
-              ':cod_usuario' => $this->cod_usuario,
+            $existentes = $this->read([
+                'cod_usuario' => $this->cod_usuario
             ]);
+            foreach ($existentes as $existe) {
+                $encontrado = false;
+                foreach ($grupos as $grupo) {
+                    if (
+                        $existe['cod_usuario'] == $this->cod_usuario &&
+                        $existe['cod_grupo'] == $grupo->cod_grupo
+                    ) {
+                        $encontrado = true;
+                        break;
+                    }
+                }
+        
+                if (!$encontrado) {
+                    $this->delete($existe);
+                    $vinculo++;
+                }
+            }
+
+            return $vinculo;
         }
     }
 ?>

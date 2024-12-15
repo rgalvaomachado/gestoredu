@@ -2,57 +2,32 @@ $(document).ready(function() {
     $('#criar').submit(function(e) {
         e.preventDefault();
 
-        var nome = $("#nome").val();
-        var data_nascimento = $("#data_nascimento").val();
-        var rg = $("#rg").val();
-        var cpf = $("#cpf").val();
+        var formData = new FormData(this);
+        var jsonData = {};
 
-        var rua = $("#rua").val();
-        var numero = $("#numero").val();
-        var bairro = $("#bairro").val();
-        var cidade = $("#cidade").val();
-        var estado = $("#estado").val();
-
-        var telefone = $("#telefone").val();
-
-        var email = $("#email").val();
-        var senha = $("#senha").val();
-
-        var cod_projeto = $("#cod_projeto").val();
-        var projeto = $("#projeto").val();
-
-        var grupos = [];
-        grupos.push($("#grupos").val());
-
-        var salas = [];
-        var sala = $("input[name='salas[]']");
-        for (var i = 0; i < sala.length; i++) {
-            if (sala[i].checked) {
-                salas.push(sala[i].value);
-            }
-        }
-
-        var disciplinasPorSala = {};
-        var salaIds = [];
-        $("input[name='disciplina[]']").each(function() {
-            var salaId = $(this).attr('data-sala-id');
-            if (salaIds.indexOf(salaId) === -1) {
-                salaIds.push(salaId);
-            }
+        formData.forEach((value, key) => {
+            jsonData[key] = value.trim() ? value : null;
         });
-        $("input[name='disciplina[]']:checked").each(function() {
-            var salaId = $(this).attr('data-sala-id');
-            var disciplinaValue = $(this).val();
-            if (!disciplinasPorSala[salaId]) {
-                disciplinasPorSala[salaId] = [];
-            }
-            disciplinasPorSala[salaId].push(disciplinaValue);
-        });
-        salaIds.forEach(function(salaId) {
-            if (!disciplinasPorSala[salaId]) {
-                disciplinasPorSala[salaId] = [];
-            }
-        });
+
+        jsonData.grupos = [];
+        const gruposInputs = document.querySelectorAll('input[name="grupos"]');
+        gruposInputs.forEach(input => {
+            const codGrupo = input.getAttribute('data-cod_grupo');
+            jsonData.grupos.push({
+                cod_grupo: codGrupo,
+            });
+        })
+        
+        jsonData.matriculas = [];
+        const matriculaInputs = document.querySelectorAll('input[name="matriculas[]"]');
+        matriculaInputs.forEach(input => {
+            const codSala = input.getAttribute('data-cod_sala');
+            const codDisciplina = input.getAttribute('data-cod_disciplina');
+            jsonData.matriculas.push({
+                cod_sala: codSala,
+                cod_disciplina: codDisciplina
+            });
+        })
 
         $.ajax({
             method: "POST",
@@ -60,29 +35,7 @@ $(document).ready(function() {
             headers: {
                 "Content-Type": "application/json",
             },
-            data: JSON.stringify({
-                nome: nome,
-                data_nascimento: data_nascimento,
-                rg: rg,
-                cpf: cpf,
-             
-                rua: rua,
-                numero: numero,
-                bairro: bairro,
-                cidade: cidade,
-                estado: estado,
-
-                telefone: telefone,
-                email: email,
-                senha: senha,
-                grupos: grupos,
-
-                cod_projeto: cod_projeto,
-                projeto: projeto,
-
-                sala_disciplinas: disciplinasPorSala,
-                salas: salas,
-            }),
+            data: JSON.stringify(jsonData),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -106,58 +59,32 @@ $(document).ready(function() {
     $('#editar').submit(function(e) {
         e.preventDefault();
 
-        var id = $("#usuario").val();
-        var nome = $("#nome").val();
-        var data_nascimento = $("#data_nascimento").val();
-        var rg = $("#rg").val();
-        var cpf = $("#cpf").val();
-        
-        var rua = $("#rua").val();
-        var numero = $("#numero").val();
-        var bairro = $("#bairro").val();
-        var cidade = $("#cidade").val();
-        var estado = $("#estado").val();
+        var formData = new FormData(this);
+        var jsonData = {};
 
-        var telefone = $("#telefone").val();
-
-        var email = $("#email").val();
-        var senha = $("#senha").val();
-
-        var cod_projeto = $("#cod_projeto").val();
-        var projeto = $("#projeto").val();
-
-        var grupos = [];
-        grupos.push($("#grupos").val());
-
-        var salas = [];
-        var sala = $("input[name='salas[]']");
-        for (var i = 0; i < sala.length; i++) {
-            if (sala[i].checked) {
-                salas.push(sala[i].value);
-            }
-        }
-
-        var disciplinasPorSala = {};
-        var salaIds = [];
-        $("input[name='disciplina[]']").each(function() {
-            var salaId = $(this).attr('data-sala-id');
-            if (salaIds.indexOf(salaId) === -1) {
-                salaIds.push(salaId);
-            }
+        formData.forEach((value, key) => {
+            jsonData[key] = value.trim() ? value : null;
         });
-        $("input[name='disciplina[]']:checked").each(function() {
-            var salaId = $(this).attr('data-sala-id');
-            var disciplinaValue = $(this).val();
-            if (!disciplinasPorSala[salaId]) {
-                disciplinasPorSala[salaId] = [];
-            }
-            disciplinasPorSala[salaId].push(disciplinaValue);
-        });
-        salaIds.forEach(function(salaId) {
-            if (!disciplinasPorSala[salaId]) {
-                disciplinasPorSala[salaId] = [];
-            }
-        });
+
+        jsonData.grupos = [];
+        const gruposInputs = document.querySelectorAll('input[name="grupos"]');
+        gruposInputs.forEach(input => {
+            const codGrupo = input.getAttribute('data-cod_grupo');
+            jsonData.grupos.push({
+                cod_grupo: codGrupo,
+            });
+        })
+
+        jsonData.matriculas = [];
+        const matriculasInputs = document.querySelectorAll('input[name="matriculas"]');
+        matriculasInputs.forEach(input => {
+            const codSala = input.getAttribute('data-cod_sala');
+            const codDisciplina = input.getAttribute('data-cod_disciplina');
+            jsonData.matriculas.push({
+                cod_sala: codSala,
+                cod_disciplina: codDisciplina
+            });
+        })
 
         $.ajax({
             method: "PUT",
@@ -165,30 +92,7 @@ $(document).ready(function() {
             headers: {
                 "Content-Type": "application/json",
             },
-            data: JSON.stringify({
-                id: id,
-                nome: nome,
-                data_nascimento: data_nascimento,
-                rg: rg,
-                cpf: cpf,
-                
-                rua: rua,
-                numero: numero,
-                bairro: bairro,
-                cidade: cidade,
-                estado: estado,
-                
-                telefone: telefone,
-                email: email,
-                senha: senha,
-                grupos: grupos,
-
-                cod_projeto: cod_projeto,
-                projeto: projeto,
-
-                salas: salas,
-                sala_disciplinas: disciplinasPorSala,
-            }),
+            data: JSON.stringify(jsonData),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -241,3 +145,78 @@ $(document).ready(function() {
         });
     });
 });
+
+function getDisciplinas() {
+    cod_sala = $("#sala").val();
+    $.ajax({
+        method: "GET",
+        url: "/api/sala",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        data: {
+            id: cod_sala,
+        },
+        complete: function(response) {
+            var response = JSON.parse(response.responseText);
+            var disciplinas = response.sala.disciplinas;
+            $("#disciplina").html('');
+            console.log(disciplinas);
+            disciplinas.map(({cod_disciplina, nome_disciplina}) => {
+                $('#disciplina').append(`
+                   <option value="${cod_disciplina}">${nome_disciplina}</option>	
+                `);
+            });
+        }
+    });
+}
+
+function addMatricula(element) {
+    let matricula = $(element).parent().parent().parent();
+
+    teste = element.parentElement.parentElement.parentElement;
+
+    console.log(teste) 
+
+    let cod_sala = null;
+    let nome_sala = null;
+    const salaSelect = matricula.find('#sala');
+    cod_sala = salaSelect.val();
+    nome_sala = salaSelect.find("option:selected").text();
+
+    let cod_disciplina = null;
+    let nome_disciplina = null;
+
+    console.log(matricula);
+
+    const disciplinaSelect = matricula.find('#disciplina');
+    cod_disciplina = disciplinaSelect.val();
+    nome_disciplina = disciplinaSelect.find("option:selected").text();
+
+    console.log(cod_disciplina);
+
+    if (!cod_sala || !cod_disciplina) {
+        alert('Selecione uma sala e uma disciplina');
+    } else {
+        $('#matriculas').append(`
+           <tr>
+                <td id=nome_sala>
+                    ${nome_sala}
+                </td>
+                <td id=nome_disciplina>
+                    ${nome_disciplina}
+                </td>
+                <td>
+                    <a><i onclick="delMatricula(this)" class="fa fa-trash" aria-hidden="true"></i></a>
+                    
+                </td>
+                <input type="hidden" id="matriculas" name="matriculas" data-cod_sala="${cod_sala}" data-cod_disciplina="${cod_disciplina}">
+            </tr>
+        `);
+    }
+}
+
+function delMatricula(element) {
+    let matricula = $(element).parent().parent().parent();
+    $(matricula).remove()
+}

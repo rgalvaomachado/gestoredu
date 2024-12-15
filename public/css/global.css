@@ -53,6 +53,18 @@ input:focus {
   outline-color: #004fde;
 }
 
+textarea{
+  height: 200px !important;
+}
+
+.no-space {
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 150px;
+}
+
 .checkbox{
   border-radius: 5px;
   margin-top: 5px;
@@ -179,10 +191,6 @@ a, p, label, option, input, td, tr{
   width: 30px;
 }
 
-#listMenu li{
-  list-style: none;
-}
-
 .fa-plus{
   float: right;
   padding-right: 10px;
@@ -219,19 +227,6 @@ a, p, label, option, input, td, tr{
   color: white;
   text-align: left;
   text-decoration: none;
-}
-
-#listMenu>li ul{
-  list-style: none;
-  overflow: hidden;
-  max-height: 0;
-  transition: all 0.4s linear;
-}
-
-#listMenu input:checked ~ ul{
-  height: auto;
-  max-height: 100%;
-  transform: all;
 }
 
 .subMenu{
@@ -320,6 +315,7 @@ a, p, label, option, input, td, tr{
   .grid-container {
     display: grid;
     grid-template-columns: 290px auto ;
+    height: 100%;
   }
 
   .title{
@@ -354,7 +350,7 @@ a, p, label, option, input, td, tr{
   }
 
   .grid-item-menu-mobile{
-    display: block;
+    display: none;
   }
 
   .slideMenuMobile{

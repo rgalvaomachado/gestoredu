@@ -1,11 +1,8 @@
 <?php
-    include_once('src/model/Projeto.php');
-    include_once('src/model/Usuario.php');
-
     class ProjetoController{
         function buscarTodos(){
             $Projeto = new Projeto();
-            $Projetos = $Projeto->buscarTodos();
+            $Projetos = $Projeto->read();
             return json_encode([
                 "access" => true,
                 "projetos" => $Projetos
@@ -14,8 +11,9 @@
 
         function buscar($post){
             $Projeto = new Projeto();
-            $Projeto->id = $post['id'];
-            $buscarProjeto = $Projeto->buscar();
+            $buscarProjeto = $Projeto->readFirst([
+                'id' => $post['id']
+            ]);
 
             if(!empty($buscarProjeto)){
                 return json_encode([
@@ -31,9 +29,9 @@
         }
 
         function buscarProjetoUsuario($post){
-            $Projeto = new Projeto();
+            $Projeto = new UsuarioProjeto();
             $Projeto->cod_usuario = $post['cod_usuario'];
-            $buscarProjeto = $Projeto->buscarProjetoUsuario();
+            $buscarProjeto = $Projeto->buscar();
 
             if(!empty($buscarProjeto)){
                 return json_encode([
@@ -50,9 +48,9 @@
 
         function criar($post){
             $Projeto = new Projeto();
-            $Projeto->nome = $post['nome'];
-
-            $id = $Projeto->criar();
+            $id = $Projeto->create([
+                'nome' => $post['nome']
+            ]);
             if ($id > 0){
                 return json_encode([
                     "access" => true,
@@ -69,10 +67,16 @@
 
         function editar($post){
             $Projeto = new Projeto();
-            $Projeto->id = $post['id'];
-            $Projeto->nome = $post['nome'];
-            $id = $Projeto->editar();
-            if ($id > 0) {
+            $atualizado = $Projeto->update(
+                [
+                    'nome' => $post['nome']
+                ],
+                [
+                    'id' => $post['id']
+                ]
+            );
+
+            if ($atualizado > 0) {
                 return json_encode([
                     "access" => true,
                     "message" => "Editado com sucesso"
@@ -87,8 +91,9 @@
 
         function deletar($post){
             $Projeto = new Projeto();
-            $Projeto->id = $post['id'];
-            $deletado = $Projeto->deletar();
+            $deletado = $Projeto->delete([
+                'id' => $post['id']
+            ]);
             if ($deletado){
                 return json_encode([
                     "access" => true,

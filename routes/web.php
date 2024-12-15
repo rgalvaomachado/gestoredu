@@ -23,6 +23,10 @@
         ['/sala/editar','/sala/editar.php'],
         ['/sala/deletar','/sala/deletar.php'],
 
+        ['/projeto','/projeto/index.php'],
+        ['/projeto/criar','/projeto/criar.php'],
+        ['/projeto/editar','/projeto/editar.php'],
+        ['/projeto/deletar','/projeto/deletar.php'],
         
         ['/horario','/horario/index.php'],
         ['/horario/criar','/horario/criar.php'],
@@ -37,6 +41,9 @@
         ['/frequencia/certificado','/frequencia/certificado.php'],
 
         ['/certificado','/certificado/index.php'],
+        ['/certificado/criar','/certificado/criar.php'],
+        ['/certificado/editar','/certificado/editar.php'],
+        ['/certificado/deletar','/certificado/deletar.php'],
 
         ['/configuracao','/configuracao/index.php'],
 

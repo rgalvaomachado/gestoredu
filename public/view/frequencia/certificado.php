@@ -1,13 +1,10 @@
 <?php 
-    if (!isset($_GET['id'])){
+    if (!isset($_GET['cod_usuario'])){
         header("Location: /frequencia");
         die();
     }
 ?>
 <head>
-	<?php include_once('src/controller/CertificadoController.php')?>
-	<?php include_once('src/controller/UsuarioController.php')?>
-	<?php include_once('src/controller/ProjetoController.php')?>
     <link href="/public/view/frequencia/styles.css" rel="stylesheet">
     <script src="/public/view/frequencia/index.js"></script>
 </head>
@@ -19,31 +16,54 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
 		<br>
-		<?php
-			$UsuarioController = new UsuarioController();
-            $UsuarioController = json_decode($UsuarioController->buscar(['id' => $_GET['id']]));
-            $usuario = $UsuarioController->usuario;
+		<form>
+			<label>Certificado</label>
+			<br>
+			<?php 
+				$cod_certificado = isset($_GET['cod_certificado']) ? $_GET['cod_certificado'] : "";
+				$cod_usuario = isset($_GET['cod_usuario']) ? $_GET['cod_usuario'] : "";
+				$frequencia = isset($_GET['frequencia']) ? $_GET['frequencia'] : "";
+				$cod_disciplina = isset($_GET['cod_disciplina']) ? $_GET['cod_disciplina'] : "";
 
-			$ProjetoController = new ProjetoController();
-			$ProjetoController = json_decode($ProjetoController->buscarProjetoUsuario(['cod_usuario' => $_GET['id']]));
-			$projeto_id = $ProjetoController->access ? $ProjetoController->projeto->id : '';
-			$projeto_nome = $ProjetoController->access ? $ProjetoController->projeto->nome : '';
+				$CertificadoController = new CertificadoController();
+				$certificados = json_decode($CertificadoController->buscarTodos())->certificados;
+			?>
+			<input type="hidden" name="cod_usuario" value="<?php echo $cod_usuario?>">
+			<input type="hidden" name="frequencia" value="<?php echo $frequencia?>">
+			<input type="hidden" name="cod_disciplina" value="<?php echo $cod_disciplina?>">
 
-			$disciplina = $_GET['disciplina'] ? $_GET['disciplina'] : 0;
-
-			$gerarCertificado = new CertificadoController;
-			$certificado = $gerarCertificado->gerarCertificado([
-				'id' => $usuario->id,
-				'nome' => $usuario->nome,
-				'disciplina' => $disciplina,
-				'projeto' => $projeto_nome,
-			]);
-			$certificado = json_decode($certificado);
-		?>
-		<img id="certificado" src="\<?php echo $certificado->path?>">
-		</br>
-		</br>
-
-		<a class="button" download="<?php echo $usuario->nome?>.png" href="<?php echo $_SERVER['SYSTEM_URL'] .'/tmp/'. $usuario->id?>.png">Baixar</a>
+			<select class='input' id="cod_certificado" name="cod_certificado" required>
+				<option value="">Selecione um certificado</option>
+				<?php foreach ($certificados as $certificado) { ?>
+					<option 
+						value="<?php echo $certificado->id ?>"
+						<?php echo ($cod_certificado == $certificado->id) ? "selected" : "" ?>
+					><?php echo $certificado->nome ?></option>	
+				<?php } ?>
+			</select>
+			</br>
+			<input class='button' type="submit" value="Gerar Certificado">
+		</form>
+		<br>
+		<?php if ($cod_certificado) { ?>
+			<?php
+				$UsuarioController = new UsuarioController();
+				$UsuarioController = json_decode($UsuarioController->buscar(['id' => $cod_usuario]));
+				$usuario = $UsuarioController->usuario;
+			
+				$gerarCertificado = new CertificadoController;
+				$certificado = $gerarCertificado->gerarCertificado([
+					'cod_usuario' => $cod_usuario,
+					'cod_certificado' => $cod_certificado,
+					'disciplina' => $cod_disciplina,
+					'frequencia' => $frequencia,
+				]);
+				$cert = json_decode($certificado);
+			?>
+			<img id="certificado" src="\<?php echo $cert->path?>">
+			</br>
+			</br>
+			<a class="button" download="<?php echo $usuario->nome?>.png" href="<?php echo $_SERVER['SYSTEM_URL'] .'/tmp/'. $usuario->id?>.png">Baixar</a>
+		<?php } ?>
     </div>
 </div>

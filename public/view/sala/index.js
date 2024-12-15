@@ -1,15 +1,22 @@
 $(document).ready(function() {
     $('#criar').submit(function(e) {
         e.preventDefault();
-        var nome = $("#nome").val();
 
-        var disciplinas = [];
-        var disciplina = $("input[name='disciplinas[]']");
-        for (var i = 0; i < disciplina.length; i++) {
-            if (disciplina[i].checked) {
-                disciplinas.push(disciplina[i].value);
-            }
-        }
+        var formData = new FormData(this);
+        var jsonData = {};
+
+        formData.forEach((value, key) => {
+            jsonData[key] = value.trim() ? value : null;
+        });
+
+        jsonData.disciplinas = [];
+        const disciplinasInputs = document.querySelectorAll('input[name="disciplinas"]:checked');
+        disciplinasInputs.forEach(input => {
+            const cod_disciplina = input.getAttribute('data-cod_disciplina');
+            jsonData.disciplinas.push({
+                cod_disciplina: cod_disciplina,
+            });
+        })
         
         $.ajax({
             method: "POST",
@@ -17,10 +24,7 @@ $(document).ready(function() {
             headers: {
                 "Content-Type": "application/json",
             },
-            data: JSON.stringify({
-                nome: nome,
-                disciplinas: disciplinas,
-            }),
+            data: JSON.stringify(jsonData),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");
@@ -43,16 +47,21 @@ $(document).ready(function() {
 
     $('#editar').submit(function(e) {
         e.preventDefault();
-        var sala = $("#sala").val();
-        var nome = $("#nome").val();
+        var formData = new FormData(this);
+        var jsonData = {};
 
-        var disciplinas = [];
-        var disciplina = $("input[name='disciplinas[]']");
-        for (var i = 0; i < disciplina.length; i++) {
-            if (disciplina[i].checked) {
-                disciplinas.push(disciplina[i].value);
-            }
-        }
+        formData.forEach((value, key) => {
+            jsonData[key] = value.trim() ? value : null;
+        });
+
+        jsonData.disciplinas = [];
+        const disciplinasInputs = document.querySelectorAll('input[name="disciplinas"]:checked');
+        disciplinasInputs.forEach(input => {
+            const cod_disciplina = input.getAttribute('data-cod_disciplina');
+            jsonData.disciplinas.push({
+                cod_disciplina: cod_disciplina,
+            });
+        })
         
         $.ajax({
             method: "PUT",
@@ -60,11 +69,7 @@ $(document).ready(function() {
             headers: {
                 "Content-Type": "application/json",
             },
-            data: JSON.stringify({
-                id: sala,
-                nome: nome,
-                disciplinas: disciplinas,
-            }),
+            data: JSON.stringify(jsonData),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
                 const alert = document.getElementById("messageAlert");

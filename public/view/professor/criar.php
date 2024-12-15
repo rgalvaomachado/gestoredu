@@ -1,7 +1,8 @@
 <head>
+    <?php include_once('src/controller/GrupoController.php')?>
     <?php include_once('src/controller/DisciplinaController.php')?>
     <?php include_once('src/controller/SalaController.php')?>
-
+    <?php include_once('src/controller/AtribuicaoController.php')?>
     <link href="/public/view/professor/styles.css" rel="stylesheet">
     <script src="/public/view/professor/index.js"></script>
 </head>
@@ -90,61 +91,45 @@
             <br>
             <input class='input' type="password" id="senha" name="senha">
             <input type="hidden" id="grupos" value="2">
+            <br><br>
+            <label>Atribuição</label>
             <br>
-            <label>Disciplinas</label>
-            <br>
-            <?php
-                $DisciplinaController = new DisciplinaController();
-                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
-            ?>
-                       <br>
-            <table class="list">
-                <tr>
-                    <th>
-                        Salas
-                    </th>
-                    <th>
-                        Disciplinas
-                    </th>
-                </tr>
+            <table class="list" id="atribuicoes">
                 <tbody>
-                    <?php
-                        $SalaController = new SalaController();
-                        $salas = json_decode($SalaController->buscarTodos())->salas;
-                    ?>
-                    <?php foreach ($salas as $sala) { ?>
-                        <tr>
-                            <td class="text-left">
-                                <label>
-                                    <input type='checkbox' class="checkbox" id="salas" name="salas[]" value="<?php echo $sala->id ?>">
-                                    <?php echo $sala->nome ?>
-                                </label>
-                            </td>
-                            <td class="text-right">
-                                <?php 
-                                $sala = json_decode($SalaController->buscar(['id' => $sala->id]))->sala;
-                                $DisciplinaController = new DisciplinaController();
-                                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
-                                foreach ($disciplinas as $disciplina) { 
-                                    if (in_array($disciplina->id, $sala->disciplinas)) { ?>
-                                        <input 
-                                            type='checkbox'
-                                            class="checkbox"
-                                            id="disciplina"
-                                            data-sala-id="<?php echo $sala->id ?>"
-                                            name="disciplina[]"
-                                            value="<?php echo $disciplina->id ?>"
-                                        >
-                                        <label><?php echo $disciplina->nome ?></label>
-                                        <br>
-                                    <?php } ?>
+                    <tr>
+                        <th>
+                            Sala
+                        </th>
+                        <th>
+                            Disciplina
+                        </th>
+                        <th>
+                            
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php 
+                                $SalaController = new SalaController();
+                                $salas = json_decode($SalaController->buscarTodos())->salas;
+                            ?>
+                            <select class='input coluna' id="sala" onchange="getDisciplinas()">
+                                <option value="">Selecione uma sala</option>
+                                <?php foreach ($salas as $sala) { ?>
+                                    <option value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
                                 <?php } ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
+                            </select>
+                        </td>
+                        <td>
+                            <select class='input coluna' id="disciplina" name="disciplina">
+                            </select>
+                        </td>
+                        <td>
+                            <a><i onclick="addAtribuicao(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-            <br>
             <br>
             <input class='button' type="submit" value="Criar">
         </div>

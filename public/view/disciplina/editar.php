@@ -5,9 +5,6 @@
     }
 ?>
 <head>
-	<?php include_once('src/controller/DisciplinaController.php')?>
-	<?php include_once('src/controller/UsuarioController.php')?>
-
     <link href="/public/view/disciplina/styles.css" rel="stylesheet">
     <script src="/public/view/disciplina/index.js"></script>
 </head>
@@ -31,10 +28,17 @@
 			<input class='input' name="nome" id="nome" value="<?php echo $disciplina->nome?>">
 			</br>
 			</br>
-			<label><b>Usuarios do Disciplina <?php echo "(".count($disciplina->usuarios).")"?></b></label>
-			<?php foreach($disciplina->usuarios as $usuarios) {?>
+			<label><b>Matriculas <?php echo "(".count($disciplina->matriculas).")"?></b></label>
+			<?php foreach($disciplina->matriculas as $matricula) {?>
 				<div id='listaUsurios'>
-					<label><?php echo $usuarios->nome ?></label><br>
+					<label>Nome: <?php echo $matricula->nome ?> - Sala: <?php echo $matricula->nome_sala ?></label><br>
+				</div>
+			<?php } ?>
+			<br>
+			<label><b>Atribuições <?php echo "(".count($disciplina->atribuicoes).")"?></b></label>
+			<?php foreach($disciplina->atribuicoes as $atribuicao) {?>
+				<div id='listaUsurios'>
+					<label>Nome: <?php echo $atribuicao->nome ?> - Sala: <?php echo $atribuicao->nome_sala ?></label><br>
 				</div>
 			<?php } ?>
 			<br>

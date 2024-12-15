@@ -1,7 +1,7 @@
 <?php
-    include_once('Database.php');
-
     class Presenca extends Database{
+        protected $table = 'presenca';
+
         public $cod_usuario;
         public $cod_grupo;
         public $cod_disciplina;
@@ -11,7 +11,7 @@
         public $data_final;
 
         function verificarPresenca(){
-            $verificarPresenca =  $this->bd->prepare('
+            $verificarPresenca =  $this->connection->prepare('
                 SELECT * 
                 FROM presenca 
                 WHERE 
@@ -30,7 +30,7 @@
         } 
 
         function criarPresenca(){
-            $stmt = $this->bd->prepare('
+            $stmt = $this->connection->prepare('
                 INSERT INTO presenca (cod_usuario, cod_grupo, cod_disciplina, cod_sala, presente, data)
                 VALUES(:cod_usuario, :cod_grupo, :cod_disciplina, :cod_sala, :presente, :data)
             ');
@@ -44,38 +44,8 @@
             ]);
         }
 
-        // function justificarPresenca(){
-        //     $stmt = $this->bd->prepare('
-        //         UPDATE presenca
-        //         SET presente = :presente 
-        //         WHERE 
-        //             cod_sala = :cod_sala 
-        //             AND cod_monitore = :cod_monitore 
-        //             AND cod_tutore = :cod_tutore 
-        //             AND cod_alune = :cod_alune
-        //             AND data = :data
-        //             AND aula = :aula
-        //     ');
-        //     $stmt->execute([
-        //         ':cod_sala' => isset($this->cod_sala) ? $this->cod_sala : 0,
-        //         ':cod_monitore' => isset($this->cod_monitore) ? $this->cod_monitore : 0,
-        //         ':cod_tutore' => isset($this->cod_tutore) ? $this->cod_tutore : 0,
-        //         ':cod_alune' => isset($this->cod_alune) ? $this->cod_alune : 0,
-        //         ':aula' => isset($this->aula) ? $this->aula : 0,
-        //         ':presente' => $this->presente,
-        //         ':data' => $this->data,
-        //     ]);
-        // }
-
-        // function deletaPresencaAlune(){
-        //     $stmt = $this->bd->prepare('DELETE FROM presenca where cod_alune = :cod_alune');
-        //     $stmt->execute([
-        //       ':cod_alune' => $this->cod_alune,
-        //     ]);
-        // }
-
         function getPresencaPeriodo(){
-            $getPresencaPeriodo =  $this->bd->prepare('
+            $getPresencaPeriodo =  $this->connection->prepare('
                 SELECT *
                 FROM presenca
                 WHERE 
@@ -98,7 +68,7 @@
         } 
 
         function getAusenciaPeriodo(){
-            $getAusenciaPeriodo =  $this->bd->prepare('
+            $getAusenciaPeriodo =  $this->connection->prepare('
                 SELECT *
                 FROM presenca
                 WHERE 
@@ -121,7 +91,7 @@
         } 
         
         function getJustificadoPeriodo(){
-            $getJustificadoPeriodo =  $this->bd->prepare('
+            $getJustificadoPeriodo =  $this->connection->prepare('
                 SELECT *
                 FROM presenca
                 WHERE 

@@ -5,8 +5,6 @@
     }
 ?>
 <head>
-	<?php include_once('src/controller/DisciplinaController.php')?>
-	<?php include_once('src/controller/UsuarioController.php')?>
     <link href="/public/view/professor/styles.css" rel="stylesheet">
     <script src="/public/view/professor/index.js"></script>
 </head>

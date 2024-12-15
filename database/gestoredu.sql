@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 16, 2024 at 09:19 PM
+-- Generation Time: Oct 08, 2024 at 12:34 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.1.12
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `gestoredu`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `certificado`
+--
+
+CREATE TABLE `certificado` (
+  `id` int NOT NULL,
+  `nome` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
+  `conteudo` text CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci NOT NULL,
+  `tamanho_letra` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -134,13 +147,13 @@ CREATE TABLE `usuario` (
   `nome` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL,
   `data_nascimento` date DEFAULT NULL,
   `rg` varchar(9) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
-  `cpf` int DEFAULT NULL,
+  `cpf` bigint DEFAULT NULL,
   `rua` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
   `numero` int DEFAULT NULL,
   `bairro` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
   `cidade` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
   `estado` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
-  `telefone` int DEFAULT NULL,
+  `telefone` bigint DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
   `senha` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_swedish_ci DEFAULT NULL,
   `data_inscricao` varchar(255) COLLATE utf8mb3_swedish_ci NOT NULL
@@ -186,6 +199,12 @@ CREATE TABLE `usuario_sala_disciplina` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `certificado`
+--
+ALTER TABLE `certificado`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `configuracao`
@@ -262,6 +281,12 @@ ALTER TABLE `usuario_sala_disciplina`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `certificado`
+--
+ALTER TABLE `certificado`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `configuracao`

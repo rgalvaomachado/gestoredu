@@ -5,7 +5,6 @@
     }
 ?>
 <head>
-	<?php include_once('src/controller/HorarioController.php')?>
     <link href="/public/view/horario/styles.css" rel="stylesheet">
     <script src="/public/view/horario/index.js"></script>
 </head>

@@ -1,5 +1,4 @@
 <head>
-	<?php include_once('src/controller/UsuarioController.php')?>
     <link href="/public/view/aluno/styles.css" rel="stylesheet">
     <script src="/public/view/aluno/index.js"></script>
 </head>
@@ -13,7 +12,7 @@
         <br>
 		<?php
 			$UsuarioController = new UsuarioController();
-			$usuarios = json_decode($UsuarioController->buscarTodos(['grupo' => '1']))->usuarios;
+			$usuarios = json_decode($UsuarioController->buscarPorGrupos([1]))->usuarios;
 		?>
 		<table class="list">
             <tbody>

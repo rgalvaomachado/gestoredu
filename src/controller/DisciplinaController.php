@@ -1,11 +1,8 @@
 <?php
-    include_once('src/model/Disciplina.php');
-    include_once('src/model/Usuario.php');
-
     class DisciplinaController{
         function buscarTodos(){
             $Disciplina = new Disciplina();
-            $Disciplinas = $Disciplina->buscarTodos();
+            $Disciplinas = $Disciplina->read();
             return json_encode([
                 "access" => true,
                 "disciplinas" => $Disciplinas
@@ -14,13 +11,19 @@
 
         function buscar($post){
             $Disciplina = new Disciplina();
-            $Disciplina->id = $post['id'];
-            $buscarDisciplina = $Disciplina->buscar();
+            $buscarDisciplina = $Disciplina->readFirst([
+                'id' => $post['id']
+            ]);
 
-            $usuario = new Usuario();
-            $usuario->disciplinas = $post['id'];
-            $usuarios = $usuario->buscarTodos();
-            $buscarDisciplina['usuarios'] = $usuarios;
+            $Matricula = new Matricula();
+            $Matricula->cod_disciplina = $post['id'];
+            $matriculas = $Matricula->buscar();
+            $buscarDisciplina['matriculas'] = $matriculas;
+
+            $Atribuicao = new Atribuicao();
+            $Atribuicao->cod_disciplina = $post['id'];
+            $atribuicoes = $Atribuicao->buscar();
+            $buscarDisciplina['atribuicoes'] = $atribuicoes;
 
             if(!empty($buscarDisciplina)){
                 return json_encode([
@@ -37,9 +40,10 @@
 
         function criar($post){
             $Disciplina = new Disciplina();
-            $Disciplina->nome = $post['nome'];
+            $id = $Disciplina->create([
+                'nome' => $post['nome']
+            ]);
 
-            $id = $Disciplina->criar();
             if ($id > 0){
                 return json_encode([
                     "access" => true,
@@ -56,10 +60,14 @@
 
         function editar($post){
             $Disciplina = new Disciplina();
-            $Disciplina->id = $post['id'];
-            $Disciplina->nome = $post['nome'];
-            $id = $Disciplina->editar();
-            if ($id > 0) {
+            $atualizado = $Disciplina->update([
+                    'nome' => $post['nome']
+                ],
+                [
+                    'id' => $post['id'],
+                ]
+            );
+            if ($atualizado > 0) {
                 return json_encode([
                     "access" => true,
                     "message" => "Editado com sucesso"
@@ -74,8 +82,9 @@
 
         function deletar($post){
             $Disciplina = new Disciplina();
-            $Disciplina->id = $post['id'];
-            $deletado = $Disciplina->deletar();
+            $deletado = $Disciplina->delete([
+                'id' => $post['id']
+            ]);
             if ($deletado){
                 return json_encode([
                     "access" => true,
