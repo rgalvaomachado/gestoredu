@@ -1,5 +1,4 @@
 <head>
-	<?php include_once('src/controller/UsuarioController.php')?>
     <link href="/public/view/aluno/styles.css" rel="stylesheet">
     <script src="/public/view/aluno/index.js"></script>
 </head>
@@ -11,12 +10,8 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
         <br>
-		<?php
-			$UsuarioController = new UsuarioController();
-			$usuarios = json_decode($UsuarioController->buscarTodos(['grupo' => '1']))->usuarios;
-		?>
-		<table class="list">
-            <tbody>
+        <table id='lista' class="list">
+            <thead>
                 <tr>
                     <th>
                         Nome
@@ -28,20 +23,10 @@
                         Deletar
                     </th>
                 </tr>
-                <?php foreach ($usuarios as $usuario){ ?>
-                    <tr>
-                        <td class="text-left">
-                            <?php echo $usuario->nome ?>
-                        </td>
-                        <td>
-                            <a href="/aluno/editar?id=<?php echo $usuario->id ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        </td>
-                        <td>
-                            <a href="/aluno/deletar?id=<?php echo $usuario->id ?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
-                <?php } ?>
+            </thead>
+            <tbody>
             </tbody>
         </table>
+        <script>loadAlunos()</script>
     </div>
 </div>

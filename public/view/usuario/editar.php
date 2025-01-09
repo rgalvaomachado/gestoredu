@@ -5,9 +5,6 @@
     }
 ?>
 <head>
-	<?php include_once('src/controller/UsuarioController.php')?>
-	<?php include_once('src/controller/DisciplinaController.php')?>
-	<?php include_once('src/controller/SalaController.php')?>
     <link href="/public/view/usuario/styles.css" rel="stylesheet">
     <script src="/public/view/usuario/index.js"></script>
 </head>

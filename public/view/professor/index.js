@@ -29,27 +29,16 @@ $(document).ready(function() {
             }
         }
 
-        var disciplinasPorSala = {};
-        var salaIds = [];
-        $("input[name='disciplina[]']").each(function() {
-            var salaId = $(this).attr('data-sala-id');
-            if (salaIds.indexOf(salaId) === -1) {
-                salaIds.push(salaId);
-            }
-        });
-        $("input[name='disciplina[]']:checked").each(function() {
-            var salaId = $(this).attr('data-sala-id');
-            var disciplinaValue = $(this).val();
-            if (!disciplinasPorSala[salaId]) {
-                disciplinasPorSala[salaId] = [];
-            }
-            disciplinasPorSala[salaId].push(disciplinaValue);
-        });
-        salaIds.forEach(function(salaId) {
-            if (!disciplinasPorSala[salaId]) {
-                disciplinasPorSala[salaId] = [];
-            }
-        });
+        const atribuicoes = [];
+        const matriculaInputs = document.querySelectorAll('input[name="atribuicoes[]"]');
+        matriculaInputs.forEach(input => {
+            const codSala = input.getAttribute('data-cod_sala');
+            const codDisciplina = input.getAttribute('data-cod_disciplina');
+            atribuicoes.push({
+                cod_sala: codSala,
+                cod_disciplina: codDisciplina
+            });
+        })
 
         $.ajax({
             method: "POST",
@@ -73,9 +62,8 @@ $(document).ready(function() {
                 email: email,
                 senha: senha,
                 grupos: grupos,
-               
-                salas: salas,
-                sala_disciplinas: disciplinasPorSala,
+
+                atribuicoes: atribuicoes
             }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -119,34 +107,15 @@ $(document).ready(function() {
         var grupos = [];
         grupos.push($("#grupos").val());
 
-        var salas = [];
-        var sala = $("input[name='salas[]']");
-        for (var i = 0; i < sala.length; i++) {
-            if (sala[i].checked) {
-                salas.push(sala[i].value);
-            }
-        }
-
-        var disciplinasPorSala = {};
-        var salaIds = [];
-        $("input[name='disciplina[]']").each(function() {
-            var salaId = $(this).attr('data-sala-id');
-            if (salaIds.indexOf(salaId) === -1) {
-                salaIds.push(salaId);
-            }
-        });
-        $("input[name='disciplina[]']:checked").each(function() {
-            var salaId = $(this).attr('data-sala-id');
-            var disciplinaValue = $(this).val();
-            if (!disciplinasPorSala[salaId]) {
-                disciplinasPorSala[salaId] = [];
-            }
-            disciplinasPorSala[salaId].push(disciplinaValue);
-        });
-        salaIds.forEach(function(salaId) {
-            if (!disciplinasPorSala[salaId]) {
-                disciplinasPorSala[salaId] = [];
-            }
+        const atribuicoes = [];
+        const matriculaInputs = document.querySelectorAll('input[name="atribuicoes[]"]');
+        matriculaInputs.forEach(input => {
+            const codSala = input.getAttribute('data-cod_sala');
+            const codDisciplina = input.getAttribute('data-cod_disciplina');
+            atribuicoes.push({
+                cod_sala: codSala,
+                cod_disciplina: codDisciplina
+            });
         });
 
         $.ajax({
@@ -173,8 +142,7 @@ $(document).ready(function() {
                 senha: senha,
                 grupos: grupos,
 
-                salas: salas,
-                disciplinas: disciplinasPorSala,
+                atribuicoes: atribuicoes,
             }),
             complete: function(response) {
                 var response = JSON.parse(response.responseText);
@@ -228,3 +196,68 @@ $(document).ready(function() {
         });
     });
 });
+
+function getDisciplinas() {
+    cod_sala = $("#sala").val();
+    $.ajax({
+        method: "GET",
+        url: "/api/sala",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        data: {
+            id: cod_sala,
+        },
+        complete: function(response) {
+            var response = JSON.parse(response.responseText);
+            var disciplinas = response.sala.disciplinas;
+            $("#disciplina").html('');
+            disciplinas.map(({cod_disciplina, nome_disciplina}) => {
+                $('#disciplina').append(`
+                   <option value="${cod_disciplina}">${nome_disciplina}</option>	
+                `);
+            });
+        }
+    });
+}
+
+function addAtribuicao(element) {
+    let matricula = $(element).parent().parent().parent();
+
+    let cod_sala = null;
+    let nome_sala = null;
+    const salaSelect = matricula.find('#sala');
+    cod_sala = salaSelect.val();
+    nome_sala = salaSelect.find("option:selected").text();
+
+    let cod_disciplina = null;
+    let nome_disciplina = null;
+    const disciplinaSelect = matricula.find('#disciplina');
+    cod_disciplina = disciplinaSelect.val();
+    nome_disciplina = disciplinaSelect.find("option:selected").text();
+
+    if (!cod_sala || !cod_disciplina) {
+        alert('Selecione uma sala e uma disciplina');
+    } else {
+        $('#atribuicoes').append(`
+           <tr>
+                <td id=nome_sala>
+                    ${nome_sala}
+                </td>
+                <td id=nome_disciplina>
+                    ${nome_disciplina}
+                </td>
+                <td>
+                    <a><i onclick="removeMatricula(this)" class="fa fa-trash" aria-hidden="true"></i></a>
+                    
+                </td>
+                <input type="hidden" id="atribuicoes" name="atribuicoes[]" data-cod_sala="${cod_sala}" data-cod_disciplina="${cod_disciplina}">
+            </tr>
+        `);
+    }
+}
+
+function delAtribuicao(element) {
+    let matricula = $(element).parent().parent().parent();
+    $(matricula).remove()
+}

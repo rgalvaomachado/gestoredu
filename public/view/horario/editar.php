@@ -5,7 +5,6 @@
     }
 ?>
 <head>
-	<?php include_once('src/controller/HorarioController.php')?>
     <link href="/public/view/horario/styles.css" rel="stylesheet">
     <script src="/public/view/horario/index.js"></script>
 </head>
@@ -28,7 +27,7 @@
 			<br>
 			<?php
                 $UsuarioController = new UsuarioController();
-                $usuarios = json_decode($UsuarioController->buscarTodos(['grupo' => '2']))->usuarios;
+                $usuarios = json_decode($UsuarioController->buscarPorGrupos([2]))->usuarios;
             ?>
 			<select class='input' id="cod_usuario" name="cod_usuario" required>
 				<?php foreach ($usuarios as $usuario) { ?>

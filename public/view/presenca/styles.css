@@ -26,3 +26,11 @@ a{
     text-decoration: none;
     color: inherit;
 }
+
+#criarChamadaIndividual {
+    display: none;
+}
+
+#criarChamadaListada {
+    display: none;
+}

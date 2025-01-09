@@ -5,9 +5,6 @@
     }
 ?>
 <head>
-	<?php include_once('src/controller/UsuarioController.php')?>
-	<?php include_once('src/controller/DisciplinaController.php')?>
-	<?php include_once('src/controller/SalaController.php')?>
     <link href="/public/view/professor/styles.css" rel="stylesheet">
     <script src="/public/view/professor/index.js"></script>
 </head>
@@ -104,66 +101,67 @@
             <label>Senha</label>
             <br>
             <input class='input' type="password" id="senha" name="senha" value="<?php echo $usuario->senha?>">
+            <br>
             <input type="hidden" id="grupos" value="2">
             <br>
             <br>
-            <table class="list">
-                <tr>
-                    <th>
-                        Salas
-                    </th>
-                    <th>
-                        Disciplinas
-                    </th>
-                </tr>
+            <label>Atribuição</label>
+            <br>
+            <table class="list" id="atribuicoes">
                 <tbody>
-                    <?php
-                        $SalaController = new SalaController();
-                        $salas = json_decode($SalaController->buscarTodos())->salas;
-                    ?>
-                    <?php foreach ($salas as $sala) { ?>
-                        <tr>
-                            <td class="text-left">
-                                <label>
-                                    <input 
-                                        class="checkbox"
-                                        type='checkbox'
-                                        id="salas"
-                                        name="salas[]"
-                                        value="<?php echo $sala->id ?>"
-                                        <?php echo in_array($sala->id, $usuario->salas) ? "checked" : "" ?>
-                                    > <?php echo $sala->nome ?>
-                                </label>
-                            </td>
-                            <td class="text-right">
-                                <?php 
-                                $sala = json_decode($SalaController->buscar(['id' => $sala->id]))->sala;
-                                $DisciplinaController = new DisciplinaController();
-                                $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
-                                foreach ($disciplinas as $disciplina) { 
-                                    $UsuarioController = new UsuarioController();
-                                    $usuario_sala_disciplina = json_decode($UsuarioController->usuario_sala_disciplina_buscar([
-                                        'cod_usuario' => $usuario->id,
-                                        'cod_sala' => $sala->id
-                                    ]))->usuario_sala_disciplina;
-                                    if (in_array($disciplina->id, $sala->disciplinas)) { ?>
-                                        <input 
-                                            type='checkbox'
-                                            class="checkbox"
-                                            id="disciplina"
-                                            data-sala-id="<?php echo $sala->id ?>"
-                                            name="disciplina[]"
-                                            value="<?php echo $disciplina->id ?>"
-
-                                            <?php echo in_array($disciplina->id, $usuario_sala_disciplina) ? "checked" : "" ?>
-                                        >
-                                        <label><?php echo $disciplina->nome ?></label>
-                                        <br>
-                                    <?php } ?>
+                    <tr>
+                        <th>
+                            Sala
+                        </th>
+                        <th>
+                            Disciplina
+                        </th>
+                        <th>
+                            
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php 
+                                $SalaController = new SalaController();
+                                $salas = json_decode($SalaController->buscarTodos())->salas;
+                            ?>
+                            <select class='input coluna' id="sala" onchange="getDisciplinas()">
+                                <option value="">Selecione uma sala</option>
+                                <?php foreach ($salas as $sala) { ?>
+                                    <option value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
                                 <?php } ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
+                            </select>
+                        </td>
+                        <td>
+                            <select class='input coluna' id="disciplina" name="disciplina">
+                            </select>
+                        </td>
+                        <td>
+                            <a><i onclick="addAtribuicao(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    <?php
+                        $AtribuicaoController = new AtribuicaoController();
+                        $atribuicoes = json_decode($AtribuicaoController->buscarAtribuicoesUsuario([
+                            'cod_usuario' => $_GET['id']
+                        ]))->atribuicoes;
+                            foreach ($atribuicoes as $matricula){ ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $matricula->nome_sala ?>
+                                    
+                                    </td>
+                                    <td>
+                                        <?php echo $matricula->nome_disciplina ?>
+                                    </td>
+                                    <td>
+                                        <a><i onclick="delAtribuicao(this)" class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                    <input type="hidden" id="atribuicoes" name="atribuicoes[]" data-cod_sala="<?php echo $matricula->cod_sala ?>" data-cod_disciplina="<?php echo $matricula->cod_disciplina ?>">
+                                </tr>
+                        <?php } 
+                    ?>
                 </tbody>
             </table>
             <br>

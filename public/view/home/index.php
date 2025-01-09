@@ -1,7 +1,4 @@
 <head>
-    <?php include_once('src/controller/UsuarioController.php')?>
-    <?php include_once('src/controller/SalaController.php')?>
-    <?php include_once('src/controller/DisciplinaController.php')?>
     <link href="/public/view/home/styles.css" rel="stylesheet">
     <script src="/public/view/home/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -10,53 +7,36 @@
     <?php include_once('public/menu.php')?>
     <div class="grid-item-content">
         <?php include_once('public/top.php')?>
-        <?php
-            $UsuarioController = new UsuarioController();
-            $usuarios = json_decode($UsuarioController->buscarTodos())->usuarios;
-            $qtdUsuarios = count($usuarios);
-
-            $UsuarioController = new UsuarioController();
-            $alunos = json_decode($UsuarioController->buscarTodos(['grupo' => '1']))->usuarios;
-            $qtdAlunos = count($alunos);
-
-            $UsuarioController = new UsuarioController();
-            $professores = json_decode($UsuarioController->buscarTodos(['grupo' => '2']))->usuarios;
-            $qtdProfessores = count($professores);
-
-            $SalaController = new SalaController();
-            $salas = json_decode($SalaController->buscarTodos())->salas;
-            $qtdSalas = count($salas);
-
-            $DisciplinaController = new DisciplinaController();
-            $disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
-            $qtdDisciplinas = count($disciplinas);
-
-        ?>
         <div class="grid-container-graficos">
             <div class="grid-item-graficos">
                 <label class="title">Salas</label>
                 <br>
-                <label style="font-size: 50px;"><?php echo $qtdSalas ?></label>
+                <label id="qtdSalas" class="qtd"></label>
+                <script>loadSalas()</script>
             </div>
             <div class="grid-item-graficos">
                 <label class="title">Usuarios</label>
                 <br>
-                <label style="font-size: 50px;"><?php echo $qtdUsuarios ?></label>
+                <label id="qtdUsuarios" class="qtd"></label>
+                <script>loadUsuarios()</script>
             </div>
             <div class="grid-item-graficos">
                 <label class="title">Disciplinas</label>
                 <br>
-                <label style="font-size: 50px;"><?php echo $qtdDisciplinas ?></label>
+                <label id="qtdDisciplinas" class="qtd"></label>
+                <script>loadDisciplinas()</script>
             </div>
             <div class="grid-item-graficos">
                 <label class="title">Alunos</label>
                 <br>
-                <label style="font-size: 50px;"><?php echo $qtdAlunos ?></label>
+                <label id="qtdAlunos" class="qtd"></label>
+                <script>loadAlunos()</script>
             </div>
             <div class="grid-item-graficos">
                 <label class="title">Professores</label>
                 <br>
-                <label style="font-size: 50px;"><?php echo $qtdProfessores ?></label>
+                <label id="qtdProfessores" class="qtd"></label>
+                <script>loadProfessores()</script>
             </div>
         </div>
     </div>

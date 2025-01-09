@@ -22,10 +22,10 @@ function slideMenuMobile(){
 
 function logout(){
     $.ajax({
-        method: "POST",
-        url: "/src/controller/Controller.php",
-        data: {
-            metodo: "logout"
+        method: "GET",
+        url: "/api/logout",
+        headers: {
+            "Content-Type": "application/json",
         },
         complete: function(response) {
             var response = JSON.parse(response.responseText);

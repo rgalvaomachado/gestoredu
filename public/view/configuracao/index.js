@@ -2,11 +2,20 @@ $(document).ready(function() {
     $('#configurar').submit(function(e) {
         e.preventDefault();
         var formData = {};
+        
         var checkboxes = document.querySelectorAll('#configurar input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {
-            var name = checkbox.name;
-            var value = checkbox.checked ? '1' : '0';
-            formData[name] = value;
+            formData[checkbox.name] = checkbox.checked ? '1' : '0';       
+        });
+
+        var texts = document.querySelectorAll('#configurar input[type="text"]');
+        texts.forEach(function(text) {
+            formData[text.name] = text.value;      
+        });
+
+        var selects = document.querySelectorAll('#configurar select');
+        selects.forEach(function(select) {
+            formData[select.name] = select.value;      
         });
 
         $.ajax({
@@ -31,7 +40,6 @@ $(document).ready(function() {
                         alert.innerHTML = "";
                     }, 3000);
                 }
-                window.location.assign("../configuracao");
             }
         });
     });

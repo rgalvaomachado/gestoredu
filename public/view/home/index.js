@@ -67,3 +67,53 @@ function grafico(professor, aluno){
         }
     });
 }
+
+function loadSalas(){
+    apiResponse = apiGet('/salas')
+    if(apiResponse.access){
+        qtd = apiResponse.salas.length
+        $("#qtdSalas").html(qtd)
+    }else{
+        $("#qtdSalas").html(0)
+    }
+}
+
+function loadUsuarios(){
+    apiResponse = apiGet('/usuarios')
+    if(apiResponse.access){
+        qtd = apiResponse.usuarios.length
+        $("#qtdUsuarios").html(qtd)
+    }else{
+        $("#qtdUsuarios").html(0)
+    }
+}
+
+function loadDisciplinas(){
+    apiResponse = apiGet('/disciplinas')
+    if(apiResponse.access){
+        qtd = apiResponse.disciplinas.length
+        $("#qtdDisciplinas").html(qtd)
+    }else{
+        $("#qtdDisciplinas").html(0)
+    }
+}
+
+function loadAlunos(){
+    apiResponse = apiGet('/usuarios/grupos', {'grupo': '1'})
+    if(apiResponse.access){
+        qtd = apiResponse.usuarios.length
+        $("#qtdAlunos").html(qtd)
+    }else{
+        $("#qtdAlunos").html(0)
+    }
+}
+
+function loadProfessores(){
+    apiResponse = apiGet('/usuarios/grupos', {'grupo': '2'})
+    if(apiResponse.access){
+        qtd = apiResponse.usuarios.length
+        $("#qtdProfessores").html(qtd)
+    }else{
+        $("#qtdProfessores").html(0)
+    }
+}

@@ -52,6 +52,7 @@ $(document).ready(function() {
         var disciplina = $("#disciplina").val();
         var data = $("#data").val();
         var presente = $("#presente").val();
+
         $.ajax({
             method: "POST",
             url: "/api/presenca-individual",
@@ -88,3 +89,117 @@ $(document).ready(function() {
         });
     });
 });
+
+function getDisciplinas() {
+    cod_sala = $("#sala").val();
+    if (cod_sala) {
+        $.ajax({
+            method: "GET",
+            url: "/api/sala",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: {
+                id: cod_sala,
+            },
+            complete: function(response) {
+                var response = JSON.parse(response.responseText);
+                var disciplinas = response.sala.disciplinas;
+                $("#disciplina").html('');
+                $('#disciplina').append(`
+                    <option value="">Selecione uma disciplina</option>	
+                 `);
+                disciplinas.map(({cod_disciplina, nome_disciplina}) => {
+                    $('#disciplina').append(`
+                       <option value="${cod_disciplina}">${nome_disciplina}</option>	
+                    `);
+                });
+            }
+        });
+    } else {
+        $("#criarChamadaIndividual").hide();
+        $("#criarChamadaListada").hide();
+        $("#disciplina").html('');
+        $('#disciplina').append(`
+            <option value="">Selecione uma disciplina</option>	
+        `);
+    }
+  
+}
+
+function getMatriculasIndividual() {
+    cod_sala = $("#sala").val();
+    cod_disciplina = $("#disciplina").val();
+    if (cod_sala && cod_disciplina){
+        $.ajax({
+            method: "GET",
+            url: "/api/matriculas",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: {
+                cod_usuario: null,
+                cod_sala: cod_sala,
+                cod_disciplina: cod_disciplina,
+            },
+            complete: function(response) {
+                $("#criarChamadaIndividual").show();
+                var response = JSON.parse(response.responseText);
+                var matriculas = response.matriculas;
+                console.log(matriculas)
+                $("#usuario").html('');
+                $('#usuario').append(`
+                    <option value="">Selecione um usuário</option>	
+                 `);
+                matriculas.map(({id, nome}) => {
+                    $('#usuario').append(`
+                       <option value="${id}">${nome}</option>	
+                    `);
+                });
+            }
+        });
+    } else {
+        $("#criarChamadaIndividual").hide();
+        $("#usuario").html('');
+        $('#usuario').append(`
+              <option value="">Selecione um usuário</option>	
+        `);
+    }
+}
+
+function getMatriculasListada() {
+    cod_sala = $("#sala").val();
+    cod_disciplina = $("#disciplina").val();
+    if (cod_sala && cod_disciplina){
+        $.ajax({
+            method: "GET",
+            url: "/api/matriculas",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: {
+                cod_usuario: null,
+                cod_sala: cod_sala,
+                cod_disciplina: cod_disciplina,
+            },
+            complete: function(response) {
+                $("#criarChamadaListada").show();
+                var response = JSON.parse(response.responseText);
+                var matriculas = response.matriculas;
+                console.log(matriculas)
+                $("#lista").html('');
+                matriculas.map(({id, nome}) => {
+                    $('#lista').append(`
+                        <tr>
+                            <td>${nome}</td>
+                            <td><input name="presente[]" type="checkbox" value='${id}'></td>
+                        </tr>
+                    `);
+                });
+            }
+        });
+    } else {
+        $("#criarChamadaListada").hide();
+        $("#lista").html('');
+    }
+}

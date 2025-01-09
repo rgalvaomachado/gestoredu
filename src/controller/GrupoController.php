@@ -1,11 +1,8 @@
 <?php
-    include_once('src/model/Grupo.php');
-    include_once('src/model/Usuario.php');
-
     class GrupoController{
         function buscarTodos(){
             $Grupo = new Grupo();
-            $grupos = $Grupo->buscarTodos();
+            $grupos = $Grupo->read();
             return json_encode([
                 "access" => true,
                 "grupos" => $grupos
@@ -14,13 +11,9 @@
 
         function buscar($post){
             $Grupo = new Grupo();
-            $Grupo->id = $post['id'];
-            $buscarGrupo = $Grupo->buscar();
-
-            $usuario = new Usuario();
-            $usuario->grupos = $post['id'];
-            $usuarios = $usuario->buscarTodos();
-            $buscarGrupo['usuarios'] = $usuarios;
+            $buscarGrupo = $Grupo->readFirst([
+                'id' => $post['id']
+            ]);
 
             if(!empty($buscarGrupo)){
                 return json_encode([
@@ -37,9 +30,9 @@
 
         function criar($post){
             $grupo = new Grupo();
-            $grupo->nome = $post['nome'];
-
-            $id = $grupo->criar();
+            $id = $grupo->create([
+                'nome' => $post['nome']
+            ]);
             if ($id > 0){
                 return json_encode([
                     "access" => true,
@@ -56,9 +49,13 @@
 
         function editar($post){
             $grupo = new Grupo();
-            $grupo->id = $post['id'];
-            $grupo->nome = $post['nome'];
-            $id = $grupo->editar();
+            $id = $grupo->update([
+                    'nome' => $post['nome']
+                ],
+                [
+                    'id' => $post['id'],
+                ]
+            );
             if ($id > 0) {
                 return json_encode([
                     "access" => true,
@@ -74,8 +71,9 @@
 
         function deletar($post){
             $grupo = new Grupo();
-            $grupo->id = $post['id'];
-            $deletado = $grupo->deletar();
+            $deletado = $grupo->delete([
+                'id' => $post['id']
+            ]);
             if ($deletado){
                 return json_encode([
                     "access" => true,

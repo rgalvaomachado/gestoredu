@@ -1,6 +1,4 @@
 <?php
-    include_once('src/model/Horario.php');
-
     class HorarioController{
         function buscarTodos($post){
             $Horario = new Horario();
@@ -35,16 +33,16 @@
 
         function criar($post){
             $Horario = new Horario();
-            $Horario->cod_usuario = $post['cod_usuario'];
-            $Horario->cod_sala = $post['cod_sala'];
-            $Horario->cod_disciplina = $post['cod_disciplina'];
-            $Horario->dia_semana = $post['dia_semana'];
-            $Horario->hora_inicio = $post['hora_inicio'];
-            $Horario->hora_fim = $post['hora_fim'];
-            $Horario->cor = $post['cor'];
-
-            $id = $Horario->criar();
-            if ($id > 0){
+            $id = $Horario->create([
+                "cod_usuario" => $post['cod_usuario'],
+                "cod_sala" => $post['cod_sala'],
+                "cod_disciplina" => $post['cod_disciplina'],
+                "dia_semana" => $post['dia_semana'],
+                "hora_inicio" => $post['hora_inicio'],
+                "hora_fim" => $post['hora_fim'],
+                "cor" => $post['cor']
+            ]);
+            if ($id){
                 return json_encode([
                     "access" => true,
                     "message" => "Criado com sucesso"
@@ -59,18 +57,21 @@
 
         function editar($post){
             $Horario = new Horario();
-            $Horario->id = $post['id'];
-            $Horario->cod_usuario = $post['cod_usuario'];
-            $Horario->cod_sala = $post['cod_sala'];
-            $Horario->cod_disciplina = $post['cod_disciplina'];
-            $Horario->dia_semana = $post['dia_semana'];
-            $Horario->hora_inicio = $post['hora_inicio'];
-            $Horario->hora_fim = $post['hora_fim'];
-            $Horario->cor = $post['cor'];
+            $atualizado = $Horario->update([
+                    "cod_usuario" => $post['cod_usuario'],
+                    "cod_sala" => $post['cod_sala'],
+                    "cod_disciplina" => $post['cod_disciplina'],
+                    "dia_semana" => $post['dia_semana'],
+                    "hora_inicio" => $post['hora_inicio'],
+                    "hora_fim" => $post['hora_fim'],
+                    "cor" => $post['cor']
+                ],
+                [
+                    "id" => $post['id'],
+                ]
+            );
 
-            $id = $Horario->editar();
-
-            if ($id > 0) {
+            if ($atualizado > 0) {
                 return json_encode([
                     "access" => true,
                     "message" => "Editado com sucesso"
@@ -85,8 +86,9 @@
 
         function deletar($post){
             $Horario = new Horario();
-            $Horario->id = $post['id'];
-            $deletado = $Horario->deletar();
+            $deletado = $Horario->delete([
+                'id' => $post['id']
+            ]);
             if ($deletado){
                 return json_encode([
                     "access" => true,

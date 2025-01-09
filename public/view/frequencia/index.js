@@ -39,7 +39,7 @@ $(document).ready(function() {
                                 <td>${ausencias}</td>
                                 <td>${frequencia.toFixed(2)}%</td>
                                 <td>
-                                    <a href="/frequencia/certificado?id=${id}&frequencia=${frequencia.toFixed(2)}&disciplina=${disciplina}" target="_blank" ${hidden}>
+                                    <a href="/frequencia/certificado?cod_usuario=${id}&frequencia=${frequencia.toFixed(2)}&cod_disciplina=${disciplina}" target="_blank" ${hidden}>
                                         <em class="fa fa-file-pdf-o" aria-hidden="true"></em>
                                     </a>
                                 </td>
@@ -59,3 +59,38 @@ $(document).ready(function() {
         });
     })
 });
+
+function getDisciplinas() {
+    cod_sala = $("#sala").val();
+    if (cod_sala) {
+        $.ajax({
+            method: "GET",
+            url: "/api/sala",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: {
+                id: cod_sala,
+            },
+            complete: function(response) {
+                var response = JSON.parse(response.responseText);
+                var disciplinas = response.sala.disciplinas;
+                $("#disciplina").html('');
+                $('#disciplina').append(`
+                    <option value="">Selecione uma disciplina</option>	
+                 `);
+                disciplinas.map(({cod_disciplina, nome_disciplina}) => {
+                    $('#disciplina').append(`
+                       <option value="${cod_disciplina}">${nome_disciplina}</option>	
+                    `);
+                });
+            }
+        });
+    } else {
+        $("#disciplina").html('');
+        $('#disciplina').append(`
+            <option value="">Selecione uma disciplina</option>	
+        `);
+    }
+  
+}

@@ -1,15 +1,4 @@
 <?php
-    include_once('DisciplinaController.php');
-    include_once('LoginController.php');
-    include_once('PresencaController.php');
-    include_once('SalaController.php');
-    include_once('HorarioController.php');
-    include_once('RelatorioController.php');
-    include_once('CertificadoController.php');
-    include_once('UsuarioController.php');
-    include_once('GrupoController.php');
-    include_once('ConfiguracaoController.php');
-
     class Router{
 
         private $url;

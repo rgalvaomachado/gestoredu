@@ -1,5 +1,4 @@
 <head>
-	<?php include_once('src/controller/DisciplinaController.php')?>
     <link href="/public/view/disciplina/styles.css" rel="stylesheet">
     <script src="/public/view/disciplina/index.js"></script>
 </head>
