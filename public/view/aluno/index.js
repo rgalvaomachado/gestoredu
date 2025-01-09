@@ -220,3 +220,25 @@ function delMatricula(element) {
     let matricula = $(element).parent().parent().parent();
     $(matricula).remove()
 }
+
+function loadAlunos(){
+    apiResponse = apiGet('/usuarios/grupos', {'grupo': '1'})
+    if(apiResponse.access){
+        $("#lista").html('');
+        apiResponse.usuarios.map(({id, nome}) => {
+            $('#lista').append(`
+                <tr>
+                    <td class="text-left">
+                        ${nome}
+                    </td>
+                    <td>
+                        <a href="/aluno/editar?id=${id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                    <td>
+                        <a href="/aluno/deletar?id=${id}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            `);
+        });
+    }
+}

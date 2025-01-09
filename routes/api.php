@@ -8,6 +8,7 @@
         ['POST','/primeiro-login','LoginController','primeiroLogin'],
 
         ['GET','/usuarios','UsuarioController','buscarTodos'],
+        ['GET','/usuarios/grupos','UsuarioController','buscarPorGrupos'],
         ['GET','/usuario','UsuarioController','buscar'],
         ['POST','/usuario','UsuarioController','criar'],
         ['PUT','/usuario','UsuarioController','editar'],

@@ -46,15 +46,15 @@
 			<label>Presença</label>
 			<br>
 			<table id='lista'>
-					<thead>
-						<tr>
-							<th><strong>Nome</strong></th>
-							<th><strong>Presente</strong></th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+				<thead>
+					<tr>
+						<th><strong>Nome</strong></th>
+						<th><strong>Presente</strong></th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
 			</br>
 			<input class='button' type="submit" value="Fazer Chamada">
 		</form>
