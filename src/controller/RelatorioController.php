@@ -1,5 +1,5 @@
 <?php
-    class RelatorioController{
+    class RelatorioController extends Controller{
         function relatorioChamada($post){
             $MatriculaController = new MatriculaController();
             $buscarTodos = json_decode($MatriculaController->buscarTodos([

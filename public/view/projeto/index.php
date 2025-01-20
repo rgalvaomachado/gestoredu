@@ -2,10 +2,11 @@
     <link href="/public/view/projeto/styles.css" rel="stylesheet">
     <script src="/public/view/projeto/index.js"></script>
 </head>
+<?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/head.php')?>
 <div class="grid-content grid-container">
-	<?php include_once('public/menu.php')?>
+	<?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/menu.php')?>
     <div class="grid-item-content">
-        <?php include_once('public/top.php')?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/top.php')?>
         <label class="title">Projeto</label> <a href="/projeto/criar"><i class="title fa fa-plus-square-o" aria-hidden="true"></i></a>
 		<br>
 		<label class="message_alert" id="messageAlert"></label>

@@ -1,5 +1,5 @@
 <?php
-    class UsuarioController{
+    class UsuarioController extends Controller{
         function buscarTodos($post = []){
             $usuario = new Usuario();
             $usuarios = $usuario->read();

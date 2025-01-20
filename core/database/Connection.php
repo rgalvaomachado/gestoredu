@@ -7,6 +7,7 @@ class Connection
     private $username;
     private $password;
     private $host;
+    private $port;
     private $dataBase;
 
     public function __construct()
@@ -14,10 +15,11 @@ class Connection
         $this->username = $_ENV['DATABASE_USERNAME'];
         $this->password = $_ENV['DATABASE_PASSWORD'];
         $this->host     = $_ENV['DATABASE_HOST'];
+        $this->port     = $_ENV['DATABASE_PORT'];
         $this->dataBase = $_ENV['DATABASE_NAME'];
 
         try {
-            $this->bd = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->dataBase, $this->username, $this->password);
+            $this->bd = new PDO('mysql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->dataBase, $this->username, $this->password);
             $this->bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $err) {
             die('Database connection failed: ' . $err->getMessage());

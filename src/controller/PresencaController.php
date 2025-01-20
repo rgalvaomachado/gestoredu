@@ -1,5 +1,5 @@
 <?php
-    class PresencaController{
+    class PresencaController extends Controller{
         function criarPresencaListada($post){
             $MatriculaController = new MatriculaController();
             $buscarTodos = json_decode($MatriculaController->buscarTodos([

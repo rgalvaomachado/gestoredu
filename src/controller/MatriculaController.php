@@ -1,5 +1,5 @@
 <?php
-    class MatriculaController{
+    class MatriculaController extends Controller{
         function buscarTodos($post){
             $Matricula = new Matricula();
             $Matricula->cod_usuario = $post['cod_usuario'] ?? null;

@@ -1,7 +1,7 @@
 <?php
-    include_once('Database.php');
+    include_once('Model.php');
 
-    class UsuarioSalaDisciplina extends Database{
+    class UsuarioSalaDisciplina extends Model{
         public $id;
         public $cod_usuario;
         public $cod_sala;

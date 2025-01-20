@@ -1,5 +1,5 @@
 <?php
-	include_once('src/controller/ConfiguracaoController.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/ConfiguracaoController.php');
 
     $ConfiguracaoController = new ConfiguracaoController();
 

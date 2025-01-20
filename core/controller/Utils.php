@@ -1,5 +1,5 @@
 <?php
-    class UtilsController extends Controller{
+    class UtilsController{
 
         public $meses = [
             '01' => 'Janeiro',

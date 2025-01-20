@@ -1,17 +1,18 @@
 <head>
-    <?php include_once('src/controller/GrupoController.php')?>
-    <?php include_once('src/controller/DisciplinaController.php')?>
-    <?php include_once('src/controller/SalaController.php')?>
-    <?php include_once('src/controller/AtribuicaoController.php')?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/GrupoController.php')?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/DisciplinaController.php')?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/SalaController.php')?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/AtribuicaoController.php')?>
     <link href="/public/view/professor/styles.css" rel="stylesheet">
     <script src="/public/view/professor/index.js"></script>
 </head>
+<?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/head.php')?>
 <div class="grid-content grid-container">
-    <?php include_once('public/menu.php')?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/menu.php')?>
     <form id="criar">
         <div class="grid-item-content">
-            <?php include_once('public/top.php')?>
-            <?php include_once('public/configuracao.php') ?>
+            <?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/top.php')?>
+            <?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/configuracao.php') ?>
             <label class="title">Criar Professor(a)</label>
             <br>
             <label class="message_alert" id="messageAlert"></label>

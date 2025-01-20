@@ -1,5 +1,5 @@
 <?php
-    class LoginController
+    class LoginController extends Controller
     {
         function login($post)
         {

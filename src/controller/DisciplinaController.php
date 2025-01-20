@@ -1,5 +1,5 @@
 <?php
-    class DisciplinaController{
+    class DisciplinaController extends Controller{
         function buscarTodos(){
             $Disciplina = new Disciplina();
             $Disciplinas = $Disciplina->read();

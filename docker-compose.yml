@@ -5,11 +5,12 @@ services:
     build:
       context: .
     image: custom-php:8.2-apache
+    container_name: web_${COMPOSE_PROJECT_NAME}
     ports:
       - "80:80"
     volumes:
       - .:/var/www/html
-      - ./apache-config:/etc/apache2/sites-enabled
+      - ./core/apache-config:/etc/apache2/sites-enabled
     environment:
       APACHE_DOCUMENT_ROOT: /var/www/html
     working_dir: /var/www/html
@@ -19,10 +20,13 @@ services:
       apache2-foreground"
     restart: always
     networks:
-      - internal-network
+      internal-network:
+        aliases:
+          - web_${COMPOSE_PROJECT_NAME}
 
   db:
     image: mysql:8.0
+    container_name: db_${COMPOSE_PROJECT_NAME}
     ports:
       - "3306:3306"
     environment:
@@ -31,7 +35,9 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     networks:
-      - internal-network
+      internal-network:
+        aliases:
+          - db_${COMPOSE_PROJECT_NAME}
 
 volumes:
   db_data:

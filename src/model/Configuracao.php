@@ -1,5 +1,5 @@
 <?php
-    class Configuracao extends Database{
+    class Configuracao extends Model{
         protected $table = 'configuracao';
 
         public $id;

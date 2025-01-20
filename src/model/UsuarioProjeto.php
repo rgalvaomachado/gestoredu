@@ -1,5 +1,5 @@
 <?php
-    class UsuarioProjeto extends Database{
+    class UsuarioProjeto extends Model{
         protected $table = 'usuario_projeto';
 
         public $id;

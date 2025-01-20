@@ -19,4 +19,4 @@
         <a class="logoutMenu"><i class="fa fa-sign-out" aria-hidden="true" onclick="logout()"></i></a>
     </div>
 </div>
-<?php include_once('public/menu_mobile.php')?>
+<?php include_once('../public/menu_mobile.php')?>

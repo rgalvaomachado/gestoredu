@@ -87,47 +87,24 @@
             unset($url[1]);
             $url = implode('',$url);
 
-            if(is_file($url)){
-                return $url;
-            }
-
-            if(is_file("public/".$url)){
-                return "public/".$url;
-            }
-
-            if (file_exists('public/head.php')) {
-                include_once('public/head.php');
+            $file = $_SERVER['DOCUMENT_ROOT'] .'/'. $url;
+            if(is_file($file)){
+                return $file;
             }
 
             $url = '/'.$url;
-            
-            if (!isset($_SESSION['logado']) || $_SESSION['logado'] == false){
-                $url = "/login";
-            }
-
-            if ($url == "" && isset($_SESSION['modo']) && $_SESSION['modo'] == 'admin'){
-                header('Location: admin/home');
-            }
-
-            if ($url == "/"){
-                $url = "/home";
-            }
-
-            if ($url == "/admin" && isset($_SESSION['modo']) && $_SESSION['modo'] == 'admin'){
-                $url = "/admin/home";
-            } elseif ($url == "" && isset($_SESSION['modo']) && $_SESSION['modo'] == 'usuario' ){
-                $url = "/home";
-            }
 
             foreach($routes as $route){
                 $RoutePath = $route[0];
-                $RouteWeb = 'public/view'.$route[1];
-                if ($url == $RoutePath){
-                    return $RouteWeb;
+                $RouteWeb = $_SERVER['DOCUMENT_ROOT'] . '/public/view' . $route[1];
+                if ($url == $RoutePath) {
+                    if(is_file($RouteWeb)){
+                        return $RouteWeb;
+                    }
                 }
             }
 
-            return '404.html';
+            return $_SERVER['DOCUMENT_ROOT'] . '/public/view/404.html';
         }
 
         function runWeb($routes){
@@ -138,6 +115,7 @@
             $url = implode('/',$parametros);
 
             $path = $this->pathWeb($url, $routes);
+
             if(isset($path)){
                 $extension = substr($path, -3);
                 if ($extension == 'png'){
@@ -152,8 +130,19 @@
                     header ('Content-Type: image/gif');
                     header ("Content-length: $size");
                     echo $c;
+                } else if ($extension == 'css'){
+                    $c = file_get_contents($path,true);
+                    $size = filesize($path);
+                    header ('Content-Type: text/css');
+                    header ("Content-length: $size");
+                    echo $c;
                 }else{
-                    include_once $path;
+                    if(is_file($path)){
+                        include_once $path;
+                    } else {
+                        echo 'Página não encontrada (adicione uma pagina personalizada em /public/view/404.html)';
+                    }
+                    
                 }
             }
         }

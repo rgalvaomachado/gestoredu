@@ -1,5 +1,5 @@
 <?php
-    class HorarioController{
+    class HorarioController extends Controller{
         function buscarTodos($post){
             $Horario = new Horario();
             $Horario->cod_usuario = isset($post['cod_usuario']) ? $post['cod_usuario'] : null;

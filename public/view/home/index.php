@@ -3,10 +3,11 @@
     <script src="/public/view/home/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+<?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/head.php')?>
 <div class="grid-content grid-container">
-    <?php include_once('public/menu.php')?>
+    <?php include_once('../public/menu.php')?>
     <div class="grid-item-content">
-        <?php include_once('public/top.php')?>
+        <?php include_once('../public/top.php')?>
         <div class="grid-container-graficos">
             <div class="grid-item-graficos">
                 <label class="title">Salas</label>

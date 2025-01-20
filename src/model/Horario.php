@@ -1,5 +1,5 @@
 <?php
-    class Horario extends Database{
+    class Horario extends Model{
         protected $table = 'horario';
 
         public $id;

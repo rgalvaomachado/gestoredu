@@ -1,5 +1,5 @@
 <?php
-    class Certificado extends Database{
+    class Certificado extends Model{
         protected $table = 'certificado';
         
         public $id;

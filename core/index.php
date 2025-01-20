@@ -1,22 +1,20 @@
 <?php
     include_once('autoload.php');
-    include_once('env.php');
-    include_once('routes/web.php');
-    include_once('routes/api.php');
+    include_once('../env.php');
+    include_once('../routes/web.php');
+    include_once('../routes/api.php');
 
     if (!session_start()) {
         session_start();
     }
 
-    if (!empty($_SERVER['HTTPS'])){
-        $_SERVER['SYSTEM_URL'] = 'https://'.$_SERVER['HTTP_HOST'];
-    }
-    else {
-        $_SERVER['SYSTEM_URL'] = 'http://'.$_SERVER['HTTP_HOST'];
-    }
-
     // SETAR HORARIO DO SERVIDOR
-    date_default_timezone_set('America/Sao_Paulo');
+    if (empty($_ENV['TIMEZONE'])) {
+        echo "Configure a timezone no ENV";
+        exit;    
+    }
+    
+    date_default_timezone_set($_ENV['TIMEZONE']);
 
     $Router = new Router();
     if ($Router->checkApi() ){

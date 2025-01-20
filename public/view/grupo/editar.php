@@ -7,6 +7,7 @@
     <script src="index.js"></script>
 </head>
 <?php include_once('../includes/top.php')?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/head.php')?>
 <div class="grid-content grid-container">
     <?php include_once('../includes/menu.php')?>
     <div class="grid-item-content">

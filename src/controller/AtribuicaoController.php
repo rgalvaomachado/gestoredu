@@ -1,5 +1,5 @@
 <?php
-    class AtribuicaoController{
+    class AtribuicaoController extends Controller{
         function buscarAtribuicoesUsuario($post){
             $Atribuicao = new Atribuicao();
             $Atribuicao->cod_usuario = $post['cod_usuario'];

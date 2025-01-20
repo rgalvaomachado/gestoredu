@@ -1,5 +1,5 @@
 <?php
-    class ConfiguracaoController{
+    class ConfiguracaoController extends Controller{
         public $chaves = [
             'tipo_frequencia',
             'frequencia',

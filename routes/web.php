@@ -1,6 +1,8 @@
 <?php
     $web = [
         // [ENDPOINT, VIEW (public/view)]
+        ['/','/login/index.php'],
+        
         ['/home','/home/index.php'],
 
         ['/aluno','/aluno/index.php'],
@@ -48,6 +50,4 @@
         ['/configuracao','/configuracao/index.php'],
 
         ['/login','/login/index.php'],
-
-        ['','/login/index.php'],
     ];

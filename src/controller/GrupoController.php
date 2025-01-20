@@ -1,5 +1,5 @@
 <?php
-    class GrupoController{
+    class GrupoController extends Controller{
         function buscarTodos(){
             $Grupo = new Grupo();
             $grupos = $Grupo->read();

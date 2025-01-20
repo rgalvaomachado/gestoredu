@@ -1,3 +1,4 @@
+<?php include_once($_SERVER['DOCUMENT_ROOT'].'/public/head.php')?>
 <head>
     <link href="/public/view/login/styles.css" rel="stylesheet">
     <script src="/public/view/login/index.js"></script>

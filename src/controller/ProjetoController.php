@@ -1,5 +1,5 @@
 <?php
-    class ProjetoController{
+    class ProjetoController extends Controller{
         function buscarTodos(){
             $Projeto = new Projeto();
             $Projetos = $Projeto->read();

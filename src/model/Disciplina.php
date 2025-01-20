@@ -1,5 +1,5 @@
 <?php
-    class Disciplina extends Database{
+    class Disciplina extends Model{
         protected $table = 'disciplina';
 
         public $id;
