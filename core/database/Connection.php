@@ -22,7 +22,11 @@ class Connection
             $this->bd = new PDO('mysql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->dataBase, $this->username, $this->password);
             $this->bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $err) {
-            die('Database connection failed: ' . $err->getMessage());
+            echo json_encode([
+                "access" => false,
+                "message" => 'Database connection failed: ' . $err->getMessage()
+            ]);
+            die();
         }
     }
 

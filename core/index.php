@@ -1,8 +1,8 @@
 <?php
     include_once('autoload.php');
-    include_once('../env.php');
-    include_once('../routes/web.php');
-    include_once('../routes/api.php');
+    include_once(__DIR__ . '/../env.php');
+    include_once(__DIR__ . '/../routes/web.php');
+    include_once(__DIR__ . '/../routes/api.php');
 
     if (!session_start()) {
         session_start();

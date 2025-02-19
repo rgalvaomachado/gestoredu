@@ -5,12 +5,14 @@
         private $method;
         private $data;
         private $token;
+        private $baseUrl;
 
         function __construct() {
             $this->url = $_SERVER["REQUEST_URI"];
             $this->method = $_SERVER["REQUEST_METHOD"];     //GET, POST, PUT, DELETE.
             $this->data = $this->getData();
             $this->token = $this->getToken();
+            $this->baseUrl = $this->getBaseUrl();
         }
 
         function checkApi(){
@@ -19,6 +21,12 @@
                 return false;
             }
             return true;
+        }
+
+        function getBaseUrl(){
+            $scriptPath = $_SERVER['SCRIPT_NAME'];
+            $baseUrl = str_replace('/core/index.php','', $scriptPath);
+            return $baseUrl;
         }
 
         function getToken(){
@@ -38,6 +46,7 @@
 
         function pathApi(){
             $url = $this->url;
+            
             $apiPart = substr($url, strpos($url, '/api/') + 5);
             $apiPart = explode('?', $apiPart);
             $endpoint = $apiPart[0];
@@ -85,9 +94,10 @@
         function pathWeb($url, $routes){
             $url = explode('?',$url);
             unset($url[1]);
-            $url = implode('',$url);
+            $url = implode('',$url); 
 
-            $file = $_SERVER['DOCUMENT_ROOT'] .'/'. $url;
+            $file = $_SERVER['DOCUMENT_ROOT'] . '/' . $url;
+
             if(is_file($file)){
                 return $file;
             }
@@ -95,8 +105,9 @@
             $url = '/'.$url;
 
             foreach($routes as $route){
-                $RoutePath = $route[0];
-                $RouteWeb = $_SERVER['DOCUMENT_ROOT'] . '/public/view' . $route[1];
+                $RoutePath = $this->baseUrl . $route[0];
+                $RouteWeb = $_SERVER['DOCUMENT_ROOT'] . $this->baseUrl . '/public/view' . $route[1];
+
                 if ($url == $RoutePath) {
                     if(is_file($RouteWeb)){
                         return $RouteWeb;
@@ -104,7 +115,7 @@
                 }
             }
 
-            return $_SERVER['DOCUMENT_ROOT'] . '/public/view/404.html';
+            return $_SERVER['DOCUMENT_ROOT'] . $this->baseUrl . '/public/view/404.html';
         }
 
         function runWeb($routes){
@@ -136,9 +147,19 @@
                     header ('Content-Type: text/css');
                     header ("Content-length: $size");
                     echo $c;
+                } else if ($extension == '.js'){
+                    $c = file_get_contents($path,true);
+                    $size = filesize($path);
+                    header ('Content-Type: text/js');
+                    header ("Content-length: $size");
+                    echo $c;
                 }else{
                     if(is_file($path)){
-                        include_once $path;
+                        echo "<script>var basePath = '" . $this->baseUrl . "'</script>";
+                        echo "<script src='" . $this->baseUrl . "/core/js/jquery-1.11.1.min.js'></script>";
+                        echo "<script src='" . $this->baseUrl . "/core/js/web.js'></script>";
+                        echo "<script src='" . $this->baseUrl . "/core/js/api.js'></script>";
+                        include_once $path;     
                     } else {
                         echo 'Página não encontrada (adicione uma pagina personalizada em /public/view/404.html)';
                     }
