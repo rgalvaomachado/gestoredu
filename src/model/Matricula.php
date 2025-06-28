@@ -54,7 +54,7 @@
         function vinculo($matriculas){
             $vinculo = 0;
             foreach ($matriculas as $matricula) {
-                $buscar = $this->read([
+                $buscar = $this->searchAll([
                     'cod_usuario' => $this->cod_usuario,
                     'cod_sala' => $matricula->cod_sala,
                     'cod_disciplina' => $matricula->cod_disciplina,
@@ -69,7 +69,7 @@
                 }
             }
 
-            $existentes = $this->read([
+            $existentes = $this->searchAll([
                 'cod_usuario' => $this->cod_usuario
             ]);
             foreach ($existentes as $existe) {

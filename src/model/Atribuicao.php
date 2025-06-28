@@ -44,7 +44,7 @@
         function vinculo($atribuicoes){
             $vinculo = 0;
             foreach ($atribuicoes as $atribuicao) {
-                $buscar = $this->read([
+                $buscar = $this->searchAll([
                     'cod_usuario' => $this->cod_usuario,
                     'cod_sala' => $atribuicao->cod_sala,
                     'cod_disciplina' => $atribuicao->cod_disciplina,
@@ -59,7 +59,7 @@
                 }
             }
 
-            $atribuicoesBanco = $this->read([
+            $atribuicoesBanco = $this->searchAll([
                 'cod_usuario' => $this->cod_usuario
             ]);
             foreach ($atribuicoesBanco as $item1) {

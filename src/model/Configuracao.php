@@ -8,7 +8,7 @@
 
         function configurar()
         {
-            $atualizar = $this->readFirst([
+            $atualizar = $this->search([
                 'chave' => $this->chave
             ]);
 

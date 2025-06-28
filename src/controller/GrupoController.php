@@ -2,7 +2,7 @@
     class GrupoController {
         function buscarTodos(){
             $Grupo = new Grupo();
-            $grupos = $Grupo->read();
+            $grupos = $Grupo->searchAll();
             return json_encode([
                 "access" => true,
                 "grupos" => $grupos
@@ -11,7 +11,7 @@
 
         function buscar($post){
             $Grupo = new Grupo();
-            $buscarGrupo = $Grupo->readFirst([
+            $buscarGrupo = $Grupo->search([
                 'id' => $post['id']
             ]);
 

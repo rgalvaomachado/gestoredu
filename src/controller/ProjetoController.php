@@ -2,7 +2,7 @@
     class ProjetoController {
         function buscarTodos(){
             $Projeto = new Projeto();
-            $Projetos = $Projeto->read();
+            $Projetos = $Projeto->searchAll();
             return json_encode([
                 "access" => true,
                 "projetos" => $Projetos
@@ -11,7 +11,7 @@
 
         function buscar($post){
             $Projeto = new Projeto();
-            $buscarProjeto = $Projeto->readFirst([
+            $buscarProjeto = $Projeto->search([
                 'id' => $post['id']
             ]);
 

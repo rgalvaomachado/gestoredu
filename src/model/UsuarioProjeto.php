@@ -26,7 +26,7 @@
             $vinculo = 0;
 
             foreach ($projetos as $projeto) {
-                $buscar = $this->read([
+                $buscar = $this->searchAll([
                     'cod_usuario' => $this->cod_usuario,
                     'cod_projeto' => $projeto->cod_projeto,
                 ]);
@@ -39,7 +39,7 @@
                 }
             }
 
-            $existentes = $this->read([
+            $existentes = $this->searchAll([
                 'cod_usuario' => $this->cod_usuario
             ]);
             foreach ($existentes as $existe) {

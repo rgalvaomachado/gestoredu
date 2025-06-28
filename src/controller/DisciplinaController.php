@@ -2,7 +2,7 @@
     class DisciplinaController {
         function buscarTodos(){
             $Disciplina = new Disciplina();
-            $Disciplinas = $Disciplina->read();
+            $Disciplinas = $Disciplina->searchAll();
             return json_encode([
                 "access" => true,
                 "disciplinas" => $Disciplinas
@@ -11,7 +11,7 @@
 
         function buscar($post){
             $Disciplina = new Disciplina();
-            $buscarDisciplina = $Disciplina->readFirst([
+            $buscarDisciplina = $Disciplina->search([
                 'id' => $post['id']
             ]);
 

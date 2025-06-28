@@ -2,7 +2,7 @@
     class UsuarioController {
         function buscarTodos($post = []){
             $usuario = new Usuario();
-            $usuarios = $usuario->read();
+            $usuarios = $usuario->searchAll();
             return json_encode([
                 "access" => true,
                 "usuarios" => $usuarios
@@ -20,7 +20,7 @@
         
         function buscar($post){
             $user = new Usuario();
-            $usuario = $user->readFirst([
+            $usuario = $user->search([
                 'id' => $post['id']
             ]);
 

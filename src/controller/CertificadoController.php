@@ -3,7 +3,7 @@
 
         function buscarTodos(){
             $Certificado = new Certificado();
-            $Certificados = $Certificado->read();
+            $Certificados = $Certificado->searchAll();
             return json_encode([
                 "access" => true,
                 "certificados" => $Certificados
@@ -12,7 +12,7 @@
 
         function buscar($post){
             $Certificado = new Certificado();
-            $buscarCertificado = $Certificado->readFirst([
+            $buscarCertificado = $Certificado->search([
                 'id' => $post['id']
             ]);
 
@@ -126,7 +126,7 @@
 
         public function gerarCertificado($post){
             $Certificado = new Certificado();
-            $buscarCertificado = $Certificado->read([
+            $buscarCertificado = $Certificado->searchAll([
                 'id' => $post['cod_certificado']
             ]);
 

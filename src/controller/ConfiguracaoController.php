@@ -21,7 +21,7 @@
 
         function buscarTodos($post){
             $Configuracao = new Configuracao();
-            $buscarConfiguracao = $Configuracao->read();
+            $buscarConfiguracao = $Configuracao->searchAll();
 
             if(!empty($buscarConfiguracao)){
                 return json_encode([
@@ -38,7 +38,7 @@
 
         function buscar($post){
             $Configuracao = new Configuracao();
-            $buscarConfiguracao = $Configuracao->readFirst([
+            $buscarConfiguracao = $Configuracao->search([
                 'chave' => $post['chave']
             ]);
 

@@ -2,7 +2,7 @@
     class SalaController {
         function buscarTodos(){
             $Sala = new Sala();
-            $Salas = $Sala->read();
+            $Salas = $Sala->searchAll();
             return json_encode([
                 "access" => true,
                 "salas" => $Salas
@@ -11,7 +11,7 @@
 
         function buscar($post){
             $Sala = new Sala();
-            $buscarSala = $Sala->readFirst([
+            $buscarSala = $Sala->search([
                 'id' => $post['id']
             ]);
 

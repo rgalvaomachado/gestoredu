@@ -24,7 +24,7 @@
         function vinculo($disciplinas){
             $vinculo = 0;
             foreach ($disciplinas as $disciplina) {
-                $buscar = $this->read([
+                $buscar = $this->searchAll([
                     'cod_sala' => $this->cod_sala,
                     'cod_disciplina' => $disciplina->cod_disciplina,
                 ]);
@@ -37,7 +37,7 @@
                 }
             }
 
-            $existentes = $this->read([
+            $existentes = $this->searchAll([
                 'cod_sala' => $this->cod_sala
             ]);
             foreach ($existentes as $existe) {

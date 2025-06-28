@@ -9,7 +9,7 @@
         function vinculo($grupos){
             $vinculo = 0;
             foreach ($grupos as $grupo) {
-                $buscar = $this->read([
+                $buscar = $this->searchAll([
                     'cod_usuario' => $this->cod_usuario,
                     'cod_grupo' => $grupo->cod_grupo,
                 ]);
@@ -22,7 +22,7 @@
                 }
             }
 
-            $existentes = $this->read([
+            $existentes = $this->searchAll([
                 'cod_usuario' => $this->cod_usuario
             ]);
             foreach ($existentes as $existe) {
