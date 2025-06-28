@@ -4,7 +4,6 @@ spl_autoload_register(function ($className) {
 
     $baseDirs = [
         $projectRoot . '/core/router/',
-        $projectRoot . '/core/controller/',
         $projectRoot . '/core/database/',
         $projectRoot . '/src/controller/',  
         $projectRoot . '/src/model/',      

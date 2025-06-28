@@ -9,10 +9,10 @@
 
         function __construct() {
             $this->url = $_SERVER["REQUEST_URI"];
-            $this->method = $_SERVER["REQUEST_METHOD"];     //GET, POST, PUT, DELETE.
+            $this->method = $_SERVER["REQUEST_METHOD"];
             $this->data = $this->getData();
             $this->token = $this->getToken();
-            $this->baseUrl = $this->getBaseUrl();
+            $this->baseUrl = $_ENV['BASE_URL'];
         }
 
         function checkApi(){
@@ -21,12 +21,6 @@
                 return false;
             }
             return true;
-        }
-
-        function getBaseUrl(){
-            $scriptPath = $_SERVER['SCRIPT_NAME'];
-            $baseUrl = str_replace('/core/index.php','', $scriptPath);
-            return $baseUrl;
         }
 
         function getToken(){
@@ -96,7 +90,7 @@
             unset($url[1]);
             $url = implode('',$url); 
 
-            $file = $_SERVER['DOCUMENT_ROOT'] . '/' . $url;
+            $file = $_SERVER['PROJECT_ROOT'] . '/' . $url;
 
             if(is_file($file)){
                 return $file;
@@ -105,8 +99,8 @@
             $url = '/'.$url;
 
             foreach($routes as $route){
-                $RoutePath = $this->baseUrl . $route[0];
-                $RouteWeb = $_SERVER['DOCUMENT_ROOT'] . $this->baseUrl . '/public/view' . $route[1];
+                $RoutePath = $route[0];
+                $RouteWeb = $_SERVER['PROJECT_ROOT'] . '/public/view' . $route[1];
 
                 if ($url == $RoutePath) {
                     if(is_file($RouteWeb)){
@@ -115,7 +109,7 @@
                 }
             }
 
-            return $_SERVER['DOCUMENT_ROOT'] . $this->baseUrl . '/public/view/404.html';
+            return $_SERVER['PROJECT_ROOT'] . '/public/view/404.html';
         }
 
         function runWeb($routes){
@@ -128,7 +122,7 @@
             $path = $this->pathWeb($url, $routes);
 
             if(isset($path)){
-                $extension = substr($path, -3);
+                $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
                 if ($extension == 'png'){
                     $c = file_get_contents($path,true);
                     $size = filesize($path);
@@ -147,11 +141,18 @@
                     header ('Content-Type: text/css');
                     header ("Content-length: $size");
                     echo $c;
-                } else if ($extension == '.js'){
+                } else if ($extension == 'js'){
                     $c = file_get_contents($path,true);
                     $size = filesize($path);
                     header ('Content-Type: text/js');
                     header ("Content-length: $size");
+                    echo $c;
+                } else if ($extension == 'pdf') {
+                    $c = file_get_contents($path, true);
+                    $size = filesize($path);
+                    header('Content-Type: application/pdf');
+                    header("Content-length: $size");
+                    header('Content-Disposition: inline; filename="' . basename($path) . '"');
                     echo $c;
                 }else{
                     if(is_file($path)){
@@ -159,11 +160,8 @@
                         echo "<script src='" . $this->baseUrl . "/core/js/jquery-1.11.1.min.js'></script>";
                         echo "<script src='" . $this->baseUrl . "/core/js/web.js'></script>";
                         echo "<script src='" . $this->baseUrl . "/core/js/api.js'></script>";
-                        include_once $path;     
-                    } else {
-                        echo 'Página não encontrada (adicione uma pagina personalizada em /public/view/404.html)';
+                        include_once $path;
                     }
-                    
                 }
             }
         }

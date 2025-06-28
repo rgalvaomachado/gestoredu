@@ -1,5 +1,6 @@
 <?php
-    include_once('autoload.php');
+    require('autoload.php');
+    require(__DIR__ . '/../vendor/autoload.php');
     include_once(__DIR__ . '/../env.php');
     include_once(__DIR__ . '/../routes/web.php');
     include_once(__DIR__ . '/../routes/api.php');
@@ -13,6 +14,8 @@
         echo "Configure a timezone no ENV";
         exit;    
     }
+
+    $_SERVER['PROJECT_ROOT'] = realpath(__DIR__ . '/..');
     
     date_default_timezone_set($_ENV['TIMEZONE']);
 

@@ -23,7 +23,7 @@ class Model
         return $id;
     }
 
-    function readFirst($conditions = [])
+    function search($conditions = [])
     {
         $query = "SELECT * FROM {$this->table}";
 
@@ -33,12 +33,13 @@ class Model
         }
 
         $sql = $this->connection->prepare($query);
+
         $sql->execute($conditions);
 
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-    function read($conditions = [])
+    function searchAll($conditions = [])
     {
         $query = "SELECT * FROM {$this->table}";
 

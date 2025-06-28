@@ -1,28 +1,3 @@
-
-function loadSRC(){
-    document.body.style.display = 'none';
-
-    document.querySelectorAll("link[data-href]").forEach(function (el) {
-        el.href = basePath + el.getAttribute("data-href");
-    });
-
-    document.querySelectorAll("script[data-src]").forEach(function (el) {
-        el.src = basePath + el.getAttribute("data-src");
-    });
-
-    document.querySelectorAll("img[data-src]").forEach(function (el) {
-        el.src = basePath + el.getAttribute("data-src");
-    });
-
-    document.querySelectorAll("a[data-href]").forEach(function (el) {
-        el.href = basePath + el.getAttribute("data-href");
-    });
-
-    setTimeout(function() {
-        document.body.style.display = 'block';
-    }, 200);
-}
-
 function getUrlParameters() {
     const url = window.location.href;
 
@@ -42,12 +17,31 @@ function getUrlParameters() {
     return result;
 }
 
-function getFormData(form){      
-    var formData = new FormData(form);
-    var jsonData = {};
+function getFormData(form) {
+    const formData = new FormData(form);
+    const jsonData = {};
+    const arrayFields = new Set();
+
+    for (let element of form.elements) {
+        if (element.name && element.name.endsWith('[]')) {
+            arrayFields.add(element.name);
+        }
+    }
+
+    arrayFields.forEach(name => {
+        jsonData[name] = [];
+    });
 
     formData.forEach((value, key) => {
-        jsonData[key] = value.trim() ? value : null;
+        const trimmed = value.trim();
+
+        if (arrayFields.has(key)) {
+            if (trimmed !== '') {
+                jsonData[key].push(trimmed);
+            }
+        } else {
+            jsonData[key] = trimmed !== '' ? trimmed : null;
+        }
     });
 
     return jsonData;

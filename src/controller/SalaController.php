@@ -1,5 +1,5 @@
 <?php
-    class SalaController extends Controller{
+    class SalaController {
         function buscarTodos(){
             $Sala = new Sala();
             $Salas = $Sala->read();

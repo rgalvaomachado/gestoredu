@@ -5,7 +5,7 @@ services:
     build:
       context: ./docker
     image: custom-php:8.2-apache
-    container_name: web_${COMPOSE_PROJECT_NAME}
+    container_name: gestoredu
     ports:
       - "80:80"
     volumes:
@@ -20,25 +20,18 @@ services:
       apache2-foreground"
     restart: always
     networks:
-      internal-network:
-        aliases:
-          - web_${COMPOSE_PROJECT_NAME}
+      - internal-network
 
   db:
     image: mysql:8.0
-    container_name: db_${COMPOSE_PROJECT_NAME}
+    container_name: db_gestoredu
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root123
     restart: always
     networks:
-      internal-network:
-        aliases:
-          - db_${COMPOSE_PROJECT_NAME}
-
-volumes:
-  db_data:
+     - internal-network
 
 networks:
   internal-network:

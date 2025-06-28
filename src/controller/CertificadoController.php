@@ -1,5 +1,5 @@
 <?php
-    class CertificadoController extends Controller{
+    class CertificadoController {
 
         function buscarTodos(){
             $Certificado = new Certificado();
