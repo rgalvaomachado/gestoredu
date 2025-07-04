@@ -131,33 +131,24 @@ function getMatriculasIndividual() {
     cod_sala = $("#sala").val();
     cod_disciplina = $("#disciplina").val();
     if (cod_sala && cod_disciplina){
-        $.ajax({
-            method: "GET",
-            url: "/api/matriculas",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: {
-                cod_usuario: null,
-                cod_sala: cod_sala,
-                cod_disciplina: cod_disciplina,
-            },
-            complete: function(response) {
-                $("#criarChamadaIndividual").show();
-                var response = JSON.parse(response.responseText);
-                var matriculas = response.matriculas;
-                console.log(matriculas)
-                $("#usuario").html('');
+        apiResponse = apiGet('/matriculas', {
+            'sala': cod_sala,
+            'disciplina': cod_disciplina,
+        })
+
+        if (apiResponse.access) {
+             $("#criarChamadaIndividual").show();
+            var matriculas = apiResponse.matriculas;
+            $("#usuario").html('');
+            $('#usuario').append(`
+                <option value="">Selecione um usuário</option>	
+                `);
+            matriculas.map(({id, nome}) => {
                 $('#usuario').append(`
-                    <option value="">Selecione um usuário</option>	
-                 `);
-                matriculas.map(({id, nome}) => {
-                    $('#usuario').append(`
-                       <option value="${id}">${nome}</option>	
-                    `);
-                });
-            }
-        });
+                    <option value="${id}">${nome}</option>	
+                `);
+            });
+        }
     } else {
         $("#criarChamadaIndividual").hide();
         $("#usuario").html('');
@@ -170,34 +161,25 @@ function getMatriculasIndividual() {
 function getMatriculasListada() {
     cod_sala = $("#sala").val();
     cod_disciplina = $("#disciplina").val();
-    if (cod_sala && cod_disciplina){
-        $.ajax({
-            method: "GET",
-            url: "/api/matriculas",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: {
-                cod_usuario: null,
-                cod_sala: cod_sala,
-                cod_disciplina: cod_disciplina,
-            },
-            complete: function(response) {
-                $("#criarChamadaListada").show();
-                var response = JSON.parse(response.responseText);
-                var matriculas = response.matriculas;
-                console.log(matriculas)
-                $("#lista").html('');
-                matriculas.map(({id, nome}) => {
-                    $('#lista').append(`
-                        <tr>
-                            <td>${nome}</td>
-                            <td><input name="presente[]" type="checkbox" value='${id}'></td>
-                        </tr>
-                    `);
-                });
-            }
-        });
+    if (cod_sala && cod_disciplina) {
+        apiResponse = apiGet('/matriculas', {
+            'sala': cod_sala,
+            'disciplina': cod_disciplina,
+        })
+
+        if (apiResponse.access) {
+            $("#criarChamadaListada").show();
+            var matriculas = apiResponse.matriculas;
+            $("#lista").html('');
+            matriculas.map(({id, nome}) => {
+                $('#lista').append(`
+                    <tr>
+                        <td>${nome}</td>
+                        <td><input name="presente[]" type="checkbox" value='${id}'></td>
+                    </tr>
+                `);
+            });
+        }
     } else {
         $("#criarChamadaListada").hide();
         $("#lista").html('');
