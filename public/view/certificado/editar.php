@@ -39,7 +39,6 @@
             </select>
 			<br>
 			<label>Disciplina</label>
-			</br>
 			<?php 
 				$DisciplinaController = new DisciplinaController();
 				$disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
