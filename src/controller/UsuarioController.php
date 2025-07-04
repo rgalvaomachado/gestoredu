@@ -39,14 +39,10 @@
         }
 
         function criar($post){
-
-            var_dump($post);
-            exit;
-
             $usuario = new Usuario();
             $id = $usuario->create([
                 'nome' => $post['nome'],
-                'data_nascimento' => $post['data_nascimento'],
+                'data_nascimento' => $post['data_nascimento'] ?? NULL,
                 'rg' => $post['rg'] ?? NULL,
                 'cpf' => $post['cpf'] ?? NULL,
                 'rua' => $post['rua'] ?? NULL,
@@ -168,17 +164,17 @@
                 
                 $Matricula = new Matricula();
                 $Matricula->delete([
-                    'cod_usuario' => $Usuario->id
+                    'cod_usuario' => $post['id']
                 ]);
 
                 $Atribuicao = new Atribuicao();
                 $Atribuicao->delete([
-                    'cod_usuario' => $Usuario->id
+                    'cod_usuario' => $post['id']
                 ]);
 
                 $Projeto = new Projeto();
                 $Projeto->delete([
-                    'cod_usuario' => $Usuario->id
+                    'cod_usuario' => $post['id']
                 ]);
 
                 return json_encode([

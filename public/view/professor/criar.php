@@ -91,7 +91,7 @@
             <label>Senha</label>
             <br>
             <input class='input' type="password" id="senha" name="senha">
-            <input type="hidden" id="grupos" value="2">
+            <input type="hidden" id="grupos" name="grupos" data-cod_grupo="2">
             <br><br>
             <label>Atribuição</label>
             <br>

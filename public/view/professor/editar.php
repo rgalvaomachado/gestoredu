@@ -27,7 +27,7 @@
 			<div class="grid-item-content">
             <label class="message_alert" id="messageAlert"></label>
             <br>
-            <input type="hidden" id="usuario" name="usuario" value="<?php echo $usuario->id?>">
+            <input type="hidden" id="id" name="id" value="<?php echo $usuario->id?>">
             <label>Nome Completo</label>
             <label class="obrigatorio">*</label>
             <br>
@@ -103,7 +103,7 @@
             <br>
             <input class='input' type="password" id="senha" name="senha" value="<?php echo $usuario->senha?>">
             <br>
-            <input type="hidden" id="grupos" value="2">
+            <input type="hidden" id="grupos" name="grupos" data-cod_grupo="2">
             <br>
             <br>
             <label>Atribuição</label>
@@ -147,19 +147,19 @@
                         $atribuicoes = json_decode($AtribuicaoController->buscarAtribuicoesUsuario([
                             'cod_usuario' => $_GET['id']
                         ]))->atribuicoes;
-                            foreach ($atribuicoes as $matricula){ ?>
+                            foreach ($atribuicoes as $atribuicao){ ?>
                                 <tr>
                                     <td>
-                                        <?php echo $matricula->nome_sala ?>
+                                        <?php echo $atribuicao->nome_sala ?>
                                     
                                     </td>
                                     <td>
-                                        <?php echo $matricula->nome_disciplina ?>
+                                        <?php echo $atribuicao->nome_disciplina ?>
                                     </td>
                                     <td>
                                         <a><i onclick="delAtribuicao(this)" class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
-                                    <input type="hidden" id="atribuicoes" name="atribuicoes[]" data-cod_sala="<?php echo $matricula->cod_sala ?>" data-cod_disciplina="<?php echo $matricula->cod_disciplina ?>">
+                                    <input type="hidden" id="atribuicoes" name="atribuicoes" data-cod_sala="<?php echo $atribuicao->cod_sala ?>" data-cod_disciplina="<?php echo $atribuicao->cod_disciplina ?>">
                                 </tr>
                         <?php } 
                     ?>

@@ -2,166 +2,103 @@ $(document).ready(function() {
     $('#criar').submit(function(e) {
         e.preventDefault();
 
-        var nome = $("#nome").val();
-        var data_nascimento = $("#data_nascimento").val();
-        var rg = $("#rg").val();
-        var cpf = $("#cpf").val();
+        var formData = new FormData(this);
+        var jsonData = {};
 
-        var rua = $("#rua").val();
-        var numero = $("#numero").val();
-        var bairro = $("#bairro").val();
-        var cidade = $("#cidade").val();
-        var estado = $("#estado").val();
+        formData.forEach((value, key) => {
+            jsonData[key] = value.trim() ? value : null;
+        });
 
-        var telefone = $("#telefone").val();
-
-        var email = $("#email").val();
-        var senha = $("#senha").val();
-
-        var grupos = [];
-        grupos.push($("#grupos").val());
-
-        var salas = [];
-        var sala = $("input[name='salas[]']");
-        for (var i = 0; i < sala.length; i++) {
-            if (sala[i].checked) {
-                salas.push(sala[i].value);
-            }
-        }
-
-        const atribuicoes = [];
-        const matriculaInputs = document.querySelectorAll('input[name="atribuicoes[]"]');
-        matriculaInputs.forEach(input => {
-            const codSala = input.getAttribute('data-cod_sala');
-            const codDisciplina = input.getAttribute('data-cod_disciplina');
-            atribuicoes.push({
-                cod_sala: codSala,
-                cod_disciplina: codDisciplina
+        jsonData.grupos = [];
+        const gruposInputs = document.querySelectorAll('input[name="grupos"]');
+        gruposInputs.forEach(input => {
+            const codGrupo = input.getAttribute('data-cod_grupo');
+            jsonData.grupos.push({
+                cod_grupo: codGrupo,
             });
         })
 
-        $.ajax({
-            method: "POST",
-            url: "/api/usuario",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify({
-                nome: nome,
-                data_nascimento: data_nascimento,
-                rg: rg,
-                cpf: cpf,
-             
-                rua: rua,
-                numero: numero,
-                bairro: bairro,
-                cidade: cidade,
-                estado: estado,
-
-                telefone: telefone,
-                email: email,
-                senha: senha,
-                grupos: grupos,
-
-                atribuicoes: atribuicoes
-            }),
-            complete: function(response) {
-                var response = JSON.parse(response.responseText);
-                const alert = document.getElementById("messageAlert");
-                alert.innerHTML = response.message;
-                if(response.access){
-                    alert.style.color = "green";
-                    setTimeout(function(){
-                        alert.innerHTML = "";
-                    }, 3000);
-                }else{
-                    alert.style.color = "red";
-                    setTimeout(function(){
-                        alert.innerHTML = "";
-                    }, 3000);
-                }
-                window.location.assign("/professor");
-            }
+        jsonData.atribuicoes = [];
+        const atribuicoesInputs = document.querySelectorAll('input[name="atribuicoes"]');
+        atribuicoesInputs.forEach(input => {
+            const codSala = input.getAttribute('data-cod_sala');
+            const codDisciplina = input.getAttribute('data-cod_disciplina');
+            jsonData.atribuicoes.push({
+                cod_sala: codSala,
+                cod_disciplina: codDisciplina
+            });
         });
+
+        apiResponse = apiPost('/usuario', jsonData);
+
+        if (apiResponse.access) {
+            const alert = document.getElementById("messageAlert");
+            alert.innerHTML = apiResponse.message;
+            if(apiResponse.access){
+                alert.style.color = "green";
+                setTimeout(function(){
+                    alert.innerHTML = "";
+                }, 3000);
+            
+        } else {
+                alert.style.color = "red";
+                setTimeout(function(){
+                    alert.innerHTML = "";
+                }, 3000);
+            }
+            window.location.assign("/professor");
+        }
     });
 
     $('#editar').submit(function(e) {
         e.preventDefault();
-        var id = $("#usuario").val();
-        var nome = $("#nome").val();
-        var data_nascimento = $("#data_nascimento").val();
-        var rg = $("#rg").val();
-        var cpf = $("#cpf").val();
-        
-        var rua = $("#rua").val();
-        var numero = $("#numero").val();
-        var bairro = $("#bairro").val();
-        var cidade = $("#cidade").val();
-        var estado = $("#estado").val();
 
-        var telefone = $("#telefone").val();
+        var formData = new FormData(this);
+        var jsonData = {};
 
-        var email = $("#email").val();
-        var senha = $("#senha").val();
+        formData.forEach((value, key) => {
+            jsonData[key] = value.trim() ? value : null;
+        });
 
-        var grupos = [];
-        grupos.push($("#grupos").val());
+        jsonData.grupos = [];
+        const gruposInputs = document.querySelectorAll('input[name="grupos"]');
+        gruposInputs.forEach(input => {
+            const codGrupo = input.getAttribute('data-cod_grupo');
+            jsonData.grupos.push({
+                cod_grupo: codGrupo,
+            });
+        })
 
-        const atribuicoes = [];
-        const matriculaInputs = document.querySelectorAll('input[name="atribuicoes[]"]');
-        matriculaInputs.forEach(input => {
+        jsonData.atribuicoes = [];
+        const atribuicoesInputs = document.querySelectorAll('input[name="atribuicoes"]');
+        atribuicoesInputs.forEach(input => {
             const codSala = input.getAttribute('data-cod_sala');
             const codDisciplina = input.getAttribute('data-cod_disciplina');
-            atribuicoes.push({
+            jsonData.atribuicoes.push({
                 cod_sala: codSala,
                 cod_disciplina: codDisciplina
             });
         });
 
-        $.ajax({
-            method: "PUT",
-            url: "/api/usuario",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify({
-                id: id,
-                nome: nome,
-                data_nascimento: data_nascimento,
-                rg: rg,
-                cpf: cpf,
-                
-                rua: rua,
-                numero: numero,
-                bairro: bairro,
-                cidade: cidade,
-                estado: estado,
-                
-                telefone: telefone,
-                email: email,
-                senha: senha,
-                grupos: grupos,
+        apiResponse = apiPut('/usuario', jsonData);
 
-                atribuicoes: atribuicoes,
-            }),
-            complete: function(response) {
-                var response = JSON.parse(response.responseText);
-                const alert = document.getElementById("messageAlert");
-                alert.innerHTML = response.message;
-                if(response.access){
-                    alert.style.color = "green";
-                    setTimeout(function(){
-                        alert.innerHTML = "";
-                    }, 3000);
-                }else{
-                    alert.style.color = "red";
-                    setTimeout(function(){
-                        alert.innerHTML = "";
-                    }, 3000);
-                }
-                window.location.assign("/professor");
+        if (apiResponse.access) {
+            const alert = document.getElementById("messageAlert");
+            alert.innerHTML = apiResponse.message;
+            if(apiResponse.access){
+                alert.style.color = "green";
+                setTimeout(function(){
+                    alert.innerHTML = "";
+                }, 3000);
+            
+        } else {
+                alert.style.color = "red";
+                setTimeout(function(){
+                    alert.innerHTML = "";
+                }, 3000);
             }
-        });
+            window.location.assign("/professor");
+        }
     });
 
     $('#deletar').submit(function(e) {
@@ -251,7 +188,7 @@ function addAtribuicao(element) {
                     <a><i onclick="removeMatricula(this)" class="fa fa-trash" aria-hidden="true"></i></a>
                     
                 </td>
-                <input type="hidden" id="atribuicoes" name="atribuicoes[]" data-cod_sala="${cod_sala}" data-cod_disciplina="${cod_disciplina}">
+                <input type="hidden" id="atribuicoes" name="atribuicoes" data-cod_sala="${cod_sala}" data-cod_disciplina="${cod_disciplina}">
             </tr>
         `);
     }
