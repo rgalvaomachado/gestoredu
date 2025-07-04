@@ -5,7 +5,7 @@
     $_ENV['DATABASE_PASSWORD'] = 'root123';
     $_ENV['DATABASE_HOST'] = 'db_gestoredu';
     $_ENV['DATABASE_PORT'] = '3306';
-    $_ENV['DATABASE_NAME'] = 'gestoredu';
+    $_ENV['DATABASE_NAME'] = 'gestoredu_bga';
 
     $_ENV['TIMEZONE'] = 'America/Sao_Paulo';
 

@@ -3,8 +3,8 @@
         function buscarTodos($post){
             $Matricula = new Matricula();
             $Matricula->cod_usuario = $post['cod_usuario'] ?? null;
-            $Matricula->cod_sala = $post['cod_sala'] ?? null;
-            $Matricula->cod_disciplina = $post['cod_disciplina'] ?? null;
+            $Matricula->cod_sala = $post['sala'] ?? null;
+            $Matricula->cod_disciplina = $post['disciplina'] ?? null;
             $matriculas = $Matricula->buscar();
 
             return json_encode([

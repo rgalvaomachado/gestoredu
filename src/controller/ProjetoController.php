@@ -28,11 +28,47 @@
             }
         }
 
-        function buscarProjetoUsuario($post){
-            $Projeto = new UsuarioProjeto();
-            $Projeto->cod_usuario = $post['cod_usuario'];
-            $buscarProjeto = $Projeto->buscar();
+        function buscarProjetosUsuario($post){
+            $Projeto = new Projeto();
+            $buscarProjeto = $Projeto->buscarProjetosUsuario([
+                'cod_usuario' => $post['cod_usuario'],
+            ]);
 
+            if(!empty($buscarProjeto)){
+                return json_encode([
+                    "access" => true,
+                    "projetos" => $buscarProjeto,
+                ]);
+            } else {
+                return json_encode([
+                    "access" => false,
+                    "message" => "Projeto não encontrado"
+                ]);
+            }
+        }
+
+        function buscarProjetoUsuario($post){
+            $Projeto = new Projeto();
+            $buscarProjeto = $Projeto->search([
+                'cod_usuario' => $post['cod_usuario'],
+            ]);
+
+            if(!empty($buscarProjeto)){
+                return json_encode([
+                    "access" => true,
+                    "projeto" => $buscarProjeto,
+                ]);
+            } else {
+                return json_encode([
+                    "access" => false,
+                    "message" => "Projeto não encontrado"
+                ]);
+            }
+        }
+
+        function buscarProjeto($post){
+            $Projeto = new Projeto();
+            $buscarProjeto = $Projeto->search($post);
             if(!empty($buscarProjeto)){
                 return json_encode([
                     "access" => true,

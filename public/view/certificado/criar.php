@@ -12,13 +12,28 @@
             <br>
             <label class="message_alert" id="messageAlert"></label>
             <br>
-            <label>Nome</label>
+            <label>Sala</label>
             <br>
-            <input class='input' id="nome" name="nome" required>
+            <?php 
+                $SalaController = new SalaController();
+                $salas = json_decode($SalaController->buscarTodos())->salas;
+            ?>
+            <select class='input coluna' id="sala" name="sala" onchange="getDisciplinas()" required>
+                <option value="">Selecione uma sala</option>
+                <?php foreach ($salas as $sala) { ?>
+                    <option value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
+                <?php } ?>
+            </select>
             <br>
+            <label>Disciplina</label>
+            <br>
+            <select class='input coluna' id="disciplina" name="disciplina" required>
+                <option value="">Selecione uma disciplina</option>
+            </select>
+			<br>
 			<label>Dicas: </label>
             <br>
-			<?php include_once('public/view/certificado/dicas.php')?>
+			<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/public/view/certificado/dicas.php')?>
 			<br>
             <label>Conteudo</label>
             <br>
@@ -35,7 +50,7 @@
 			<input type="file" class="input" id="imagem" name="imagem" required accept="image/*" style="opacity: 0">
 			<br>
 			<script>
-				const preloadedImage = "/storage/certificados/padrao.png"; // Substitua pelo caminho da sua imagem
+				const preloadedImage = "/public/img/certificado_padrao.png";
 				const preview = document.getElementById('preview');
 				preview.src = preloadedImage;
 				document.getElementById('imagem').addEventListener('change', function(event) {

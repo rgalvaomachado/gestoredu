@@ -1,11 +1,12 @@
 $(document).ready(function() {
     $('#criar').submit(function(e) {
         e.preventDefault();
-        var fileInput = document.getElementById("imagem"); // Substitua pelo ID do seu input de arquivo
+        var fileInput = document.getElementById("imagem");
         var file = fileInput.files[0];
-        var nome = $("#nome").val();
         var conteudo = $("#conteudo").val();
         var tamanho_letra = $("#tamanho_letra").val();
+        var sala = $("#sala").val();
+        var disciplina = $("#disciplina").val();
         
         var reader = new FileReader();
         reader.onloadend = function() {
@@ -13,7 +14,8 @@ $(document).ready(function() {
         
             var formData = {
                 file: base64data,
-                nome: nome,
+                sala: sala,
+                disciplina: disciplina,
                 conteudo: conteudo,
                 tamanho_letra: tamanho_letra,
             };
@@ -48,14 +50,18 @@ $(document).ready(function() {
 
     $('#editar').submit(function(e) {
         e.preventDefault();
-        var fileInput = document.getElementById("imagem"); // Substitua pelo ID do seu input de arquivo
+        var fileInput = document.getElementById("imagem");
         var file = fileInput.files[0];
         var nome = $("#nome").val();
+        var sala = $("#sala").val();
+        var disciplina = $("#disciplina").val();
         var conteudo = $("#conteudo").val();
         var tamanho_letra = $("#tamanho_letra").val();
         var id = $("#id").val();
         var formData = {
             nome: nome,
+            sala: sala,
+            disciplina: disciplina,
             conteudo: conteudo,
             tamanho_letra: tamanho_letra,
             id: id
@@ -65,12 +71,12 @@ $(document).ready(function() {
             var reader = new FileReader();
             reader.onloadend = function() {
                 var base64data = reader.result;
-                formData.file = base64data; // Adiciona o arquivo ao formData
+                formData.file = base64data;
                 sendData(formData);
             };
             reader.readAsDataURL(file);
         } else {
-            sendData(formData); // Envia os dados mesmo sem arquivo
+            sendData(formData);
         }
     });
 
@@ -162,6 +168,31 @@ function sendData(formData) {
                 alert.innerHTML = "";
             }, 3000);
             window.location.assign("/certificado");
+        }
+    });
+}
+
+function getDisciplinas() {
+    cod_sala = $("#sala").val();
+    certificado_cod_disciplina = $("#cod_disciplina").val();
+    $.ajax({
+        method: "GET",
+        url: "/api/sala",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        data: {
+            id: cod_sala,
+        },
+        complete: function(response) {
+            var response = JSON.parse(response.responseText);
+            var disciplinas = response.sala.disciplinas;
+            $("#disciplina").html('');
+            disciplinas.map(({cod_disciplina, nome_disciplina}) => {
+                $('#disciplina').append(`
+                   <option ${(certificado_cod_disciplina == cod_disciplina) ? "selected" : ""} value="${cod_disciplina}">${nome_disciplina}</option>	
+                `);
+            });
         }
     });
 }

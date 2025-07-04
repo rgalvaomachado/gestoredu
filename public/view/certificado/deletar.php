@@ -21,13 +21,18 @@
 			$CertificadoController = new CertificadoController();
 			$CertificadoController = json_decode($CertificadoController->buscar(['id' => $_GET['id']]));
 			$certificado = $CertificadoController->certificado;
+			// var_dump($certificado);
 		?>
 		<form id="deletar">
 			<input type="hidden" id="id" name="id" value="<?php echo $certificado->id?>">
-			<label>Nome</label>
+			<label>Sala</label>
 			</br>
-			<label><b><?php echo $certificado->nome?></b></label>
+			<label><b><?php echo $certificado->nome_sala?></b></label>
 			</br>
+			<label>Disciplina</label>
+			</br>
+			<label><b><?php echo $certificado->nome_disciplina?></b></label>
+			<br>
 			<br>
 			<input class='button deletar' type="submit" value="Deletar">
 		</form>

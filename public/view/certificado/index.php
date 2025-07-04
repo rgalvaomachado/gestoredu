@@ -18,7 +18,10 @@
 		<table class="list">
             <tr>
                 <th>
-                    Nome
+                    Sala
+                </th>
+                <th>
+                    Disciplina
                 </th>
                 <th>
                     Editar
@@ -31,7 +34,10 @@
                 <?php foreach ($certificados as $certificado){ ?>
                     <tr>
                         <td class="text-left">
-                            <?php echo $certificado->nome ?>
+                            <?php echo $certificado->nome_sala ?>
+                        </td> 
+                        <td class="text-left">
+                            <?php echo $certificado->nome_disciplina ?>
                         </td> 
                         <td>
                             <a href="/certificado/editar?id=<?php echo $certificado->id ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>

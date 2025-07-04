@@ -39,6 +39,10 @@
         }
 
         function criar($post){
+
+            var_dump($post);
+            exit;
+
             $usuario = new Usuario();
             $id = $usuario->create([
                 'nome' => $post['nome'],
@@ -73,18 +77,10 @@
                 $Atribuicao->vinculo($post['atribuicoes']);
             }
 
-            if (isset($post['projeto']) && $post['projeto'] != ''){
-                $projeto = new Projeto();
-                $idProjeto = $projeto->create([
-                    'nome' => $post['projeto']
-                ]);
-                $UsuarioProjeto = new UsuarioProjeto();
-                $UsuarioProjeto->cod_usuario = $id;
-                $UsuarioProjeto->vinculo([
-                    (object)[
-                        'cod_projeto' => $idProjeto
-                    ]
-                ]);
+            if(!empty($post['projetos'])){
+                $Projeto = new Projeto();
+                $Projeto->cod_usuario = $id;
+                $Projeto->vinculo($post['projetos']);
             }
 
             if ($id > 0){
@@ -105,7 +101,7 @@
             $Usuario = new Usuario();
             $atualizado = $Usuario->update([
                 'nome' => $post['nome'],
-                'data_nascimento' => $post['data_nascimento'],
+                'data_nascimento' => $post['data_nascimento'] ?? NULL,
                 'rg' => $post['rg'] ?? NULL,
                 'cpf' => $post['cpf'] ?? NULL,
                 'rua' => $post['rua'] ?? NULL,
@@ -126,23 +122,6 @@
                 $UsuarioGrupo->cod_usuario = $post['id'];
                 $vinculado = $UsuarioGrupo->vinculo($post['grupos']);
             }
-
-            $atualizado+= $vinculado;
-
-            if (isset($post['projeto']) && $post['projeto'] != ''){
-                $projeto = new Projeto();
-                $idProjeto = $projeto->create([
-                    'nome' => $post['projeto']
-                ]);
-                $UsuarioProjeto = new UsuarioProjeto();
-                $UsuarioProjeto->cod_usuario = $post['id'];
-                $vinculado = $UsuarioProjeto->vinculo([
-                    (object)[
-                        'cod_projeto' => $idProjeto
-                    ]
-                ]);
-            }
-
             $atualizado+= $vinculado;
 
             if(!empty($post['matriculas'])){
@@ -150,7 +129,6 @@
                 $Matricula->cod_usuario = $post['id'];
                 $vinculado = $Matricula->vinculo($post['matriculas']);
             }
-
             $atualizado+= $vinculado;
 
             if(!empty($post['atribuicoes'])){
@@ -158,7 +136,13 @@
                 $Atribuicao->cod_usuario = $post['id'];
                 $vinculado = $Atribuicao->vinculo($post['atribuicoes']);
             }
+            $atualizado+= $vinculado;
 
+            if(!empty($post['projetos'])){
+                $Projeto = new Projeto();
+                $Projeto->cod_usuario = $post['id'];
+                $vinculado = $Projeto->vinculo($post['projetos']);
+            }
             $atualizado+= $vinculado;
 
             if ($atualizado > 0){
@@ -189,6 +173,11 @@
 
                 $Atribuicao = new Atribuicao();
                 $Atribuicao->delete([
+                    'cod_usuario' => $Usuario->id
+                ]);
+
+                $Projeto = new Projeto();
+                $Projeto->delete([
                     'cod_usuario' => $Usuario->id
                 ]);
 

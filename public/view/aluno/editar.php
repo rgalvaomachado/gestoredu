@@ -33,19 +33,6 @@
             <br>
             <input class='input' id="nome" name="nome" value="<?php echo $usuario->nome?>" required>
             <br>
-            <?php
-                $ProjetoController = new ProjetoController();
-                $ProjetoController = json_decode($ProjetoController->buscarProjetoUsuario(['cod_usuario' => $_GET['id']]));
-                $projeto_id = $ProjetoController->access ? $ProjetoController->projeto->cod_projeto : '';
-                $projeto_nome = $ProjetoController->access ? $ProjetoController->projeto->nome_projeto : '';
-            ?>
-             <?php if ($aluno_trabalho) { ?>
-                <label>Titulo do Trabalho</label>
-                <br>
-                <input type="hidden" id="cod_projeto" name="cod_projeto" value="<?php echo $projeto_id ?>" >
-                <input class='input' id="projeto" name="projeto" value="<?php echo $projeto_nome ?>" >
-                <br>
-            <?php } ?>
             <?php if ($aluno_nascimento){ ?>
                 <label>Data de Nascimento</label>
                 <br>
@@ -119,7 +106,7 @@
             <input type="hidden" id="grupos" name="grupos" data-cod_grupo="1">
             <br>
             <br>
-            <label>Matricula</label>
+            <label>Matriculas</label>
             <br>
             <table class="list" id="matriculas">
                 <tbody>
@@ -172,12 +159,84 @@
                                 <td>
                                     <a><i onclick="delMatricula(this)" class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
-                                <input type="hidden" id="matriculas" name="matriculas[]" data-cod_sala="<?php echo $matricula->cod_sala ?>" data-cod_disciplina="<?php echo $matricula->cod_disciplina ?>">
+                                <input type="hidden" name="matriculas" data-cod_sala="<?php echo $matricula->cod_sala ?>" data-cod_disciplina="<?php echo $matricula->cod_disciplina ?>">
                             </tr>
                     <?php } ?>
                 </tbody>
             </table>
             <br>
+            <br>
+            <?php if ($aluno_trabalho) { ?>
+                <label>Projetos</label>
+                <br>
+                <table class="list" id="projetos">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Sala
+                            </th>
+                            <th>
+                                Disciplina
+                            </th>
+                            <th>
+                                
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class='input' type="text " id="nome_projeto">
+                            </td>
+                            <td>
+                                <?php 
+                                    $SalaController = new SalaController();
+                                    $salas = json_decode($SalaController->buscarTodos())->salas;
+                                ?>
+                                <select class='input coluna' id="sala_projeto" onchange="getDisciplinasProjeto()">
+                                    <option value="">Selecione uma sala</option>
+                                    <?php foreach ($salas as $sala) { ?>
+                                        <option value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
+                                    <?php } ?>
+                                </select>
+                            </td>
+                            <td>
+                                <select class='input coluna' id="disciplina_projeto">
+                                </select>
+                            </td>
+                            <td>
+                                <a><i onclick="addProjeto(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <?php 
+                            $projetos = json_decode((new ProjetoController)->buscarProjetosUsuario([
+                                'cod_usuario' => $_GET['id']
+                            ]))->projetos;
+
+                            foreach ($projetos as $projeto) { ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $projeto->nome ?>
+                                    
+                                    </td>
+                                    <td>
+                                        <?php echo $projeto->nome_sala ?>
+                                    
+                                    </td>
+                                    <td>
+                                        <?php echo $projeto->nome_disciplina ?>
+                                    </td>
+                                    <td>
+                                        <a><i onclick="delProjeto(this)" class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                    <input type="hidden" name="projetos" data-nome="<?php echo $projeto->nome ?>" data-cod_sala="<?php echo $projeto->cod_sala ?>" data-cod_disciplina="<?php echo $projeto->cod_disciplina ?>">
+                                </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <br>
+            <?php } ?>
             <input class='button' type="submit" value="Editar">
         </form>
     </div>

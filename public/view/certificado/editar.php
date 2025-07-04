@@ -24,14 +24,36 @@
 		?>
 		<form id="editar">
 			<input type="hidden" id="id" name="id" value="<?php echo $certificado->id?>">
-			<label>Nome</label>
 			</br>
-			<input class='input' name="nome" id="nome" value="<?php echo $certificado->nome?>">
+			<label>Sala</label>
 			</br>
+			<?php 
+				$SalaController = new SalaController();
+				$salas = json_decode($SalaController->buscarTodos())->salas;
+			?>
+			<select class='input coluna' id="sala" name="sala" onchange="getDisciplinas()" required>
+                <option value="">Selecione uma sala</option>
+                <?php foreach ($salas as $sala) { ?>
+                    <option <?php echo $sala->id == $certificado->cod_sala ? 'selected' : '' ?> value="<?php echo $sala->id ?>"><?php echo $sala->nome ?></option>	
+                <?php } ?>
+            </select>
+			<br>
+			<label>Disciplina</label>
+			</br>
+			<?php 
+				$DisciplinaController = new DisciplinaController();
+				$disciplinas = json_decode($DisciplinaController->buscarTodos())->disciplinas;
+			?>
+            <br>
+			<input type="hidden" id="cod_disciplina" value="<?php echo $certificado->cod_disciplina ?>">
+			<script>getDisciplinas()</script>
+            <select class='input coluna' id="disciplina" name="disciplina" required>
+                <option value="">Selecione uma disciplina</option>
+            </select>
 			<br>
 			<label>Dicas: </label>
             <br>
-			<?php include_once('public/view/certificado/dicas.php')?>
+			<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/public/view/certificado/dicas.php')?>
 			<br>
             <label>Conteudo</label>
             <br>
@@ -48,7 +70,7 @@
 			<input type="file" class="input" id="imagem" name="imagem" accept="image/*" style="opacity: 0">
 			<br>
 			<script>
-				const preloadedImage = "/storage/certificados/<?php echo $certificado->id?>.png"; // Substitua pelo caminho da sua imagem
+				const preloadedImage = "/storage/certificados/<?php echo $certificado->id?>.png";
 				const preview = document.getElementById('preview');
 				preview.src = preloadedImage;
 				document.getElementById('imagem').addEventListener('change', function(event) {
