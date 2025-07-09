@@ -18,12 +18,13 @@ $(document).ready(function() {
             });
         })
 
-        jsonData.atribuicoes = [];
-        const atribuicoesInputs = document.querySelectorAll('input[name="atribuicoes"]');
-        atribuicoesInputs.forEach(input => {
+        jsonData.inscricoes = [];
+        const inscricoesInputs = document.querySelectorAll('input[name="inscricoes"]');
+        inscricoesInputs.forEach(input => {
             const codSala = input.getAttribute('data-cod_sala');
             const codDisciplina = input.getAttribute('data-cod_disciplina');
-            jsonData.atribuicoes.push({
+            jsonData.inscricoes.push({
+                cod_grupo: 2,
                 cod_sala: codSala,
                 cod_disciplina: codDisciplina
             });
@@ -69,12 +70,13 @@ $(document).ready(function() {
             });
         })
 
-        jsonData.atribuicoes = [];
-        const atribuicoesInputs = document.querySelectorAll('input[name="atribuicoes"]');
-        atribuicoesInputs.forEach(input => {
+        jsonData.inscricoes = [];
+        const inscricoesInputs = document.querySelectorAll('input[name="inscricoes"]');
+        inscricoesInputs.forEach(input => {
             const codSala = input.getAttribute('data-cod_sala');
             const codDisciplina = input.getAttribute('data-cod_disciplina');
-            jsonData.atribuicoes.push({
+            jsonData.inscricoes.push({
+                cod_grupo: 2,
                 cod_sala: codSala,
                 cod_disciplina: codDisciplina
             });
@@ -90,15 +92,16 @@ $(document).ready(function() {
                 setTimeout(function(){
                     alert.innerHTML = "";
                 }, 3000);
-            
-        } else {
+            } else {
                 alert.style.color = "red";
                 setTimeout(function(){
                     alert.innerHTML = "";
                 }, 3000);
             }
-            window.location.assign("/professor");
+           
         }
+
+        window.location.assign("/professor");
     });
 
     $('#deletar').submit(function(e) {
@@ -158,25 +161,25 @@ function getDisciplinas() {
     });
 }
 
-function addAtribuicao(element) {
-    let matricula = $(element).parent().parent().parent();
+function addInscricao(element) {
+    let inscricao = $(element).parent().parent().parent();
 
     let cod_sala = null;
     let nome_sala = null;
-    const salaSelect = matricula.find('#sala');
+    const salaSelect = inscricao.find('#sala');
     cod_sala = salaSelect.val();
     nome_sala = salaSelect.find("option:selected").text();
 
     let cod_disciplina = null;
     let nome_disciplina = null;
-    const disciplinaSelect = matricula.find('#disciplina');
+    const disciplinaSelect = inscricao.find('#disciplina');
     cod_disciplina = disciplinaSelect.val();
     nome_disciplina = disciplinaSelect.find("option:selected").text();
 
     if (!cod_sala || !cod_disciplina) {
         alert('Selecione uma sala e uma disciplina');
     } else {
-        $('#atribuicoes').append(`
+        $('#inscricoes').append(`
            <tr>
                 <td id=nome_sala>
                     ${nome_sala}
@@ -185,16 +188,16 @@ function addAtribuicao(element) {
                     ${nome_disciplina}
                 </td>
                 <td>
-                    <a><i onclick="removeMatricula(this)" class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a><i onclick="removeInscricao(this)" class="fa fa-trash" aria-hidden="true"></i></a>
                     
                 </td>
-                <input type="hidden" id="atribuicoes" name="atribuicoes" data-cod_sala="${cod_sala}" data-cod_disciplina="${cod_disciplina}">
+                <input type="hidden" id="inscricoes" name="inscricoes" data-cod_sala="${cod_sala}" data-cod_disciplina="${cod_disciplina}">
             </tr>
         `);
     }
 }
 
-function delAtribuicao(element) {
-    let matricula = $(element).parent().parent().parent();
-    $(matricula).remove()
+function delInscricao(element) {
+    let inscricao = $(element).parent().parent().parent();
+    $(inscricao).remove()
 }

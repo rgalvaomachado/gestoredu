@@ -47,7 +47,7 @@
         ['POST','/presenca-listada','PresencaController','criarPresencaListada'],
         ['POST','/presenca-individual','PresencaController','criarPresencaInvidual'],
 
-        ['GET','/matriculas','MatriculaController','buscarTodos'],
+        ['GET','/inscricoes','InscricaoController','buscarTodos'],
 
         ['POST','/relatorio-chamada','RelatorioController','relatorioChamada'],
 

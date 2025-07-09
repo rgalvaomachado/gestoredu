@@ -1,17 +1,17 @@
 <?php
     class RelatorioController {
         function relatorioChamada($post){
-            $MatriculaController = new MatriculaController();
-            $buscarTodos = json_decode($MatriculaController->buscarTodos([
+            $InscricaoController = new InscricaoController();
+            $buscarTodos = json_decode($InscricaoController->buscarTodos([
                 "grupo" => $post['grupo'],
                 "sala" => $post['sala'],
                 "disciplina" => $post['disciplina']
             ]));
-            $matriculas = $buscarTodos->matriculas;
+            $inscricoes = $buscarTodos->inscricoes;
 
             $usuarios = [];
 
-            foreach ($matriculas as $objeto) {
+            foreach ($inscricoes as $objeto) {
                 $id = $objeto->id;
                 if (!isset($agrupado[$id])) {
                     $usuarios[$id] = [];

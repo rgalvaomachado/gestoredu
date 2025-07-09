@@ -2,7 +2,7 @@
     <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/GrupoController.php')?>
     <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/DisciplinaController.php')?>
     <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/SalaController.php')?>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/AtribuicaoController.php')?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/InscricaoController.php')?>
     <link href="/public/view/professor/styles.css" rel="stylesheet">
     <script src="/public/view/professor/index.js"></script>
 </head>
@@ -93,9 +93,9 @@
             <input class='input' type="password" id="senha" name="senha">
             <input type="hidden" id="grupos" name="grupos" data-cod_grupo="2">
             <br><br>
-            <label>Atribuição</label>
+            <label>Inscrição</label>
             <br>
-            <table class="list" id="atribuicoes">
+            <table class="list" id="inscricoes">
                 <tbody>
                     <tr>
                         <th>
@@ -126,7 +126,7 @@
                             </select>
                         </td>
                         <td>
-                            <a><i onclick="addAtribuicao(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                            <a><i onclick="addInscricao(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </tbody>

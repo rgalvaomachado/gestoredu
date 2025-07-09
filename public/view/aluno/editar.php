@@ -106,9 +106,9 @@
             <input type="hidden" id="grupos" name="grupos" data-cod_grupo="1">
             <br>
             <br>
-            <label>Matriculas</label>
+            <label>Inscricoes</label>
             <br>
-            <table class="list" id="matriculas">
+            <table class="list" id="inscricoes">
                 <tbody>
                     <tr>
                         <th>
@@ -139,27 +139,28 @@
                             </select>
                         </td>
                         <td>
-                            <a><i onclick="addMatricula(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                            <a><i onclick="addInscricao(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     <?php 
-                        $MatriculaController = new MatriculaController();
-                        $matriculas = json_decode($MatriculaController->buscarTodosUsuario([
-                            'cod_usuario' => $_GET['id']
-                        ]))->matriculas;
-                        foreach ($matriculas as $matricula){ ?>
+                        $InscricaoController = new InscricaoController();
+                        $inscricoes = json_decode($InscricaoController->buscarTodosUsuario([
+                            'cod_usuario' => $_GET['id'],
+                            'cod_grupo' => 1
+                        ]))->inscricoes;
+                        foreach ($inscricoes as $inscricao){ ?>
                             <tr>
                                 <td>
-                                    <?php echo $matricula->nome_sala ?>
+                                    <?php echo $inscricao->nome_sala ?>
                                 
                                 </td>
                                 <td>
-                                    <?php echo $matricula->nome_disciplina ?>
+                                    <?php echo $inscricao->nome_disciplina ?>
                                 </td>
                                 <td>
-                                    <a><i onclick="delMatricula(this)" class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a><i onclick="delInscricao(this)" class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
-                                <input type="hidden" name="matriculas" data-cod_sala="<?php echo $matricula->cod_sala ?>" data-cod_disciplina="<?php echo $matricula->cod_disciplina ?>">
+                                <input type="hidden" name="inscricoes" data-cod_grupo="<?php echo $inscricao->cod_grupo ?>" data-cod_sala="<?php echo $inscricao->cod_sala ?>" data-cod_disciplina="<?php echo $inscricao->cod_disciplina ?>">
                             </tr>
                     <?php } ?>
                 </tbody>

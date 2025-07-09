@@ -106,9 +106,9 @@
             <input type="hidden" id="grupos" name="grupos" data-cod_grupo="2">
             <br>
             <br>
-            <label>Atribuição</label>
+            <label>Inscrição</label>
             <br>
-            <table class="list" id="atribuicoes">
+            <table class="list" id="inscricoes">
                 <tbody>
                     <tr>
                         <th>
@@ -139,27 +139,28 @@
                             </select>
                         </td>
                         <td>
-                            <a><i onclick="addAtribuicao(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                            <a><i onclick="addInscricao(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     <?php
-                        $AtribuicaoController = new AtribuicaoController();
-                        $atribuicoes = json_decode($AtribuicaoController->buscarAtribuicoesUsuario([
-                            'cod_usuario' => $_GET['id']
-                        ]))->atribuicoes;
-                            foreach ($atribuicoes as $atribuicao){ ?>
+                        $InscricaoController = new InscricaoController();
+                        $inscricoes = json_decode($InscricaoController->buscarTodosUsuario([
+                            'cod_usuario' => $_GET['id'],
+                            'cod_grupo' => 2
+                        ]))->inscricoes;
+                            foreach ($inscricoes as $inscricao){ ?>
                                 <tr>
                                     <td>
-                                        <?php echo $atribuicao->nome_sala ?>
+                                        <?php echo $inscricao->nome_sala ?>
                                     
                                     </td>
                                     <td>
-                                        <?php echo $atribuicao->nome_disciplina ?>
+                                        <?php echo $inscricao->nome_disciplina ?>
                                     </td>
                                     <td>
-                                        <a><i onclick="delAtribuicao(this)" class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <a><i onclick="delInscricao(this)" class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
-                                    <input type="hidden" id="atribuicoes" name="atribuicoes" data-cod_sala="<?php echo $atribuicao->cod_sala ?>" data-cod_disciplina="<?php echo $atribuicao->cod_disciplina ?>">
+                                    <input type="hidden" id="inscricoes" name="inscricoes" data-cod_sala="<?php echo $inscricao->cod_sala ?>" data-cod_disciplina="<?php echo $inscricao->cod_disciplina ?>">
                                 </tr>
                         <?php } 
                     ?>

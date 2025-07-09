@@ -15,15 +15,10 @@
                 'id' => $post['id']
             ]);
 
-            $Matricula = new Matricula();
-            $Matricula->cod_disciplina = $post['id'];
-            $matriculas = $Matricula->buscar();
-            $buscarDisciplina['matriculas'] = $matriculas;
-
-            $Atribuicao = new Atribuicao();
-            $Atribuicao->cod_disciplina = $post['id'];
-            $atribuicoes = $Atribuicao->buscar();
-            $buscarDisciplina['atribuicoes'] = $atribuicoes;
+            $Inscricao = new Inscricao();
+            $Inscricao->cod_disciplina = $post['id'];
+            $inscricoes = $Inscricao->buscar();
+            $buscarDisciplina['inscricoes'] = $inscricoes;
 
             if(!empty($buscarDisciplina)){
                 return json_encode([

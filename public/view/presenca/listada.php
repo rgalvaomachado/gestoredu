@@ -33,7 +33,7 @@
 		<br>
 		<label>Disciplina</label>
 		<br>
-		<select class='input coluna' id="disciplina" name="disciplina" onchange="getMatriculasListada()">
+		<select class='input coluna' id="disciplina" name="disciplina" onchange="getInscricoesListada()">
 			<option value="">Selecione uma disciplina</option>
 				</select>
 				</select>

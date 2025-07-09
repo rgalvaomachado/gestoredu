@@ -1,13 +1,13 @@
 <?php
     class PresencaController {
         function criarPresencaListada($post){
-            $MatriculaController = new MatriculaController();
-            $buscarTodos = json_decode($MatriculaController->buscarTodos([
+            $InscricaoController = new InscricaoController();
+            $buscarTodos = json_decode($InscricaoController->buscarTodos([
                 "grupo" => $post['grupo'],
                 "sala" => $post['sala'],
                 "disciplina" => $post['disciplina']
             ]));
-            $usuarios = $buscarTodos->matriculas;
+            $usuarios = $buscarTodos->inscricoes;
             $presente = isset($post['presente[]']) ? $post['presente[]'] : [] ;
             $erroAlune = 0;
             foreach($usuarios as $usuario){

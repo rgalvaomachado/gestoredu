@@ -96,9 +96,9 @@
             <br>
             <input type="hidden" id="grupos" name="grupos" data-cod_grupo="1">
             <br><br>
-            <label>Matricula</label>
+            <label>Inscricao</label>
             <br>
-            <table class="list" id="matriculas">
+            <table class="list" id="inscricoes">
                 <tbody>
                     <tr>
                         <th>
@@ -129,7 +129,7 @@
                             </select>
                         </td>
                         <td>
-                            <a><i onclick="addMatricula(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                            <a><i onclick="addInscricao(this)" class="fa fa-plus-square-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </tbody>

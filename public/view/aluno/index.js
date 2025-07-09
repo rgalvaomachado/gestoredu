@@ -18,12 +18,13 @@ $(document).ready(function() {
             });
         })
         
-        jsonData.matriculas = [];
-        const matriculaInputs = document.querySelectorAll('input[name="matriculas[]"]');
-        matriculaInputs.forEach(input => {
+        jsonData.inscricoes = [];
+        const inscricaoInputs = document.querySelectorAll('input[name="inscricoes[]"]');
+        inscricaoInputs.forEach(input => {
             const codSala = input.getAttribute('data-cod_sala');
             const codDisciplina = input.getAttribute('data-cod_disciplina');
-            jsonData.matriculas.push({
+            jsonData.inscricoes.push({
+                cod_grupo: 1,
                 cod_sala: codSala,
                 cod_disciplina: codDisciplina
             });
@@ -75,12 +76,13 @@ $(document).ready(function() {
             });
         })
 
-        jsonData.matriculas = [];
-        const matriculasInputs = document.querySelectorAll('input[name="matriculas"]');
-        matriculasInputs.forEach(input => {
+        jsonData.inscricoes = [];
+        const inscricoesInputs = document.querySelectorAll('input[name="inscricoes"]');
+        inscricoesInputs.forEach(input => {
             const codSala = input.getAttribute('data-cod_sala');
             const codDisciplina = input.getAttribute('data-cod_disciplina');
-            jsonData.matriculas.push({
+            jsonData.inscricoes.push({
+                cod_grupo: 1,
                 cod_sala: codSala,
                 cod_disciplina: codDisciplina
             });
@@ -183,26 +185,26 @@ function getDisciplinas() {
     });
 }
 
-function addMatricula(element) {
-    let matricula = $(element).parent().parent().parent();
+function addInscricao(element) {
+    let inscricao = $(element).parent().parent().parent();
 
     let cod_sala = null;
     let nome_sala = null;
-    const salaSelect = matricula.find('#sala');
+    const salaSelect = inscricao.find('#sala');
     cod_sala = salaSelect.val();
     nome_sala = salaSelect.find("option:selected").text();
 
     let cod_disciplina = null;
     let nome_disciplina = null;
 
-    const disciplinaSelect = matricula.find('#disciplina');
+    const disciplinaSelect = inscricao.find('#disciplina');
     cod_disciplina = disciplinaSelect.val();
     nome_disciplina = disciplinaSelect.find("option:selected").text();
 
     if (!cod_sala || !cod_disciplina) {
         alert('Selecione uma sala e uma disciplina');
     } else {
-        $('#matriculas').append(`
+        $('#inscricoes').append(`
            <tr>
                 <td id=nome_sala>
                     ${nome_sala}
@@ -211,18 +213,18 @@ function addMatricula(element) {
                     ${nome_disciplina}
                 </td>
                 <td>
-                    <a><i onclick="delMatricula(this)" class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a><i onclick="delInscricao(this)" class="fa fa-trash" aria-hidden="true"></i></a>
                     
                 </td>
-                <input type="hidden" id="matriculas" name="matriculas" data-cod_sala="${cod_sala}" data-cod_disciplina="${cod_disciplina}">
+                <input type="hidden" id="inscricoes" name="inscricoes" data-cod_grupo="${1}" data-cod_sala="${cod_sala}" data-cod_disciplina="${cod_disciplina}">
             </tr>
         `);
     }
 }
 
-function delMatricula(element) {
-    let matricula = $(element).parent().parent().parent();
-    $(matricula).remove()
+function delInscricao(element) {
+    let inscricao = $(element).parent().parent().parent();
+    $(inscricao).remove()
 }
 
 function getDisciplinasProjeto() {

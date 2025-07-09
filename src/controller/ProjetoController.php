@@ -34,17 +34,10 @@
                 'cod_usuario' => $post['cod_usuario'],
             ]);
 
-            if(!empty($buscarProjeto)){
-                return json_encode([
-                    "access" => true,
-                    "projetos" => $buscarProjeto,
-                ]);
-            } else {
-                return json_encode([
-                    "access" => false,
-                    "message" => "Projeto não encontrado"
-                ]);
-            }
+            return json_encode([
+                "access" => true,
+                "projetos" => $buscarProjeto,
+            ]);
         }
 
         function buscarProjetoUsuario($post){

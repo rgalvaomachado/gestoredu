@@ -127,23 +127,23 @@ function getDisciplinas() {
   
 }
 
-function getMatriculasIndividual() {
+function getInscricoesIndividual() {
     cod_sala = $("#sala").val();
     cod_disciplina = $("#disciplina").val();
     if (cod_sala && cod_disciplina){
-        apiResponse = apiGet('/matriculas', {
+        apiResponse = apiGet('/inscricoes', {
             'sala': cod_sala,
             'disciplina': cod_disciplina,
         })
 
         if (apiResponse.access) {
              $("#criarChamadaIndividual").show();
-            var matriculas = apiResponse.matriculas;
+            var inscricoes = apiResponse.inscricoes;
             $("#usuario").html('');
             $('#usuario').append(`
                 <option value="">Selecione um usuário</option>	
                 `);
-            matriculas.map(({id, nome}) => {
+            inscricoes.map(({id, nome}) => {
                 $('#usuario').append(`
                     <option value="${id}">${nome}</option>	
                 `);
@@ -158,20 +158,20 @@ function getMatriculasIndividual() {
     }
 }
 
-function getMatriculasListada() {
+function getInscricoesListada() {
     cod_sala = $("#sala").val();
     cod_disciplina = $("#disciplina").val();
     if (cod_sala && cod_disciplina) {
-        apiResponse = apiGet('/matriculas', {
+        apiResponse = apiGet('/inscricoes', {
             'sala': cod_sala,
             'disciplina': cod_disciplina,
         })
 
         if (apiResponse.access) {
             $("#criarChamadaListada").show();
-            var matriculas = apiResponse.matriculas;
+            var inscricoes = apiResponse.inscricoes;
             $("#lista").html('');
-            matriculas.map(({id, nome}) => {
+            inscricoes.map(({id, nome}) => {
                 $('#lista').append(`
                     <tr>
                         <td>${nome}</td>

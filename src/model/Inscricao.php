@@ -1,16 +1,17 @@
 <?php
-    class Matricula extends Model{
-        protected $table = 'usuario_sala_disciplina';
+    class Inscricao extends Model{
+        protected $table = 'inscricao';
         
         public $id;
         public $cod_usuario;
+        public $cod_grupo;
         public $cod_sala;
         public $cod_disciplina;
 
         function buscar(){
             $sql = "
                 SELECT
-                    {$this->table}.id as matricula,
+                    {$this->table}.id as inscricao,
                     usuario.*,
                     {$this->table}.cod_sala,
                     sala.nome as nome_sala,
@@ -31,6 +32,11 @@
                 $params[':cod_usuario'] = $this->cod_usuario;
             }
 
+            if ($this->cod_grupo) {
+                $conditions[] = "{$this->table}.cod_grupo = :cod_grupo";
+                $params[':cod_grupo'] = $this->cod_grupo;
+            }
+
             if ($this->cod_sala) {
                 $conditions[] = "{$this->table}.cod_sala = :cod_sala";
                 $params[':cod_sala'] = $this->cod_sala;
@@ -47,23 +53,25 @@
             
             $buscar = $this->connection->prepare($sql);
             $buscar->execute($params);
-            $matriculas = $buscar->fetchAll(PDO::FETCH_ASSOC);
-            return $matriculas;
+            $inscricoes = $buscar->fetchAll(PDO::FETCH_ASSOC);
+            return $inscricoes;
         }
 
-        function vinculo($matriculas){
+        function vinculo($inscricoes){
             $vinculo = 0;
-            foreach ($matriculas as $matricula) {
+            foreach ($inscricoes as $inscricao) {
                 $buscar = $this->searchAll([
                     'cod_usuario' => $this->cod_usuario,
-                    'cod_sala' => $matricula->cod_sala,
-                    'cod_disciplina' => $matricula->cod_disciplina,
+                    'cod_grupo' => $inscricao->cod_grupo,
+                    'cod_sala' => $inscricao->cod_sala,
+                    'cod_disciplina' => $inscricao->cod_disciplina,
                 ]);
                 if (!$buscar) {
                     $this->create([
                         'cod_usuario' => $this->cod_usuario,
-                        'cod_sala' => $matricula->cod_sala,
-                        'cod_disciplina' => $matricula->cod_disciplina,
+                        'cod_grupo' => $inscricao->cod_grupo,
+                        'cod_sala' => $inscricao->cod_sala,
+                        'cod_disciplina' => $inscricao->cod_disciplina,
                     ]);
                     $vinculo++;
                 }
@@ -72,13 +80,15 @@
             $existentes = $this->searchAll([
                 'cod_usuario' => $this->cod_usuario
             ]);
+
             foreach ($existentes as $existe) {
                 $found = false;
-                foreach ($matriculas as $matricula) {
+                foreach ($inscricoes as $inscricao) {
                     if (
                         $existe['cod_usuario'] == $this->cod_usuario &&
-                        $existe['cod_sala'] == $matricula->cod_sala &&
-                        $existe['cod_disciplina'] == $matricula->cod_disciplina
+                        $existe['cod_grupo'] == $inscricao->cod_grupo &&
+                        $existe['cod_sala'] == $inscricao->cod_sala &&
+                        $existe['cod_disciplina'] == $inscricao->cod_disciplina
                     ) {
                         $found = true;
                         break;

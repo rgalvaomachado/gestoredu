@@ -55,29 +55,17 @@
                 'data_inscricao' => date("Y-m-d"),
             ]);
 
-            if(!empty($post['grupos'])){
-                $UsuarioGrupo = new UsuarioGrupo();
-                $UsuarioGrupo->cod_usuario = $id;
-                $UsuarioGrupo->vinculo($post['grupos']);
-            }
+            $UsuarioGrupo = new UsuarioGrupo();
+            $UsuarioGrupo->cod_usuario = $id;
+            $UsuarioGrupo->vinculo($post['grupos']);
 
-            if(!empty($post['matriculas'])){
-                $Matricula = new Matricula();
-                $Matricula->cod_usuario = $id;
-                $Matricula->vinculo($post['matriculas']);
-            }
-            
-            if(!empty($post['atribuicoes'])){
-                $Atribuicao = new Atribuicao();
-                $Atribuicao->cod_usuario = $id;
-                $Atribuicao->vinculo($post['atribuicoes']);
-            }
+            $Inscricao = new Inscricao();
+            $Inscricao->cod_usuario = $id;
+            $Inscricao->vinculo($post['inscricoes'] ?? []);
 
-            if(!empty($post['projetos'])){
-                $Projeto = new Projeto();
-                $Projeto->cod_usuario = $id;
-                $Projeto->vinculo($post['projetos']);
-            }
+            $Projeto = new Projeto();
+            $Projeto->cod_usuario = $id;
+            $Projeto->vinculo($post['projetos'] ?? []);
 
             if ($id > 0){
                 return json_encode([
@@ -113,32 +101,19 @@
                 'id' => $post['id'],
             ]);
 
-            if(!empty($post['grupos'])){
-                $UsuarioGrupo = new UsuarioGrupo();
-                $UsuarioGrupo->cod_usuario = $post['id'];
-                $vinculado = $UsuarioGrupo->vinculo($post['grupos']);
-            }
+            $UsuarioGrupo = new UsuarioGrupo();
+            $UsuarioGrupo->cod_usuario = $post['id'];
+            $vinculado = $UsuarioGrupo->vinculo($post['grupos']);
             $atualizado+= $vinculado;
 
-            if(!empty($post['matriculas'])){
-                $Matricula = new Matricula();
-                $Matricula->cod_usuario = $post['id'];
-                $vinculado = $Matricula->vinculo($post['matriculas']);
-            }
+            $Inscricao = new Inscricao();
+            $Inscricao->cod_usuario = $post['id'];
+            $vinculado = $Inscricao->vinculo($post['inscricoes'] ?? []);
             $atualizado+= $vinculado;
 
-            if(!empty($post['atribuicoes'])){
-                $Atribuicao = new Atribuicao();
-                $Atribuicao->cod_usuario = $post['id'];
-                $vinculado = $Atribuicao->vinculo($post['atribuicoes']);
-            }
-            $atualizado+= $vinculado;
-
-            if(!empty($post['projetos'])){
-                $Projeto = new Projeto();
-                $Projeto->cod_usuario = $post['id'];
-                $vinculado = $Projeto->vinculo($post['projetos']);
-            }
+            $Projeto = new Projeto();
+            $Projeto->cod_usuario = $post['id'];
+            $vinculado = $Projeto->vinculo($post['projetos'] ?? []);
             $atualizado+= $vinculado;
 
             if ($atualizado > 0){
@@ -162,13 +137,8 @@
 
             if ($deletado){
                 
-                $Matricula = new Matricula();
-                $Matricula->delete([
-                    'cod_usuario' => $post['id']
-                ]);
-
-                $Atribuicao = new Atribuicao();
-                $Atribuicao->delete([
+                $Inscricao = new Inscricao();
+                $Inscricao->delete([
                     'cod_usuario' => $post['id']
                 ]);
 

@@ -54,19 +54,13 @@
             </div>
             <br>
 			</br>
-			<label><b>Matriculas <?php echo "(".count($sala->matriculas).")"?></b></label>
-			<?php foreach($sala->matriculas as $matricula) {?>
+			<label><b>Inscricoes <?php echo "(".count($sala->inscricoes).")"?></b></label>
+			<?php foreach($sala->inscricoes as $inscricao) {?>
 				<div id='listaUsurios'>
-					<label>Nome: <?php echo $matricula->nome ?> - Disciplina: <?php echo $matricula->nome_disciplina ?></label><br>
+					<label>Nome: <?php echo $inscricao->nome ?> - Disciplina: <?php echo $inscricao->nome_disciplina ?></label><br>
 				</div>
 			<?php } ?>
 			<br>
-			<label><b>Atribuições <?php echo "(".count($sala->atribuicoes).")"?></b></label>
-			<?php foreach($sala->atribuicoes as $atribuicao) {?>
-				<div id='listaUsurios'>
-					<label>Nome: <?php echo $atribuicao->nome ?> - Disciplina: <?php echo $atribuicao->nome_disciplina ?></label><br>
-				</div>
-			<?php } ?>
 			<br>
 			<input class='button editar' type="submit" value="Editar">
 		</form>

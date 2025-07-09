@@ -20,15 +20,10 @@
             $disciplinas = $SalaDisciplina->buscar();
             $buscarSala['disciplinas'] = $disciplinas;
 
-            $Matricula = new Matricula();
-            $Matricula->cod_sala = $post['id'];
-            $matriculas = $Matricula->buscar();
-            $buscarSala['matriculas'] = $matriculas;
-
-            $Atribuicao = new Atribuicao();
-            $Atribuicao->cod_sala = $post['id'];
-            $atribuicoes = $Atribuicao->buscar();
-            $buscarSala['atribuicoes'] = $atribuicoes;
+            $Inscricao = new Inscricao();
+            $Inscricao->cod_sala = $post['id'];
+            $inscricoes = $Inscricao->buscar();
+            $buscarSala['inscricoes'] = $inscricoes;
 
             if(!empty($buscarSala)){
                 return json_encode([
