@@ -45,8 +45,8 @@
             
             $buscar = $this->connection->prepare($sql);
             $buscar->execute($params);
-            $projetosUsuarios = $buscar->fetchAll(PDO::FETCH_ASSOC);
-            return $projetosUsuarios;
+            $projetosUsuario = $buscar->fetchAll(PDO::FETCH_ASSOC);
+            return $projetosUsuario;
         }
 
         function vinculo($projetos){
