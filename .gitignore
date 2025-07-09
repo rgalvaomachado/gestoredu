@@ -2,3 +2,4 @@ vendor/
 tmp/
 storage/
 .phpunit.result.cache
+env.php
