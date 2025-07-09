@@ -1,3 +1,6 @@
+<?php
+    include_once($_SERVER['DOCUMENT_ROOT'].'/public/verifica_sessao.php');
+?>
 <head>
     <link href="/public/view/aluno/styles.css" rel="stylesheet">
     <script src="/public/view/aluno/index.js"></script>

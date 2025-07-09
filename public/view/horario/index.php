@@ -1,3 +1,6 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/public/verifica_sessao.php');
+?>
 <head>
 	<?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/HorarioController.php')?>
     <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/UtilsController.php')?>

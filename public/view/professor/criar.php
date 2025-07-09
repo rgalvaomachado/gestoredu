@@ -1,8 +1,7 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/public/verifica_sessao.php');
+?>
 <head>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/GrupoController.php')?>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/DisciplinaController.php')?>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/SalaController.php')?>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'].'/src/controller/InscricaoController.php')?>
     <link href="/public/view/professor/styles.css" rel="stylesheet">
     <script src="/public/view/professor/index.js"></script>
 </head>

@@ -1,3 +1,6 @@
+<?php
+    include_once($_SERVER['DOCUMENT_ROOT'].'/public/verifica_sessao.php');
+?>
 <head>
     <link href="/public/view/configuracao/styles.css" rel="stylesheet">
     <script src="/public/view/configuracao/index.js"></script>

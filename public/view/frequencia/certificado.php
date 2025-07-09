@@ -1,4 +1,5 @@
 <?php 
+	include_once($_SERVER['DOCUMENT_ROOT'].'/public/verifica_sessao.php');
     if (!isset($_GET['cod_usuario'])){
         header("Location: /frequencia");
         die();
