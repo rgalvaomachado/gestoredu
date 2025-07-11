@@ -52,6 +52,7 @@
         function criar($post){
             $Certificado = new Certificado();
             $id = $Certificado->create([
+                "cod_grupo" => $post['grupo'],
                 "cod_sala" => $post['sala'],
                 "cod_disciplina" => $post['disciplina'],
                 "conteudo" => $post['conteudo'],
@@ -88,8 +89,9 @@
             $Certificado = new Certificado();
             $atualizado = $Certificado->update(
                 [
-                    "cod_disciplina" => $post['disciplina'],
+                    "cod_grupo" => $post['grupo'],
                     "cod_sala" => $post['sala'],
+                    "cod_disciplina" => $post['disciplina'],
                     "conteudo" => $post['conteudo'],
                     "tamanho_letra" => $post['tamanho_letra']
                 ],
@@ -149,8 +151,9 @@
         public function gerarCertificado($post){
             $Certificado = new Certificado();
             $certificado = $Certificado->search([
-                'cod_disciplina' => $post['cod_disciplina'],
-                'cod_sala' => $post['cod_sala']
+                'cod_grupo' => $post['cod_grupo'],
+                'cod_sala' => $post['cod_sala'],
+                'cod_disciplina' => $post['cod_disciplina']
             ]);
 
             if ($certificado){

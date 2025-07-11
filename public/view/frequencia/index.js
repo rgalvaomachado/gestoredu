@@ -39,7 +39,7 @@ $(document).ready(function() {
                                 <td>${ausencias}</td>
                                 <td>${frequencia.toFixed(2)}%</td>
                                 <td>
-                                    <a href="/frequencia/certificado?cod_usuario=${id}&frequencia=${frequencia.toFixed(2)}&cod_disciplina=${disciplina}&cod_sala=${sala}" target="_blank" ${hidden}>
+                                    <a href="/frequencia/certificado?cod_usuario=${id}&frequencia=${frequencia.toFixed(2)}&cod_grupo=${grupo}&cod_sala=${sala}&cod_disciplina=${disciplina}" target="_blank" ${hidden}>
                                         <em class="fa fa-file-pdf-o" aria-hidden="true"></em>
                                     </a>
                                 </td>

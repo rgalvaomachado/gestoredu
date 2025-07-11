@@ -21,6 +21,9 @@
 		<table class="list">
             <tr>
                 <th>
+                    Grupo
+                </th>
+                <th>
                     Sala
                 </th>
                 <th>
@@ -36,6 +39,9 @@
             <tbody>
                 <?php foreach ($certificados as $certificado){ ?>
                     <tr>
+                        <td class="text-left">
+                            <?php echo $certificado->nome_grupo ?>
+                        </td> 
                         <td class="text-left">
                             <?php echo $certificado->nome_sala ?>
                         </td> 

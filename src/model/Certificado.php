@@ -11,8 +11,13 @@
 
         function buscarTodos(){
             $sql = "
-                SELECT certificado.*, sala.nome as nome_sala, disciplina.nome as nome_disciplina
+                SELECT 
+                    certificado.*, 
+                    grupo.nome as nome_grupo,
+                    sala.nome as nome_sala, 
+                    disciplina.nome as nome_disciplina
                 FROM certificado
+                LEFT JOIN grupo ON certificado.cod_grupo = grupo.id
                 LEFT JOIN sala ON certificado.cod_sala = sala.id
                 LEFT JOIN disciplina ON certificado.cod_disciplina = disciplina.id
             ";
@@ -23,8 +28,13 @@
 
         function buscar($post){
             $sql = "
-                SELECT certificado.*, sala.nome as nome_sala, disciplina.nome as nome_disciplina
+                SELECT 
+                    certificado.*,
+                    grupo.nome as nome_grupo,
+                    sala.nome as nome_sala,
+                    disciplina.nome as nome_disciplina
                 FROM certificado
+                LEFT JOIN grupo ON certificado.cod_grupo = grupo.id
                 LEFT JOIN sala ON certificado.cod_sala = sala.id
                 LEFT JOIN disciplina ON certificado.cod_disciplina = disciplina.id
             ";

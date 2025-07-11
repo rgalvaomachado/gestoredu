@@ -5,6 +5,7 @@ $(document).ready(function() {
         var file = fileInput.files[0];
         var conteudo = $("#conteudo").val();
         var tamanho_letra = $("#tamanho_letra").val();
+        var grupo = $("#grupo").val();
         var sala = $("#sala").val();
         var disciplina = $("#disciplina").val();
         
@@ -14,6 +15,7 @@ $(document).ready(function() {
         
             var formData = {
                 file: base64data,
+                grupo: grupo,
                 sala: sala,
                 disciplina: disciplina,
                 conteudo: conteudo,
@@ -54,12 +56,14 @@ $(document).ready(function() {
         var file = fileInput.files[0];
         var nome = $("#nome").val();
         var sala = $("#sala").val();
+        var grupo = $("#grupo").val();
         var disciplina = $("#disciplina").val();
         var conteudo = $("#conteudo").val();
         var tamanho_letra = $("#tamanho_letra").val();
         var id = $("#id").val();
         var formData = {
             nome: nome,
+            grupo: grupo,
             sala: sala,
             disciplina: disciplina,
             conteudo: conteudo,
