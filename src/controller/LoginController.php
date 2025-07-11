@@ -21,7 +21,6 @@
             foreach ($usuarios as $usuario) {
                 if ($email == $usuario->email && $senha == $usuario->senha) {
                     $usuarioValidado = $usuario->nome;
-                    $modoValidado = 'representante';
                     $validado = true;
                 }
             }
@@ -32,12 +31,11 @@
                 }
                 $usuario = explode(' ', $usuarioValidado);
                 $_SESSION['usuario'] = $usuario[0];
-                $_SESSION['modo'] = $modoValidado;
                 $_SESSION['logado'] = $validado;
                 $_SESSION['CREATED'] = time();
                 return json_encode([
                     "access" => true,
-                    "modo" => $modoValidado,
+                    "logado" => $validado,
                 ]);
             } else {
                 return json_encode([
