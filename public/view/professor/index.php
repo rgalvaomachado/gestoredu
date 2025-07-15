@@ -18,7 +18,11 @@
 			$UsuarioController = new UsuarioController();
 			$usuarios = json_decode($UsuarioController->buscarPorGrupos([2]))->usuarios;
 		?>
-		<table class="list">
+        <form id="buscarPorNome">
+            <input id="nome_busca" class="input"></input>
+            <input class='button' type="submit" value="Buscar"></input>
+        </form>
+		<table id="lista" class="list">
             <tbody>
                 <tr>
                     <th>

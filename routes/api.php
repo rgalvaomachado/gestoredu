@@ -10,6 +10,7 @@
         ['GET','/usuarios','UsuarioController','buscarTodos'],
         ['GET','/usuarios/grupos','UsuarioController','buscarPorGrupos'],
         ['GET','/usuario','UsuarioController','buscar'],
+        ['GET','/usuario/busca-por-nome','UsuarioController','buscarByName'],
         ['POST','/usuario','UsuarioController','criar'],
         ['PUT','/usuario','UsuarioController','editar'],
         ['DELETE','/usuario','UsuarioController','deletar'],

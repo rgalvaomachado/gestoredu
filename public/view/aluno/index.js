@@ -159,6 +159,44 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#buscarPorNome').submit(function(e) {
+        e.preventDefault();
+
+        let nome = $('#nome_busca').val()
+        apiResponse = apiGet('/usuario/busca-por-nome', {
+            'nome': nome,
+            'grupo': 1
+        });
+
+        if(apiResponse.access){
+            $("#lista").html('');
+            apiResponse.usuarios.map(({id, nome}) => {
+                $('#lista').append(`
+                    <tr>
+                        <td class="text-left">
+                            ${nome}
+                        </td>
+                        <td>
+                            <a href="/aluno/editar?id=${id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                        <td>
+                            <a href="/aluno/deletar?id=${id}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                `);
+            });
+        } else {
+            $("#lista").html('');
+            const alert = document.getElementById("messageAlert");
+            alert.innerHTML = apiResponse.message;
+            alert.style.color = "red";
+            setTimeout(function(){
+                alert.innerHTML = "";
+            }, 3000);
+        }
+    });
+
 });
 
 function getDisciplinas() {

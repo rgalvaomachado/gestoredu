@@ -14,7 +14,11 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
         <br>
-        <table id='lista' class="list">
+        <form id="buscarPorNome">
+            <input id="nome_busca" class="input"></input>
+            <input class='button' type="submit" value="Buscar"></input>
+        </form>
+        <table class="list">
             <thead>
                 <tr>
                     <th>
@@ -28,7 +32,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id='lista'>
             </tbody>
         </table>
         <script>loadAlunos()</script>

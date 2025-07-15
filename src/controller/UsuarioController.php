@@ -38,6 +38,25 @@
             }
         }
 
+        function buscarByName($post){
+            $nome = urldecode($post['nome']);
+            $grupo = urldecode($post['grupo']);
+            $usuario = new Usuario();
+            $usuarios = $usuario->buscarPorNome($nome, $grupo);
+
+            if (count($usuarios) > 0){
+                return json_encode([
+                    "access" => true,
+                    "usuarios" => $usuarios
+                ]);
+            } else {
+                return json_encode([
+                    "access" => false,
+                    "message" => "Nenhum usuario encontrado"
+                ]);
+            }
+        }
+
         function criar($post){
             $usuario = new Usuario();
             $id = $usuario->create([
