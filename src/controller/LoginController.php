@@ -15,23 +15,19 @@
 
             $validado = false;
 
-            $UsuarioController = new UsuarioController();
-            $UsuarioController = json_decode($UsuarioController->buscarTodos());
-            $usuarios = $UsuarioController->usuarios;
-            foreach ($usuarios as $usuario) {
-                if ($email == $usuario->email && $senha == $usuario->senha) {
-                    $usuarioValidado = $usuario->nome;
-                    $validado = true;
-                }
-            }
+            $user = new Usuario();
+            $usuario = $user->search([
+                "email" => $email,
+                "senha" => $senha
+            ]);
 
-            if ($validado) {
+            if ($usuario) {
                 if (!isset($_SESSION)) {
                     session_start();
                 }
-                $usuario = explode(' ', $usuarioValidado);
-                $_SESSION['usuario'] = $usuario[0];
-                $_SESSION['logado'] = $validado;
+                $usuarioNome = explode(' ', $usuario['nome']);
+                $_SESSION['usuario'] = $usuarioNome[0];
+                $_SESSION['logado'] = true;
                 $_SESSION['CREATED'] = time();
                 return json_encode([
                     "access" => true,
