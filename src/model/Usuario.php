@@ -31,13 +31,13 @@
         }
 
         function buscarPorNome($nome, $grupo){
-            $sql = '
-                SELECT ' . $this->table . '.id, ' . $this->table . '.nome
-                FROM ' . $this->table . ' 
-                INNER JOIN usuario_grupo on usuario_grupo.cod_usuario = usuario.id
-                WHERE lower(usuario.nome) like :nome AND usuario_grupo.cod_grupo = :grupo
+            $sql = "
+                SELECT {$this->table}.id, {$this->table}.nome
+                FROM {$this->table} 
+                INNER JOIN usuario_grupo on usuario_grupo.cod_usuario = {$this->table}.id
+                WHERE lower({$this->table}.nome) like :nome AND usuario_grupo.cod_grupo = :grupo
 
-            ';
+            ";
             $buscar = $this->connection->prepare($sql);
             $buscar->execute([
                 ':nome' => '%' . strtolower($nome) . '%',

@@ -14,41 +14,25 @@
 		<br>
 		<label class="message_alert" id="messageAlert"></label>
         <br>
-		<?php
-			$UsuarioController = new UsuarioController();
-			$usuarios = json_decode($UsuarioController->buscarPorGrupos([2]))->usuarios;
-		?>
         <form id="buscarPorNome">
             <input id="nome_busca" class="input"></input>
             <input class='button' type="submit" value="Buscar"></input>
         </form>
-		<table id="lista" class="list">
-            <tbody>
-                <tr>
-                    <th>
-                        Nome
-                    </th>
-                    <th>
-                        Editar
-                    </th>
-                    <th>
-                        Deletar
-                    </th>
-                </tr>
-                <?php foreach ($usuarios as $usuario){ ?>
-                    <tr>
-                        <td class="text-left">
-                            <?php echo $usuario->nome ?>
-                        </td> 
-                        <td>
-                            <a href="/professor/editar?id=<?php echo $usuario->id ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        </td>
-                        <td>
-                            <a href="/professor/deletar?id=<?php echo $usuario->id ?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
-                <?php } ?>
+		<table class="list">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Editar
+                </th>
+                <th>
+                    Deletar
+                </th>
+            </tr>
+            <tbody id="lista" >
             </tbody>
         </table>
+        <script>loadProfessores()</script>
     </div>
 </div>

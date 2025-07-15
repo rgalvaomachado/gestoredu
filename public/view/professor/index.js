@@ -146,21 +146,23 @@ $(document).ready(function() {
 
         if(apiResponse.access){
             $("#lista").html('');
-            apiResponse.usuarios.map(({id, nome}) => {
-                $('#lista').append(`
-                    <tr>
-                        <td class="text-left">
-                            ${nome}
-                        </td>
-                        <td>
-                            <a href="/professor/editar?id=${id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        </td>
-                        <td>
-                            <a href="/professor/deletar?id=${id}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
-                `);
-            });
+            apiResponse.usuarios
+                .sort((a,b) => a.nome.localeCompare(b.nome))   
+                .map(({id, nome}) => {
+                    $('#lista').append(`
+                        <tr>
+                            <td class="text-left">
+                                ${nome}
+                            </td>
+                            <td>
+                                <a href="/professor/editar?id=${id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            </td>
+                            <td>
+                                <a href="/professor/deletar?id=${id}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    `);
+                });
         } else {
             $("#lista").html('');
             const alert = document.getElementById("messageAlert");
@@ -236,4 +238,28 @@ function addInscricao(element) {
 function delInscricao(element) {
     let inscricao = $(element).parent().parent().parent();
     $(inscricao).remove()
+}
+
+function loadProfessores(){
+    apiResponse = apiGet('/usuarios/grupos', {'grupo': '2'})
+    if(apiResponse.access){
+        $("#lista").html('');
+        apiResponse.usuarios
+            .sort((a,b) => a.nome.localeCompare(b.nome))    
+            .map(({id, nome}) => {
+                $('#lista').append(`
+                    <tr>
+                        <td class="text-left">
+                            ${nome}
+                        </td>
+                        <td>
+                            <a href="/professor/editar?id=${id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                        <td>
+                            <a href="/professor/deletar?id=${id}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                `);
+            });
+    }
 }
