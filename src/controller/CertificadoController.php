@@ -167,7 +167,7 @@
                     'cod_disciplina' => $post["cod_disciplina"],
                     'cod_sala' => $post["cod_sala"]
                 ]));
-                $projeto = $ProjetoController->projeto;
+                $projeto = $ProjetoController->projeto ?? "";
 
                 $titulo_projeto = $projeto ? $projeto->nome : "";
 
